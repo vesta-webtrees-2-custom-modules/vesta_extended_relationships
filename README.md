@@ -1,5 +1,5 @@
 
-# Webtrees 2 Custom Module: ⚶ Vesta Extended Relationships
+# ⚶ Vesta Extended Relationships (Webtrees 2 Custom Module)
 
 This [webtrees](https://www.webtrees.net/) custom module provides an extended 'Relationships' chart. It also displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab.
 The project’s website is [cissee.de](https://cissee.de).
@@ -42,7 +42,7 @@ See the <a href="./webtrees">[Müller Family tree](https://cissee.de/webtrees).
 * Displays data via the ⚶ Vesta Facts and events module ('vesta_personal_facts'). 
 * Download the zipped module, including all related modules, [here](https://cissee.de/vesta.latest.zip).
 * Support, suggestions, feature requests: <ric@richard-cissee.de>. See also [this webtrees forum thread](https://www.webtrees.net/index.php/en/forum/4-customising/31587-extended-relationships-module-feature-requests).
-* Issues also via <https://github.com/ric2016/extended_relationships/issues>
+* Issues also via <https://github.com/vesta-webtrees-2-custom-modules/vesta_extended_relationships/issues>
 
 ### Installation<a name="installation"/>
 
