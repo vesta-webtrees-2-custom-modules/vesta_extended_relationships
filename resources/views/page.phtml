@@ -1,0 +1,125 @@
+<?php 
+use Fisharebest\Webtrees\Bootstrap4;
+use Fisharebest\Webtrees\Functions\FunctionsEdit;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\View;
+?>
+
+<h2 class="wt-page-title">
+	<?= $title ?>
+</h2>
+
+<form class="wt-page-options wt-page-options-relationships-chart d-print-none">
+	<input type="hidden" name="route" value="module">
+	<input type="hidden" name="module" value="<?= e($module) ?>">
+	<input type="hidden" name="ged" value="<?= e($tree->name()) ?>">
+	<input type="hidden" name="action" value="Chart">
+	<?php if ($beforeJD !== null): ?>
+		<input type="hidden" name="beforeJD" value="<?php echo $beforeJD ?>">
+	<?php endif; ?>
+	<input type="hidden" name="recursion" value="<?php echo $recursion ?>">
+
+	<div class="row form-group">
+		<label class="col-sm-3 col-form-label wt-page-options-label" for="xref1">
+			<?= I18N::translate('Individual 1') ?>
+		</label>
+		<div class="col-sm-9 wt-page-options-value">
+			<?= FunctionsEdit::formControlIndividual($tree, $individual1, [
+				'id'   => 'xref',
+				'name' => 'xref',
+			]) ?>
+			<button class="btn btn-link small" id="btn-swap-individuals" type="button">
+				<?= /* I18N: Reverse the order of two individuals */
+				I18N::translate('Swap individuals') ?>
+			</button>
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<label class="col-sm-3 col-form-label wt-page-options-label" for="xref2">
+			<?= I18N::translate('Individual 2') ?>
+		</label>
+		<div class="col-sm-9 wt-page-options-value">
+			<?= FunctionsEdit::formControlIndividual($tree, $individual2, [
+				'id'   => 'xref2',
+				'name' => 'xref2',
+			]) ?>
+		</div>
+	</div>
+
+	<?php if (!empty($ancestors_options1)) : ?>
+		<fieldset class="form-group">
+			<div class="row">
+				<legend class="col-form-label col-sm-3 wt-page-options-label">
+				</legend>
+				<div class="col-sm-9 wt-page-options-value">
+					<?= Bootstrap4::radioButtons('find', $ancestors_options1, $ancestors, false) ?>
+				</div>
+			</div>
+		</fieldset>
+	<?php endif ?>
+		
+	<?php if (!empty($ancestors_options2)) : ?>
+		<fieldset class="form-group">
+			<div class="row">
+				<legend class="col-form-label col-sm-3 wt-page-options-label">
+						<?php if ($dateDisplay !== null) : ?>
+							<?= I18N::translate('Options referring to overall connections established before %1$s.',$dateDisplay) ?>
+						<?php endif ?>
+				</legend>
+				<div class="col-sm-9 wt-page-options-value">
+					<?= Bootstrap4::radioButtons('find', $ancestors_options2, $ancestors, false) ?>
+				</div>
+			</div>
+		</fieldset>
+	<?php endif ?>
+
+	<div class="row form-group">
+		<div class="col-form-label col-sm-3 wt-page-options-label"></div>
+		<div class="col-sm-9 wt-page-options-value">
+			<input class="btn btn-primary" type="submit" value="<?= /* I18N: A button label. */
+			I18N::translate('view') ?>">
+		</div>
+	</div>
+</form>
+
+<?php if ($individual1 !== null && $individual2 !== null): ?>
+	<div class="wt-ajax-load wt-page-content wt-chart wt-relationships-chart" data-ajax-url="<?= e(route('module', [
+		'module'    => $module,
+		'action'    => 'ChartActual',
+		'xref1'     => $individual1->xref(),
+		'xref2'     => $individual2->xref(),
+		'ged'       => $individual2->tree()->name(),
+		'find'      => $ancestors,
+		'recursion' => $recursion,
+		'beforeJD'  => $beforeJD
+	])) ?>"></div>
+<?php endif ?>
+
+<?php View::push('javascript') ?>
+<script>
+  $('#btn-swap-individuals').click(function () {
+    // Swap the (hidden) options of the select
+    var select1       = document.querySelector('#xref1');
+    var select2       = document.querySelector('#xref2');
+    var tmp_html      = select1.innerHTML;
+    select1.innerHTML = select2.innerHTML;
+    select2.innerHTML = tmp_html;
+
+    // Also swap the select2 element
+    var span1       = document.querySelector('#xref1 + span');
+    var span2       = document.querySelector('#xref2 + span');
+    var tmp_html    = span1.innerHTML;
+    span1.innerHTML = span2.innerHTML.replace('xref2', 'xref1');
+    span2.innerHTML = tmp_html.replace('xref1', 'xref2');
+  });
+</script>
+<?php View::endpush() ?>
+
+<!-- for help text -->
+<!-- 
+help text is only used in the 'Chart' view but we need the support here, 
+because it uses document.addEventListener("DOMContentLoaded",
+and the 'Chart' view is loaded after that!
+-->
+<?= view('modals/ajax') ?>

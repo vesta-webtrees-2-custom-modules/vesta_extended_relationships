@@ -1,0 +1,22 @@
+<?php use Fisharebest\Webtrees\I18N; ?>
+<?php use Fisharebest\Webtrees\View; ?>
+
+<div class="progress" id="progress">
+    <div
+        class="progress-bar"
+        role="progressbar"
+        aria-valuenow="<?= $progress * 100 ?>"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="width: <?= $progress * 100 ?>%; min-width: 40px;"
+    >
+        <?= I18N::percentage($progress, 1) ?>
+    </div>
+</div>
+
+<?php View::push('javascript'); ?>
+	<script>
+		//empty javascript object used to trigger POST
+		$("#sync").load("<?= $post ?>", {});
+	</script>
+<?php View::endpush() ?>
