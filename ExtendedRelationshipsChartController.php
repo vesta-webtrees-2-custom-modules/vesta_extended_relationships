@@ -263,7 +263,7 @@ class ExtendedRelationshipsChartController extends AbstractModuleBaseController 
                 $table[$x + 1][$y + 1] = '<div style="background:url(' . $diagonal1 . '); background-position: top right; width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: start;">' . Functions::getRelationshipNameFromPath($relationships[$n], Individual::getInstance($path[$n - 1], $tree), Individual::getInstance($path[$n + 1], $tree)) . '</div><div style="height: 32px; text-align: end;">' . view('icons/arrow-down') . '</div></div>';
                 $x += 2;
               } else {
-                $table[$x][$y + 1] = '<div style="background:url(' . e('"' . asset('css/images/vline.png') . '"')  . ') repeat-y center; height: 64px; text-align:center; "><div class="vline-text" style="display: inline-block; width: 50%; line-height: 64px;">' . Functions::getRelationshipNameFromPath($relationships[$n], Individual::getInstance($path[$n - 1], $tree), Individual::getInstance($path[$n + 1], $tree)) . '</div><div style="display: inline-block; width: 50%; line-height: 32px">' . view('icons/arrow-up') . '</div></div>';
+                $table[$x][$y + 1] = '<div style="background:url(' . e('"' . asset('css/images/vline.png') . '"') . ') repeat-y center; height: 64px; text-align:center; "><div class="vline-text" style="display: inline-block; width: 50%; line-height: 64px;">' . Functions::getRelationshipNameFromPath($relationships[$n], Individual::getInstance($path[$n - 1], $tree), Individual::getInstance($path[$n + 1], $tree)) . '</div><div style="display: inline-block; width: 50%; line-height: 32px">' . view('icons/arrow-up') . '</div></div>';
               }
               $y += 2;
               break;
@@ -360,8 +360,10 @@ class ExtendedRelationshipsChartController extends AbstractModuleBaseController 
           echo I18N::translate('If this is unexpected, and there are recent changes, you may have to follow this link: ');
           ?>
           <a href="<?php echo $url ?>">
-          <?php echo I18N::translate('Synchronize trees to obtain dated relationship links');
-          echo '.'; ?>					
+              <?php
+              echo I18N::translate('Synchronize trees to obtain dated relationship links');
+              echo '.';
+              ?>					
           </a>
           <?php
         }
@@ -478,4 +480,5 @@ class ExtendedRelationshipsChartController extends AbstractModuleBaseController 
       }
     }
   }
+
 }
