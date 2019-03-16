@@ -4,24 +4,28 @@ declare(strict_types=1);
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
-use Cissee\WebtreesExt\AbstractModuleBaseController;
 use Exception;
-use Illuminate\Database\Capsule\Manager as DB;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Query\JoinClause;
+use Fisharebest\Webtrees\Http\Controllers\AbstractBaseController;
 use Fisharebest\Webtrees\Services\TimeoutService;
+use Illuminate\Database\Capsule\Manager as DB;
+use Illuminate\Database\Query\JoinClause;
+use Illuminate\Database\Schema\Blueprint;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use function route;
 
 //adapted from GedcomFileController
-class Sync extends AbstractModuleBaseController {
+class Sync extends AbstractBaseController {
 
   /** @var string */
   protected $layout = 'layouts/ajax';
 
-  public function __construct(string $directory, string $moduleName) {
-    parent::__construct($directory, $moduleName);
+  protected $moduleName;
+
+  public function __construct(string $moduleName) {
+    $this->moduleName = $moduleName;
   }
+
 
   public function sync(Request $request, TimeoutService $timeout_service): Response {
 
@@ -56,7 +60,7 @@ class Sync extends AbstractModuleBaseController {
         // Run for a few seconds. This keeps the resource requirements low.
         do {
           if (!Sync::calculateNextFamily()) {
-            return $this->viewResponse('sync-complete', []);
+            return $this->viewResponse($this->moduleName . '::sync-complete', []);
           }
           $position += 1;
         } while (!$timeout_service->isTimeLimitUp());
@@ -76,7 +80,7 @@ class Sync extends AbstractModuleBaseController {
         'position' => $position
     ]);
 
-    return $this->viewResponse('sync-progress', [
+    return $this->viewResponse($this->moduleName . '::sync-progress', [
                 'progress' => $progress,
                 'post' => $url
     ]);

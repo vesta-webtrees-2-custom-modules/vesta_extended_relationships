@@ -3,9 +3,9 @@
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\Webtrees\Hook\HookInterfaces\EmptyIndividualFactsTabExtender;
+use Cissee\Webtrees\Hook\HookInterfaces\EmptyRelativesTabExtender;
 use Cissee\Webtrees\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
 use Cissee\Webtrees\Hook\HookInterfaces\RelativesTabExtenderInterface;
-use Cissee\Webtrees\Hook\HookInterfaces\EmptyRelativesTabExtender;
 use Cissee\Webtrees\Module\ExtendedRelationships\AjaxRequests;
 use Cissee\Webtrees\Module\ExtendedRelationships\DirectFamily;
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipController;
@@ -13,8 +13,8 @@ use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipModuleTrait
 use Cissee\Webtrees\Module\ExtendedRelationships\HelpTexts;
 use Cissee\Webtrees\Module\ExtendedRelationships\Sync;
 use Cissee\WebtreesExt\Functions\FunctionsExt;
-use Cissee\WebtreesExt\ModuleView;
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Contracts\UserInterface;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\I18N;
@@ -26,20 +26,20 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Tree;
-use Fisharebest\Webtrees\Contracts\UserInterface;
-use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Webtrees;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Vesta\Model\GenericViewElement;
 use Vesta\VestaModuleTrait;
+use function route;
+use function view;
 
 // we extend RelationshipsChartModule so that links to this chart are used even in non-extended tabs etc.
 class ExtendedRelationshipModule extends RelationshipsChartModule implements ModuleCustomInterface, ModuleConfigInterface, ModuleChartInterface, IndividualFactsTabExtenderInterface, RelativesTabExtenderInterface {
 
+  use VestaModuleTrait;
   use EmptyIndividualFactsTabExtender;
   use EmptyRelativesTabExtender;
-  use VestaModuleTrait;
 
 //use ModuleChartTrait;
 
@@ -52,17 +52,6 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
 
   /** By default new trees allow unlimited recursion */
   const DEFAULT_RECURSION = self::UNLIMITED_RECURSION;
-
-  /** @var string The directory where the module is installed */
-  protected $directory;
-
-  public function __construct(string $directory) {
-    $this->directory = $directory;
-  }
-
-  public function getDirectory(): string {
-    return $this->directory;
-  }
 
   public function customModuleAuthorName(): string {
     return 'Richard Cissée';
@@ -91,18 +80,6 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
    */
   public function resourcesFolder(): string {
     return __DIR__ . '/resources/';
-  }
-
-  /**
-   * Additional/updated translations.
-   *
-   * @param string $language
-   *
-   * @return string[]
-   */
-  public function customTranslations(string $language): array {
-    //TODO
-    return [];
   }
 
   protected function editConfigAfterFaq() {
@@ -180,12 +157,12 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
           $prefix,
           $suffix) {
 
-    //disabled - buggy wrt I18N! not tested in 2.x.
+    //disabled - buggy wrt I18N! not tested in 2.x. Won't be possible in future versions.
     $directAjax = false; //boolval($this->getPreference($settingsPrefix.'TAB_DIRECT_AJAX', '0'));
     $toggleableRels = boolval($this->getPreference('FTAB_TOGGLEABLE_RELS', '1'));
 
     if ($directAjax) {
-      $url = Webtrees::MODULES_PATH . basename($this->directory) . "/moduleAjax.php?request=rel&xref1=" . $xref1 . "&xref2=" . $xref2 . "&mode=" . $mode;
+      $url = Webtrees::MODULES_PATH . basename(__DIR__) . "/moduleAjax.php?request=rel&xref1=" . $xref1 . "&xref2=" . $xref2 . "&mode=" . $mode;
       if ($beforeJD) {
         $url .= "&beforeJD=" . $beforeJD;
       }
@@ -317,7 +294,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
 
     if ($directAjax) {
       //untested, likely required further refactoring
-      $url = Webtrees::MODULES_PATH . basename($this->directory) . "/moduleAjax.php?request=mainRels&pid=" . $xref . "&mode=" . $mode . "&recursion=" . $recursion . "&showCa=" . $showCa;
+      $url = Webtrees::MODULES_PATH . basename(__DIR__) . "/moduleAjax.php?request=mainRels&pid=" . $xref . "&mode=" . $mode . "&recursion=" . $recursion . "&showCa=" . $showCa;
     } else {
       $url = route('module', [
           'module' => $this->name(),
@@ -419,7 +396,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
 
     if ($directAjax) {
       //untested, likely required further refactoring
-      $url = Webtrees::MODULES_PATH . basename($this->directory) . "/moduleAjax.php?request=famRels&pid=" . $xref . "&mode=" . $mode . "&recursion=" . $recursion . "&showCa=" . $showCa;
+      $url = Webtrees::MODULES_PATH . basename(__DIR__) . "/moduleAjax.php?request=famRels&pid=" . $xref . "&mode=" . $mode . "&recursion=" . $recursion . "&showCa=" . $showCa;
       if ($beforeJD) {
         $url .= "&beforeJD=" . $beforeJD;
       }
@@ -569,7 +546,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   }
 
   public function postAdminSyncAction(Request $request, TimeoutService $timeout_service): Response {
-    $sync = new Sync($this->directory, $this->name());
+    $sync = new Sync($this->name());
     return $sync->sync($request, $timeout_service);
   }
 
@@ -598,13 +575,13 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
     ]);
 
     // Render the view
-    $innerHtml = ModuleView::make($this->directory, 'sync', [
+    $innerHtml = view($this->name() . '::sync', [
                 'title' => $this->title() . ' — ' . I18N::translate('Synchronization'),
                 'post' => $url
     ]);
 
     // Insert the view into the (main) layout
-    $html = View::make('layouts/administration', [
+    $html = view('layouts/administration', [
                 'title' => $this->title() . ' — ' . I18N::translate('Synchronization'),
                 'content' => $innerHtml
     ]);

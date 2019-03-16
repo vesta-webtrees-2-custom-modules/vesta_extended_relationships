@@ -3,29 +3,30 @@ declare(strict_types=1);
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
-use Cissee\WebtreesExt\AbstractModuleBaseController;
 use Cissee\WebtreesExt\Functions\FunctionsExt;
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Contracts\UserInterface;
 use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\Functions\FunctionsPrint;
 use Fisharebest\Webtrees\GedcomRecord;
+use Fisharebest\Webtrees\Http\Controllers\AbstractBaseController;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Tree;
-use Fisharebest\Webtrees\Contracts\UserInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use function asset;
+use function route;
+use function view;
 
-class ExtendedRelationshipsChartController extends AbstractModuleBaseController {
+class ExtendedRelationshipsChartController extends AbstractBaseController {
 
-  //for getPreferences - generalize and move to AbstractModuleBaseController?
   protected $module;
 
   public function __construct(ExtendedRelationshipModule $module) {
-    parent::__construct($module->getDirectory(), $module->name());
     $this->module = $module;
   }
 
@@ -102,8 +103,8 @@ class ExtendedRelationshipsChartController extends AbstractModuleBaseController 
       $this->addAncestorsOptions2($options1, $chart4, $chart5, $chart6, $chart7, $max_recursion);
     }
 
-    return $this->viewResponse('page', [
-                'module' => $this->moduleName,
+    return $this->viewResponse($this->module->name() . '::page', [
+                'module' => $this->module->name(),
                 'ancestors' => $find,
                 'ancestors_options1' => $options1,
                 'ancestors_options2' => $options2,
@@ -158,7 +159,7 @@ class ExtendedRelationshipsChartController extends AbstractModuleBaseController 
       $corPlus = $controller->getCorFromCaAndPaths($individual1->tree(), $caAndPaths);
       $cor = $corPlus->getCor();
       echo '<h3>', I18N::translate('Uncorrected CoR (Coefficient of Relationship): %s', I18n::percentage($cor, 2));
-      echo FunctionsPrintExt::helpLink($this->moduleName, 'Uncorrected CoR');
+      echo FunctionsPrintExt::helpLink($this->module->name(), 'Uncorrected CoR');
       //echo I18N::translate('(Number of relationships: %s)', count($paths)), '</h3>';
       echo I18N::translate('(Number of relationships: %s)', count($caAndPaths)), '</h3>';
       if (count($caAndPaths) > 1) {

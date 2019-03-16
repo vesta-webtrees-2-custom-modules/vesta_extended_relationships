@@ -65,7 +65,11 @@ class DirectFamily extends GedcomRecord {
     if ($gedcom === null) {
       $gedcom = Family::fetchGedcomRecord($xref, $tree_id);
     }
-
+    
+    if ($gedcom === null) {
+      return null;
+    }
+    
     $record = new DirectFamily($xref, $gedcom, $tree_id);
 
     // Store it in the cache

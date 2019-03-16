@@ -48,6 +48,10 @@ class DirectIndividual extends Individual {
       $gedcom = Individual::fetchGedcomRecord($xref, $tree_id);
     }
 
+    if ($gedcom === null) {
+      return null;
+    }
+    
     $record = new DirectIndividual($xref, $gedcom, $tree_id);
 
     // Store it in the cache
