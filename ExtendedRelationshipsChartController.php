@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\WebtreesExt\Functions\FunctionsExt;
+use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Contracts\UserInterface;
 use Fisharebest\Webtrees\Date;
@@ -159,7 +160,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
       $corPlus = $controller->getCorFromCaAndPaths($individual1->tree(), $caAndPaths);
       $cor = $corPlus->getCor();
       echo '<h3>', I18N::translate('Uncorrected CoR (Coefficient of Relationship): %s', I18n::percentage($cor, 2));
-      echo FunctionsPrintExt::helpLink($this->module->name(), 'Uncorrected CoR');
+      echo FunctionsPrintExtHelpLink::helpLink($this->module->name(), 'Uncorrected CoR');
       //echo I18N::translate('(Number of relationships: %s)', count($paths)), '</h3>';
       echo I18N::translate('(Number of relationships: %s)', count($caAndPaths)), '</h3>';
       if (count($caAndPaths) > 1) {
