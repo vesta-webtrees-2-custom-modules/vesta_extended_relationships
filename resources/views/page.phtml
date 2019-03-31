@@ -63,7 +63,7 @@ use Fisharebest\Webtrees\View;
                   <?php endif ?>
               </legend>
               <div class="col-sm-9 wt-page-options-value">
-                  <?= Bootstrap4::radioButtons('find', $ancestors_options1, $ancestors, false) ?>
+                  <?= view('components/radios', ['name' => 'find', 'options' => $ancestors_options1, 'selected' => $ancestors]) ?>
               </div>
           </div>
       </fieldset>
