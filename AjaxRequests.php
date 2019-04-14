@@ -8,33 +8,33 @@ use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\Gedcom;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Tree;
-use Symfony\Component\HttpFoundation\Request;
+use Psr\Http\Message\ServerRequestInterface;
+use Cissee\WebtreesExt\Requests;
 
 class AjaxRequests {
 
-  public static function printMainSlcas(Request $request, Tree $tree) {
+  public static function printMainSlcas(ServerRequestInterface $request, Tree $tree) {
 
-    $moduleName = $request->get('module');
-    $mode = intval($request->get('mode'));
-    $recursion = intval($request->get('recursion'));
-    $showCa = boolval($request->get('showCa'));
+    $moduleName = Requests::getString($request, 'module');
+    $mode = Requests::getInt($request, 'mode');
+    $recursion = Requests::getInt($request, 'recursion');
+    $showCa = Requests::getBool($request, 'showCa');
 
-    $pid = $request->get('pid', Gedcom::REGEX_XREF);
+    $pid = Requests::getString($request, 'pid');
     $individual = Individual::getInstance($pid, $tree);
 
     FunctionsPrintRels::printSlcasWrtDefaultIndividual($moduleName, $individual, $mode, $recursion, $showCa);
   }
 
-  public static function printFamilySlcas(Request $request, Tree $tree) {
+  public static function printFamilySlcas(ServerRequestInterface $request, Tree $tree) {
 
-    $moduleName = $request->get('module');
-    $mode = intval($request->get('mode'));
-    $recursion = intval($request->get('recursion'));
-    $showCa = boolval($request->get('showCa'));
-    $beforeJDraw = $request->get('beforeJD', null);
-    $beforeJD = ($beforeJDraw === null) ? null : intval($beforeJDraw);
+    $moduleName = Requests::getString($request, 'module');
+    $mode = Requests::getInt($request, 'mode');
+    $recursion = Requests::getInt($request, 'recursion');
+    $showCa = Requests::getBool($request, 'showCa');    
+    $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
 
-    $pid = $request->get('pid', Gedcom::REGEX_XREF);
+    $pid = Requests::getString($request, 'pid');
     $family = Family::getInstance($pid, $tree);
 
     if ($family->tree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
@@ -46,16 +46,14 @@ class AjaxRequests {
     FunctionsPrintRels::printSlcas($moduleName, $family, $access_level, $mode, $recursion, $showCa, $beforeJD);
   }
 
-  public static function getRelationshipLink(Request $request, Tree $tree) {
+  public static function getRelationshipLink(ServerRequestInterface $request, Tree $tree) {
 
-    $moduleName = $request->get('module');
-    $text = $request->get('text', null);
-    $xref1 = $request->get('xref1');
-    $xref2 = $request->get('xref2');
-    $mode = intval($request->get('mode'));
-
-    $beforeJDraw = $request->get('beforeJD', null);
-    $beforeJD = ($beforeJDraw === null) ? null : intval($beforeJDraw);
+    $moduleName = Requests::getString($request, 'module');
+    $text = Requests::getStringOrNull($request);
+    $xref1 = Requests::getString($request, 'xref1');
+    $xref2 = Requests::getString($request, 'xref2');
+    $mode = Requests::getInt($request, 'mode');
+    $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
 
     return ExtendedRelationshipModule::getRelationshipLink($moduleName, $tree, $text, $xref1, $xref2, $mode, $beforeJD);
   }

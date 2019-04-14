@@ -27,8 +27,9 @@ use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\Webtrees;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Cissee\WebtreesExt\Requests;
 use Vesta\Model\GenericViewElement;
 use Vesta\VestaModuleTrait;
 use function route;
@@ -522,49 +523,49 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   //otherwise debatable (initialization may be too expensive for larger number of ajax requests, cf gov4webtrees)
   //otoh, this approach is expected to be safer wrt rewrite rules etc
   //$tree is injected via index.php/Resolver (taken from 'ged')
-  public function getMainRelsAction(Request $request, Tree $tree): Response {
+  public function getMainRelsAction(ServerRequestInterface $request, Tree $tree): ResponseInterface {
     ob_start();
     AjaxRequests::printMainSlcas($request, $tree);
-    return new Response(ob_get_clean(), Response::HTTP_OK);
+    return response(ob_get_clean());
   }
 
   //$tree is injected via index.php/Resolver (taken from 'ged')
-  public function getFamRelsAction(Request $request, Tree $tree): Response {
+  public function getFamRelsAction(ServerRequestInterface $request, Tree $tree): ResponseInterface {
     ob_start();
     AjaxRequests::printFamilySlcas($request, $tree);
-    return new Response(ob_get_clean(), Response::HTTP_OK);
+    return response(ob_get_clean());
   }
 
   //$tree is injected via index.php/Resolver (taken from 'ged')
-  public function getRelAction(Request $request, Tree $tree): Response {
+  public function getRelAction(ServerRequestInterface $request, Tree $tree): ResponseInterface {
     $link = AjaxRequests::getRelationshipLink($request, $tree);
-    return new Response($link, Response::HTTP_OK);
+    return response($link);
   }
 
-  public function getAdminSyncAction(): Response {
-    return new Response($this->syncConfig(), Response::HTTP_OK);
+  public function getAdminSyncAction(): ResponseInterface {
+    return response($this->syncConfig());
   }
 
-  public function postAdminSyncAction(Request $request, TimeoutService $timeout_service): Response {
+  public function postAdminSyncAction(ServerRequestInterface $request, TimeoutService $timeout_service): ResponseInterface {
     $sync = new Sync($this->name());
     return $sync->sync($request, $timeout_service);
   }
 
   //important to use 'Chart' here - we cannot adjust the link generated via parent.chartUrl
-  public function getChartAction(Request $request, Tree $tree, UserInterface $user): Response {
+  public function getChartAction(ServerRequestInterface $request, Tree $tree, UserInterface $user): ResponseInterface {
     $controller = new ExtendedRelationshipsChartController($this);
     return $controller->page($request, $tree, $user);
   }
 
   //note that RelationshipsChartModule doesn't have separate actions any longer ...
-  public function getChartActualAction(Request $request, Tree $tree): Response {
+  public function getChartActualAction(ServerRequestInterface $request, Tree $tree): ResponseInterface {
     $controller = new ExtendedRelationshipsChartController($this);
     return $controller->chart($request, $tree);
   }
 
-  public function getHelpAction(Request $request): Response {
-    $topic = $request->get('topic');
-    return new Response(HelpTexts::helpText($topic));
+  public function getHelpAction(ServerRequestInterface $request): ResponseInterface {
+    $topic = Requests::getString($request, 'topic');
+    return response(HelpTexts::helpText($topic));
   }
 
   private function syncConfig() {
@@ -693,26 +694,4 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   public function hRelativesTabGetOutputAfterDBox(Individual $person) {
     return $this->getOutputAfterDescriptionBox($person, '', 'mainRels', 'toggleableRels');
   }
-
-  /*
-    //cf index.php (move to some utils class!)
-    public static function createRequest() {
-    $request = Request::createFromGlobals();
-
-    // Most requests will need the current tree and user.
-    $all_trees = Tree::getAll();
-
-    $tree = $all_trees[$request->get('ged')] ?? null;
-
-    // No tree specified/available?  Choose one.
-    if ($tree === null && $method === 'GET') {
-    $tree = $all_trees[Site::getPreference('DEFAULT_GEDCOM')] ?? array_values($all_trees)[0] ?? null;
-    }
-
-    $request->attributes->set('tree', $tree);
-    $request->attributes->set('user', Auth::user());
-
-    return $request;
-    }
-   */
 }

@@ -10,8 +10,10 @@ use Fisharebest\Webtrees\Services\TimeoutService;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Database\Schema\Blueprint;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Cissee\WebtreesExt\Requests;
+
 use function route;
 
 //adapted from GedcomFileController
@@ -27,9 +29,8 @@ class Sync extends AbstractBaseController {
   }
 
 
-  public function sync(Request $request, TimeoutService $timeout_service): Response {
-
-    $phase = intval($request->get('phase'));
+  public function sync(ServerRequestInterface $request, TimeoutService $timeout_service): ResponseInterface {
+    $phase = Requests::getInt($request, 'phase');
 
     switch ($phase) {
       case 1:
@@ -41,8 +42,8 @@ class Sync extends AbstractBaseController {
         $phase = 2;
         break;
       case 2:
-        $size = intval($request->get('size'));
-        $position = intval($request->get('position'));
+        $size = Requests::getInt($request, 'size');
+        $position = Requests::getInt($request, 'position');
 
         // Run for a few seconds. This keeps the resource requirements low.
         do {
@@ -54,8 +55,8 @@ class Sync extends AbstractBaseController {
         } while (!$timeout_service->isTimeLimitUp());
         break;
       case 3:
-        $size = intval($request->get('size'));
-        $position = intval($request->get('position'));
+        $size = Requests::getInt($request, 'size');
+        $position = Requests::getInt($request, 'position');
 
         // Run for a few seconds. This keeps the resource requirements low.
         do {

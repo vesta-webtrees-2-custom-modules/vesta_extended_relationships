@@ -17,8 +17,9 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Tree;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Cissee\WebtreesExt\Requests;
 use function asset;
 use function route;
 use function view;
@@ -31,19 +32,10 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
     $this->module = $module;
   }
 
-  /**
-   * A form to request the chart parameters.
-   *
-   * @param Request $request
-   * @param Tree    $tree
-   *
-   * @return Response
-   */
-  public function page(Request $request, Tree $tree, UserInterface $user): Response {
+  public function page(ServerRequestInterface $request, Tree $tree, UserInterface $user): ResponseInterface {
     //$this->checkModuleIsActive($tree);
 
-    $beforeJDraw = $request->get('beforeJD', null);
-    $beforeJD = ($beforeJDraw === null) ? null : intval($beforeJDraw);
+    $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
     $dateDisplay = null;
     if ($beforeJD) {
       $ymd = cal_from_jd($beforeJD, CAL_GREGORIAN);
@@ -51,15 +43,15 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
       $dateDisplay = $date->display();
     }
 
-    $xref1 = $request->get('xref', '');
-    $xref2 = $request->get('xref2', '');
+    $xref1 = Requests::getString($request, 'xref');
+    $xref2 = Requests::getString($request, 'xref2');
 
     $individual1 = Individual::getInstance($xref1, $tree);
     $individual2 = Individual::getInstance($xref2, $tree);
 
-    $recursion = (int) $request->get('recursion', '0');
-    //$ancestors = (int) $request->get('ancestors', '0');
-    $find = (int) $request->get('find', '1');
+    $recursion = Requests::getInt($request, 'recursion');
+    //$ancestors = Requests::getInt($request, 'ancestors');
+    $find = Requests::getInt($request, 'find', 1);
 
     if ($individual1 instanceof Individual) {
       Auth::checkIndividualAccess($individual1);
@@ -119,30 +111,24 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
     ]);
   }
 
-  /**
-   * @param Request $request
-   * @param Tree    $tree
-   *
-   * @return Response
-   */
-  public function chart(Request $request, Tree $tree): Response {
+  public function chart(ServerRequestInterface $request, Tree $tree): ResponseInterface {
     //$this->checkModuleIsActive($tree);
 
     $showCa = boolval($this->module->getPreference('CHART_SHOW_CAS', '1'));
-    $beforeJDraw = $request->get('beforeJD', null);
-    $beforeJD = ($beforeJDraw === null) ? null : intval($beforeJDraw);
+    $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
 
-    $xref1 = $request->get('xref1', '');
+    $xref1 = Requests::getString($request, 'xref1');
+    $xref2 = Requests::getString($request, 'xref2');
+    
     $individual1 = Individual::getInstance($xref1, $tree);
-    $xref2 = $request->get('xref2', '');
     $individual2 = Individual::getInstance($xref2, $tree);
 
     Auth::checkIndividualAccess($individual1);
     Auth::checkIndividualAccess($individual2);
 
-    $recursion = (int) $request->get('recursion', '0');
-    //$ancestors = (int) $request->get('ancestors', '0');
-    $find = (int) $request->get('find', '1');
+    $recursion = Requests::getInt($request, 'recursion');
+    //$ancestors = Requests::getInt($request, 'ancestors');
+    $find = Requests::getInt($request, 'find', 1);
 
     //$max_recursion  = (int) $tree->getPreference('RELATIONSHIP_RECURSION', RelationshipsChartModule::DEFAULT_RECURSION);
     $max_recursion = intval($this->module->getPreference('RELATIONSHIP_RECURSION', RelationshipsChartModule::DEFAULT_RECURSION));
@@ -375,7 +361,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
 
     $html = ob_get_clean();
 
-    return new Response($html);
+    return response($html);
   }
 
   /**
