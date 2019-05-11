@@ -100,7 +100,7 @@ class DirectIndividual extends Individual {
     return new Collection($families);
   }
 
-  //override getSpouseFamilies(), ignore the access_level
+  //override spouseFamilies(), ignore the access_level
   public function spouseFamilies($access_level = null): Collection {
 
     $families = array();

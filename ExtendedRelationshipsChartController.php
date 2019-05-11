@@ -261,7 +261,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
           $max_y = max($max_y, $y);
         } else {
           $individual = Individual::getInstance($xref, $tree);
-          $table[$x][$y] = FunctionsPrint::printPedigreePerson($individual);
+          $table[$x][$y] = view('chart-box', ['individual' => $individual]);
         }
       }
 
@@ -274,7 +274,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
           $y = $max_y + count($fam->spouses()) + 1;
           foreach ($fam->spouses() as $indi) {
             $individual = Individual::getInstance($indi->xref(), $tree);
-            $table[$x][$y] = FunctionsPrint::printPedigreePerson($individual);
+            $table[$x][$y] = view('chart-box', ['individual' => $individual]);
             //$x += 2;
             $y -= 1;
           }

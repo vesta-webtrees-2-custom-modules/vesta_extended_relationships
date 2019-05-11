@@ -49,7 +49,7 @@ class AjaxRequests {
   public static function getRelationshipLink(ServerRequestInterface $request, Tree $tree) {
 
     $moduleName = Requests::getString($request, 'module');
-    $text = Requests::getStringOrNull($request);
+    $text = Requests::getStringOrNull($request, 'text');
     $xref1 = Requests::getString($request, 'xref1');
     $xref2 = Requests::getString($request, 'xref2');
     $mode = Requests::getInt($request, 'mode');
