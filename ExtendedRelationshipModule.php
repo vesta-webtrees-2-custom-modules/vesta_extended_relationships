@@ -194,25 +194,31 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
     //$suffix = "<i class=\"icon-sex_m_9x9\"></i>";
     $prefix = str_replace(array("\n", "\r"), "", addslashes($prefix));
     $suffix = str_replace(array("\n", "\r"), "", addslashes($suffix));
+    
+    //must disambiguate with $beforeJD - may show up multiple times!
+    //(and technically with everything else that goes into the url)
+    //hash alone would be sufficient, explicit xrefs here only for easier debugging!
+    $rel = 'rel_'.$xref1.'_'.$xref2.'_'.md5($url);
 
     $main = '';
     if (!$toggleableRels) {
-      $main = "<span class=\"rel_" . $xref1 . "_" . $xref2 . "\"></span>";
+      $main = "<span class=\"" . $rel . "\"></span>";
     } else {
       //make toggleable, collapse initially
-      $main = "<span class=\"toggleableRelsFactstab rel_" . $xref1 . "_" . $xref2 . " collapse\"></span>";
+      $main = "<span class=\"toggleableRelsFactstab " . $rel . " collapse\"></span>";
     }
 
-    ob_start();
 
+    ob_start();
+    
     if (!$toggleableRels) {
       ?>
       <script>
         //load via ajax
-        console.log("init via ajax rel_<?php echo $xref1 ?>_<?php echo $xref2 ?>");
+        console.log("init via ajax <?php echo $rel ?>");
         var ajaxRequest = $.get("<?php echo $url ?>");
         ajaxRequest.done(function (content) {
-            $(".rel_<?php echo $xref1 ?>_<?php echo $xref2 ?>").html("<?php echo $prefix ?>" + content + "<?php echo $suffix ?>");
+            $(".<?php echo $rel ?>").html("<?php echo $prefix ?>" + content + "<?php echo $suffix ?>");
         })
       </script>
       <?php
@@ -220,14 +226,14 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
       //print if checkbox is checked (change via persistent toggle)
       ?>
       <script>
-        $('.rel_<?php echo $xref1 ?>_<?php echo $xref2 ?>').on('shown.bs.collapse', function () {
-            console.log("on shown: check rel_<?php echo $xref1 ?>_<?php echo $xref2 ?>");
-            if ("" === $(".rel_<?php echo $xref1 ?>_<?php echo $xref2 ?>").text()) {
+        $('.<?php echo $rel ?>').on('shown.bs.collapse', function () {
+            console.log("on shown: check <?php echo $rel ?>");
+            if ("" === $(".<?php echo $rel ?>").text()) {
                 //load once via ajax
-                console.log("on shown: init via ajax rel_<?php echo $xref1 ?>_<?php echo $xref2 ?>");
+                console.log("on shown: init via ajax <?php echo $rel ?>");
                 var ajaxRequest = $.get("<?php echo $url ?>");
                 ajaxRequest.done(function (content) {
-                    $(".rel_<?php echo $xref1 ?>_<?php echo $xref2 ?>").html("<?php echo $prefix ?>" + content + "<?php echo $suffix ?>");
+                    $(".<?php echo $rel ?>").html("<?php echo $prefix ?>" + content + "<?php echo $suffix ?>");
                 });
             }
         });
@@ -419,12 +425,17 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
       $url = route('module', $parameters);
     }
 
+    //must disambiguate with $beforeJD - may show up multiple times!
+    //(and technically with everything else that goes into the url)
+    //hash alone would be sufficient, explicit xrefs here only for easier debugging!
+    $rel = 'famRels_'.$xref.'_'.md5($url);
+    
     $main = '';
     if (!$toggleableRels) {
-      $main = "<span class=\"famRels_" . $xref . "\"></span>";
+      $main = "<span class=\"" . $rel . "\"></span>";
     } else {
       //make toggleable, collapse initially
-      $main = "<span class=\"toggleableRels famRels_" . $xref . " collapse\"></span>";
+      $main = "<span class=\"toggleableRels " . $rel . " collapse\"></span>";
     }
 
     ob_start();
@@ -432,10 +443,10 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
       ?>
       <script>
         //load via ajax
-        console.log("init via ajax famRels_<?php echo $xref ?>");
+        console.log("init via ajax <?php echo $rel ?>");
         var ajaxRequest = $.get("<?php echo $url ?>");
         ajaxRequest.done(function (content) {
-            $(".famRels_<?php echo $xref ?>").html(content);
+            $(".<?php echo $rel ?>").html(content);
         })
       </script>
       <?php
@@ -443,14 +454,14 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
       //print if checkbox is checked (change via persistent toggle)
       ?>
       <script>
-        $('.famRels_<?php echo $xref ?>').on('shown.bs.collapse', function () {
-            console.log("on shown: check famRels_<?php echo $xref ?>");
-            if ("" === $(".famRels_<?php echo $xref ?>").text()) {
+        $('.<?php echo $rel ?>').on('shown.bs.collapse', function () {
+            console.log("on shown: check <?php echo $rel ?>");
+            if ("" === $(".<?php echo $rel ?>").text()) {
                 //load once via ajax
-                console.log("on shown: init via ajax famRels_<?php echo $xref ?>");
+                console.log("on shown: init via ajax <?php echo $rel ?>");
                 var ajaxRequest = $.get("<?php echo $url ?>");
                 ajaxRequest.done(function (content) {
-                    $(".famRels_<?php echo $xref ?>").html(content);
+                    $(".<?php echo $rel ?>").html(content);
                 });
             }
         });
