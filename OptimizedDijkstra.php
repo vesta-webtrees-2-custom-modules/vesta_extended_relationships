@@ -82,9 +82,8 @@ class OptimizedDijkstra {
    */
   protected function extractPaths($target) {
     $paths = array(array($target));
-
+    
     for ($key = 0; isset($paths[$key]); ++$key) {
-      $key = key($paths);
       $path = $paths[$key];
 
       if (!empty($this->previous[$path[0]])) {
