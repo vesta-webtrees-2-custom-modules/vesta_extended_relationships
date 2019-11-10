@@ -21,4 +21,4 @@ foreach (glob(Webtrees::ROOT_DIR . $modulesPath . '*/autoload.php') as $autoload
   require_once $autoloadFile;
 }
 
-return new ExtendedRelationshipModule();
+return app(ExtendedRelationshipModule::class);

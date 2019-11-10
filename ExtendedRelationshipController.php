@@ -4,12 +4,13 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\Webtrees\Module\ExtendedRelationships\OptimizedDijkstra;
 use Cissee\Webtrees\Module\ExtendedRelationships\Sync;
-use Illuminate\Database\Capsule\Manager as DB;
-use Illuminate\Database\Query\JoinClause;
 use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\Individual;
-use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
+use Fisharebest\Webtrees\Services\TreeService;
+use Fisharebest\Webtrees\Tree;
+use Illuminate\Database\Capsule\Manager as DB;
+use Illuminate\Database\Query\JoinClause;
 
 class Descendant {
 
@@ -136,7 +137,7 @@ class ExtendedRelationshipController {
   protected $oldStyleRelationshipPathMethod;
 
   public function __construct() {
-    $this->oldStyleRelationshipPathProvider = new RelationshipsChartModule();
+    $this->oldStyleRelationshipPathProvider = new RelationshipsChartModule(app(TreeService::class));
 
     //grrr
     $class = new \ReflectionClass($this->oldStyleRelationshipPathProvider);

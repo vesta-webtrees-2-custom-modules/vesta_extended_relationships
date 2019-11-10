@@ -9,10 +9,7 @@ use Fisharebest\Webtrees\View;
 </h2>
 
 <form class="wt-page-options wt-page-options-relationships-chart d-print-none">
-    <input type="hidden" name="route" value="module">
-    <input type="hidden" name="module" value="<?= e($module) ?>">
-    <input type="hidden" name="ged" value="<?= e($tree->name()) ?>">
-    <input type="hidden" name="action" value="Chart">
+    <input type="hidden" name="route" value="<?= e($currentRoute) ?>">
     <?php if ($beforeJD !== null): ?>
       <input type="hidden" name="beforeJD" value="<?php echo $beforeJD ?>">
     <?php endif; ?>
@@ -85,7 +82,7 @@ use Fisharebest\Webtrees\View;
            'action' => 'ChartActual',
            'xref1' => $individual1->xref(),
            'xref2' => $individual2->xref(),
-           'ged' => $individual2->tree()->name(),
+           'tree' => $individual2->tree()->name(),
            'find' => $ancestors,
            'recursion' => $recursion,
            'beforeJD' => $beforeJD

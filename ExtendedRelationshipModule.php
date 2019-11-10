@@ -14,7 +14,6 @@ use Cissee\Webtrees\Module\ExtendedRelationships\HelpTexts;
 use Cissee\Webtrees\Module\ExtendedRelationships\Sync;
 use Cissee\WebtreesExt\Functions\FunctionsExt;
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Contracts\UserInterface;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\I18N;
@@ -25,6 +24,7 @@ use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Services\TimeoutService;
+use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\Webtrees;
 use Psr\Http\Message\ResponseInterface;
@@ -54,12 +54,17 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   /** By default new trees allow unlimited recursion */
   const DEFAULT_RECURSION = self::UNLIMITED_RECURSION;
 
+  public function __construct(TreeService $tree_service) {
+    parent::__construct($tree_service);
+  }
+    
+    
   public function customModuleAuthorName(): string {
     return 'Richard Cissée';
   }
 
   public function customModuleVersion(): string {
-    return '2.0.0-beta.4.1';
+    return '2.0.0-beta.5.1';
   }
 
   public function customModuleLatestVersionUrl(): string {
@@ -139,7 +144,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
         'xref' => $xref1, //do not use 'xref1' for 'Chart'
         'xref2' => $xref2,
         'find' => $mode,
-        'ged' => $tree->name()
+        'tree' => $tree->name()
     ];
 
     if ($beforeJD !== null) {
@@ -153,6 +158,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
           $text,
           $xref1,
           $xref2,
+          $tree,
           $mode,
           $beforeJD,
           $prefix,
@@ -177,7 +183,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
           'xref1' => $xref1,
           'xref2' => $xref2,
           'mode' => $mode,
-          'action' => 'Rel',
+          'tree' => $tree->name()
       ];
       if ($beforeJD !== null) {
         $parameters['beforeJD'] = $beforeJD;
@@ -306,7 +312,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
       $url = route('module', [
           'module' => $this->name(),
           'action' => 'MainRels',
-          'ged' => $person->tree()->name(), //always set the tree (2.x doesn't have default tree via Session class)!
+          'tree' => $person->tree()->name(), //always set the tree (2.x doesn't have default tree via Session class)!
           'pid' => $xref,
           'mode' => $mode,
           'recursion' => $recursion,
@@ -411,7 +417,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
       $parameters = [
           'module' => $this->name(),
           'action' => 'FamRels',
-          'ged' => $family->tree()->name(), //always set the tree (2.x doesn't have default tree via Session class)!
+          'tree' => $family->tree()->name(), //always set the tree (2.x doesn't have default tree via Session class)!
           'pid' => $xref,
           'mode' => $mode,
           'recursion' => $recursion,
@@ -490,7 +496,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
                   'action' => 'Chart',
                   'xref' => $gedcomid, //do not use 'xref1' for 'Chart'
                   'xref2' => $individual->xref(),
-                  'ged' => $tree->name(),
+                  'tree' => $tree->name(),
               ]),
               'menu-chart-relationship',
               ['rel' => 'nofollow']
@@ -503,7 +509,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
                 'module' => $this->name(),
                 'action' => 'Chart',
                 'xref' => $individual->xref(), //do not use 'xref1' for 'Chart'
-                'ged' => $tree->name(),
+                'tree' => $tree->name(),
             ]),
             'menu-chart-relationship',
             ['rel' => 'nofollow']
@@ -525,7 +531,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
         'action' => 'Chart',
         'xref' => $individual1->xref(), //do not use 'xref1' for 'Chart'
         'xref2' => $individual2->xref(),
-        'ged' => $individual1->tree()->name(),
+        'tree' => $individual1->tree()->name(),
     ]);
   }
 
@@ -533,22 +539,31 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   //(still ~100ms slower (local server) than using moduleAjax.php directly though, just for resolving via module.php grr)
   //otherwise debatable (initialization may be too expensive for larger number of ajax requests, cf gov4webtrees)
   //otoh, this approach is expected to be safer wrt rewrite rules etc
-  //$tree is injected via index.php/Resolver (taken from 'ged')
-  public function getMainRelsAction(ServerRequestInterface $request, Tree $tree): ResponseInterface {
+  public function getMainRelsAction(ServerRequestInterface $request): ResponseInterface {
+    //'tree' is handled specifically in Router.php
+    $tree = $request->getAttribute('tree');
+    assert($tree instanceof Tree);
+        
     ob_start();
     AjaxRequests::printMainSlcas($request, $tree);
     return response(ob_get_clean());
   }
 
-  //$tree is injected via index.php/Resolver (taken from 'ged')
-  public function getFamRelsAction(ServerRequestInterface $request, Tree $tree): ResponseInterface {
+  public function getFamRelsAction(ServerRequestInterface $request): ResponseInterface {
+    //'tree' is handled specifically in Router.php
+    $tree = $request->getAttribute('tree');
+    assert($tree instanceof Tree);
+    
     ob_start();
     AjaxRequests::printFamilySlcas($request, $tree);
     return response(ob_get_clean());
   }
 
-  //$tree is injected via index.php/Resolver (taken from 'ged')
-  public function getRelAction(ServerRequestInterface $request, Tree $tree): ResponseInterface {
+  public function getRelAction(ServerRequestInterface $request): ResponseInterface {
+    //'tree' is handled specifically in Router.php
+    $tree = $request->getAttribute('tree');
+    assert($tree instanceof Tree);
+    
     $link = AjaxRequests::getRelationshipLink($request, $tree);
     return response($link);
   }
@@ -563,13 +578,24 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   }
 
   //important to use 'Chart' here - we cannot adjust the link generated via parent.chartUrl
-  public function getChartAction(ServerRequestInterface $request, Tree $tree, UserInterface $user): ResponseInterface {
+  public function getChartAction(ServerRequestInterface $request): ResponseInterface {
+    //if null, initialized elsewhere if required
+    $user = $request->getAttribute('user');
+    
+    //'tree' is handled specifically in Router.php
+    $tree = $request->getAttribute('tree');
+    assert($tree instanceof Tree);
+    
     $controller = new ExtendedRelationshipsChartController($this);
     return $controller->page($request, $tree, $user);
   }
-
+  
   //note that RelationshipsChartModule doesn't have separate actions any longer ...
-  public function getChartActualAction(ServerRequestInterface $request, Tree $tree): ResponseInterface {
+  public function getChartActualAction(ServerRequestInterface $request): ResponseInterface {
+    //'tree' is handled specifically in Router.php
+    $tree = $request->getAttribute('tree');
+    assert($tree instanceof Tree);
+    
     $controller = new ExtendedRelationshipsChartController($this);
     return $controller->chart($request, $tree);
   }
@@ -660,6 +686,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
             null,
             $associate->xref(),
             $person->xref(),
+            $person->tree(),
             $mode,
             $beforeJD,
             $relationship_prefix,

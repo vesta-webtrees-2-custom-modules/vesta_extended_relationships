@@ -7,6 +7,8 @@ use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\Gedcom;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
+use Psr\Http\Message\ServerRequestInterface;
+use Fisharebest\Localization\Locale\LocaleInterface;
 
 /**
  * Class Functions - common functions
@@ -667,6 +669,10 @@ class FunctionsExt {
    * @return string
    */
   public static function getRelationshipNameFromPath($path, Individual $person1 = null, Individual $person2 = null) {
+    
+    $locale = app(ServerRequestInterface::class)->getAttribute('locale');
+    assert($locale instanceof LocaleInterface);
+        
     if (!preg_match('/^(mot|fat|par|hus|wif|spo|son|dau|chi|bro|sis|sib)*$/', $path)) {
       // TODO: Update all the “3 RELA ” values in class_person
       return '<span class="error">' . $path . '</span>';
@@ -1643,7 +1649,7 @@ class FunctionsExt {
           // An English great ×12 uncle is a Danish great ×10 uncle.
           //
           // Need to find out which languages use which rules.
-          switch (WT_LOCALE) {
+          switch ($locale->languageTag()) {
             case 'da':
               switch ($sex2) {
                 case 'M':
@@ -1820,7 +1826,7 @@ class FunctionsExt {
           // An English great ×12 nephew is a Polish great ×11 nephew.
           //
           // Need to find out which languages use which rules.
-          switch (WT_LOCALE) {
+          switch ($locale->languageTag()) {
             case 'pl': // Source: Lukasz Wilenski
               switch ($sex2) {
                 case 'M':
@@ -1966,7 +1972,7 @@ class FunctionsExt {
           // An English great ×12 grandfather is a Danish great ×11 grandfather.
           //
           // Need to find out which languages use which rules.
-          switch (WT_LOCALE) {
+          switch ($locale->languageTag()) {
             case 'da': // Source: Patrick Sorensen
               switch ($sex2) {
                 case 'M':
@@ -2090,7 +2096,7 @@ class FunctionsExt {
           // An English great ×12 grandson is a Danish great ×11 grandson.
           //
           // Need to find out which languages use which rules.
-          switch (WT_LOCALE) {
+          switch ($locale->languageTag()) {
             case 'nn': // Source: Hogne Røed Nilsen
             case 'nb':
             case 'da': // Source: Patrick Sorensen
@@ -2132,7 +2138,7 @@ class FunctionsExt {
       // an English “second cousin once removed” is a Polish “cousin of 7th degree”.
       //
       // Need to find out which languages use which rules.
-      switch (WT_LOCALE) {
+      switch ($locale->languageTag()) {
         case 'pl': // Source: Lukasz Wilenski
           return self::cousinName($up + $down + 2, $sex2);
         case 'it':
@@ -2229,7 +2235,7 @@ class FunctionsExt {
     $path2 = substr($path, 3);
     while ($path2) {
       //[RC] adjusted
-      switch (WT_LOCALE) {
+      switch ($locale->languageTag()) {
         case 'de':
           //For relationship names where the first part ends with 's' (such as 'Tante 2. Grades'),
           //we have to construct the relationship name in a different way than usual.
