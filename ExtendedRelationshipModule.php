@@ -64,7 +64,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   }
 
   public function customModuleVersion(): string {
-    return '2.0.0-beta.5.1';
+    return '2.0.0-beta.5.2';
   }
 
   public function customModuleLatestVersionUrl(): string {
@@ -577,6 +577,20 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
     return $sync->sync($request, $timeout_service);
   }
 
+  public function postChartAction(ServerRequestInterface $request): ResponseInterface {
+    //TODO use helper for this!
+    
+    // Convert POST requests into GET requests for pretty URLs.
+    $keys = array('tree','xref','xref2','recursion','find');
+    $parameters = array_filter($request->getParsedBody(), static function (string $key) use ($keys): bool {
+      return in_array($key, $keys);
+    }, ARRAY_FILTER_USE_KEY);
+
+    return redirect(route('module', [
+        'module'      => $this->name(),
+        'action'      => 'Chart']+$parameters));
+  }
+  
   //important to use 'Chart' here - we cannot adjust the link generated via parent.chartUrl
   public function getChartAction(ServerRequestInterface $request): ResponseInterface {
     //if null, initialized elsewhere if required

@@ -32,7 +32,11 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
     $this->module = $module;
   }
 
-  public function page(ServerRequestInterface $request, Tree $tree, UserInterface $user): ResponseInterface {
+  public function page(
+          ServerRequestInterface $request, 
+          Tree $tree, 
+          UserInterface $user): ResponseInterface {
+    
     //$this->checkModuleIsActive($tree);
 
     $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
@@ -95,13 +99,9 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
       $this->addAncestorsOptions1($options1, $chart1, $chart2, $chart3);
       $this->addAncestorsOptions2($options1, $chart4, $chart5, $chart6, $chart7, $max_recursion);
     }
-    
-    //HACK
-    $currentRoute = $request->getQueryParams()['route'];
 
     return $this->viewResponse($this->module->name() . '::page', [
                 'module' => $this->module->name(),
-                'currentRoute' => $currentRoute,
                 'ancestors' => $find,
                 'ancestors_options1' => $options1,
                 'ancestors_options2' => $options2,

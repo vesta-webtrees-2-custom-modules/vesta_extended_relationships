@@ -8,8 +8,13 @@ use Fisharebest\Webtrees\View;
     <?= $title ?>
 </h2>
 
-<form class="wt-page-options wt-page-options-relationships-chart d-print-none">
-    <input type="hidden" name="route" value="<?= e($currentRoute) ?>">
+<form method="post" class="wt-page-options wt-page-options-relationships-chart d-print-none">
+    <?= csrf_field() ?>
+    <input type="hidden" name="route" value="module">
+    <input type="hidden" name="module" value="<?= e($module) ?>">
+    <input type="hidden" name="action" value="Chart">
+    <input type="hidden" name="tree" value="<?= e($tree->name()) ?>">
+    
     <?php if ($beforeJD !== null): ?>
       <input type="hidden" name="beforeJD" value="<?php echo $beforeJD ?>">
     <?php endif; ?>
