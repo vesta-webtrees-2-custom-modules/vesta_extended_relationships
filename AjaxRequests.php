@@ -13,9 +13,8 @@ use Cissee\WebtreesExt\Requests;
 
 class AjaxRequests {
 
-  public static function printMainSlcas(ServerRequestInterface $request, Tree $tree) {
+  public static function printMainSlcas(string $moduleName, ServerRequestInterface $request, Tree $tree) {
 
-    $moduleName = Requests::getString($request, 'module');
     $mode = Requests::getInt($request, 'mode');
     $recursion = Requests::getInt($request, 'recursion');
     $showCa = Requests::getBool($request, 'showCa');
@@ -26,9 +25,8 @@ class AjaxRequests {
     FunctionsPrintRels::printSlcasWrtDefaultIndividual($moduleName, $individual, $mode, $recursion, $showCa);
   }
 
-  public static function printFamilySlcas(ServerRequestInterface $request, Tree $tree) {
+  public static function printFamilySlcas(string $moduleName, ServerRequestInterface $request, Tree $tree) {
 
-    $moduleName = Requests::getString($request, 'module');
     $mode = Requests::getInt($request, 'mode');
     $recursion = Requests::getInt($request, 'recursion');
     $showCa = Requests::getBool($request, 'showCa');    
@@ -46,9 +44,8 @@ class AjaxRequests {
     FunctionsPrintRels::printSlcas($moduleName, $family, $access_level, $mode, $recursion, $showCa, $beforeJD);
   }
 
-  public static function getRelationshipLink(ServerRequestInterface $request, Tree $tree) {
+  public static function getRelationshipLink(string $moduleName, ServerRequestInterface $request, Tree $tree) {
 
-    $moduleName = Requests::getString($request, 'module');
     $text = Requests::getStringOrNull($request, 'text');
     $xref1 = Requests::getString($request, 'xref1');
     $xref2 = Requests::getString($request, 'xref2');

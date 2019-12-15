@@ -64,7 +64,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   }
 
   public function customModuleVersion(): string {
-    return '2.0.0-beta.5.2';
+    return '2.0.0.1';
   }
 
   public function customModuleLatestVersionUrl(): string {
@@ -321,11 +321,12 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
     }
 
     $main = '';
+
     if (!$toggleableRels) {
-      $main = "<tr class=\"" . $mainRels . "\"><td colspan=\"2\"></td></tr>";
+      $main = "<div class=\"" . $mainRels . "\"><span/></div>";
     } else {
       //make toggleable, collapse initially
-      $main = "<tr class=\"" . $className . " " . $mainRels . " collapse\"><td colspan=\"2\"></td></tr>";
+      $main = "<div class=\"" . $className . " " . $mainRels . " collapse\"><span/></div>";
     }
 
     ob_start();
@@ -336,7 +337,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
         console.log("init via ajax <?php echo $mainRels ?>");
         var ajaxRequest = $.get("<?php echo $url ?>");
         ajaxRequest.done(function (content) {
-            $(".<?php echo $mainRels ?> > td").html(content);
+            $(".<?php echo $mainRels ?> > span").html(content);
         })
       </script>
       <?php
@@ -351,7 +352,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
                 console.log("on shown: init via ajax <?php echo $mainRels ?>");
                 var ajaxRequest = $.get("<?php echo $url ?>");
                 ajaxRequest.done(function (content) {
-                    $(".<?php echo $mainRels ?> > td").html(content);
+                    $(".<?php echo $mainRels ?> > span").html(content);
                 });
             }
         });
@@ -545,7 +546,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
     assert($tree instanceof Tree);
         
     ob_start();
-    AjaxRequests::printMainSlcas($request, $tree);
+    AjaxRequests::printMainSlcas($this->name(), $request, $tree);
     return response(ob_get_clean());
   }
 
@@ -555,7 +556,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
     assert($tree instanceof Tree);
     
     ob_start();
-    AjaxRequests::printFamilySlcas($request, $tree);
+    AjaxRequests::printFamilySlcas($this->name(), $request, $tree);
     return response(ob_get_clean());
   }
 
@@ -564,7 +565,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
     $tree = $request->getAttribute('tree');
     assert($tree instanceof Tree);
     
-    $link = AjaxRequests::getRelationshipLink($request, $tree);
+    $link = AjaxRequests::getRelationshipLink($this->name(), $request, $tree);
     return response($link);
   }
 

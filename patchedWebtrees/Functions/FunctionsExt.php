@@ -670,8 +670,7 @@ class FunctionsExt {
    */
   public static function getRelationshipNameFromPath($path, Individual $person1 = null, Individual $person2 = null) {
     
-    $locale = app(ServerRequestInterface::class)->getAttribute('locale');
-    assert($locale instanceof LocaleInterface);
+    $locale = I18N::locale();
         
     if (!preg_match('/^(mot|fat|par|hus|wif|spo|son|dau|chi|bro|sis|sib)*$/', $path)) {
       // TODO: Update all the “3 RELA ” values in class_person
