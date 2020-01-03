@@ -30,26 +30,26 @@ msgstr "%1$s ist %2$s von %3$s."
 #: ExtendedRelationshipsChartController.php:155
 #, php-format
 msgid "(Number of relationships: %s)"
-msgstr ""
+msgstr "(Anzahl der Beziehungen: %s)"
 
 #: ExtendedRelationshipsChartController.php:165
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
-msgstr ""
+msgstr "(entspricht insgesamt fast dem Verwandtschaftsgrad: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:163
 #, php-format
 msgid "(that's overall as close as: %1$s)"
-msgstr ""
+msgstr "(entspricht insgesamt dem Verwandtschaftsgrad: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:167
 #, php-format
 msgid "(that's overall closer than: %1$s)"
-msgstr ""
+msgstr "(entspricht insgesamt einem Verwandtschaftsgrad etwas enger als: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:159
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
-msgstr ""
+msgstr "(insgesamt nicht signifikant enger verwandt als über die engste Beziehung)"
 
 #: ExtendedRelationshipModuleTrait.php:21
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -74,7 +74,7 @@ msgstr ""
 #: HelpTexts.php:20
 #, php-format
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
-msgstr ""
+msgstr " "
 
 #: resources/views/sync.phtml:22
 msgid "Calculating…"
@@ -343,7 +343,7 @@ msgstr ""
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
-msgstr ""
+msgstr " "
 
 #: resources/views/sync.phtml:6
 msgid "Modules"
@@ -356,7 +356,7 @@ msgstr ""
 
 #: ExtendedRelationshipModule.php:160
 msgid "No relationship found"
-msgstr ""
+msgstr "Keine Beziehung gefunden"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:286
@@ -377,7 +377,7 @@ msgstr ""
 #: resources/views/page.phtml:62
 #, php-format
 msgid "Options referring to overall connections established before %1$s."
-msgstr ""
+msgstr "Die folgenden Optionen berücksichtigen nur Verbindungen, die bereits vor dem %1$s bestanden."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:60
@@ -471,7 +471,7 @@ msgstr ""
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
-msgstr ""
+msgstr "Details hier: "
 
 #. I18N: Configuration option
 #. I18N: Module Configuration
@@ -530,7 +530,7 @@ msgstr "Nichtkorrigierter CoR (Verwandtschafts-Koeffizient): %s"
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
-msgstr ""
+msgstr "Und hier: "
 
 #: ExtendedRelationshipModuleTrait.php:17
 msgid "Vesta Extended Relationships"
