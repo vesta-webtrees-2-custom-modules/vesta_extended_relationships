@@ -1,5 +1,6 @@
 <?php
 
+use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\View;
 ?>
@@ -22,20 +23,19 @@ use Fisharebest\Webtrees\View;
 
     <div class="row form-group">
         <label class="col-sm-3 col-form-label wt-page-options-label" for="xref">
-            <?= I18N::translate('Individual 1') ?>
+            <?= MoreI18N::xlate('Individual 1') ?>
         </label>
         <div class="col-sm-9 wt-page-options-value">
             <?= view('components/select-individual', ['name' => 'xref', 'individual' => $individual1, 'tree' => $tree]) ?>
             <button class="btn btn-link small" id="btn-swap-individuals" type="button">
-                <?= /* I18N: Reverse the order of two individuals */
-                I18N::translate('Swap individuals') ?>
+                <?= MoreI18N::xlate('Swap individuals') ?>
             </button>
         </div>
     </div>
 
     <div class="row form-group">
         <label class="col-sm-3 col-form-label wt-page-options-label" for="xref2">
-            <?= I18N::translate('Individual 2') ?>
+            <?= MoreI18N::xlate('Individual 2') ?>
         </label>
         <div class="col-sm-9 wt-page-options-value">
             <?= view('components/select-individual', ['name' => 'xref2', 'individual' => $individual2, 'tree' => $tree]) ?>

@@ -1,0 +1,146 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: webtrees 1.0\n"
+"Report-Msgid-Bugs-To: i18n@webtrees.net\n"
+"POT-Creation-Date: 2015-08-17 09:49+0100\n"
+"PO-Revision-Date: 2018-09-22 14:28+0200\n"
+"Language-Team: German <http://translate.webtrees.net/projects/webtrees/"
+"webtrees/de/>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 2.1.1\n"
+"Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
+
+msgctxt "de: (a man’s) brother’s great ×(%s-1) grandchild"
+msgid "great ×%s nephew/niece"
+msgstr "%s×Ur-Großneffe/-nichte"
+
+msgctxt "de: (a man’s) brother’s great ×(%s-1) granddaughter"
+msgid "great ×%s niece"
+msgstr "%s×Ur-Großnichte"
+
+msgctxt "de: (a man’s) brother’s great ×(%s-1) grandson"
+msgid "great ×%s nephew"
+msgstr "%s×Ur-Großneffe"
+
+msgctxt "de: (a man’s) sister’s great ×(%s-1) grandchild"
+msgid "great ×%s nephew/niece"
+msgstr "%s×Ur-Großneffe/-nichte"
+
+msgctxt "de: (a man’s) sister’s great ×(%s-1) granddaughter"
+msgid "great ×%s niece"
+msgstr "%s×Ur-Großnichte"
+
+msgctxt "de: (a man’s) sister’s great ×(%s-1) grandson"
+msgid "great ×%s nephew"
+msgstr "%s×Ur-Großneffe"
+
+msgctxt "de: (a woman’s) great ×%s nephew"
+msgid "great ×%s nephew"
+msgstr "%s×Ur-Großneffe"
+
+msgctxt "de: (a woman’s) great ×%s nephew/niece"
+msgid "great ×%s nephew/niece"
+msgstr "%s×Ur-Großneffe/-nichte"
+
+msgctxt "de: (a woman’s) great ×%s niece"
+msgid "great ×%s niece"
+msgstr "%s×Ur-Großnichte"
+
+msgctxt "de: great ×(%s-1) grandfather’s brother"
+msgid "great ×%s uncle"
+msgstr "%s×Ur-Großonkel"
+
+msgctxt "de: great ×(%s-1) grandmother’s brother"
+msgid "great ×%s uncle"
+msgstr "%s×Ur-Großonkel"
+
+msgctxt "de: great ×(%s-1) grandparent’s brother"
+msgid "great ×%s uncle"
+msgstr "%s×Ur-Großonkel"
+
+msgctxt "de: great ×(%s-1) grandparent’s sister"
+msgid "great ×%s aunt"
+msgstr "%s×Ur-Großtante"
+
+msgctxt "de: great ×(%s-1) grandparent’s sibling"
+msgid "great ×%s aunt/uncle"
+msgstr "%s×Ur-Großtante/-onkel"
+
+msgctxt "MALE"
+msgid "%s of first degree"
+msgstr "%s"
+
+msgctxt "FEMALE"
+msgid "%s of first degree"
+msgstr "%s"
+
+msgctxt "MALE/FEMALE"
+msgid "%s of first degree"
+msgstr "%s"
+
+msgctxt "MALE"
+msgid "%s of second degree"
+msgstr "%s 2. Grades"
+
+msgctxt "FEMALE"
+msgid "%s of second degree"
+msgstr "%s 2. Grades"
+
+msgctxt "MALE/FEMALE"
+msgid "%s of second degree"
+msgstr "%s 2. Grades"
+
+msgctxt "MALE"
+msgid "%s of third degree"
+msgstr "%s 3. Grades"
+
+msgctxt "FEMALE"
+msgid "%s of third degree"
+msgstr "%s 3. Grades"
+
+msgctxt "MALE/FEMALE"
+msgid "%s of third degree"
+msgstr "%s 3. Grades"
+
+msgctxt "MALE"
+msgid "%s of fourth degree"
+msgstr "%s 4. Grades"
+
+msgctxt "FEMALE"
+msgid "%s of fourth degree"
+msgstr "%s 4. Grades"
+
+msgctxt "MALE/FEMALE"
+msgid "%s of fourth degree"
+msgstr "%s 4. Grades"
+
+msgctxt "MALE"
+msgid "%s of fifth degree"
+msgstr "%s 5. Grades"
+
+msgctxt "FEMALE"
+msgid "%s of fifth degree"
+msgstr "%s 5. Grades"
+
+msgctxt "MALE/FEMALE"
+msgid "%s of fifth degree"
+msgstr "%s 5. Grades"
+
+msgctxt "MALE"
+msgid "%2$s of %1$s degree"
+msgstr "%2$s %1$s. Grades"
+
+msgctxt "FEMALE"
+msgid "%2$s of %1$s degree"
+msgstr "%2$s %1$s. Grades"
+
+msgctxt "MALE/FEMALE"
+msgid "%2$s of %1$s degree"
+msgstr "%2$s %1$s. Grades"
+
+msgid "parents"
+msgstr "Eltern"
