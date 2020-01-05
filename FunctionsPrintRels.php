@@ -96,7 +96,7 @@ class FunctionsPrintRels {
 
       $link = ExtendedRelationshipModule::getRelationshipLink($moduleName, $person1->tree(), $rel, $person1->xref(), $person2->xref(), $mode, $beforeJD);
 
-      $print = I18N::translate('%1$s is %2$s of %3$s.',
+      $print = /* I18N: (person 1) is (relative, e.g. father) of (person2)*/ I18N::translate('%1$s is %2$s of %3$s.',
                       $person2->fullName(),
                       $link,
                       $person1->fullName());

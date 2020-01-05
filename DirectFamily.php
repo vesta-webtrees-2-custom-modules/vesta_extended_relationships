@@ -4,6 +4,7 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\Webtrees\Module\ExtendedRelationships\DirectIndividual;
 use Cissee\Webtrees\Module\ExtendedRelationships\DummyDirectTree;
+use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\Family;
@@ -307,7 +308,7 @@ class DirectFamily extends GedcomRecord {
         $husb_names[] = [
             'type' => 'BIRT',
             'sort' => '@N.N.',
-            'full' => I18N::translateContext('Unknown given name', '…') . ' ' . I18N::translateContext('Unknown surname', '…'),
+            'full' => MoreI18N::xlateContext('Unknown given name', '…') . ' ' . MoreI18N::xlateContext('Unknown surname', '…'),
         ];
       }
       foreach ($husb_names as $n => $husb_name) {
@@ -325,7 +326,7 @@ class DirectFamily extends GedcomRecord {
         $wife_names[] = [
             'type' => 'BIRT',
             'sort' => '@N.N.',
-            'full' => I18N::translateContext('Unknown given name', '…') . ' ' . I18N::translateContext('Unknown surname', '…'),
+            'full' => MoreI18N::xlateContext('Unknown given name', '…') . ' ' . MoreI18N::xlateContext('Unknown surname', '…'),
         ];
       }
       foreach ($wife_names as $n => $wife_name) {

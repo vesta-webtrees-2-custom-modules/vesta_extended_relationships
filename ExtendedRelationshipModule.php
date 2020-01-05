@@ -2,6 +2,7 @@
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
+use Fisharebest\Localization\Translation;
 use Cissee\Webtrees\Hook\HookInterfaces\EmptyIndividualFactsTabExtender;
 use Cissee\Webtrees\Hook\HookInterfaces\EmptyRelativesTabExtender;
 use Cissee\Webtrees\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
@@ -64,7 +65,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   }
 
   public function customModuleVersion(): string {
-    return '2.0.0.1';
+    return '2.0.1.1';
   }
 
   public function customModuleLatestVersionUrl(): string {
@@ -87,7 +88,28 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   public function resourcesFolder(): string {
     return __DIR__ . '/resources/';
   }
-
+  
+  public function customTranslations(string $language): array {
+    $languageFile1 = $this->resourcesFolder() . 'lang/' . $language . '.mo';
+    $languageFile2 = $this->resourcesFolder() . 'lang/' . $language . '.csv';
+    $languageFile3 = $this->resourcesFolder() . 'lang/ext/' . $language . '.mo';
+    $languageFile4 = $this->resourcesFolder() . 'lang/ext/' . $language . '.csv';
+    $ret = [];
+    if (file_exists($languageFile1)) {
+      $ret = (new Translation($languageFile1))->asArray();
+    }
+    if (file_exists($languageFile2)) {
+      $ret = array_merge($ret, (new Translation($languageFile2))->asArray());
+    }
+    if (file_exists($languageFile3)) {
+      $ret = array_merge($ret, (new Translation($languageFile3))->asArray());
+    }
+    if (file_exists($languageFile4)) {
+      $ret = array_merge($ret, (new Translation($languageFile4))->asArray());
+    }
+    return $ret;
+  }
+  
   protected function editConfigAfterFaq() {
     $url = route('module', [
         'module' => $this->name(),

@@ -5,12 +5,13 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\WebtreesExt\Functions\FunctionsExt;
 use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
+use Cissee\WebtreesExt\MoreI18N;
+use Cissee\WebtreesExt\Requests;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Contracts\UserInterface;
 use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\Functions\Functions;
-use Fisharebest\Webtrees\Functions\FunctionsPrint;
 use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\Http\Controllers\AbstractBaseController;
 use Fisharebest\Webtrees\I18N;
@@ -19,8 +20,8 @@ use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Tree;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Cissee\WebtreesExt\Requests;
 use function asset;
+use function response;
 use function route;
 use function view;
 
@@ -151,21 +152,20 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
       $cor = $corPlus->getCor();
       echo '<h3>', I18N::translate('Uncorrected CoR (Coefficient of Relationship): %s', I18n::percentage($cor, 2));
       echo FunctionsPrintExtHelpLink::helpLink($this->module->name(), 'Uncorrected CoR');
-      //echo I18N::translate('(Number of relationships: %s)', count($paths)), '</h3>';
       echo I18N::translate('(Number of relationships: %s)', count($caAndPaths)), '</h3>';
       if (count($caAndPaths) > 1) {
         $er = $corPlus->getEquivalentRelationships();
         if ($er === null) {
           echo I18N::translate('(that\'s overall not significantly closer than the closest relationship via common ancestors)');
         } else {
+          $rel = FunctionsExt::getRelationshipNameFromPath(implode('', $er), $individual1, $individual2);
           if ($corPlus->getActuallyBetterThan() === 0) {
-            echo I18N::translate('(that\'s overall as close as:') . ' ';
+            echo I18N::translate('(that\'s overall as close as: %1$s)', $rel);
           } else if ($corPlus->getActuallyBetterThan() < 0) {
-            echo I18N::translate('(that\'s overall almost as close as:') . ' ';
+            echo I18N::translate('(that\'s overall almost as close as: %1$s)', $rel);
           } else {
-            echo I18N::translate('(that\'s overall closer than:') . ' ';
+            echo I18N::translate('(that\'s overall closer than: %1$s)', $rel);
           }
-          echo FunctionsExt::getRelationshipNameFromPath(implode('', $er), $individual1, $individual2) . ')';
         }
       }
     }
@@ -289,25 +289,25 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
             //single parent (spouse unknown)
             switch ($individual->sex()) {
               case 'M':
-                $relUp = I18N::translate('father');
+                $relUp = MoreI18N::xlate('father');
                 break;
               case 'F':
-                $relUp = I18N::translate('mother');
+                $relUp = MoreI18N::xlate('mother');
                 break;
               default:
-                $relUp = I18N::translate('parent');
+                $relUp = MoreI18N::xlate('parent');
             }
           }
 
           switch ($skippedRelationship) {
             case 'bro':
-              $relDn = I18N::translate('son');
+              $relDn = MoreI18N::xlate('son');
               break;
             case 'sis':
-              $relDn = I18N::translate('daughter');
+              $relDn = MoreI18N::xlate('daughter');
               break;
             default:
-              $relDn = I18N::translate('child');
+              $relDn = MoreI18N::xlate('child');
           }
 
           $table[0][$max_y + 1] = '<div style="background:url(' . asset('css/images/vline.png') . ') repeat-y center; height: 64px; text-align:center; "><div class="vline-text" style="display: inline-block; width:50%; line-height: 64px;">' . $relUp . '</div><div style="display: inline-block; width: 50%; line-height: 32px">' . view('icons/arrow-up') . '</div></div>';
@@ -339,9 +339,9 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
 
     if (!$num_paths) {
       //echo '<p>', I18N::translate('No link between the two individuals could be found.'), '</p>';
-      //[RC] extended
-
       echo '<p>', I18N::translate('No link between the two individuals could be found.');
+      
+      //[RC] extended
       if ($beforeJD !== null) {
         if (Auth::isManager($tree)) {
           $url = route('module', [

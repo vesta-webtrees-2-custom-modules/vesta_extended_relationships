@@ -2,7 +2,9 @@
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
+use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\I18N;
+use function view;
 
 class HelpTexts {
 
@@ -27,8 +29,8 @@ class HelpTexts {
         break;
 
       default:
-        $title = I18N::translate('Help');
-        $text = I18N::translate('The help text has not been written for this item.');
+        $title = MoreI18N::xlate('Help');
+        $text = MoreI18N::xlate('The help text has not been written for this item.');
         break;
     }
 
