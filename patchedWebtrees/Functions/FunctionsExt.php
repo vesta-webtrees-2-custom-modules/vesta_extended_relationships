@@ -769,52 +769,64 @@ class FunctionsExt {
         return I18N::translate('child');
       case 'bro':
         if ($person1 && $person2) {
-          $dob1 = $person1->getBirthDate();
-          $dob2 = $person2->getBirthDate();
-          if ($dob1->isOK() && $dob2->isOK()) {
-            if (abs($dob1->julianDay() - $dob2->julianDay()) < 2 && !$dob1->minimumDate()->d !== 0 && !$dob2->minimumDate()->d !== 0) {
-              // Exclude BEF, AFT, etc.
-              return I18N::translate('twin brother');
-            } elseif ($dob1->maximumJulianDay() < $dob2->minimumJulianDay()) {
-              return I18N::translate('younger brother');
-            } elseif ($dob1->minimumJulianDay() > $dob2->maximumJulianDay()) {
-              return I18N::translate('elder brother');
+            $dob1 = $person1->getBirthDate();
+            $dob2 = $person2->getBirthDate();
+            if ($dob1->isOK() && $dob2->isOK()) {
+                if (abs($dob1->julianDay() - $dob2->julianDay()) < 2 && $dob1->minimumDate()->day > 0 && $dob2->minimumDate()->day > 0) {
+                    // Exclude BEF, AFT, etc.
+                    return I18N::translate('twin brother');
+                }
+
+                if ($dob1->maximumJulianDay() < $dob2->minimumJulianDay()) {
+                    return I18N::translate('younger brother');
+                }
+
+                if ($dob1->minimumJulianDay() > $dob2->maximumJulianDay()) {
+                    return I18N::translate('elder brother');
+                }
             }
-          }
         }
 
         return I18N::translate('brother');
       case 'sis':
         if ($person1 && $person2) {
-          $dob1 = $person1->getBirthDate();
-          $dob2 = $person2->getBirthDate();
-          if ($dob1->isOK() && $dob2->isOK()) {
-            if (abs($dob1->julianDay() - $dob2->julianDay()) < 2 && !$dob1->minimumDate()->d !== 0 && !$dob2->minimumDate()->d !== 0) {
-              // Exclude BEF, AFT, etc.
-              return I18N::translate('twin sister');
-            } elseif ($dob1->maximumJulianDay() < $dob2->minimumJulianDay()) {
-              return I18N::translate('younger sister');
-            } elseif ($dob1->minimumJulianDay() > $dob2->maximumJulianDay()) {
-              return I18N::translate('elder sister');
+            $dob1 = $person1->getBirthDate();
+            $dob2 = $person2->getBirthDate();
+            if ($dob1->isOK() && $dob2->isOK()) {
+                if (abs($dob1->julianDay() - $dob2->julianDay()) < 2 && $dob1->minimumDate()->day > 0 && $dob2->minimumDate()->day > 0) {
+                    // Exclude BEF, AFT, etc.
+                    return I18N::translate('twin sister');
+                }
+
+                if ($dob1->maximumJulianDay() < $dob2->minimumJulianDay()) {
+                    return I18N::translate('younger sister');
+                }
+
+                if ($dob1->minimumJulianDay() > $dob2->maximumJulianDay()) {
+                    return I18N::translate('elder sister');
+                }
             }
-          }
         }
 
         return I18N::translate('sister');
       case 'sib':
         if ($person1 && $person2) {
-          $dob1 = $person1->getBirthDate();
-          $dob2 = $person2->getBirthDate();
-          if ($dob1->isOK() && $dob2->isOK()) {
-            if (abs($dob1->julianDay() - $dob2->julianDay()) < 2 && !$dob1->minimumDate()->d !== 0 && !$dob2->minimumDate()->d !== 0) {
-              // Exclude BEF, AFT, etc.
-              return I18N::translate('twin sibling');
-            } elseif ($dob1->maximumJulianDay() < $dob2->minimumJulianDay()) {
-              return I18N::translate('younger sibling');
-            } elseif ($dob1->minimumJulianDay() > $dob2->maximumJulianDay()) {
-              return I18N::translate('elder sibling');
+            $dob1 = $person1->getBirthDate();
+            $dob2 = $person2->getBirthDate();
+            if ($dob1->isOK() && $dob2->isOK()) {
+                if (abs($dob1->julianDay() - $dob2->julianDay()) < 2 && $dob1->minimumDate()->day > 0 && $dob2->minimumDate()->day > 0) {
+                    // Exclude BEF, AFT, etc.
+                    return I18N::translate('twin sibling');
+                }
+
+                if ($dob1->maximumJulianDay() < $dob2->minimumJulianDay()) {
+                    return I18N::translate('younger sibling');
+                }
+
+                if ($dob1->minimumJulianDay() > $dob2->maximumJulianDay()) {
+                    return I18N::translate('elder sibling');
+                }
             }
-          }
         }
 
         return I18N::translate('sibling');
