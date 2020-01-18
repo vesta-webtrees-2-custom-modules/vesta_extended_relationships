@@ -595,7 +595,8 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
     return response($this->syncConfig());
   }
 
-  public function postAdminSyncAction(ServerRequestInterface $request, TimeoutService $timeout_service): ResponseInterface {
+  public function postAdminSyncAction(ServerRequestInterface $request): ResponseInterface {
+    $timeout_service = app(TimeoutService::class);
     $sync = new Sync($this->name());
     return $sync->sync($request, $timeout_service);
   }
