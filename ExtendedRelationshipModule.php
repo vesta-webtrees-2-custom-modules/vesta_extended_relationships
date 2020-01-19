@@ -65,7 +65,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   }
 
   public function customModuleVersion(): string {
-    return '2.0.1.1';
+    return '2.0.1.2';
   }
 
   public function customModuleLatestVersionUrl(): string {
