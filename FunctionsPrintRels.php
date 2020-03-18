@@ -108,7 +108,7 @@ class FunctionsPrintRels {
         //$caIsIndi = (substr($slcaKey, 0, 1) === "I");
 
         $record = GedcomRecord::getInstance($slcaKey, $person1->tree());
-        $caIsIndi = "Fisharebest\Webtrees\Individual" === get_class($record);
+        $caIsIndi = ($record instanceof Individual);
 
         if ($caIsIndi) {
           $indi = $record; //Individual::getInstance($slcaKey, $person1->tree());
@@ -121,6 +121,10 @@ class FunctionsPrintRels {
             $print .= "<br />";
           }
         } else {
+          $caIsFam = ($record instanceof Family);
+          if (!$caIsFam) {
+            throw new \Exception("unexpected class ". get_class($record));
+          }
           $fam = $record; //Family::getInstance($slcaKey, $person1->tree());
 
           $names = array();

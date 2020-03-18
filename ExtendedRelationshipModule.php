@@ -65,11 +65,11 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
   }
 
   public function customModuleVersion(): string {
-    return '2.0.2.1';
+    return file_get_contents(__DIR__ . '/latest-version.txt');
   }
 
   public function customModuleLatestVersionUrl(): string {
-    return 'https://cissee.de';
+    return 'https://raw.githubusercontent.com/vesta-webtrees-2-custom-modules/vesta_extended_relationships/master/latest-version.txt';
   }
 
   public function customModuleSupportUrl(): string {
@@ -615,6 +615,16 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements Mod
         'action'      => 'Chart']+$parameters));
   }
   
+  //must override this (issue #7)
+  public function chartUrl(Individual $individual, array $parameters = []): string {
+    return route('module', [
+        'module' => $this->name(),
+        'action' => 'Chart',
+        'xref' => $individual->xref(),
+        'tree' => $individual->tree()->name(),
+    ] + $parameters);
+  }
+    
   //important to use 'Chart' here - we cannot adjust the link generated via parent.chartUrl
   public function getChartAction(ServerRequestInterface $request): ResponseInterface {
     //if null, initialized elsewhere if required
