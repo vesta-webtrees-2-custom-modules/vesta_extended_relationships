@@ -2,7 +2,6 @@
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
-use Fisharebest\Localization\Translation;
 use Cissee\Webtrees\Hook\HookInterfaces\EmptyIndividualFactsTabExtender;
 use Cissee\Webtrees\Hook\HookInterfaces\EmptyRelativesTabExtender;
 use Cissee\Webtrees\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
@@ -14,6 +13,8 @@ use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipModuleTrait
 use Cissee\Webtrees\Module\ExtendedRelationships\HelpTexts;
 use Cissee\Webtrees\Module\ExtendedRelationships\Sync;
 use Cissee\WebtreesExt\Functions\FunctionsExt;
+use Cissee\WebtreesExt\Requests;
+use Fisharebest\Localization\Translation;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\Family;
@@ -21,8 +22,11 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Menu;
 use Fisharebest\Webtrees\Module\ModuleChartInterface;
+use Fisharebest\Webtrees\Module\ModuleChartTrait;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
+use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\TreeService;
@@ -30,16 +34,31 @@ use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\Webtrees;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Cissee\WebtreesExt\Requests;
 use Vesta\Model\GenericViewElement;
 use Vesta\VestaModuleTrait;
+use function app;
+use function redirect;
+use function response;
 use function route;
 use function view;
 
 // we extend RelationshipsChartModule so that links to this chart are used even in non-extended tabs etc.
-class ExtendedRelationshipModule extends RelationshipsChartModule implements ModuleCustomInterface, ModuleConfigInterface, ModuleChartInterface, IndividualFactsTabExtenderInterface, RelativesTabExtenderInterface {
+class ExtendedRelationshipModule extends RelationshipsChartModule implements 
+  ModuleCustomInterface, 
+  ModuleConfigInterface, 
+  ModuleChartInterface, 
+  IndividualFactsTabExtenderInterface, 
+  RelativesTabExtenderInterface {
 
-  use VestaModuleTrait;
+  use ModuleCustomTrait, ModuleConfigTrait, ModuleChartTrait, VestaModuleTrait {
+    VestaModuleTrait::customTranslations insteadof ModuleCustomTrait;
+    VestaModuleTrait::customModuleLatestVersion insteadof ModuleCustomTrait;
+    VestaModuleTrait::getAssetAction insteadof ModuleCustomTrait;
+    VestaModuleTrait::assetUrl insteadof ModuleCustomTrait;
+    
+    VestaModuleTrait::getConfigLink insteadof ModuleConfigTrait;
+  }
+  
   use EmptyIndividualFactsTabExtender;
   use EmptyRelativesTabExtender;
 
