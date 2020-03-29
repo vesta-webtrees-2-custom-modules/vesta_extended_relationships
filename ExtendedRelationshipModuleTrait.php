@@ -304,7 +304,7 @@ trait ExtendedRelationshipModuleTrait {
             $generalSub);
     $sections[] = new ControlPanelSection(
             /* I18N: Module Configuration */I18N::translate('Chart Settings'),
-            /* I18N: Module Configuration */I18N::translate('If you do not want to use the chart functionality, hide this chart via Modules > Chart > %1$s Vesta Extended Relationships (note that the chart is listed under the module name).', $this->getVestaSymbol()),
+            /* I18N: Module Configuration */I18N::translate('If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name).', $this->getVestaSymbol()),
             $chartSub);
 
     $sections[] = new ControlPanelSection(

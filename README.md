@@ -37,7 +37,7 @@ See the <a href="./webtrees">[Müller Family tree](https://cissee.de/webtrees).
 
 ### Download<a name="download"/>
 
-* Current version: 2.0.3.3
+* Current version: 2.0.3.5
 * Based on and tested with webtrees 2.0.3. Cannot be used with webtrees 1.x. May not work with earlier 2.x versions!
 * Requires the ⚶ Vesta Common module ('vesta_common').
 * Displays data via the ⚶ Vesta Families module ('vesta_families'). 
@@ -62,6 +62,7 @@ See the <a href="./webtrees">[Müller Family tree](https://cissee.de/webtrees).
 * Derived from **webtrees** - Copyright (C) 2010 to 2019 webtrees development team.
 * French translations provided by Michel Rivière.
 * Dutch translations provided by Frans Weber.
+* Slovak translations provided by Ladislav Rosival.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
