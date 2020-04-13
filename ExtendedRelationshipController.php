@@ -445,7 +445,7 @@ class ExtendedRelationshipController {
       //return $this->x_calculateCaAndPaths_123456($tree, $xref1, $xref2, 5, $recursion, $beforeJD);
     }
 
-    throw new Exception("unexpected mode!");
+    throw new \Exception("unexpected mode!");
   }
 
   public static function compareCommonAncestorAndPath(CommonAncestorAndPath $a, CommonAncestorAndPath $b) {

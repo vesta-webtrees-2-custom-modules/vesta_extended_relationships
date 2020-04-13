@@ -2,6 +2,7 @@
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
+use Aura\Router\RouterContainer;
 use Cissee\Webtrees\Hook\HookInterfaces\EmptyIndividualFactsTabExtender;
 use Cissee\Webtrees\Hook\HookInterfaces\EmptyRelativesTabExtender;
 use Cissee\Webtrees\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
@@ -14,8 +15,10 @@ use Cissee\Webtrees\Module\ExtendedRelationships\HelpTexts;
 use Cissee\Webtrees\Module\ExtendedRelationships\Sync;
 use Cissee\WebtreesExt\Functions\FunctionsExt;
 use Cissee\WebtreesExt\Requests;
+use Fig\Http\Message\RequestMethodInterface;
 use Fisharebest\Localization\Translation;
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\I18N;
@@ -31,9 +34,11 @@ use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
+use Fisharebest\Webtrees\User;
 use Fisharebest\Webtrees\Webtrees;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Vesta\Model\GenericViewElement;
 use Vesta\VestaModuleTrait;
 use function app;
@@ -47,6 +52,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
   ModuleCustomInterface, 
   ModuleConfigInterface, 
   ModuleChartInterface, 
+  RequestHandlerInterface, 
   IndividualFactsTabExtenderInterface, 
   RelativesTabExtenderInterface {
 
@@ -62,22 +68,27 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
   use EmptyIndividualFactsTabExtender;
   use EmptyRelativesTabExtender;
 
-//use ModuleChartTrait;
-
   use ExtendedRelationshipModuleTrait {
     ExtendedRelationshipModuleTrait::editConfigAfterFaq insteadof VestaModuleTrait;
   }
+  
+  protected const ROUTE_URL  = '/tree/{tree}/vesta-relationships-{ancestors}-{recursion}/{xref}{/xref2}';
 
   /** It would be more correct to use PHP_INT_MAX, but this isn't friendly in URLs */
-  const UNLIMITED_RECURSION = 99;
+  public const UNLIMITED_RECURSION = 99;
 
   /** By default new trees allow unlimited recursion */
-  const DEFAULT_RECURSION = self::UNLIMITED_RECURSION;
+  public const DEFAULT_RECURSION = '99';
 
+  public const DEFAULT_ANCESTORS  = '1'; //should we use '1' here even if in case this option isn't configured?
+  public const DEFAULT_PARAMETERS = [
+      'ancestors' => self::DEFAULT_ANCESTORS,
+      'recursion' => self::DEFAULT_RECURSION,
+  ];
+    
   public function __construct(TreeService $tree_service) {
     parent::__construct($tree_service);
-  }
-    
+  }    
     
   public function customModuleAuthorName(): string {
     return 'Richard Cissée';
@@ -127,6 +138,24 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
       $ret = array_merge($ret, (new Translation($languageFile4))->asArray());
     }
     return $ret;
+  }
+  
+  public function onBoot(): void {
+      //define our 'pretty' routes
+      //note: potentially problematic in case of name clashes; 
+      //webtrees isn't interested in solving this properly, see
+      //https://www.webtrees.net/index.php/en/forum/2-open-discussion/33687-pretty-urls-in-2-x
+      
+      $router_container = app(RouterContainer::class);
+      assert($router_container instanceof RouterContainer);
+      
+      $router_container->getMap()
+            ->get(static::class, static::ROUTE_URL, $this)
+            ->allows(RequestMethodInterface::METHOD_POST)
+            ->tokens([
+                'ancestors' => '\d+',
+                'generations' => '\d+',
+            ]);
   }
   
   protected function editConfigAfterFaq() {
@@ -180,19 +209,20 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     }
 
     $parameters = [
-        'module' => $moduleName,
-        'action' => 'Chart',
-        'xref' => $xref1, //do not use 'xref1' for 'Chart'
-        'xref2' => $xref2,
-        'find' => $mode,
-        'tree' => $tree->name()
+        'ancestors' => $mode
     ];
 
     if ($beforeJD !== null) {
       $parameters['beforeJD'] = $beforeJD;
     }
+    
+    $url = route(static::class, [
+              'xref' => $xref1,
+              'xref2' => $xref2,
+              'tree' => $tree->name(),
+          ] + $parameters + self::DEFAULT_PARAMETERS);
 
-    return '<a href="' . route('module', $parameters) . '" title="' . I18N::translate('Relationships') . '">' . $text . '</a>';
+    return '<a href="' . $url . '" title="' . I18N::translate('Relationships') . '">' . $text . '</a>';
   }
 
   public function getRelationshipLinkForFactsTabFillViaAjax(
@@ -525,56 +555,40 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     return Auth::PRIV_PRIVATE;
   }
 
-  public function chartMenu(Individual $individual): Menu {
-
-    $tree = $individual->tree();
-    $gedcomid = $tree->getUserPreference(Auth::user(), 'gedcomid');
-
-    if ($gedcomid !== '') {
-      return new Menu(
-              $this->getChartTitle(I18N::translate('Relationship to me')),
-              route('module', [
-                  'module' => $this->name(),
-                  'action' => 'Chart',
-                  'xref' => $gedcomid, //do not use 'xref1' for 'Chart'
-                  'xref2' => $individual->xref(),
-                  'tree' => $tree->name(),
-              ]),
-              'menu-chart-relationship',
-              ['rel' => 'nofollow']
-      );
-    }
-
-    return new Menu(
-            $this->getChartTitle(I18N::translate('Relationships')),
-            route('module', [
-                'module' => $this->name(),
-                'action' => 'Chart',
-                'xref' => $individual->xref(), //do not use 'xref1' for 'Chart'
-                'tree' => $tree->name(),
-            ]),
-            'menu-chart-relationship',
-            ['rel' => 'nofollow']
-    );
+  public function chartUrl(Individual $individual, array $parameters = []): string {
+    return route(static::class, [
+              'xref' => $individual->xref(),
+              'tree' => $individual->tree()->name(),
+          ] + $parameters + self::DEFAULT_PARAMETERS);
   }
-
+    
   public function chartBoxMenu(Individual $individual): ?Menu {
     return $this->chartMenu($individual);
   }
+  
+  public function chartMenuClass(): string {
+    return 'menu-chart-relationship';
+  }
+    
+  public function chartMenu(Individual $individual): Menu {
 
-  /**
-   * Return a link to this chart, if it is a relationship chart.
-   *
-   * @return string|null
-   */
-  public function getLinkForRelationship(Individual $individual1, Individual $individual2) {
-    return route('module', [
-        'module' => $this->name(),
-        'action' => 'Chart',
-        'xref' => $individual1->xref(), //do not use 'xref1' for 'Chart'
-        'xref2' => $individual2->xref(),
-        'tree' => $individual1->tree()->name(),
-    ]);
+    $gedcomid = $individual->tree()->getUserPreference(Auth::user(), User::PREF_TREE_ACCOUNT_XREF);
+
+    if ($gedcomid !== '' && $gedcomid !== $individual->xref()) {
+        return new Menu(
+            $this->getChartTitle(I18N::translate('Relationship to me')),
+            $this->chartUrl($individual, ['xref2' => $gedcomid]),
+            $this->chartMenuClass(),
+            $this->chartUrlAttributes()
+        );
+    }
+
+    return new Menu(
+        $this->getChartTitle(I18N::translate('Relationships')),
+        $this->chartUrl($individual),
+        $this->chartMenuClass(),
+        $this->chartUrlAttributes()
+    );
   }
 
   //ok to use this class for ajax requests as long as we fully initialize (session.php) anyway!
@@ -619,32 +633,145 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     $sync = new Sync($this->name());
     return $sync->sync($request, $timeout_service);
   }
-
-  public function postChartAction(ServerRequestInterface $request): ResponseInterface {
-    //TODO use helper for this!
     
-    // Convert POST requests into GET requests for pretty URLs.
-    $keys = array('tree','xref','xref2','recursion','find');
-    $parameters = array_filter($request->getParsedBody(), static function (string $key) use ($keys): bool {
-      return in_array($key, $keys);
-    }, ARRAY_FILTER_USE_KEY);
-
-    return redirect(route('module', [
-        'module'      => $this->name(),
-        'action'      => 'Chart']+$parameters));
-  }
-  
-  //must override this (issue #7)
+  /*
   public function chartUrl(Individual $individual, array $parameters = []): string {
-    return route('module', [
-        'module' => $this->name(),
-        'action' => 'Chart',
-        'xref' => $individual->xref(),
-        'tree' => $individual->tree()->name(),
-    ] + $parameters);
+  }
+  */
+  
+  public function handle(ServerRequestInterface $request): ResponseInterface
+  {
+      $tree = $request->getAttribute('tree');
+      assert($tree instanceof Tree);
+
+      $xref = $request->getAttribute('xref');
+      assert(is_string($xref));
+
+      $xref2 = $request->getAttribute('xref2') ?? '';
+
+      $ajax      = $request->getQueryParams()['ajax'] ?? '';
+      $ancestors = (int) $request->getAttribute('ancestors');
+      $recursion = (int) $request->getAttribute('recursion');
+      $user      = $request->getAttribute('user');
+
+      //[RC] block added start
+      $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
+      $dateDisplay = null;
+      if ($beforeJD) {
+        $ymd = cal_from_jd($beforeJD, CAL_GREGORIAN);
+        $date = new Date($ymd["day"] . ' ' . strtoupper($ymd["abbrevmonth"]) . ' ' . $ymd["year"]);
+        $dateDisplay = $date->display();
+      }
+      //[RC] block added end
+      
+      // Convert POST requests into GET requests for pretty URLs.
+      if ($request->getMethod() === RequestMethodInterface::METHOD_POST) {
+          $params = (array) $request->getParsedBody();
+
+          $parameters = [
+              'ancestors' => $params['ancestors'],
+              'recursion' => $params['recursion'],
+              'tree'      => $tree->name(),
+              'xref'      => $params['xref'],
+              'xref2'     => $params['xref2'],
+          ];
+          
+          if ($beforeJD !== null) {
+            $parameters['beforeJD'] = $beforeJD;
+          }
+          
+          return redirect(route(static::class, $parameters));
+      }
+
+      $individual1 = Individual::getInstance($xref, $tree);
+      $individual2 = Individual::getInstance($xref2, $tree);
+
+      //$ancestors_only = (int) $tree->getPreference('RELATIONSHIP_ANCESTORS', static::DEFAULT_ANCESTORS);
+      //$max_recursion  = (int) $tree->getPreference('RELATIONSHIP_RECURSION', static::DEFAULT_RECURSION);
+      $max_recursion = intval($this->getPreference('RELATIONSHIP_RECURSION', RelationshipsChartModule::DEFAULT_RECURSION));
+
+      $recursion = min($recursion, $max_recursion);
+
+      if ($individual1 instanceof Individual) {
+          $individual1 = Auth::checkIndividualAccess($individual1, false, true);
+      }
+
+      if ($individual2 instanceof Individual) {
+          $individual2 = Auth::checkIndividualAccess($individual2, false, true);
+      }
+
+      Auth::checkComponentAccess($this, 'chart', $tree, $user);
+
+      if ($individual1 instanceof Individual && $individual2 instanceof Individual) {
+          if ($ajax === '1') {
+              $controller = new ExtendedRelationshipsChartController($this);
+              return $controller->chart($individual1, $individual2, $recursion, $ancestors, $beforeJD);
+          }
+
+          /* I18N: %s are individual’s names */
+          $title    = I18N::translate('Relationships between %1$s and %2$s', $individual1->fullName(), $individual2->fullName());
+          
+          $parameters = [
+              'ajax'      => true,
+              'ancestors' => $ancestors,
+              'recursion' => $recursion,
+              'xref2'     => $individual2->xref(),
+          ];
+          
+          if ($beforeJD !== null) {
+            $parameters['beforeJD'] = $beforeJD;
+          }
+          
+          $ajax_url = $this->chartUrl($individual1, $parameters);
+      } else {
+          $title    = I18N::translate('Relationships');
+          $ajax_url = '';
+      }
+
+      //[RC] block added start
+      $chart1 = ($ancestors == 1) || (boolval($this->getPreference('CHART_1', '1')));
+      $chart2 = ($ancestors == 2) || (boolval($this->getPreference('CHART_2', '0')));
+      $chart3 = ($ancestors == 3) || (boolval($this->getPreference('CHART_3', '1')));
+      $chart4 = ($ancestors == 4) || (boolval($this->getPreference('CHART_4', '1')));
+      $chart5 = ($ancestors == 5) || (boolval($this->getPreference('CHART_5', '1')));
+      $chart6 = ($ancestors == 6) || (boolval($this->getPreference('CHART_6', '0')));
+      $chart7 = ($ancestors == 7) || (boolval($this->getPreference('CHART_7', '0')));
+
+      $options1 = [];
+      $options2 = [];
+      if ($beforeJD && ($chart4 || $chart5 || $chart6 || $chart7)) {
+        //use separate options
+        $this->addAncestorsOptions1($options1, $chart1, $chart2, $chart3);
+        $this->addAncestorsOptions2($options2, $chart4, $chart5, $chart6, $chart7, $max_recursion);
+      } else {
+        //merge options
+        $this->addAncestorsOptions1($options1, $chart1, $chart2, $chart3);
+        $this->addAncestorsOptions2($options1, $chart4, $chart5, $chart6, $chart7, $max_recursion);
+      }
+      //[RC] block added end
+      
+      return $this->viewResponse($this->name() . '::page', [
+          'ajax_url'           => $ajax_url,
+          'ancestors'          => $ancestors,
+          //'ancestors_only'     => $ancestors_only,
+          //'ancestors_options'  => $this->ancestorsOptions(),
+          'ancestors_options1' => $options1,
+          'ancestors_options2' => $options2,
+          'individual1'        => $individual1,
+          'individual2'        => $individual2,
+          'max_recursion'      => $max_recursion,
+          'module'             => $this->name(),
+          'recursion'          => $recursion,
+          //'recursion_options'  => $this->recursionOptions($max_recursion),
+          'title'              => $title,
+          'tree'               => $tree,
+          
+          'beforeJD'           => $beforeJD,
+          'dateDisplay'        => $dateDisplay,
+      ]);
   }
     
-  //important to use 'Chart' here - we cannot adjust the link generated via parent.chartUrl
+  /*
   public function getChartAction(ServerRequestInterface $request): ResponseInterface {
     //if null, initialized elsewhere if required
     $user = $request->getAttribute('user');
@@ -666,6 +793,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     $controller = new ExtendedRelationshipsChartController($this);
     return $controller->chart($request, $tree);
   }
+  */
 
   public function getHelpAction(ServerRequestInterface $request): ResponseInterface {
     $topic = Requests::getString($request, 'topic');
@@ -798,5 +926,48 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
   public function hRelativesTabGetOutputAfterDBox(Individual $person) {
     return $this->getOutputAfterDescriptionBox($person, '', 'mainRels', 'toggleableRels');
+  }
+    
+  /**
+   * Possible options for the ancestors option
+   *
+   * @return string[]
+   */
+  private function addAncestorsOptions1(&$options, $chart1, $chart2, $chart3) {
+    if ($chart1) {
+      $options[1] = I18N::translate('Find a closest relationship via common ancestors');
+    }
+
+    if ($chart2) {
+      $options[2] = I18N::translate('Find all smallest lowest common ancestors, show a closest connection for each');
+    }
+
+    if ($chart3) {
+      $options[3] = I18N::translate('Find all relationships via lowest common ancestors');
+    }
+  }
+
+  private function addAncestorsOptions2(&$options, $chart4, $chart5, $chart6, $chart7, $max_recursion) {
+    if ($chart4) {
+      $options[4] = I18N::translate('Find the closest overall connections (preferably via common ancestors)');
+    }
+
+    if ($chart7) {
+      $options[7] = I18N::translate('Find a closest relationship via common ancestors, or fallback to the closest overall connection');
+    }
+
+    if ($chart5) {
+      $options[5] = I18N::translate('Find the closest overall connections');
+    }
+
+    if ($max_recursion != 0) {
+      if ($chart6) {
+        if ($max_recursion == RelationshipsChartModule::UNLIMITED_RECURSION) {
+          $options[6] = I18N::translate('Find all overall connections');
+        } else {
+          $options[6] = I18N::translate('Find other overall connections');
+        }
+      }
+    }
   }
 }

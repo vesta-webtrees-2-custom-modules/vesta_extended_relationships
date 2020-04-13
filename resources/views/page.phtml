@@ -3,6 +3,7 @@
 use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\View;
+
 ?>
 
 <h2 class="wt-page-title">
@@ -11,22 +12,18 @@ use Fisharebest\Webtrees\View;
 
 <form method="post" class="wt-page-options wt-page-options-relationships-chart d-print-none">
     <?= csrf_field() ?>
-    <input type="hidden" name="route" value="module">
-    <input type="hidden" name="module" value="<?= e($module) ?>">
-    <input type="hidden" name="action" value="Chart">
-    <input type="hidden" name="tree" value="<?= e($tree->name()) ?>">
-    
+
     <?php if ($beforeJD !== null): ?>
       <input type="hidden" name="beforeJD" value="<?php echo $beforeJD ?>">
     <?php endif; ?>
     <input type="hidden" name="recursion" value="<?php echo $recursion ?>">
-
+      
     <div class="row form-group">
         <label class="col-sm-3 col-form-label wt-page-options-label" for="xref">
             <?= MoreI18N::xlate('Individual 1') ?>
         </label>
         <div class="col-sm-9 wt-page-options-value">
-            <?= view('components/select-individual', ['name' => 'xref', 'individual' => $individual1, 'tree' => $tree]) ?>
+            <?= view('components/select-individual', ['name' => 'xref', 'individual' => $individual1, 'tree' => $tree, 'required' => true]) ?>
         </div>
     </div>
 
@@ -35,7 +32,7 @@ use Fisharebest\Webtrees\View;
             <?= MoreI18N::xlate('Individual 2') ?>
         </label>
         <div class="col-sm-9 wt-page-options-value">
-            <?= view('components/select-individual', ['name' => 'xref2', 'individual' => $individual2, 'tree' => $tree]) ?>
+            <?= view('components/select-individual', ['name' => 'xref2', 'individual' => $individual2, 'tree' => $tree, 'required' => true]) ?>
         </div>
     </div>
 
@@ -45,7 +42,7 @@ use Fisharebest\Webtrees\View;
               <legend class="col-form-label col-sm-3 wt-page-options-label">
               </legend>
               <div class="col-sm-9 wt-page-options-value">
-                  <?= view('components/radios', ['name' => 'find', 'options' => $ancestors_options1, 'selected' => $ancestors]) ?>
+                  <?= view('components/radios', ['name' => 'ancestors', 'options' => $ancestors_options1, 'selected' => $ancestors]) ?>
               </div>
           </div>
       </fieldset>
@@ -60,7 +57,7 @@ use Fisharebest\Webtrees\View;
                   <?php endif ?>
               </legend>
               <div class="col-sm-9 wt-page-options-value">
-                  <?= view('components/radios', ['name' => 'find', 'options' => $ancestors_options1, 'selected' => $ancestors]) ?>
+                  <?= view('components/radios', ['name' => 'ancestors', 'options' => $ancestors_options2, 'selected' => $ancestors]) ?>
               </div>
           </div>
       </fieldset>
@@ -70,31 +67,20 @@ use Fisharebest\Webtrees\View;
         <div class="col-form-label col-sm-3 wt-page-options-label"></div>
         <div class="col-sm-9 wt-page-options-value">
             <button class="btn btn-primary" type="submit">
-                <?= /* I18N: A button label. */ MoreI18N::xlate('view') ?>
+                <?= /* I18N: A button label. */ I18N::translate('view') ?>
             </button>
 
             <button class="btn btn-link" id="btn-swap-individuals" type="button">
                 <?= /* I18N: Reverse the order of two individuals */
-                MoreI18N::xlate('Swap individuals') ?>
+                I18N::translate('Swap individuals') ?>
             </button>
         </div>
     </div>
 </form>
 
-<?php if ($individual1 !== null && $individual2 !== null): ?>
-  <div class="wt-ajax-load wt-page-content wt-chart wt-relationships-chart" data-ajax-url="<?=
-       e(route('module', [
-           'module' => $module,
-           'action' => 'ChartActual',
-           'xref1' => $individual1->xref(),
-           'xref2' => $individual2->xref(),
-           'tree' => $individual2->tree()->name(),
-           'find' => $ancestors,
-           'recursion' => $recursion,
-           'beforeJD' => $beforeJD
-       ]))
-       ?>"></div>
-     <?php endif ?>
+<?php if ($individual1 !== null && $individual2 !== null) : ?>
+    <div class="wt-ajax-load wt-page-content wt-chart wt-chart-relationships" data-ajax-url="<?= e($ajax_url) ?>"></div>
+<?php endif ?>
 
 <?php View::push('javascript') ?>
 <script>

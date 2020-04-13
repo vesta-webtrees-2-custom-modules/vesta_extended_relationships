@@ -6,10 +6,7 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 use Cissee\WebtreesExt\Functions\FunctionsExt;
 use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
 use Cissee\WebtreesExt\MoreI18N;
-use Cissee\WebtreesExt\Requests;
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Contracts\UserInterface;
-use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\GedcomRecord;
@@ -19,7 +16,6 @@ use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Tree;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use function asset;
 use function response;
 use function route;
@@ -33,108 +29,17 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
     $this->module = $module;
   }
 
-  public function page(
-          ServerRequestInterface $request, 
-          Tree $tree, 
-          UserInterface $user): ResponseInterface {
-    
-    //$this->checkModuleIsActive($tree);
+  public function chart(
+          Individual $individual1, 
+          Individual $individual2, 
+          int $recursion, 
+          int $ancestors,
+          $beforeJD): ResponseInterface {
 
-    $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
-    $dateDisplay = null;
-    if ($beforeJD) {
-      $ymd = cal_from_jd($beforeJD, CAL_GREGORIAN);
-      $date = new Date($ymd["day"] . ' ' . strtoupper($ymd["abbrevmonth"]) . ' ' . $ymd["year"]);
-      $dateDisplay = $date->display();
-    }
-
-    $xref1 = Requests::getString($request, 'xref');
-    $xref2 = Requests::getString($request, 'xref2');
-
-    $individual1 = Individual::getInstance($xref1, $tree);
-    $individual2 = Individual::getInstance($xref2, $tree);
-
-    $recursion = Requests::getInt($request, 'recursion');
-    //$ancestors = Requests::getInt($request, 'ancestors');
-    $find = Requests::getInt($request, 'find', 1);
-
-    if ($individual1 instanceof Individual) {
-      Auth::checkIndividualAccess($individual1);
-    }
-
-    if ($individual2 instanceof Individual) {
-      Auth::checkIndividualAccess($individual2);
-    }
-
-    Auth::checkComponentAccess($this->module, 'chart', $tree, $user);
-
-    //$ancestors_only = (int) $tree->getPreference('RELATIONSHIP_ANCESTORS', RelationshipsChartModule::DEFAULT_ANCESTORS);
-    //$max_recursion  = (int) $tree->getPreference('RELATIONSHIP_RECURSION', RelationshipsChartModule::DEFAULT_RECURSION);
-    $max_recursion = intval($this->module->getPreference('RELATIONSHIP_RECURSION', RelationshipsChartModule::DEFAULT_RECURSION));
-
-    $recursion = min($recursion, $max_recursion);
-
-    if ($individual1 instanceof Individual && $individual2 instanceof Individual) {
-      /* I18N: %s are individual’s names */
-      $title = I18N::translate('Relationships between %1$s and %2$s', $individual1->fullName(), $individual2->fullName());
-    } else {
-      $title = I18N::translate('Relationships');
-    }
-
-    $chart1 = ($find == 1) || (boolval($this->module->getPreference('CHART_1', '1')));
-    $chart2 = ($find == 2) || (boolval($this->module->getPreference('CHART_2', '0')));
-    $chart3 = ($find == 3) || (boolval($this->module->getPreference('CHART_3', '1')));
-    $chart4 = ($find == 4) || (boolval($this->module->getPreference('CHART_4', '1')));
-    $chart5 = ($find == 5) || (boolval($this->module->getPreference('CHART_5', '1')));
-    $chart6 = ($find == 6) || (boolval($this->module->getPreference('CHART_6', '0')));
-    $chart7 = ($find == 7) || (boolval($this->module->getPreference('CHART_7', '0')));
-
-    $options1 = [];
-    $options2 = [];
-    if ($beforeJD && ($chart4 || $chart5 || $chart6 || $chart7)) {
-      //use separate options
-      $this->addAncestorsOptions1($options1, $chart1, $chart2, $chart3);
-      $this->addAncestorsOptions2($options2, $chart4, $chart5, $chart6, $chart7, $max_recursion);
-    } else {
-      //merge options
-      $this->addAncestorsOptions1($options1, $chart1, $chart2, $chart3);
-      $this->addAncestorsOptions2($options1, $chart4, $chart5, $chart6, $chart7, $max_recursion);
-    }
-
-    return $this->viewResponse($this->module->name() . '::page', [
-                'module' => $this->module->name(),
-                'ancestors' => $find,
-                'ancestors_options1' => $options1,
-                'ancestors_options2' => $options2,
-                'individual1' => $individual1,
-                'individual2' => $individual2,
-                'recursion' => $recursion,
-                'title' => $title,
-                'beforeJD' => $beforeJD,
-                'dateDisplay' => $dateDisplay,
-                'tree' => $tree //not set explicitly in original chart controller, also available via View::$sharedData
-    ]);
-  }
-
-  public function chart(ServerRequestInterface $request, Tree $tree): ResponseInterface {
-    //$this->checkModuleIsActive($tree);
-
+    $tree = $individual1->tree();    
+    $find = $ancestors;
     $showCa = boolval($this->module->getPreference('CHART_SHOW_CAS', '1'));
-    $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
-
-    $xref1 = Requests::getString($request, 'xref1');
-    $xref2 = Requests::getString($request, 'xref2');
-    
-    $individual1 = Individual::getInstance($xref1, $tree);
-    $individual2 = Individual::getInstance($xref2, $tree);
-
-    Auth::checkIndividualAccess($individual1);
-    Auth::checkIndividualAccess($individual2);
-
-    $recursion = Requests::getInt($request, 'recursion');
-    //$ancestors = Requests::getInt($request, 'ancestors');
-    $find = Requests::getInt($request, 'find', 1);
-
+        
     //$max_recursion  = (int) $tree->getPreference('RELATIONSHIP_RECURSION', RelationshipsChartModule::DEFAULT_RECURSION);
     $max_recursion = intval($this->module->getPreference('RELATIONSHIP_RECURSION', RelationshipsChartModule::DEFAULT_RECURSION));
 
@@ -143,7 +48,6 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
     $controller = new ExtendedRelationshipController;
     $caAndPaths = $controller->calculateCaAndPaths_123456($individual1, $individual2, $find, $recursion, $beforeJD);
 
-    // @TODO - convert to views
     ob_start();
 
     if ($find == 3) {
@@ -169,7 +73,6 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
         }
       }
     }
-
 
     if (I18N::direction() === 'ltr') {
       $diagonal1 = asset('css/images/dline.png');
@@ -430,47 +333,5 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
     return $relationships;
   }
 
-  /**
-   * Possible options for the ancestors option
-   *
-   * @return string[]
-   */
-  private function addAncestorsOptions1(&$options, $chart1, $chart2, $chart3) {
-    if ($chart1) {
-      $options[1] = I18N::translate('Find a closest relationship via common ancestors');
-    }
-
-    if ($chart2) {
-      $options[2] = I18N::translate('Find all smallest lowest common ancestors, show a closest connection for each');
-    }
-
-    if ($chart3) {
-      $options[3] = I18N::translate('Find all relationships via lowest common ancestors');
-    }
-  }
-
-  private function addAncestorsOptions2(&$options, $chart4, $chart5, $chart6, $chart7, $max_recursion) {
-    if ($chart4) {
-      $options[4] = I18N::translate('Find the closest overall connections (preferably via common ancestors)');
-    }
-
-    if ($chart7) {
-      $options[7] = I18N::translate('Find a closest relationship via common ancestors, or fallback to the closest overall connection');
-    }
-
-    if ($chart5) {
-      $options[5] = I18N::translate('Find the closest overall connections');
-    }
-
-    if ($max_recursion != 0) {
-      if ($chart6) {
-        if ($max_recursion == RelationshipsChartModule::UNLIMITED_RECURSION) {
-          $options[6] = I18N::translate('Find all overall connections');
-        } else {
-          $options[6] = I18N::translate('Find other overall connections');
-        }
-      }
-    }
-  }
 
 }
