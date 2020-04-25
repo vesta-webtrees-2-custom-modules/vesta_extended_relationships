@@ -690,8 +690,6 @@ class FunctionsExt {
     } else {
       $sex2 = 'U';
     }
-
-    error_log($path);
     
     switch ($path) {
       case '':
