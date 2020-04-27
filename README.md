@@ -27,7 +27,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 * In the extended 'Facts and Events' tab, relationships to associated individuals are calculated similarly (relative to the date of the event).	
 * Most features are configurable via module administration.
-* The extended 'Facts and Events' tab, even when used standalone (without this module), fixes [Webtrees issue #1192](https://github.com/fisharebest/webtrees/issues/1192). When 'Events of close relatives' are activated, the inverse associations and relationships are also displayed:
+* When 'Events of close relatives' is activated on the extended 'Facts and Events' tab, the inverse associations and relationships are also displayed:
 
 ![Screenshot](inverse.png)
 
