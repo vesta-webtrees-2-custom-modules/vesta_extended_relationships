@@ -9,7 +9,6 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 ## Contents
 
 * [Features](#features)
-* [Demo](#demo)
 * [Download](#download)
 * [Installation](#installation)
 * [License](#license)
@@ -18,26 +17,22 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 * The extended relationship chart provides additional options for calculating reationships. Common ancestors are included in the relationship path.
 
-![Screenshot](chart.png)
+<p align="center"><img src="chart.png" alt="Screenshot" align="center" width="67%"></p>
 
 * The module uses proper German relationship names, following [the German kinship system](https://de.wikipedia.org/wiki/Verwandtschaftsbeziehung#/media/File:European_kinship_system_de.svg) rather than using direct translations of [the system used in the English-speaking world](https://en.wikipedia.org/wiki/Family#/media/File:Relatives_Chart.svg): E.g. "Urgroßonkel 2. Grades" instead of "Cousin 3. Grades in aufsteigender Folge".
 * In the extended 'Families' tab, the relationship to the default individual is displayed, as well as prior relationships between married individuals. The latter are calculated relative to the date of the marriage (to avoid the trivial relationship husband/wife), which allows us to show e.g. that someone married his brother's wife's sister.
 
-![Screenshot](relatives.png)
+<p align="center"><img src="relatives.png" alt="Screenshot" align="center" width="67%"></p>
 
 * In the extended 'Facts and Events' tab, relationships to associated individuals are calculated similarly (relative to the date of the event).	
 * Most features are configurable via module administration.
 * When 'Events of close relatives' is activated on the extended 'Facts and Events' tab, the inverse associations and relationships are also displayed:
 
-![Screenshot](inverse.png)
-
-### Demo<a name="demo"/>
-
-See the <a href="./webtrees">[Müller Family tree](https://cissee.de/webtrees).
+<p align="center"><img src="inverse.png" alt="Screenshot" align="center" width="67%"></p>
 
 ### Download<a name="download"/>
 
-* Current version: 2.0.3.8
+* Current version: 2.0.3.10
 * Based on and tested with webtrees 2.0.3. Cannot be used with webtrees 1.x. May not work with earlier 2.x versions!
 * Requires the ⚶ Vesta Common module ('vesta_common').
 * Displays data via the ⚶ Vesta Families module ('vesta_families'). 
