@@ -4,11 +4,12 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipController;
 use Cissee\WebtreesExt\Functions\FunctionsExt;
+use Exception;
+use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Factory;
 use Fisharebest\Webtrees\Family;
-use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
-use Fisharebest\Webtrees\Auth;
 
 class FunctionsPrintRels {
 
@@ -107,11 +108,11 @@ class FunctionsPrintRels {
         //not correct in all cases: INDIs may use different prefixes!
         //$caIsIndi = (substr($slcaKey, 0, 1) === "I");
 
-        $record = GedcomRecord::getInstance($slcaKey, $person1->tree());
+        $record = Factory::gedcomRecord()->make($slcaKey, $person1->tree());
         $caIsIndi = ($record instanceof Individual);
 
         if ($caIsIndi) {
-          $indi = $record; //Individual::getInstance($slcaKey, $person1->tree());
+          $indi = $record;
 
           if (($person1 !== $indi) && ($person2 !== $indi)) {
             $html = "";
@@ -123,9 +124,9 @@ class FunctionsPrintRels {
         } else {
           $caIsFam = ($record instanceof Family);
           if (!$caIsFam) {
-            throw new \Exception("unexpected class ". get_class($record));
+            throw new Exception("unexpected class ". get_class($record));
           }
-          $fam = $record; //Family::getInstance($slcaKey, $person1->tree());
+          $fam = $record;
 
           $names = array();
           foreach ($fam->spouses() as $indi) {

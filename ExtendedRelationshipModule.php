@@ -20,6 +20,7 @@ use Fisharebest\Localization\Translation;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Fact;
+use Fisharebest\Webtrees\Factory;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
@@ -41,7 +42,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Vesta\Model\GenericViewElement;
 use Vesta\VestaModuleTrait;
+use const CAL_GREGORIAN;
 use function app;
+use function cal_from_jd;
 use function redirect;
 use function response;
 use function route;
@@ -192,8 +195,8 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         }
 
         //use $person1/ $person2 here! (e.g. for gendered rels, and 'younger brother' etc.)
-        $indi1 = Individual::getInstance($xref1, $tree);
-        $indi2 = Individual::getInstance($xref2, $tree);
+        $indi1 = Factory::individual()->make($xref1, $tree);
+        $indi2 = Factory::individual()->make($xref2, $tree);
 
         //TODO: 'getRelationshipNameFromPath' requires a variant using $beforeJD,
         //because 'ex-husband' etc. is not correct at all dates!
@@ -683,8 +686,8 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
           return redirect(route(static::class, $parameters));
       }
 
-      $individual1 = Individual::getInstance($xref, $tree);
-      $individual2 = Individual::getInstance($xref2, $tree);
+      $individual1 = Factory::individual()->make($xref, $tree);
+      $individual2 = Factory::individual()->make($xref2, $tree);
 
       //$ancestors_only = (int) $tree->getPreference('RELATIONSHIP_ANCESTORS', static::DEFAULT_ANCESTORS);
       //$max_recursion  = (int) $tree->getPreference('RELATIONSHIP_RECURSION', static::DEFAULT_RECURSION);

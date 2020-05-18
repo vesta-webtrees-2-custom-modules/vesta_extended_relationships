@@ -3,13 +3,12 @@
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\Webtrees\Module\ExtendedRelationships\FunctionsPrintRels;
+use Cissee\WebtreesExt\Requests;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Family;
-use Fisharebest\Webtrees\Gedcom;
-use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Tree;
+use Fisharebest\Webtrees\Factory;
 use Psr\Http\Message\ServerRequestInterface;
-use Cissee\WebtreesExt\Requests;
 
 class AjaxRequests {
 
@@ -20,7 +19,7 @@ class AjaxRequests {
     $showCa = Requests::getBool($request, 'showCa');
 
     $pid = Requests::getString($request, 'pid');
-    $individual = Individual::getInstance($pid, $tree);
+    $individual = Factory::individual()->make($pid, $tree);
 
     FunctionsPrintRels::printSlcasWrtDefaultIndividual($moduleName, $individual, $mode, $recursion, $showCa);
   }
@@ -33,7 +32,7 @@ class AjaxRequests {
     $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
 
     $pid = Requests::getString($request, 'pid');
-    $family = Family::getInstance($pid, $tree);
+    $family = Factory::family()->make($pid, $tree);
 
     if ($family->tree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
       $access_level = Auth::PRIV_HIDE;

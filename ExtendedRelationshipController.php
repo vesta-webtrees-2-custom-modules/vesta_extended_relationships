@@ -732,29 +732,6 @@ class ExtendedRelationshipController {
     return $paths;
   }
 
-  private static function debug_echo($xref) {
-    global $WT_TREE;
-
-    //not correct in all cases: INDIs may use different prefixes!
-    //$caIsIndi = (substr($slcaKey, 0, 1) === "I");
-
-    $record = GedcomRecord::getInstance($xref, $WT_TREE);
-    $caIsIndi = "Fisharebest\Webtrees\Individual" === get_class($record);
-
-    if ($caIsIndi) {
-      $indi = $record; //Individual::getInstance($xref, $WT_TREE);				
-      echo $indi->fullName();
-    } else {
-      $fam = $record; //Family::getInstance($xref, $WT_TREE);
-      foreach ($fam->spouses() as $indi) {
-        $names[] = $indi->fullName();
-      }
-      $famName = implode(' & ', $names);
-      echo $famName;
-    }
-    echo "<br />";
-  }
-
   public function calculateRelationships_withWeights(Individual $individual1, Individual $individual2, $all, $beforeJD = null) {
     return $this->x_calculateRelationships_withWeights($individual1->tree(), $individual1->xref(), $individual2->xref(), $all, $beforeJD);
   }
