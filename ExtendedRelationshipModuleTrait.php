@@ -3,13 +3,13 @@
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Fisharebest\Webtrees\I18N;
-use Vesta\ControlPanel\Model\ControlPanelCheckbox;
-use Vesta\ControlPanel\Model\ControlPanelFactRestriction;
-use Vesta\ControlPanel\Model\ControlPanelPreferences;
-use Vesta\ControlPanel\Model\ControlPanelRadioButton;
-use Vesta\ControlPanel\Model\ControlPanelRadioButtons;
-use Vesta\ControlPanel\Model\ControlPanelSection;
-use Vesta\ControlPanel\Model\ControlPanelSubsection;
+use Vesta\ControlPanelUtils\Model\ControlPanelCheckbox;
+use Vesta\ControlPanelUtils\Model\ControlPanelFactRestriction;
+use Vesta\ControlPanelUtils\Model\ControlPanelPreferences;
+use Vesta\ControlPanelUtils\Model\ControlPanelRadioButton;
+use Vesta\ControlPanelUtils\Model\ControlPanelRadioButtons;
+use Vesta\ControlPanelUtils\Model\ControlPanelSection;
+use Vesta\ControlPanelUtils\Model\ControlPanelSubsection;
 
 trait ExtendedRelationshipModuleTrait {
 
@@ -37,11 +37,11 @@ trait ExtendedRelationshipModuleTrait {
     $generalSub = array();
     $generalSub[] = new ControlPanelSubsection(
            /* I18N: Module Configuration */I18N::translate('Displayed title'),
-            array(new ControlPanelCheckbox(
-                /* I18N: Module Configuration */I18N::translate('Include the %1$s symbol in the module title', $this->getVestaSymbol()),
+            array(/*new ControlPanelCheckbox(
+                I18N::translate('Include the %1$s symbol in the module title', $this->getVestaSymbol()),
                 null,
                 'VESTA',
-                '1'),
+                '1'),*/
         new ControlPanelCheckbox(
                 /* I18N: Module Configuration */I18N::translate('Include the %1$s symbol in the chart menu entry', $this->getVestaSymbol()),
                 /* I18N: Module Configuration */I18N::translate('Deselect in order to have the chart menu entry appear exactly as the original entry.'),
@@ -286,13 +286,11 @@ trait ExtendedRelationshipModuleTrait {
                 /* I18N: Module Configuration */I18N::translate('Note that the facts and events to be displayed at all may be filtered via the preferences of the tab.'),
                 'TAB_REL_TO_ASSO_RESTRICTED',
                 '0'),
-        new ControlPanelFactRestriction(
-                false,
+        ControlPanelFactRestriction::createWithIndividualFacts(
                 /* I18N: Module Configuration */I18N::translate('Restrict to this list of GEDCOM individual facts and events. You can modify this list by removing or adding fact and event names, even custom ones, as necessary.'),
                 'TAB_REL_TO_ASSO_RESTRICTED_INDI',
                 'CHR,BAPM'),
-        new ControlPanelFactRestriction(
-                true,
+        ControlPanelFactRestriction::createWithFamilyFacts(
                 /* I18N: Module Configuration */I18N::translate('Restrict to this list of GEDCOM family facts and events. You can modify this list by removing or adding fact and event names, even custom ones, as necessary.'),
                 'TAB_REL_TO_ASSO_RESTRICTED_FAM',
                 'MARR')));

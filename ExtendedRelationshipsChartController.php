@@ -100,7 +100,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
       $fam = null;
       if (($slcaKey !== null) && ($showCa)) {
         $record = Factory::gedcomRecord()->make($slcaKey, $tree);
-        $caIsIndi = "Fisharebest\Webtrees\Individual" === get_class($record);
+        $caIsIndi = $record instanceof Individual;
 
         if ($caIsIndi) {
           //skip - slca is already in the path!
