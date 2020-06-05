@@ -5,9 +5,8 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 use Cissee\Webtrees\Module\ExtendedRelationships\FunctionsPrintRels;
 use Cissee\WebtreesExt\Requests;
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Family;
-use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\Factory;
+use Fisharebest\Webtrees\Tree;
 use Psr\Http\Message\ServerRequestInterface;
 
 class AjaxRequests {

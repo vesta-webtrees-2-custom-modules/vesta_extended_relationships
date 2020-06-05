@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
+use Cissee\WebtreesExt\Requests;
 use Exception;
+use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\Http\Controllers\AbstractBaseController;
+use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Services\TimeoutService;
+use Fisharebest\Webtrees\Services\TreeService;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Database\Schema\Blueprint;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Cissee\WebtreesExt\Requests;
-
+use function app;
 use function route;
 
 //adapted from GedcomFileController
@@ -38,6 +41,8 @@ class Sync extends AbstractBaseController {
         Sync::cleanupIndividuals();
         Sync::cleanupFamilies();
         $size = Sync::countIndividualsToBeSynced() + Sync::countFamiliesToBeSynced();
+        //error_log("INDIs: " . Sync::countIndividualsToBeSynced());
+        //error_log("FAMs: " . Sync::countFamiliesToBeSynced());
         $position = 1;
         $phase = 2;
         break;
@@ -47,11 +52,12 @@ class Sync extends AbstractBaseController {
 
         // Run for a few seconds. This keeps the resource requirements low.
         do {
-          if (!Sync::calculateNextIndividual()) {
+          $batchSize = 50;
+          if (!Sync::calculateNextIndividuals($batchSize)) {
             $phase = 3;
             break;
           }
-          $position += 1;
+          $position += $batchSize;
         } while (!$timeout_service->isTimeLimitUp());
         break;
       case 3:
@@ -60,10 +66,11 @@ class Sync extends AbstractBaseController {
 
         // Run for a few seconds. This keeps the resource requirements low.
         do {
-          if (!Sync::calculateNextFamily()) {
+          $batchSize = 50;
+          if (!Sync::calculateNextFamilies($batchSize)) {
             return $this->viewResponse($this->moduleName . '::sync-complete', []);
           }
-          $position += 1;
+          $position += $batchSize;
         } while (!$timeout_service->isTimeLimitUp());
         break;
       default:
@@ -187,84 +194,98 @@ class Sync extends AbstractBaseController {
                     ->count();
   }
 
-  public static function calculateNextIndividual() {
-    $row = DB::table('individuals')
+  public static function calculateNextIndividuals(int $batchSize): bool {
+    //this query is rather slow (0.3 seconds locally), compared to everything else in this method
+    //therefore we batch here!
+    $rows = DB::table('individuals')
             ->leftJoin('rel_individuals', function (JoinClause $join): void {
               $join
               ->on('individuals.i_id', '=', 'rel_individuals.i_id')
               ->on('individuals.i_file', '=', 'rel_individuals.i_file');
             })
             ->whereNull('rel_individuals.i_id')
+            ->limit($batchSize)
             ->select(['individuals.i_id', 'individuals.i_file', 'individuals.i_gedcom'])
-            ->first();
+            ->get();
 
-    if ($row == null) {
-      return null;
+    if ($rows->isEmpty()) {
+      return false;
     }
 
-    $id = $row->i_id;
-    $file = $row->i_file;
-    $gedcom = $row->i_gedcom;
+    foreach ($rows as $row) {
+      $id = $row->i_id;
+      $file = intval($row->i_file);
+      $gedcom = $row->i_gedcom;
 
-    //'i_from' = 'born no later than' (= minimum of date of birth, any valid fact/event date).
-    //note: we don't use family data to estimate this date, 
-    //because that would complicate the decision when to recalculate 
+      //'i_from' = 'born no later than' (= minimum of date of birth, any valid fact/event date).
+      //note: we don't use family data to estimate this date, 
+      //because that would complicate the decision when to recalculate 
 
-    $indi = new DirectIndividual($id, $gedcom, "" . $file);
-    $date = $indi->getBornNoLaterThan();
-    $maxJD = null;
-    if ($date->isOK()) {
-      $maxJD = $date->minimumJulianDay();
+      //$indi = new DirectIndividual($id, $gedcom, "" . $file);
+      $tree = app(TreeService::class)->find($file);
+      $indi = new Individual($id, $gedcom, null, $tree);
+      $date = RelationshipUtils::getBornNoLaterThan($indi);
+
+      $maxJD = null;
+      if ($date->isOK()) {
+        $maxJD = $date->minimumJulianDay();
+      }
+
+      DB::table('rel_individuals')
+              ->insert([
+                  'i_id' => $id,
+                  'i_file' => $file,
+                  'i_gedcom' => $gedcom,
+                  'i_from' => $maxJD,
+      ]);
     }
 
-    DB::table('rel_individuals')
-            ->insert([
-                'i_id' => $id,
-                'i_file' => $file,
-                'i_gedcom' => $gedcom,
-                'i_from' => $maxJD,
-    ]);
-
-    return 'ok';
+    return true;
   }
 
-  public static function calculateNextFamily() {
-    $row = DB::table('families')
+  public static function calculateNextFamilies(int $batchSize): bool {
+    $rows = DB::table('families')
             ->leftJoin('rel_families', function (JoinClause $join): void {
               $join
               ->on('families.f_id', '=', 'rel_families.f_id')
               ->on('families.f_file', '=', 'rel_families.f_file');
             })
             ->whereNull('rel_families.f_id')
+            ->limit($batchSize)
             ->select(['families.f_id', 'families.f_file', 'families.f_gedcom'])
-            ->first();
+            ->get();
 
-    if ($row == null) {
-      return null;
+    if ($rows->isEmpty()) {
+      return false;
     }
 
-    $id = $row->f_id;
-    $file = $row->f_file;
-    $gedcom = $row->f_gedcom;
+    foreach ($rows as $row) {
+      
+      $id = $row->f_id;
+      $file = intval($row->f_file);
+      $gedcom = $row->f_gedcom;
 
-    //'f_from' = 'family established no later than' (= minimum of date of marriage, first childbirth).
+      //'f_from' = 'family established no later than' (= minimum of date of marriage, first childbirth).
 
-    $fam = new DirectFamily($id, $gedcom, "" . $file);
-    $date = $fam->getFamilyEstablishedNoLaterThan();
-    $maxJD = null;
-    if ($date->isOK()) {
-      $maxJD = $date->minimumJulianDay();
+      //$fam = new DirectFamily($id, $gedcom, "" . $file);
+      $tree = app(TreeService::class)->find($file);
+      $fam = new Family($id, $gedcom, null, $tree);
+      $date = RelationshipUtils::getFamilyEstablishedNoLaterThan($fam);
+      $maxJD = null;
+      if ($date->isOK()) {
+        $maxJD = $date->minimumJulianDay();
+      }
+
+      DB::table('rel_families')
+              ->insert([
+                  'f_id' => $id,
+                  'f_file' => $file,
+                  'f_gedcom' => $gedcom,
+                  'f_from' => $maxJD,
+      ]);
     }
 
-    DB::table('rel_families')
-            ->insert([
-                'f_id' => $id,
-                'f_file' => $file,
-                'f_gedcom' => $gedcom,
-                'f_from' => $maxJD,
-    ]);
-
-    return 'ok';
+    return true;
   }
 
 }

@@ -8,7 +8,6 @@ use Cissee\Webtrees\Hook\HookInterfaces\EmptyRelativesTabExtender;
 use Cissee\Webtrees\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
 use Cissee\Webtrees\Hook\HookInterfaces\RelativesTabExtenderInterface;
 use Cissee\Webtrees\Module\ExtendedRelationships\AjaxRequests;
-use Cissee\Webtrees\Module\ExtendedRelationships\DirectFamily;
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipController;
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipModuleTrait;
 use Cissee\Webtrees\Module\ExtendedRelationships\HelpTexts;
@@ -36,7 +35,6 @@ use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\User;
-use Fisharebest\Webtrees\Webtrees;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -238,36 +236,24 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
           $prefix,
           $suffix) {
 
-    //disabled - buggy wrt I18N! not tested in 2.x. Won't be possible in future versions.
-    $directAjax = false; //boolval($this->getPreference($settingsPrefix.'TAB_DIRECT_AJAX', '0'));
     $toggleableRels = boolval($this->getPreference('FTAB_TOGGLEABLE_RELS', '1'));
 
-    if ($directAjax) {
-      $url = Webtrees::MODULES_PATH . basename(__DIR__) . "/moduleAjax.php?request=rel&xref1=" . $xref1 . "&xref2=" . $xref2 . "&mode=" . $mode;
-      if ($beforeJD) {
-        $url .= "&beforeJD=" . $beforeJD;
-      }
-      if ($text) {
-        $url .= "&text=" . $text;
-      }
-    } else {
-      $parameters = [
-          'module' => $this->name(),
-          'action' => 'Rel',
-          'xref1' => $xref1,
-          'xref2' => $xref2,
-          'mode' => $mode,
-          'tree' => $tree->name()
-      ];
-      if ($beforeJD !== null) {
-        $parameters['beforeJD'] = $beforeJD;
-      }
-      if ($text) {
-        $parameters['text'] = $text;
-      }
-
-      $url = route('module', $parameters);
+    $parameters = [
+        'module' => $this->name(),
+        'action' => 'Rel',
+        'xref1' => $xref1,
+        'xref2' => $xref2,
+        'mode' => $mode,
+        'tree' => $tree->name()
+    ];
+    if ($beforeJD !== null) {
+      $parameters['beforeJD'] = $beforeJD;
     }
+    if ($text) {
+      $parameters['text'] = $text;
+    }
+
+    $url = route('module', $parameters);
 
     //escape newlines (e.g. from Individual.getSexImage()), also
     //escape prefix/suffix for cases such as
@@ -368,8 +354,6 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
       return new GenericViewElement('', '');
     }
 
-    //disabled - buggy wrt I18N!
-    $directAjax = false; //boolval($this->getPreference($settingsPrefix.'TAB_DIRECT_AJAX', '0'));
     $toggleableRels = boolval($this->getPreference($settingsPrefix . 'TAB_TOGGLEABLE_RELS', '1'));
 
     //expensive - load async (and only if visible) 
@@ -379,20 +363,15 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     $xref = $person->xref();
 
-    if ($directAjax) {
-      //untested, likely required further refactoring
-      $url = Webtrees::MODULES_PATH . basename(__DIR__) . "/moduleAjax.php?request=mainRels&pid=" . $xref . "&mode=" . $mode . "&recursion=" . $recursion . "&showCa=" . $showCa;
-    } else {
-      $url = route('module', [
-          'module' => $this->name(),
-          'action' => 'MainRels',
-          'tree' => $person->tree()->name(), //always set the tree (2.x doesn't have default tree via Session class)!
-          'pid' => $xref,
-          'mode' => $mode,
-          'recursion' => $recursion,
-          'showCa' => $showCa
-      ]);
-    }
+    $url = route('module', [
+        'module' => $this->name(),
+        'action' => 'MainRels',
+        'tree' => $person->tree()->name(), //always set the tree (2.x doesn't have default tree via Session class)!
+        'pid' => $xref,
+        'mode' => $mode,
+        'recursion' => $recursion,
+        'showCa' => $showCa
+    ]);
 
     $main = '';
 
@@ -454,7 +433,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
       //same strategy as in Sync.php
       //'f_from' = 'family established no later than' (= minimum of date of marriage, first childbirth).
 
-      $date = DirectFamily::getFamilyEstablishedNoLaterThan2($family);
+      $date = RelationshipUtils::getFamilyEstablishedNoLaterThan($family);
       if ($date->isOK()) {
         $beforeJD = $date->minimumJulianDay();
       }
@@ -470,8 +449,6 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
       return;
     }
 
-    //disabled - buggy wrt I18N!
-    $directAjax = false; //boolval($this->getPreference($settingsPrefix.'TAB_DIRECT_AJAX', '0'));
     $toggleableRels = boolval($this->getPreference('TAB_TOGGLEABLE_RELS', '1'));
 
     //expensive - load async (and only if visible) 
@@ -482,29 +459,21 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     $xref = $family->xref();
 
-    if ($directAjax) {
-      //untested, likely required further refactoring
-      $url = Webtrees::MODULES_PATH . basename(__DIR__) . "/moduleAjax.php?request=famRels&pid=" . $xref . "&mode=" . $mode . "&recursion=" . $recursion . "&showCa=" . $showCa;
-      if ($beforeJD) {
-        $url .= "&beforeJD=" . $beforeJD;
-      }
-    } else {
-      $parameters = [
-          'module' => $this->name(),
-          'action' => 'FamRels',
-          'tree' => $family->tree()->name(), //always set the tree (2.x doesn't have default tree via Session class)!
-          'pid' => $xref,
-          'mode' => $mode,
-          'recursion' => $recursion,
-          'showCa' => $showCa
-      ];
+    $parameters = [
+        'module' => $this->name(),
+        'action' => 'FamRels',
+        'tree' => $family->tree()->name(), //always set the tree (2.x doesn't have default tree via Session class)!
+        'pid' => $xref,
+        'mode' => $mode,
+        'recursion' => $recursion,
+        'showCa' => $showCa
+    ];
 
-      if ($beforeJD) {
-        $parameters['beforeJD'] = $beforeJD;
-      }
-
-      $url = route('module', $parameters);
+    if ($beforeJD) {
+      $parameters['beforeJD'] = $beforeJD;
     }
+
+    $url = route('module', $parameters);
 
     //must disambiguate with $beforeJD - may show up multiple times!
     //(and technically with everything else that goes into the url)
@@ -842,12 +811,12 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $parent = $event->record();
         if ($parent instanceof Family) {
           $restrictedTo = preg_split("/[, ;:]+/", $this->getPreference('TAB_REL_TO_ASSO_RESTRICTED_FAM', 'MARR'), -1, PREG_SPLIT_NO_EMPTY);
-          if (!in_array($event->getTag(), $restrictedTo, true)) {
+          if (!in_array($event->tag(), $restrictedTo, true)) {
             return null;
           }
         } else {
           $restrictedTo = preg_split("/[, ;:]+/", $this->getPreference('TAB_REL_TO_ASSO_RESTRICTED_INDI', 'CHR,BAPM'), -1, PREG_SPLIT_NO_EMPTY);
-          if (!in_array($event->getTag(), $restrictedTo, true)) {
+          if (!in_array($event->tag(), $restrictedTo, true)) {
             return null;
           }
         }
@@ -863,7 +832,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     //this is undesirable for events establishing additional relationships, i.e. MARR
     //e.g. we don't want trivial relation to best man of husband as brother-in-law
     $offset = 1;
-    if ('MARR' === $event->getTag()) {
+    if ('MARR' === $event->tag()) {
       $offset = 0;
     }
 

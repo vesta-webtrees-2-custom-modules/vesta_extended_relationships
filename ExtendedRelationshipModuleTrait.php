@@ -277,12 +277,12 @@ trait ExtendedRelationshipModuleTrait {
                 '15')));
 
     $factsSub[] = new ControlPanelSubsection(
-            /* I18N: Module Configuration */I18N::translate('Facts and events of inverse associates'),
+            /* I18N: Module Configuration */I18N::translate('Associated facts and events'),
             array(new ControlPanelCheckbox(
                 /* I18N: Module Configuration */I18N::translate('Only show relationships for specific facts and events'),
-                /* I18N: Module Configuration */I18N::translate('Facts and events of inverse associates are displayed when the respective toggle checkbox is selected on the tab.') . ' ' .
-                /* I18N: Module Configuration */I18N::translate('If this option is checked, relationships are only shown for the following facts and events.') . ' ' .
-                /* I18N: Module Configuration */I18N::translate('In particular if both lists are empty, relationships will never be shown for facts and events of inverse associates.') . ' ' .
+                /* I18N: Module Configuration */I18N::translate('Associated facts and events are displayed when the respective toggle checkbox is selected on the tab.') . ' ' .
+                /* I18N: Module Configuration */I18N::translate('If this option is checked, relationships to the associated individuals are only shown for the following facts and events.') . ' ' .
+                /* I18N: Module Configuration */I18N::translate('In particular if both lists are empty, relationships will never be shown for these facts and events.') . ' ' .
                 /* I18N: Module Configuration */I18N::translate('Note that the facts and events to be displayed at all may be filtered via the preferences of the tab.'),
                 'TAB_REL_TO_ASSO_RESTRICTED',
                 '0'),
