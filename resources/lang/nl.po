@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-03-29 17:08+0200\n"
-"PO-Revision-Date: 2020-06-04 19:35+0200\n"
+"PO-Revision-Date: 2020-06-05 21:18+0200\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -452,12 +452,12 @@ msgstr "Zoeken naar gebruikelijke algemene relaties zou hier zinloos zijn omdat 
 #: ExtendedRelationshipModuleTrait.php:206
 #: ExtendedRelationshipModuleTrait.php:246
 msgid "Show common ancestors"
-msgstr "Gemeenschappelijk voorouders weergeven"
+msgstr "Gemeenschappelijke voorouders weergeven"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:55
 msgid "Show common ancestors on top of relationship paths"
-msgstr "Gemeenschappelijke voorouders tonen bovenop relatiepaden"
+msgstr "Gemeenschappelijke voorouders weergeven op de top van de relatiepaden"
 
 #: ExtendedRelationshipModule.php:138 ExtendedRelationshipModule.php:684
 #: ExtendedRelationshipModule.php:690
