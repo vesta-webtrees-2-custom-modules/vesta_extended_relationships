@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-03-29 17:08+0200\n"
-"PO-Revision-Date: 2020-06-05 21:18+0200\n"
+"PO-Revision-Date: 2020-06-07 19:36+0200\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgstr "%1$s is %2$s van %3$s."
 #: ExtendedRelationshipsChartController.php:155
 #, php-format
 msgid "(Number of relationships: %s)"
-msgstr "(Aantal relaties: %s)"
+msgstr "(Aantal verwantschappen: %s)"
 
 #: ExtendedRelationshipsChartController.php:165
 #, php-format
@@ -53,7 +53,7 @@ msgstr "(dat is over het algemeen niet significant dichterbij dan de dichtstbijz
 
 #: ExtendedRelationshipModuleTrait.php:21
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
-msgstr "Een module die verschillende algoritmen biedt die worden gebruikt om verwantschappen te bepalen. Bevat een diagram met verwantschappen tussen twee individuen, als vervanging voor de oorspronkelijke module 'Verwantschappen'."
+msgstr "Een module die verschillende algoritmen biedt die worden gebruikt om verwantschappen te bepalen. Bevat een diagram met verwantschappen tussen twee personen, als vervanging voor de oorspronkelijke module 'Verwantschappen'."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:27
@@ -63,18 +63,18 @@ msgstr "Een module die verschillende algoritmen biedt die worden gebruikt om ver
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:73
 msgid "All paths between the two individuals that contribute to the CoR (Coefficient of Relationship), as defined here:"
-msgstr "Alle paden tussen de twee individuen die bijdragen aan de relatiecoëfficiënt, zoals hier gedefinieerd:"
+msgstr "Alle paden tussen de twee personen die bijdragen aan de verwantschapscoëfficiënt, zoals hier gedefinieerd:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:113
 #: ExtendedRelationshipModuleTrait.php:215
 msgid "Allow persistent toggle (user may show/hide relationships)"
-msgstr "Permanente schakeling toestaan (gebruiker kan relaties weergeven/verbergen)"
+msgstr "Permanente schakeling toestaan (gebruiker kan verwantschappen weergeven/verbergen)"
 
 #: HelpTexts.php:20
 #, php-format
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
-msgstr "Elk pad (via gemeenschappelijke voorouders) tussen twee individuen draagt bij aan de relatiecoëfficiënt, omgekeerd evenredig met de lengte: Elk pad van lengte 2 (bijvoorbeeld tussen volle broers en zussen) voegt %1$s toe, elk pad van lengte 4 (bijvoorbeeld tussen eerste neven en nichten) voegt %2$s toe, in het algemeen voegt elk pad van lengte n (0,5)<sup>n</sup> toe."
+msgstr "Elk pad (via gemeenschappelijke voorouders) tussen twee personen draagt bij aan de verwantschapscoëfficiënt, omgekeerd evenredig met de lengte: Elk pad van lengte 2 (bijvoorbeeld tussen volle broers en zussen) voegt %1$s toe, elk pad van lengte 4 (bijvoorbeeld tussen eerste neven en nichten) voegt %2$s toe, in het algemeen voegt elk pad van lengte n (0,5)<sup>n</sup> toe."
 
 #: resources/views/sync.phtml:24
 msgid "Calculating…"
@@ -100,12 +100,12 @@ msgstr "Configuratiescherm"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:47
 msgid "Deselect in order to have the chart menu entry appear exactly as the original entry."
-msgstr "Schakel de selectie uit om de vermelding in het diagrammenu exact hetzelfde te laten zijn als de oorspronkelijke vermelding."
+msgstr "Schakel de selectie uit om in het Diagrammenu de oorspronkelijke naam te blijven gebruiken."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:63
 msgid "Determines the shortest path between two individuals via a LCA (lowest common ancestor), i.e. a common ancestor who only appears on the path once."
-msgstr "Bepaalt het kortste pad tussen twee individuen via een LCA (laagste gemeenschappelijke voorouder), d.w.z. een gemeenschappelijke voorouder die slechts één keer op het pad verschijnt."
+msgstr "Bepaalt het kortste pad tussen twee personen via een LCA (laagste gemeenschappelijke voorouder), d.w.z. een gemeenschappelijke voorouder die slechts één keer op het pad verschijnt."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:53
@@ -120,7 +120,7 @@ msgstr "Weergegeven titel"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:28
 msgid "Displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab."
-msgstr "Geeft aanvullende relatiegegevens weer via het uitgebreide tabblad 'Gezinnen' en het uitgebreide tabblad 'Feiten en gebeurtenissen'."
+msgstr "Geeft aanvullende verwantschapsinformatie weer via het uitgebreide tabblad 'Gezinnen' en het uitgebreide tabblad 'Feiten en gebeurtenissen'."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:130
@@ -134,7 +134,7 @@ msgstr "Geen enkele verwantschap weergeven"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:68
 msgid "Each SLCA (smallest lowest common ancestor) essentially represents a part of the tree which both individuals share (as part of their ancestors). More technically, the SLCA set of two individuals is a subset of the LCA set (excluding all LCAs that are themselves ancestors of other LCAs)."
-msgstr "Elke SLCA (kleinste dichtstbijzijnde gemeenschappelijke voorouder) vertegenwoordigt in wezen een deel van de boom die beide individuen delen (als onderdeel van hun voorouders). Meer technisch, de SLCA-set van twee individuen is een subset van de LCA set (met uitzondering van alle LCA's die zelf voorouders zijn van andere LCA's)."
+msgstr "Elke SLCA (kleinste dichtstbijzijnde gemeenschappelijke voorouder) vertegenwoordigt in wezen een deel van de boom die beide personen delen (als onderdeel van hun voorouders). Meer technisch, de SLCA-set van twee personen is een subset van de LCA set (met uitzondering van alle LCA's die zelf voorouders zijn van andere LCA's)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:318
@@ -307,7 +307,7 @@ msgstr "Als u de functionaliteit ten opzichte van het oorspronkelijke tabblad Ge
 #: ExtendedRelationshipModuleTrait.php:307
 #, php-format
 msgid "If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name)."
-msgstr "Als u de diagramfunctionaliteit niet wilt gebruiken, verbergt u deze diagram via Configuratiescherm > Modules > Diagrammen > %1$s Vesta Extended Relationships (merk op dat het diagram wordt weergegeven onder de modulenaam)."
+msgstr "Als u de diagramfunctionaliteit niet wilt gebruiken, verbergt u deze diagram via Configuratiescherm > Modules > Diagrammen > %1$s Vesta Uitgebreide verwantschappen (merk op dat het diagram wordt weergegeven onder de modulenaam)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:320
@@ -317,7 +317,7 @@ msgstr "Als u deze optie overal selecteert, moet u ook permanente schakeling ver
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:285
 msgid "In particular if both lists are empty, relationships will never be shown for facts and events of inverse associates."
-msgstr "Als beide lijsten leeg zijn, zullen relaties nooit worden getoond voor feiten en gebeurtenissen waarbij de persoon als medewerker wordt genoemd."
+msgstr "Als beide lijsten leeg zijn, zullen verwantschappen nooit worden getoond voor feiten en gebeurtenissen waarbij de persoon als medewerker wordt genoemd."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:313
@@ -328,22 +328,22 @@ msgstr "In dat geval moet u ook permanente schakeling verbieden, omdat het geen 
 #: ExtendedRelationshipModuleTrait.php:46
 #, php-format
 msgid "Include the %1$s symbol in the chart menu entry"
-msgstr "Het symbool %1$s opnemen in de vermelding in het diagrammenu"
+msgstr "Het %1$s­symbool opnemen in de vermelding in het diagrammenu"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:41
 #, php-format
 msgid "Include the %1$s symbol in the module title"
-msgstr "Het symbool %1$s opnemen in de moduletitel"
+msgstr "Het %1$s-symbool opnemen in de moduletitel"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:30
 msgid "Intended as a replacement for the original 'Relationships' module."
-msgstr "Bedoeld als vervanging voor de originele module 'Verwantschappen'."
+msgstr "Bedoeld als vervanging voor de oorspronkelijke module 'Verwantschappen'."
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
-msgstr "Het is ingewikkelder om deze exacte relatiecoëfficiënt bepalen, en de verschillen zijn meestal toch klein. Daarom wordt alleen de ongecorrigeerde relatiecoëfficiënt berekend."
+msgstr "Het is ingewikkelder om deze exacte verwantschapscoëfficiënt bepalen, en de verschillen zijn meestal toch klein. Daarom wordt alleen de ongecorrigeerde verwantschapscoëfficiënt berekend."
 
 #: resources/views/sync.phtml:8
 msgid "Modules"
@@ -352,7 +352,7 @@ msgstr "Modules"
 #. I18N::translate('No link between the two individuals could be found.'), '</p>';
 #: ExtendedRelationshipsChartController.php:342
 msgid "No link between the two individuals could be found."
-msgstr "Er kon geen verband worden gevonden tussen de twee individuen."
+msgstr "Er kon geen verband worden gevonden tussen de twee personen."
 
 #: ExtendedRelationshipModule.php:179
 msgid "No relationship found"
@@ -407,13 +407,13 @@ msgstr "Verwantschappen"
 #: ExtendedRelationshipsChartController.php:79
 #, php-format
 msgid "Relationships between %1$s and %2$s"
-msgstr "Verwantschappentussen %1$s en %2$s"
+msgstr "Verwantschappen tussen %1$s en %2$s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:32
 #, php-format
 msgid "Requires the '%1$s Vesta Common' module, the '%1$s Vesta Families' module, and the '%1$s Vesta Facts and events' module."
-msgstr "Vereist de '%1$s Vesta Algemeen' module, de '%1$s Vesta Gezinnen' module en de '%1$s Vesta Feiten en gebeurtenissen' module."
+msgstr "Vereist de modules '%1$s Vesta Algemeen', '%1$s Vesta Gezinnen' en '%1$s Vesta Feiten en gebeurtenissen'."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:296
@@ -423,7 +423,7 @@ msgstr "Beperken tot deze lijst van GEDCOM gezinsfeiten en -gebeurtenissen. Indi
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:291
 msgid "Restrict to this list of GEDCOM individual facts and events. You can modify this list by removing or adding fact and event names, even custom ones, as necessary."
-msgstr "Beperken tot deze lijst van GEDCOM individuele feiten en gebeurtenissen. Indien nodig kunt u deze lijst wijzigen door namen van feiten en gebeurtenissen, zelfs aangepaste namen, te verwijderen of toe te voegen."
+msgstr "Beperken tot deze lijst van GEDCOM persoonsfeiten en -gebeurtenissen. Indien nodig kunt u deze lijst wijzigen door namen van feiten en gebeurtenissen, zelfs aangepaste namen, te verwijderen of toe te voegen."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
@@ -457,7 +457,7 @@ msgstr "Gemeenschappelijke voorouders weergeven"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:55
 msgid "Show common ancestors on top of relationship paths"
-msgstr "Gemeenschappelijke voorouders weergeven op de top van de relatiepaden"
+msgstr "Gemeenschappelijke voorouders weergeven boven verwantschapspaden"
 
 #: ExtendedRelationshipModule.php:138 ExtendedRelationshipModule.php:684
 #: ExtendedRelationshipModule.php:690
@@ -467,11 +467,11 @@ msgstr "Synchronisatie"
 #: ExtendedRelationshipModule.php:143
 #: ExtendedRelationshipsChartController.php:356
 msgid "Synchronize trees to obtain dated relationship links"
-msgstr "Stambomen synchroniseren om gedateerde relatiekoppelingen te verkrijgen"
+msgstr "Stambomen synchroniseren om gedateerde verwantschapskoppelingen te verkrijgen"
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
-msgstr "De relatiecoëfficiënt is evenredig aan het aantal genen dat twee individuen gemeen hebben als gevolg van hun genetische relatie. De berekening is gebaseerd op Sewall Wright's methode van padcoëfficiënten. De waarde ervan vertegenwoordigt het aandeel van de genen die gemeenschappelijk zijn voor twee verwante individuen boven die welke door de hele bevolking gemeenschappelijk zijn. Meer details hier: "
+msgstr "De verwantschapscoëfficiënt is evenredig aan het aantal genen dat twee personen gemeen hebben als gevolg van hun genetische relatie. De berekening is gebaseerd op Sewall Wright's methode van padcoëfficiënten. De waarde ervan vertegenwoordigt het aandeel van de genen die gemeenschappelijk zijn voor twee verwante individuen boven die welke door de hele bevolking gemeenschappelijk zijn. Meer details hier: "
 
 #. I18N: Configuration option
 #. I18N: Module Configuration
@@ -481,7 +481,7 @@ msgstr "De relatiecoëfficiënt is evenredig aan het aantal genen dat twee indiv
 #: ExtendedRelationshipModuleTrait.php:233
 #: ExtendedRelationshipModuleTrait.php:258
 msgid "The following options refer to the same algorithms as used in the extended relationships chart:"
-msgstr "De volgende opties hebben betrekking op dezelfde algoritmen als die worden gebruikt in het diagram uitgebreide relaties:"
+msgstr "De volgende opties hebben betrekking op dezelfde algoritmen als die worden gebruikt in het diagram uitgebreide verwantschappen:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:268
@@ -521,20 +521,20 @@ msgstr "Dit lijkt in de meeste gevallen nuttiger (bijvoorbeeld om de verwantscha
 
 #: HelpTexts.php:15
 msgid "Uncorrected CoR (Coefficient of Relationship)"
-msgstr "Ongecorrigeerde relatiecoëfficiënt"
+msgstr "Ongecorrigeerde verwantschapscoëfficiënt"
 
 #: ExtendedRelationshipsChartController.php:153
 #, php-format
 msgid "Uncorrected CoR (Coefficient of Relationship): %s"
-msgstr "Ongecorrigeerde relatiecoëfficiënt: %s"
+msgstr "Ongecorrigeerde verwantschapscoëfficiënt: %s"
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
-msgstr "Onder normale omstandigheden is het percentage genen dat wordt overgedragen van voorouder naar afstammeling &ndash; zoals geschat door Σ(0.5)<sup>n</sup> &ndash; gelijk aan het aandeel genen dat ze gemeen hebben (de echte relatiecoëfficiënt). Als er echter sprake is geweest van inteelt, kan er een lichte afwijking zijn, zoals hier wordt uitgelegd: "
+msgstr "Onder normale omstandigheden is het percentage genen dat wordt overgedragen van voorouder naar afstammeling &ndash; zoals geschat door Σ(0.5)<sup>n</sup> &ndash; gelijk aan het aandeel genen dat ze gemeen hebben (de echte verwantschapscoëfficiënt). Als er echter sprake is geweest van inteelt, kan er een lichte afwijking zijn, zoals hier wordt uitgelegd: "
 
 #: ExtendedRelationshipModuleTrait.php:17
 msgid "Vesta Extended Relationships"
-msgstr "Vesta Uitgebreide relaties"
+msgstr "Vesta Uitgebreide verwantschappen"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:314
