@@ -802,12 +802,12 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $parent = $event->record();
         if ($parent instanceof Family) {
           $restrictedTo = preg_split("/[, ;:]+/", $this->getPreference('TAB_REL_TO_ASSO_RESTRICTED_FAM', 'MARR'), -1, PREG_SPLIT_NO_EMPTY);
-          if (!in_array($event->tag(), $restrictedTo, true)) {
+          if (!in_array($event->getTag(), $restrictedTo, true)) {
             return null;
           }
         } else {
           $restrictedTo = preg_split("/[, ;:]+/", $this->getPreference('TAB_REL_TO_ASSO_RESTRICTED_INDI', 'CHR,BAPM'), -1, PREG_SPLIT_NO_EMPTY);
-          if (!in_array($event->tag(), $restrictedTo, true)) {
+          if (!in_array($event->getTag(), $restrictedTo, true)) {
             return null;
           }
         }
@@ -823,7 +823,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     //this is undesirable for events establishing additional relationships, i.e. MARR
     //e.g. we don't want trivial relation to best man of husband as brother-in-law
     $offset = 1;
-    if ('MARR' === $event->tag()) {
+    if ('MARR' === $event->getTag()) {
       $offset = 0;
     }
 
