@@ -833,7 +833,9 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     }
     $beforeJD = null;
     if ($mode > 9) {
-      $beforeJD = $event->date()->minimumJulianDay() + $offset;
+      if ($event->date()->minimumJulianDay() > 0) {
+        $beforeJD = $event->date()->minimumJulianDay() + $offset;        
+      } //else event without (proper) date
       $mode = $mode - 10;
     }
 
