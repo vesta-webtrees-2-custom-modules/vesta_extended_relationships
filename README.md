@@ -32,7 +32,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 ### Download<a name="download"/>
 
-* Current version: 2.0.6.0.1
+* Current version: 2.0.6.1.0
 * Based on and tested with webtrees 2.0.6. Cannot be used with webtrees 1.x. May not work with earlier 2.x versions!
 * Requires the ⚶ Vesta Common module ('vesta_common').
 * Displays data via the ⚶ Vesta Families module ('vesta_families'). 
@@ -58,6 +58,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 * French translations provided by Michel Rivière.
 * Dutch translations provided by Frans Weber and TheDutchJewel.
 * Slovak translations provided by Ladislav Rosival.
+* Czech translations provided by Josef Prause.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
