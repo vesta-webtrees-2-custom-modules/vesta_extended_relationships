@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-06-08 22:36+0200\n"
-"PO-Revision-Date: 2020-03-28 20:18+0100\n"
+"PO-Revision-Date: 2020-08-09 20:14+0200\n"
 "Last-Translator: Ladislav Rosival <lacoros@gmail.com>\n"
 "Language-Team: \n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
 
 #: ExtendedRelationshipModule.php:166
 msgid " (see below for details)."
-msgstr ""
+msgstr " (pozri nižšie pre detaily)"
 
 #. I18N: (person 1) is (relative, e.g. father) of (person2)
 #: FunctionsPrintRels.php:100
@@ -31,26 +31,26 @@ msgstr "%1$s je %2$s osoby %3$s."
 #: ExtendedRelationshipsChartController.php:57
 #, php-format
 msgid "(Number of relationships: %s)"
-msgstr ""
+msgstr "(Počet vzťahov: %s)"
 
 #: ExtendedRelationshipsChartController.php:67
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
-msgstr ""
+msgstr "(to je skoro tak blízky vzťah ako: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:65
 #, php-format
 msgid "(that's overall as close as: %1$s)"
-msgstr ""
+msgstr "(to je tak blízky vzťah ako: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:69
 #, php-format
 msgid "(that's overall closer than: %1$s)"
-msgstr ""
+msgstr "(to je blížší vzťah ako: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:61
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
-msgstr ""
+msgstr "(to nie je významne bližšie ako najbližší vzťah cez spoločných predkov)"
 
 #: ExtendedRelationshipModuleTrait.php:21
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -85,7 +85,7 @@ msgstr ""
 #: HelpTexts.php:20
 #, php-format
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
-msgstr ""
+msgstr "V zásade, každý vzťah (cez spoločných predkov) medzi dvomi osobami prispieva k CoR nepriamo úmerne k jeho dĺžke: Každá cesta dĺžky 2 (napr. medzi úplnými súrodencami) pridáva %1$s, každá cesta dĺžky 4 (napr. medzi prvostupňovými bratrancami) pridáva %2$s, vo všeobecnosti každá cesta dĺžky n pridáva (0,5)<sup>n</sup>."
 
 #: resources/views/sync.phtml:24
 msgid "Calculating…"
@@ -176,11 +176,11 @@ msgstr "Nájsť najbližší vzťah cez spoločného predka"
 #: ExtendedRelationshipModuleTrait.php:264
 #: ExtendedRelationshipModuleTrait.php:272
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
-msgstr ""
+msgstr "Nájsť najbližší vzťah cez spoločných predkov, alebo, ak sa nedá, tak najbližší ľubovoľný vzťah"
 
 #: ExtendedRelationshipModule.php:929
 msgid "Find all overall connections"
-msgstr ""
+msgstr "Nájsť všetky vzťahy"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:909 ExtendedRelationshipModuleTrait.php:72
@@ -190,7 +190,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:237
 #: ExtendedRelationshipModuleTrait.php:262
 msgid "Find all relationships via lowest common ancestors"
-msgstr ""
+msgstr "Nájsť všety vzťahy cez najbližších spoločných predkov"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:905 ExtendedRelationshipModuleTrait.php:67
@@ -200,11 +200,11 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:236
 #: ExtendedRelationshipModuleTrait.php:261
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
-msgstr ""
+msgstr "Nájsť všetkých najbližších spoločných predkov, každého s najbližším vzťahom"
 
 #: ExtendedRelationshipModule.php:931
 msgid "Find other overall connections"
-msgstr ""
+msgstr "Nájsť iné vzťahy"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:93
@@ -215,7 +215,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:267
 #: ExtendedRelationshipModuleTrait.php:274
 msgid "Find other/all overall connections"
-msgstr ""
+msgstr "Nájsť iné/všetky vzťahy"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:923 ExtendedRelationshipModuleTrait.php:88
@@ -226,7 +226,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:265
 #: ExtendedRelationshipModuleTrait.php:273
 msgid "Find the closest overall connections"
-msgstr ""
+msgstr "Nájsť ľubovoľný najbližší vzťah"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:915 ExtendedRelationshipModuleTrait.php:78
@@ -237,7 +237,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:263
 #: ExtendedRelationshipModuleTrait.php:271
 msgid "Find the closest overall connections (preferably via common ancestors)"
-msgstr ""
+msgstr "Nájsť najbližší ľubovoľný vzťah (uprednostniť cez spoločných predkov)"
 
 #. I18N: Configuration option
 #: resources/views/sync-complete.phtml:5
@@ -251,7 +251,7 @@ msgstr ""
 
 #: resources/views/sync.phtml:16
 msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
-msgstr ""
+msgstr "Pre veľké rodokmene môže tento proces trvať viac minút. Môžete kedykoľvek bezpečne prerušiť a pokračovať neskôr."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:300
@@ -332,7 +332,7 @@ msgstr ""
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
-msgstr ""
+msgstr "Zistiť takýto presný CoR je omnoho zložitejšie, a okrem toho rozdiely sú poväčšinou malé. Preto sa vypočítava len Nekorigovaný CoR."
 
 #: resources/views/sync.phtml:8
 msgid "Modules"
@@ -366,7 +366,7 @@ msgstr "Možnosti"
 #: resources/views/page.phtml:56
 #, php-format
 msgid "Options referring to overall connections established before %1$s."
-msgstr ""
+msgstr "Tieto voľby zahrňujú len vzťahy, ktoré vznikli skôr ako %1$s."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:60
@@ -451,7 +451,7 @@ msgstr ""
 #. I18N: Reverse the order of two individuals
 #: resources/views/page.phtml:75
 msgid "Swap individuals"
-msgstr ""
+msgstr "Vymeniť osoby"
 
 #: ExtendedRelationshipModule.php:159 ExtendedRelationshipModule.php:775
 #: ExtendedRelationshipModule.php:781
@@ -465,7 +465,7 @@ msgstr ""
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
-msgstr ""
+msgstr "Detaily (po anglicky) nájdete tu: "
 
 #. I18N: Configuration option
 #. I18N: Module Configuration
@@ -515,16 +515,16 @@ msgstr ""
 
 #: HelpTexts.php:15
 msgid "Uncorrected CoR (Coefficient of Relationship)"
-msgstr ""
+msgstr "Nekorigovaný CoR (koeficient vzťahov)"
 
 #: ExtendedRelationshipsChartController.php:55
 #, php-format
 msgid "Uncorrected CoR (Coefficient of Relationship): %s"
-msgstr ""
+msgstr "Nekorigovaný CoR (koeficient vzťahov): %s"
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
-msgstr ""
+msgstr "Ďalšie  informácie (po anglicky) nájdete tu: "
 
 #: ExtendedRelationshipModuleTrait.php:17
 msgid "Vesta Extended Relationships"
