@@ -3,6 +3,7 @@
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Fisharebest\Webtrees\I18N;
+use Vesta\CommonI18N;
 use Vesta\ControlPanelUtils\Model\ControlPanelCheckbox;
 use Vesta\ControlPanelUtils\Model\ControlPanelFactRestriction;
 use Vesta\ControlPanelUtils\Model\ControlPanelPreferences;
@@ -14,7 +15,7 @@ use Vesta\ControlPanelUtils\Model\ControlPanelSubsection;
 trait ExtendedRelationshipModuleTrait {
 
   protected function getMainTitle() {
-    return I18N::translate('Vesta Extended Relationships');
+    return CommonI18N::titleVestaExtendedRelationships();
   }
 
   public function getShortDescription() {
@@ -29,22 +30,22 @@ trait ExtendedRelationshipModuleTrait {
     $description[] = 
             /* I18N: Module Configuration */I18N::translate('Intended as a replacement for the original \'Relationships\' module.');
     $description[] = 
-            /* I18N: Module Configuration */I18N::translate('Requires the \'%1$s Vesta Common\' module, the \'%1$s Vesta Families\' module, and the \'%1$s Vesta Facts and events\' module.', $this->getVestaSymbol());
+            CommonI18N::requires3(CommonI18N::titleVestaCommon(), CommonI18N::titleVestaRelatives(), CommonI18N::titleVestaPersonalFacts());
     return $description;
   }
 
   protected function createPrefs() {
     $generalSub = array();
     $generalSub[] = new ControlPanelSubsection(
-           /* I18N: Module Configuration */I18N::translate('Displayed title'),
+            CommonI18N::displayedTitle(),
             array(/*new ControlPanelCheckbox(
                 I18N::translate('Include the %1$s symbol in the module title', $this->getVestaSymbol()),
                 null,
                 'VESTA',
                 '1'),*/
         new ControlPanelCheckbox(
-                /* I18N: Module Configuration */I18N::translate('Include the %1$s symbol in the chart menu entry', $this->getVestaSymbol()),
-                /* I18N: Module Configuration */I18N::translate('Deselect in order to have the chart menu entry appear exactly as the original entry.'),
+                CommonI18N::vestaSymbolInChartTitle(),
+                CommonI18N::vestaSymbolInTitle2(),
                 'VESTA_CHART',
                 '1')));
 
@@ -108,7 +109,7 @@ trait ExtendedRelationshipModuleTrait {
 
     $familiesSub = array();
     $familiesSub[] = new ControlPanelSubsection(
-            /* I18N: Module Configuration */I18N::translate('Options'),
+            CommonI18N::options(),
             array(new ControlPanelCheckbox(
                 /* I18N: Module Configuration */I18N::translate('Allow persistent toggle (user may show/hide relationships)'),
                 null,
@@ -128,7 +129,7 @@ trait ExtendedRelationshipModuleTrait {
                 array(
             new ControlPanelRadioButton(
                     /* I18N: Module Configuration */I18N::translate('Do not show any relationship'),
-                    /* I18N: Configuration option */ I18N::translate('The following options refer to the same algorithms as used in the extended relationships chart:'),
+                    /* I18N: Module Configuration */ I18N::translate('The following options refer to the same algorithms as used in the extended relationships chart:'),
                     '0'),
             new ControlPanelRadioButton(/* I18N: Module Configuration */I18N::translate('Find a closest relationship via common ancestors'), null, '1'),
             new ControlPanelRadioButton(/* I18N: Module Configuration */I18N::translate('Find all smallest lowest common ancestors, show a closest connection for each'), null, '2'),
@@ -210,7 +211,7 @@ trait ExtendedRelationshipModuleTrait {
 
     $factsSub = array();
     $factsSub[] = new ControlPanelSubsection(
-            /* I18N: Module Configuration */I18N::translate('Options'),
+            CommonI18N::options(),
             array(new ControlPanelCheckbox(
                 /* I18N: Module Configuration */I18N::translate('Allow persistent toggle (user may show/hide relationships)'),
                 null,
@@ -277,7 +278,7 @@ trait ExtendedRelationshipModuleTrait {
                 '15')));
 
     $factsSub[] = new ControlPanelSubsection(
-            /* I18N: Module Configuration */I18N::translate('Associated facts and events'),
+            CommonI18N::associatedFactsAndEvents(),
             array(new ControlPanelCheckbox(
                 /* I18N: Module Configuration */I18N::translate('Only show relationships for specific facts and events'),
                 /* I18N: Module Configuration */I18N::translate('Associated facts and events are displayed when the respective toggle checkbox is selected on the tab.') . ' ' .
@@ -287,17 +288,17 @@ trait ExtendedRelationshipModuleTrait {
                 'TAB_REL_TO_ASSO_RESTRICTED',
                 '0'),
         ControlPanelFactRestriction::createWithIndividualFacts(
-                /* I18N: Module Configuration */I18N::translate('Restrict to this list of GEDCOM individual facts and events. You can modify this list by removing or adding fact and event names, even custom ones, as necessary.'),
+                CommonI18N::restrictIndi(),
                 'TAB_REL_TO_ASSO_RESTRICTED_INDI',
                 'CHR,BAPM'),
         ControlPanelFactRestriction::createWithFamilyFacts(
-                /* I18N: Module Configuration */I18N::translate('Restrict to this list of GEDCOM family facts and events. You can modify this list by removing or adding fact and event names, even custom ones, as necessary.'),
+                CommonI18N::restrictFam(),
                 'TAB_REL_TO_ASSO_RESTRICTED_FAM',
                 'MARR')));
 
     $sections = array();
     $sections[] = new ControlPanelSection(
-            /* I18N: Module Configuration */I18N::translate('General'),
+            CommonI18N::general(),
             null,
             $generalSub);
     $sections[] = new ControlPanelSection(
@@ -313,7 +314,7 @@ trait ExtendedRelationshipModuleTrait {
             $familiesSub);
 
     $sections[] = new ControlPanelSection(
-            /* I18N: Module Configuration */I18N::translate('Facts and Events Tab Settings'),
+            CommonI18N::factsAndEventsTabSettings(),
             /* I18N: Module Configuration */I18N::translate('If you do not want to change the functionality with respect to the original Facts and Events tab, select \'Do not show any relationship\' in the first block.') . ' ' .
             /* I18N: Module Configuration */I18N::translate('If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect.') . ' ' .
             /* I18N: Module Configuration */I18N::translate('You may also adjust the access level of this part of the module.'),

@@ -40,6 +40,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 * Download the zipped module, including all related modules, [here](https://cissee.de/vesta.latest.zip).
 * Support, suggestions, feature requests: <ric@richard-cissee.de>. See also [this webtrees forum thread](https://www.webtrees.net/index.php/en/forum/4-customising/31587-extended-relationships-module-feature-requests).
 * Issues also via <https://github.com/vesta-webtrees-2-custom-modules/vesta_extended_relationships/issues>
+* Translations may be contributed via weblate: <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/>
 
 ### Installation<a name="installation"/>
 
