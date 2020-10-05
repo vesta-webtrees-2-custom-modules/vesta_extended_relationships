@@ -8,9 +8,10 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-09-19 15:42+0200\n"
-"PO-Revision-Date: 2020-09-13 21:36+0000\n"
-"Last-Translator: Richard Cissée <ric@richard-cissee.de>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/fr/>\n"
+"PO-Revision-Date: 2020-10-05 12:12+0000\n"
+"Last-Translator: Christophe Nemo <spam@teknow.org>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: ExtendedRelationshipModule.php:166
 msgid " (see below for details)."
-msgstr ""
+msgstr " (voir ci-dessous pour de détails)."
 
 #. I18N: (person 1) is (relative, e.g. father) of (person2)
 #: FunctionsPrintRels.php:100
@@ -60,6 +61,8 @@ msgstr "Module fournissant divers algorithmes de calculs de parenté. Peut rempl
 #: ExtendedRelationshipModuleTrait.php:28
 msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
 msgstr ""
+"Un module fournissant divers algorithmes utilisés pour déterminer les "
+"relations. Inclut un graphique 'Liens étendus'."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:74
@@ -71,11 +74,15 @@ msgstr "Tous les chemins entre deux individus qui contribuent au coefficient de 
 #: ExtendedRelationshipModuleTrait.php:216
 msgid "Allow persistent toggle (user may show/hide relationships)"
 msgstr ""
+"Permet un interrupteur permanent (l'utilisateur peut afficher/masquer les "
+"relations)"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:284
 msgid "Associated facts and events are displayed when the respective toggle checkbox is selected on the tab."
 msgstr ""
+"Les actes et événements associés sont affichés lorsque la case de "
+"l'interrupteur respectif est cochée sur l'onglet."
 
 #: HelpTexts.php:20
 #, php-format
@@ -84,7 +91,7 @@ msgstr "Fondamentalement, chaque chemin (via des ancêtres communs) entre deux i
 
 #: resources/views/sync.phtml:24
 msgid "Calculating…"
-msgstr ""
+msgstr "Calcul en cours…"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:305
@@ -101,7 +108,7 @@ msgstr "Ancêtres communs : "
 
 #: resources/views/sync.phtml:8
 msgid "Control panel"
-msgstr ""
+msgstr "Panneau de configuration"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:64
@@ -111,12 +118,14 @@ msgstr "Détermine le plus court chemin entre deux individus via un PPAC (plus p
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:54
 msgid "Display"
-msgstr ""
+msgstr "Affichage"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:29
 msgid "Displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab."
 msgstr ""
+"Affiche des informations supplémentaires de relation via l'onglet étendu "
+"'Familles', et l'onglet étendu 'Actes et Evenements'."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
@@ -222,7 +231,7 @@ msgstr "Trouver globalement les parentés les plus proches (de préférence via 
 #. I18N: Module Configuration
 #: resources/views/sync-complete.phtml:5
 msgid "Finished - all link dates are up-to-date."
-msgstr ""
+msgstr "Terminé - toutes les dates des lien sont à jour."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:85
@@ -232,6 +241,8 @@ msgstr "Pour les parentés proches, comme l’option précédente mais plus rapi
 #: resources/views/sync.phtml:16
 msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
 msgstr ""
+"Pour de grands arbres, ce processus peut prendre plusieurs minutes. Vous "
+"pourrez toujours l'arrêter et continuer plus tard sans crainte."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:151
@@ -241,7 +252,7 @@ msgstr "Calcul de parenté entre les parents"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:253
 msgid "How to determine relationships to associated persons"
-msgstr ""
+msgstr "Comment déterminer les relations avec les personnes associées"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:182
@@ -257,47 +268,65 @@ msgstr "Calcul de parenté avec l’individu par défaut"
 #: ExtendedRelationshipsChartController.php:253
 msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
 msgstr ""
+"Si cela est inattendu, et qu'il y a des changements récents, vous pouvez "
+"suivre ce lien : "
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:285
 msgid "If this option is checked, relationships to the associated individuals are only shown for the following facts and events."
 msgstr ""
+"Si cette option est activée, les relations avec les individus associés ne "
+"sont montrées que pour les actes et événements suivants."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:318
 msgid "If you do not want to change the functionality with respect to the original Facts and Events tab, select 'Do not show any relationship' in the first block."
 msgstr ""
+"Si vous ne souhaitez pas changer cette fonctionnalité et conserver l'onglet "
+"Actes et Evènements original, sélectionnez 'Ne montrer aucune relation' dans "
+"le premier livre."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:311
 msgid "If you do not want to change the functionality with respect to the original Families tab, select 'Do not show any relationship' everywhere."
 msgstr ""
+"Si vous ne souhaitez pas changer cette fonctionnalité et conserver l'onglet "
+"Familles d'origine, sélectionnez 'Ne montrer aucune relation' partout."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:306
 #, php-format
 msgid "If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name)."
 msgstr ""
+"Si vous ne souhaitez pas utiliser les fonctionnalités de dessin, cachez ce "
+"graphique via le Panneau de Configuration > Graphiques > %1$s Vesta Liens "
+"étendus (le graphique est listé sous le nom du module)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:319
 msgid "If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect."
 msgstr ""
+"Si vous sélectionnez cette option partout, vous devriez aussi désactiver les "
+"interrupteurs permanents, car ils n'auront aucun effet."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:286
 msgid "In particular if both lists are empty, relationships will never be shown for these facts and events."
 msgstr ""
+"En particulier si les deux listes sont vides, les liens ne seront jamais "
+"montrés pour ces actes et événements."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:312
 msgid "In that case, you should also disallow persistent toggle, as it has no visible effect."
 msgstr ""
+"Dans ce cas, vous devriez aussi désactiver les interrupteurs permanents, car "
+"cela n'aura aucun effet visible."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:31
 msgid "Intended as a replacement for the original 'Relationships' module."
-msgstr ""
+msgstr "Prévu comme remplacement pour le module 'Relations' d'origine."
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
@@ -305,12 +334,12 @@ msgstr "Il est plus compliqué de déterminer ce CDP exact, et les différences 
 
 #: resources/views/sync.phtml:8
 msgid "Modules"
-msgstr ""
+msgstr "Modules"
 
 #. I18N::translate('No link between the two individuals could be found.'), '</p>';
 #: ExtendedRelationshipsChartController.php:243
 msgid "No link between the two individuals could be found."
-msgstr ""
+msgstr "Aucun lien entre les deux individus ne peut être trouvé."
 
 #: ExtendedRelationshipModule.php:200
 msgid "No relationship found"
@@ -320,11 +349,13 @@ msgstr "Pas de parenté trouvée"
 #: ExtendedRelationshipModuleTrait.php:287
 msgid "Note that the facts and events to be displayed at all may be filtered via the preferences of the tab."
 msgstr ""
+"Veuillez noter que les actes et événements à afficher peuvent être filtrés "
+"via les préférences de l'onglet."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:283
 msgid "Only show relationships for specific facts and events"
-msgstr ""
+msgstr "Ne montrer que les relations pour des actes et événements spécifiques"
 
 #: resources/views/page.phtml:56
 #, php-format
@@ -343,23 +374,23 @@ msgstr "Préférer les chemins partiels via les ancêtres communs, même s’il 
 
 #: ExtendedRelationshipModule.php:542
 msgid "Relationship to me"
-msgstr ""
+msgstr "Relation avec moi"
 
 #: ExtendedRelationshipsChartController.php:94
 #, php-format
 msgid "Relationship: %s"
-msgstr ""
+msgstr "Relation : %s"
 
 #: ExtendedRelationshipModule.php:217 ExtendedRelationshipModule.php:550
 #: ExtendedRelationshipModule.php:690
 msgid "Relationships"
-msgstr ""
+msgstr "Relations"
 
 #. I18N: %s are individual’s names
 #: ExtendedRelationshipModule.php:675
 #, php-format
 msgid "Relationships between %1$s and %2$s"
-msgstr ""
+msgstr "Relations entre %1$s et %2$s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:95
@@ -375,6 +406,8 @@ msgstr "Même option que dans le diagramme de parentés original."
 #: ExtendedRelationshipModuleTrait.php:106
 msgid "Searching for all possible relationships can take a lot of time in complex trees."
 msgstr ""
+"Chercher toutes les relations possibles peut prendre du temps dans des "
+"arbres complexes."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:163
