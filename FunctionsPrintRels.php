@@ -6,10 +6,10 @@ use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipController;
 use Cissee\WebtreesExt\Functions\FunctionsExt;
 use Exception;
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Factory;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Registry;
 
 class FunctionsPrintRels {
 
@@ -108,7 +108,7 @@ class FunctionsPrintRels {
         //not correct in all cases: INDIs may use different prefixes!
         //$caIsIndi = (substr($slcaKey, 0, 1) === "I");
 
-        $record = Factory::gedcomRecord()->make($slcaKey, $person1->tree());
+        $record = Registry::gedcomRecordFactory()->make($slcaKey, $person1->tree());
         $caIsIndi = ($record instanceof Individual);
 
         if ($caIsIndi) {

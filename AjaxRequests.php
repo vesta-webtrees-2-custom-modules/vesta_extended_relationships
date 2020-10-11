@@ -5,7 +5,7 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 use Cissee\Webtrees\Module\ExtendedRelationships\FunctionsPrintRels;
 use Cissee\WebtreesExt\Requests;
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Factory;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Tree;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -18,7 +18,7 @@ class AjaxRequests {
     $showCa = Requests::getBool($request, 'showCa');
 
     $pid = Requests::getString($request, 'pid');
-    $individual = Factory::individual()->make($pid, $tree);
+    $individual = Registry::individualFactory()->make($pid, $tree);
 
     FunctionsPrintRels::printSlcasWrtDefaultIndividual($moduleName, $individual, $mode, $recursion, $showCa);
   }
@@ -31,7 +31,7 @@ class AjaxRequests {
     $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
 
     $pid = Requests::getString($request, 'pid');
-    $family = Factory::family()->make($pid, $tree);
+    $family = Registry::familyFactory()->make($pid, $tree);
 
     if ($family->tree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
       $access_level = Auth::PRIV_HIDE;

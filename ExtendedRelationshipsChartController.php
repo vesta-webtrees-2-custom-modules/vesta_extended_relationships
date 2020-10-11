@@ -7,11 +7,11 @@ use Cissee\WebtreesExt\Functions\FunctionsExt;
 use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
 use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Factory;
 use Fisharebest\Webtrees\Http\Controllers\AbstractBaseController;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Tree;
 use Psr\Http\Message\ResponseInterface;
 use function asset;
@@ -99,7 +99,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
       $slcaKey = $caAndPath->getCommonAncestor();
       $fam = null;
       if (($slcaKey !== null) && ($showCa)) {
-        $record = Factory::gedcomRecord()->make($slcaKey, $tree);
+        $record = Registry::gedcomRecordFactory()->make($slcaKey, $tree);
         $caIsIndi = $record instanceof Individual;
 
         if ($caIsIndi) {
@@ -131,7 +131,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
               //[RC] adjusted
               //only draw this in certain cases!
               if ((!$fam) || (count($fam->spouses()) === 0)) {
-                $table[$x + 1][$y] = '<div style="background:url(' . e(asset('css/images/hline.png')) . ') repeat-x center;  width: 94px; text-align: center"><div class="hline-text" style="height: 32px;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Factory::individual()->make($path[$n - 1], $tree), Factory::individual()->make($path[$n + 1], $tree)) . '</div><div style="height: 32px;">' . view('icons/arrow-right') . '</div></div>';
+                $table[$x + 1][$y] = '<div style="background:url(' . e(asset('css/images/hline.png')) . ') repeat-x center;  width: 94px; text-align: center"><div class="hline-text" style="height: 32px;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Registry::individualFactory()->make($path[$n - 1], $tree), Registry::individualFactory()->make($path[$n + 1], $tree)) . '</div><div style="height: 32px;">' . view('icons/arrow-right') . '</div></div>';
               } else {
                 //keep the relationship for later
                 $skippedRelationship = $relationships[$n];
@@ -142,10 +142,10 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
             case 'dau':
             case 'chi':
               if ($n > 2 && preg_match('/fat|mot|par/', $relationships[$n - 2])) {
-                $table[$x + 1][$y - 1] = '<div style="background:url(' . $diagonal2 . '); width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: end;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Factory::individual()->make($path[$n - 1], $tree), Factory::individual()->make($path[$n + 1], $tree)) . '</div><div style="height: 32px; text-align: start;">' . view('icons/arrow-down') . '</div></div>';
+                $table[$x + 1][$y - 1] = '<div style="background:url(' . $diagonal2 . '); width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: end;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Registry::individualFactory()->make($path[$n - 1], $tree), Registry::individualFactory()->make($path[$n + 1], $tree)) . '</div><div style="height: 32px; text-align: start;">' . view('icons/arrow-down') . '</div></div>';
                 $x += 2;
               } else {
-                $table[$x][$y - 1] = '<div style="background:url(' . e('"' . asset('css/images/vline.png') . '"') . ') repeat-y center; height: 64px; text-align: center;"><div class="vline-text" style="display: inline-block; width:50%; line-height: 64px;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Factory::individual()->make($path[$n - 1], $tree), Factory::individual()->make($path[$n + 1], $tree)) . '</div><div style="display: inline-block; width:50%; line-height: 64px;">' . view('icons/arrow-down') . '</div></div>';
+                $table[$x][$y - 1] = '<div style="background:url(' . e('"' . asset('css/images/vline.png') . '"') . ') repeat-y center; height: 64px; text-align: center;"><div class="vline-text" style="display: inline-block; width:50%; line-height: 64px;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Registry::individualFactory()->make($path[$n - 1], $tree), Registry::individualFactory()->make($path[$n + 1], $tree)) . '</div><div style="display: inline-block; width:50%; line-height: 64px;">' . view('icons/arrow-down') . '</div></div>';
               }
               $y -= 2;
               break;
@@ -153,10 +153,10 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
             case 'mot':
             case 'par':
               if ($n > 2 && preg_match('/son|dau|chi/', $relationships[$n - 2])) {
-                $table[$x + 1][$y + 1] = '<div style="background:url(' . $diagonal1 . '); background-position: top right; width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: start;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Factory::individual()->make($path[$n - 1], $tree), Factory::individual()->make($path[$n + 1], $tree)) . '</div><div style="height: 32px; text-align: end;">' . view('icons/arrow-down') . '</div></div>';
+                $table[$x + 1][$y + 1] = '<div style="background:url(' . $diagonal1 . '); background-position: top right; width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: start;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Registry::individualFactory()->make($path[$n - 1], $tree), Registry::individualFactory()->make($path[$n + 1], $tree)) . '</div><div style="height: 32px; text-align: end;">' . view('icons/arrow-down') . '</div></div>';
                 $x += 2;
               } else {
-                $table[$x][$y + 1] = '<div style="background:url(' . e('"' . asset('css/images/vline.png') . '"') . ') repeat-y center; height: 64px; text-align:center; "><div class="vline-text" style="display: inline-block; width: 50%; line-height: 64px;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Factory::individual()->make($path[$n - 1], $tree), Factory::individual()->make($path[$n + 1], $tree)) . '</div><div style="display: inline-block; width: 50%; line-height: 32px">' . view('icons/arrow-up') . '</div></div>';
+                $table[$x][$y + 1] = '<div style="background:url(' . e('"' . asset('css/images/vline.png') . '"') . ') repeat-y center; height: 64px; text-align:center; "><div class="vline-text" style="display: inline-block; width: 50%; line-height: 64px;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Registry::individualFactory()->make($path[$n - 1], $tree), Registry::individualFactory()->make($path[$n + 1], $tree)) . '</div><div style="display: inline-block; width: 50%; line-height: 32px">' . view('icons/arrow-up') . '</div></div>';
               }
               $y += 2;
               break;
@@ -165,7 +165,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
           $min_y = min($min_y, $y);
           $max_y = max($max_y, $y);
         } else {
-          $individual = Factory::individual()->make($xref, $tree);
+          $individual = Registry::individualFactory()->make($xref, $tree);
           $table[$x][$y] = view('chart-box', ['individual' => $individual]);
         }
       }
@@ -178,7 +178,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
           $x = 0;
           $y = $max_y + count($fam->spouses()) + 1;
           foreach ($fam->spouses() as $indi) {
-            $individual = Factory::individual()->make($indi->xref(), $tree);
+            $individual = Registry::individualFactory()->make($indi->xref(), $tree);
             $table[$x][$y] = view('chart-box', ['individual' => $individual]);
             //$x += 2;
             $y -= 1;
@@ -304,9 +304,9 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
     $relationships = [];
 
     for ($i = 1, $count = count($path); $i < $count; $i += 2) {
-      $family = Factory::family()->make($path[$i], $tree);
-      $prev = Factory::individual()->make($path[$i - 1], $tree);
-      $next = Factory::individual()->make($path[$i + 1], $tree);
+      $family = Registry::familyFactory()->make($path[$i], $tree);
+      $prev = Registry::individualFactory()->make($path[$i - 1], $tree);
+      $next = Registry::individualFactory()->make($path[$i + 1], $tree);
       if (preg_match('/\n\d (HUSB|WIFE|CHIL) @' . $prev->xref() . '@/', $family->gedcom(), $match)) {
         $rel1 = $match[1];
       } else {
