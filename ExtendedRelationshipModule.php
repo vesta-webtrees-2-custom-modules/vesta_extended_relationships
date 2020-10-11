@@ -515,10 +515,6 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
   //Chart
 
-  public function defaultAccessLevel(): int {
-    return Auth::PRIV_PRIVATE;
-  }
-
   public function chartUrl(Individual $individual, array $parameters = []): string {
     return route(static::class, [
               'xref' => $individual->xref(),
@@ -618,6 +614,8 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
       $recursion = (int) $request->getAttribute('recursion');
       $user      = $request->getAttribute('user');
 
+      Auth::checkComponentAccess($this, ModuleChartInterface::class, $tree, $user);
+
       //[RC] block added start
       $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
       $dateDisplay = null;
@@ -663,8 +661,6 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
       if ($individual2 instanceof Individual) {
           $individual2 = Auth::checkIndividualAccess($individual2, false, true);
       }
-
-      Auth::checkComponentAccess($this, 'chart', $tree, $user);
 
       if ($individual1 instanceof Individual && $individual2 instanceof Individual) {
           if ($ajax === '1') {
