@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-09-19 15:42+0200\n"
-"PO-Revision-Date: 2020-09-19 17:45+0000\n"
+"PO-Revision-Date: 2020-10-15 15:26+0000\n"
 "Last-Translator: Richard Cissée <ric@richard-cissee.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
@@ -61,6 +61,9 @@ msgstr "Ein Modul zur Berechnung von verwandschaftlichen Beziehungen und anderen
 #: ExtendedRelationshipModuleTrait.php:28
 msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
 msgstr ""
+"Ein Modul, das verschiedene Algorithmen zur Bestimmung von "
+"Verwandtschaftsbeziehungen bereitstellt. Enthält ein erweitertes Diagramm "
+"'Verwandtschaftsbeziehung'."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:74
@@ -72,6 +75,8 @@ msgstr "Alle Beziehungspfade zwischen zwei Personen, die in die Berechnung des C
 #: ExtendedRelationshipModuleTrait.php:216
 msgid "Allow persistent toggle (user may show/hide relationships)"
 msgstr ""
+"Checkbox anzeigen (Benutzer kann die Anzeige von Verwandschaftsbeziehungen "
+"dauerhaft an-/abwählen)"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:284
@@ -85,7 +90,7 @@ msgstr " "
 
 #: resources/views/sync.phtml:24
 msgid "Calculating…"
-msgstr ""
+msgstr "Berechne…"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:305
