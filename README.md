@@ -32,7 +32,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 ### Download<a name="download"/>
 
-* Current version: 2.0.10.0.0
+* Current version: 2.0.10.1.0
 * Based on and tested with webtrees 2.0.10. Requires webtrees 2.0.9 or later.
 * Requires the ⚶ Vesta Common module ('vesta_common').
 * Displays data via the ⚶ Vesta Families module ('vesta_families'). 
@@ -44,10 +44,10 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 ### Installation<a name="installation"/>
 
-* Unzip the files and copy them to the modules_v4 folder of your webtrees installation. All related modules are included in the zip file. It's safe to overwrite the respective directories if they already exist (they are bundled with other custom modules as well), as long as other custom models using these dependencies are also upgraded to their respective latest versions.
-* Enable the extended 'Families' module via Control Panel -> Modules -> Module Administration -> ⚶ Vesta Families.
-* Enable the extended 'Facts and Events' module via Control Panel -> Modules -> Module Administration -> ⚶ Vesta Facts and Events.
-* Enable the main module via Control Panel -> Modules -> Module Administration -> ⚶ Vesta Extended Relationships. After that, you may configure several options.
+* Unzip the files and copy the contents of the modules_v4 folder to the respective folder of your webtrees installation. All related modules are included in the zip file. It's safe to overwrite the respective directories if they already exist (they are bundled with other custom modules as well), as long as other custom models using these dependencies are also upgraded to their respective latest versions.
+* Enable the extended 'Families' module via Control Panel -> Modules -> All modules -> ⚶ Vesta Families.
+* Enable the extended 'Facts and Events' module via Control Panel -> Modules -> All modules -> ⚶ Vesta Facts and Events.
+* Enable the main module via Control Panel -> Modules -> All modules -> ⚶ Vesta Extended Relationships. After that, you may configure several options.
 * Configure the visibility of the old and the extended 'Families' tab via Control Panel -> Modules -> Tabs (usually, you'll want to use only one of them. You may just disable the original 'Families' module altogether).		
 * Configure the visibility of the old and the extended 'Facts and Events' tab via Control Panel -> Modules -> Tabs (usually, you'll want to use only one of them. You may just disable the original 'Facts and Events' module altogether).
 
