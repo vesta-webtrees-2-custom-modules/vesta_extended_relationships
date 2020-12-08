@@ -8,46 +8,51 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-09-19 15:42+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-12-08 21:29+0000\n"
+"Last-Translator: Thomas Rindal <thomas@rindal.net>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: ExtendedRelationshipModule.php:159 ExtendedRelationshipModule.php:775
 #: ExtendedRelationshipModule.php:781
+#, fuzzy
 msgid "Synchronization"
-msgstr ""
+msgstr "Synkronisering"
 
 #: ExtendedRelationshipModule.php:164
 #: ExtendedRelationshipsChartController.php:257
+#, fuzzy
 msgid "Synchronize trees to obtain dated relationship links"
-msgstr ""
+msgstr "Synkronisere trær for å få daterte relasjonskoblinger"
 
 #: ExtendedRelationshipModule.php:166
 msgid " (see below for details)."
-msgstr ""
+msgstr " (se nedenfor for mer informasjon)."
 
 #: ExtendedRelationshipModule.php:200
 msgid "No relationship found"
-msgstr ""
+msgstr "Ingen relasjon funnet"
 
 #: ExtendedRelationshipModule.php:217 ExtendedRelationshipModule.php:550
 #: ExtendedRelationshipModule.php:690
 msgid "Relationships"
-msgstr ""
+msgstr "Relasjoner"
 
 #: ExtendedRelationshipModule.php:542
 msgid "Relationship to me"
-msgstr ""
+msgstr "Slektskap til meg"
 
 #. I18N: %s are individual’s names
 #: ExtendedRelationshipModule.php:675
 #, php-format
 msgid "Relationships between %1$s and %2$s"
-msgstr ""
+msgstr "Slektskap mellom %1$s og %2$s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:903 ExtendedRelationshipModuleTrait.php:63
@@ -57,7 +62,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:236
 #: ExtendedRelationshipModuleTrait.php:261
 msgid "Find a closest relationship via common ancestors"
-msgstr ""
+msgstr "Finn et nærmeste slektskap via felles forfedre"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:907 ExtendedRelationshipModuleTrait.php:68
@@ -66,8 +71,11 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:191
 #: ExtendedRelationshipModuleTrait.php:237
 #: ExtendedRelationshipModuleTrait.php:262
+#, fuzzy
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr ""
+"Finn alle de minste laveste felles forfedrene, vis en nærmeste forbindelse "
+"for hver"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:911 ExtendedRelationshipModuleTrait.php:73
@@ -77,7 +85,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:238
 #: ExtendedRelationshipModuleTrait.php:263
 msgid "Find all relationships via lowest common ancestors"
-msgstr ""
+msgstr "Finn alle relasjoner via laveste felles forfedre"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:917 ExtendedRelationshipModuleTrait.php:79
@@ -88,7 +96,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:264
 #: ExtendedRelationshipModuleTrait.php:272
 msgid "Find the closest overall connections (preferably via common ancestors)"
-msgstr ""
+msgstr "Finn de nærmeste generelle forbindelsene (helst via vanlige forfedre)"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:921 ExtendedRelationshipModuleTrait.php:84
@@ -100,6 +108,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:273
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
 msgstr ""
+"Finn et nærmeste slektskap via vanlige forfedre, eller fall tilbake til "
+"nærmeste generelle forbindelse"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:925 ExtendedRelationshipModuleTrait.php:89
@@ -110,79 +120,105 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:266
 #: ExtendedRelationshipModuleTrait.php:274
 msgid "Find the closest overall connections"
-msgstr ""
+msgstr "Finn den nærmeste generelle forbindelsen"
 
 #: ExtendedRelationshipModule.php:931
 msgid "Find all overall connections"
-msgstr ""
+msgstr "Finn alle generelle forbindelser"
 
 #: ExtendedRelationshipModule.php:933
+#, fuzzy
 msgid "Find other overall connections"
-msgstr ""
+msgstr "Finn alle generelle forbindelser"
 
 #: ExtendedRelationshipModuleTrait.php:22
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
 msgstr ""
+"En modul som gir ulike algoritmer som brukes til å bestemme relasjoner. "
+"Inkluderer et diagram som viser relasjoner mellom to personer, som en "
+"erstatning for den opprinnelige \"Slektskap\"-modulen."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:28
 msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
 msgstr ""
+"En modul som gir ulike algoritmer som brukes til å bestemme relasjoner. "
+"Inkluderer et utvidet «Slektskaps-diagram»."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:29
+#, fuzzy
 msgid "Displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab."
 msgstr ""
+"Viser ytterligere relasjonsinformasjon via den utvidede «Familier-fanen» og "
+"den utvidede «Fakta og hendelser»-fanen."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:31
 msgid "Intended as a replacement for the original 'Relationships' module."
-msgstr ""
+msgstr "Ment som en erstatning for den opprinnelige \"Slektskap\"-modulen."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:54
 msgid "Display"
-msgstr ""
+msgstr "Vis"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:56
 msgid "Show common ancestors on top of relationship paths"
-msgstr ""
+msgstr "Vis felles forfedre på toppen av relasjonsbaner"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:61
+#, fuzzy
 msgid "Options to show in the chart"
-msgstr ""
+msgstr "Alternativer som skal vises i diagrammet"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:64
 msgid "Determines the shortest path between two individuals via a LCA (lowest common ancestor), i.e. a common ancestor who only appears on the path once."
 msgstr ""
+"Bestemmer den korteste veien mellom to personer via en LFS (laveste felles "
+"stamfar), det vil si at en felles stamfar bare vises på banen en gang."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:69
 msgid "Each SLCA (smallest lowest common ancestor) essentially represents a part of the tree which both individuals share (as part of their ancestors). More technically, the SLCA set of two individuals is a subset of the LCA set (excluding all LCAs that are themselves ancestors of other LCAs)."
 msgstr ""
+"Hver MLFS (minste laveste felles stamfar) representerer i hovedsak en del av "
+"treet som begge deler (som en del av sine forfedre). Mer teknisk sett er "
+"MLFS-settet med to personer et delsett av LFS-settet (unntatt alle LFSer som "
+"selv er forfedre til andre LFSer)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:74
+#, fuzzy
 msgid "All paths between the two individuals that contribute to the CoR (Coefficient of Relationship), as defined here:"
 msgstr ""
+"Alle veier mellom de to personene som bidrar til CoR (Koeffisient av "
+"relasjon), som definert her:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:80
+#, fuzzy
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
 msgstr ""
+"Foretrekker delvise stier via vanlige forfedre, selv om det ikke er noen "
+"direkte felles stamfar."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:85
+#, fuzzy
 msgid "For close relationships similar to the previous option, but faster. Internally just a combination of two other methods."
 msgstr ""
+"For nære relasjoner som ligner på det forrige alternativet, men raskere. "
+"Internt bare en kombinasjon av to andre metoder."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:90
+#, fuzzy
 msgid "Same option as in the original relationship chart."
-msgstr ""
+msgstr "Samme alternativ som i det opprinnelige relasjonsdiagrammet."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
@@ -192,29 +228,35 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:242
 #: ExtendedRelationshipModuleTrait.php:268
 #: ExtendedRelationshipModuleTrait.php:275
+#, fuzzy
 msgid "Find other/all overall connections"
-msgstr ""
+msgstr "Finn alle generelle forbindelser"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:95
+#, fuzzy
 msgid "Same option as in the original relationship chart, further configurable via recursion level:"
 msgstr ""
+"Samme alternativ som i det opprinnelige relasjonsdiagrammet, ytterligere "
+"konfigurerbar via rekursjonsnivå:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:105
+#, fuzzy
 msgid "unlimited"
-msgstr ""
+msgstr "Ubegrenset"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:106
+#, fuzzy
 msgid "Searching for all possible relationships can take a lot of time in complex trees."
-msgstr ""
+msgstr "Å søke etter alle mulige relasjoner kan ta mye tid i komplekse trær."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:114
 #: ExtendedRelationshipModuleTrait.php:216
 msgid "Allow persistent toggle (user may show/hide relationships)"
-msgstr ""
+msgstr "Tillat vedvarende valg (brukeren kan vise/skjule relasjoner)"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:126
