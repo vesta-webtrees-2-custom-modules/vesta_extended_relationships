@@ -7,11 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2020-09-19 15:42+0200\n"
+"POT-Creation-Date: 2020-12-27 11:51+0100\n"
 "PO-Revision-Date: 2020-12-27 10:49+0000\n"
 "Last-Translator: Richard Cissée <ric@richard-cissee.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/"
-"vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,10 +59,7 @@ msgstr "Ein Modul zur Berechnung von verwandschaftlichen Beziehungen und anderen
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:28
 msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
-msgstr ""
-"Ein Modul, das verschiedene Algorithmen zur Bestimmung von "
-"Verwandtschaftsbeziehungen bereitstellt. Enthält ein erweitertes Diagramm "
-"'Verwandtschaftsbeziehung'."
+msgstr "Ein Modul, das verschiedene Algorithmen zur Bestimmung von Verwandtschaftsbeziehungen bereitstellt. Enthält ein erweitertes Diagramm 'Verwandtschaftsbeziehung'."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:74
@@ -74,16 +70,12 @@ msgstr "Alle Beziehungspfade zwischen zwei Personen, die in die Berechnung des C
 #: ExtendedRelationshipModuleTrait.php:114
 #: ExtendedRelationshipModuleTrait.php:216
 msgid "Allow persistent toggle (user may show/hide relationships)"
-msgstr ""
-"Checkbox anzeigen (Benutzer kann die Anzeige von Verwandschaftsbeziehungen "
-"dauerhaft an-/abwählen)"
+msgstr "Checkbox anzeigen (Benutzer kann die Anzeige von Verwandschaftsbeziehungen dauerhaft an-/abwählen)"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:284
 msgid "Associated facts and events are displayed when the respective toggle checkbox is selected on the tab."
-msgstr ""
-"Verknüpfte Tatsachen und Ereignisse werden angezeigt, wenn die entsprechende "
-"Auswahlbox markiert ist."
+msgstr "Verknüpfte Tatsachen und Ereignisse werden angezeigt, wenn die entsprechende Auswahlbox markiert ist."
 
 #: HelpTexts.php:20
 #, php-format
@@ -124,9 +116,7 @@ msgstr "Anzeige"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:29
 msgid "Displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab."
-msgstr ""
-"Zusätzliche Informationen zu Verwandschaftsbeziehungen auf den Reitern "
-"'Familien' und 'Tatsachen und Ereignisse'."
+msgstr "Zusätzliche Informationen zu Verwandschaftsbeziehungen auf den Reitern 'Familien' und 'Tatsachen und Ereignisse'."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
@@ -148,7 +138,7 @@ msgid "Families Tab Settings"
 msgstr "Einstellungen für den Reiter 'Familien'"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:903 ExtendedRelationshipModuleTrait.php:63
+#: ExtendedRelationshipModule.php:900 ExtendedRelationshipModuleTrait.php:63
 #: ExtendedRelationshipModuleTrait.php:134
 #: ExtendedRelationshipModuleTrait.php:159
 #: ExtendedRelationshipModuleTrait.php:190
@@ -158,7 +148,7 @@ msgid "Find a closest relationship via common ancestors"
 msgstr "Die engste verwandschaftliche Beziehung"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:921 ExtendedRelationshipModuleTrait.php:84
+#: ExtendedRelationshipModule.php:918 ExtendedRelationshipModuleTrait.php:84
 #: ExtendedRelationshipModuleTrait.php:138
 #: ExtendedRelationshipModuleTrait.php:169
 #: ExtendedRelationshipModuleTrait.php:200
@@ -168,12 +158,12 @@ msgstr "Die engste verwandschaftliche Beziehung"
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
 msgstr "Die engste verwandschaftliche Beziehung, oder die engste Verbindung überhaupt"
 
-#: ExtendedRelationshipModule.php:931
+#: ExtendedRelationshipModule.php:928
 msgid "Find all overall connections"
 msgstr "Alle Verbindungen"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:911 ExtendedRelationshipModuleTrait.php:73
+#: ExtendedRelationshipModule.php:908 ExtendedRelationshipModuleTrait.php:73
 #: ExtendedRelationshipModuleTrait.php:136
 #: ExtendedRelationshipModuleTrait.php:162
 #: ExtendedRelationshipModuleTrait.php:193
@@ -183,7 +173,7 @@ msgid "Find all relationships via lowest common ancestors"
 msgstr "Alle verwandtschaftlichen Beziehungen"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:907 ExtendedRelationshipModuleTrait.php:68
+#: ExtendedRelationshipModule.php:904 ExtendedRelationshipModuleTrait.php:68
 #: ExtendedRelationshipModuleTrait.php:135
 #: ExtendedRelationshipModuleTrait.php:160
 #: ExtendedRelationshipModuleTrait.php:191
@@ -192,7 +182,7 @@ msgstr "Alle verwandtschaftlichen Beziehungen"
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr "Alle kleinsten gemeinsamen Vorfahren, mit jeweils einer Beziehung"
 
-#: ExtendedRelationshipModule.php:933
+#: ExtendedRelationshipModule.php:930
 msgid "Find other overall connections"
 msgstr "Andere Verbindungen"
 
@@ -208,7 +198,7 @@ msgid "Find other/all overall connections"
 msgstr "Andere/alle Verbindungen"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:925 ExtendedRelationshipModuleTrait.php:89
+#: ExtendedRelationshipModule.php:922 ExtendedRelationshipModuleTrait.php:89
 #: ExtendedRelationshipModuleTrait.php:139
 #: ExtendedRelationshipModuleTrait.php:170
 #: ExtendedRelationshipModuleTrait.php:201
@@ -219,7 +209,7 @@ msgid "Find the closest overall connections"
 msgstr "Die engste Verbindung überhaupt"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:917 ExtendedRelationshipModuleTrait.php:79
+#: ExtendedRelationshipModule.php:914 ExtendedRelationshipModuleTrait.php:79
 #: ExtendedRelationshipModuleTrait.php:137
 #: ExtendedRelationshipModuleTrait.php:168
 #: ExtendedRelationshipModuleTrait.php:199
@@ -351,7 +341,7 @@ msgstr "Im Diagramm auswählbare Optionen"
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
 msgstr "Berechnung eines Pfades bevorzugt über gemeinsame Vorfahren für alle Teile des Pfades."
 
-#: ExtendedRelationshipModule.php:542
+#: ExtendedRelationshipModule.php:539
 msgid "Relationship to me"
 msgstr ""
 
@@ -360,13 +350,13 @@ msgstr ""
 msgid "Relationship: %s"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:217 ExtendedRelationshipModule.php:550
-#: ExtendedRelationshipModule.php:690
+#: ExtendedRelationshipModule.php:217 ExtendedRelationshipModule.php:547
+#: ExtendedRelationshipModule.php:687
 msgid "Relationships"
 msgstr ""
 
 #. I18N: %s are individual’s names
-#: ExtendedRelationshipModule.php:675
+#: ExtendedRelationshipModule.php:672
 #, php-format
 msgid "Relationships between %1$s and %2$s"
 msgstr ""
@@ -410,8 +400,8 @@ msgstr ""
 msgid "Swap individuals"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:159 ExtendedRelationshipModule.php:775
-#: ExtendedRelationshipModule.php:781
+#: ExtendedRelationshipModule.php:159 ExtendedRelationshipModule.php:772
+#: ExtendedRelationshipModule.php:778
 msgid "Synchronization"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2020-09-19 15:42+0200\n"
+"POT-Creation-Date: 2020-12-27 11:51+0100\n"
 "PO-Revision-Date: 2020-09-12 21:36+0000\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
@@ -138,7 +138,7 @@ msgid "Families Tab Settings"
 msgstr "Instellingen voor tabblad Gezinnen"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:903 ExtendedRelationshipModuleTrait.php:63
+#: ExtendedRelationshipModule.php:900 ExtendedRelationshipModuleTrait.php:63
 #: ExtendedRelationshipModuleTrait.php:134
 #: ExtendedRelationshipModuleTrait.php:159
 #: ExtendedRelationshipModuleTrait.php:190
@@ -148,7 +148,7 @@ msgid "Find a closest relationship via common ancestors"
 msgstr "Zoek een dichtstbijzijnde verwantschap via gemeenschappelijke voorouders"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:921 ExtendedRelationshipModuleTrait.php:84
+#: ExtendedRelationshipModule.php:918 ExtendedRelationshipModuleTrait.php:84
 #: ExtendedRelationshipModuleTrait.php:138
 #: ExtendedRelationshipModuleTrait.php:169
 #: ExtendedRelationshipModuleTrait.php:200
@@ -158,12 +158,12 @@ msgstr "Zoek een dichtstbijzijnde verwantschap via gemeenschappelijke voorouders
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
 msgstr "Zoek een dichtstbijzijnde verwantschap via gemeenschappelijke voorouders, of anders dichtstbijzijnde relatie"
 
-#: ExtendedRelationshipModule.php:931
+#: ExtendedRelationshipModule.php:928
 msgid "Find all overall connections"
 msgstr "Zoek alle algemene relaties"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:911 ExtendedRelationshipModuleTrait.php:73
+#: ExtendedRelationshipModule.php:908 ExtendedRelationshipModuleTrait.php:73
 #: ExtendedRelationshipModuleTrait.php:136
 #: ExtendedRelationshipModuleTrait.php:162
 #: ExtendedRelationshipModuleTrait.php:193
@@ -173,7 +173,7 @@ msgid "Find all relationships via lowest common ancestors"
 msgstr "Zoek alle verwantschappen via dichtstbijzijnde gemeenschappelijke voorouders"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:907 ExtendedRelationshipModuleTrait.php:68
+#: ExtendedRelationshipModule.php:904 ExtendedRelationshipModuleTrait.php:68
 #: ExtendedRelationshipModuleTrait.php:135
 #: ExtendedRelationshipModuleTrait.php:160
 #: ExtendedRelationshipModuleTrait.php:191
@@ -182,7 +182,7 @@ msgstr "Zoek alle verwantschappen via dichtstbijzijnde gemeenschappelijke voorou
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr "Zoek alle dichtstbijzijnde gemeenschappelijke voorouders, toon een dichtstbijzijnde relatie voor elk"
 
-#: ExtendedRelationshipModule.php:933
+#: ExtendedRelationshipModule.php:930
 msgid "Find other overall connections"
 msgstr "Zoek andere algemene relaties"
 
@@ -198,7 +198,7 @@ msgid "Find other/all overall connections"
 msgstr "Zoek andere/alle algemene relaties"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:925 ExtendedRelationshipModuleTrait.php:89
+#: ExtendedRelationshipModule.php:922 ExtendedRelationshipModuleTrait.php:89
 #: ExtendedRelationshipModuleTrait.php:139
 #: ExtendedRelationshipModuleTrait.php:170
 #: ExtendedRelationshipModuleTrait.php:201
@@ -209,7 +209,7 @@ msgid "Find the closest overall connections"
 msgstr "Zoek de dichtstbijzijnde algemene relaties"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:917 ExtendedRelationshipModuleTrait.php:79
+#: ExtendedRelationshipModule.php:914 ExtendedRelationshipModuleTrait.php:79
 #: ExtendedRelationshipModuleTrait.php:137
 #: ExtendedRelationshipModuleTrait.php:168
 #: ExtendedRelationshipModuleTrait.php:199
@@ -341,7 +341,7 @@ msgstr "Opties die in het diagram moeten worden getoond"
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
 msgstr "Geeft de voorkeur aan gedeeltelijke paden via gemeenschappelijke voorouders, zelfs als er geen directe gemeenschappelijke voorouder is."
 
-#: ExtendedRelationshipModule.php:542
+#: ExtendedRelationshipModule.php:539
 msgid "Relationship to me"
 msgstr "Verwantschap met mij"
 
@@ -350,13 +350,13 @@ msgstr "Verwantschap met mij"
 msgid "Relationship: %s"
 msgstr "Verwantschap: %s"
 
-#: ExtendedRelationshipModule.php:217 ExtendedRelationshipModule.php:550
-#: ExtendedRelationshipModule.php:690
+#: ExtendedRelationshipModule.php:217 ExtendedRelationshipModule.php:547
+#: ExtendedRelationshipModule.php:687
 msgid "Relationships"
 msgstr "Verwantschappen"
 
 #. I18N: %s are individual’s names
-#: ExtendedRelationshipModule.php:675
+#: ExtendedRelationshipModule.php:672
 #, php-format
 msgid "Relationships between %1$s and %2$s"
 msgstr "Verwantschappen tussen %1$s en %2$s"
@@ -400,8 +400,8 @@ msgstr "Toon gemeenschappelijke voorouders boven verwantschapspaden"
 msgid "Swap individuals"
 msgstr "Verwissel personen"
 
-#: ExtendedRelationshipModule.php:159 ExtendedRelationshipModule.php:775
-#: ExtendedRelationshipModule.php:781
+#: ExtendedRelationshipModule.php:159 ExtendedRelationshipModule.php:772
+#: ExtendedRelationshipModule.php:778
 msgid "Synchronization"
 msgstr "Synchronisatie"
 
