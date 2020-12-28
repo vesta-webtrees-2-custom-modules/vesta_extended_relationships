@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-09-19 15:42+0200\n"
-"PO-Revision-Date: 2020-12-28 17:29+0000\n"
+"PO-Revision-Date: 2020-12-28 21:29+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
@@ -293,17 +293,24 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:318
 msgid "If you do not want to change the functionality with respect to the original Facts and Events tab, select 'Do not show any relationship' in the first block."
 msgstr ""
+"Ak nechcete meniť funkcionalitu oproti pôvodnej záložke Fakty a udalosti, "
+"zvoľte „Nezobrazovať žiaden vzťah“."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:311
 msgid "If you do not want to change the functionality with respect to the original Families tab, select 'Do not show any relationship' everywhere."
 msgstr ""
+"Ak nechcete meniť funkcionalitu oproti pôvodnej záložke Rodiny, zvoľte všade "
+"„Nezobrazovať žiaden vzťah“."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:306
 #, php-format
 msgid "If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name)."
 msgstr ""
+"Ak nechcete používať funkcionalitu diagramu, ukryte túto schému cez Riadiaci "
+"panel > Schémy > %1$s Vesta Rozšírené vzťahy (diagram je v zozname pod "
+"názvom modulu)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:319
