@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-09-19 15:42+0200\n"
-"PO-Revision-Date: 2020-12-28 21:29+0000\n"
+"PO-Revision-Date: 2020-12-29 15:29+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
@@ -316,25 +316,32 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:319
 msgid "If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect."
 msgstr ""
+"Ak zvolíte túto možnosť všade, mali by ste zrušiť aj zobrazenie checkboxov, "
+"keďže nemajú žiaden viditeľný efekt."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:286
 msgid "In particular if both lists are empty, relationships will never be shown for these facts and events."
 msgstr ""
+"Ak sú oba zoznamy prázdne, vzťahy nebudú zobrazené pre fakty a udalosti."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:312
 msgid "In that case, you should also disallow persistent toggle, as it has no visible effect."
 msgstr ""
+"V takomto prípade by ste mali zrušiť aj zobrazenie checkboxov, keďže nemajú "
+"žiaden viditeľný efekt."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:31
 msgid "Intended as a replacement for the original 'Relationships' module."
-msgstr ""
+msgstr "Plánované ako náhrada za originálny modul „Vzťahy“."
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
-msgstr "Zistiť takýto presný CoR je omnoho zložitejšie, a okrem toho rozdiely sú poväčšinou malé. Preto sa vypočítava len Nekorigovaný CoR."
+msgstr ""
+"Zistiť presný CoR je omnoho zložitejšie, okrem toho rozdiely sú poväčšinou "
+"malé. Preto sa vypočítava len nekorigovaný CoR."
 
 #: resources/views/sync.phtml:8
 msgid "Modules"
@@ -343,7 +350,7 @@ msgstr "Moduly"
 #. I18N::translate('No link between the two individuals could be found.'), '</p>';
 #: ExtendedRelationshipsChartController.php:243
 msgid "No link between the two individuals could be found."
-msgstr "Medzi týmito dvomi osobami sa nenašlo žiadne prepojenie."
+msgstr "Medzi týmito dvomi osobami sa nenašiel žiadny vzťah."
 
 #: ExtendedRelationshipModule.php:200
 msgid "No relationship found"
@@ -353,11 +360,13 @@ msgstr "Nenašiel sa žiaden vzťah"
 #: ExtendedRelationshipModuleTrait.php:287
 msgid "Note that the facts and events to be displayed at all may be filtered via the preferences of the tab."
 msgstr ""
+"Treba vziať do úvahy, že fakty a udalosti, ktoré sa zobrazujú, môžu byť "
+"filtrované nastavením záložky."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:283
 msgid "Only show relationships for specific facts and events"
-msgstr ""
+msgstr "Zobraziť vzťahy len pre niektoré fakty a udalosti"
 
 #: resources/views/page.phtml:56
 #, php-format
@@ -367,12 +376,14 @@ msgstr "Tieto voľby zahrňujú len vzťahy, ktoré vznikli skôr ako %1$s."
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:61
 msgid "Options to show in the chart"
-msgstr ""
+msgstr "Možnosti, ktoré sa môžu zvoliť v schéme"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:80
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
 msgstr ""
+"Výpočet cesty preferuje čiastočné cesty cez spoločných predkov pre všetky "
+"časti cesty."
 
 #: ExtendedRelationshipModule.php:539
 msgid "Relationship to me"
@@ -392,28 +403,34 @@ msgstr "Vzťahy"
 #: ExtendedRelationshipModule.php:672
 #, php-format
 msgid "Relationships between %1$s and %2$s"
-msgstr "Vzťahy medzi %1$s and %2$s"
+msgstr "Vzťahy medzi %1$s a %2$s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:95
 msgid "Same option as in the original relationship chart, further configurable via recursion level:"
 msgstr ""
+"Rovnaká voľba, ako v originálnej schéme vzťahov, konfigurovateľná úrovňou "
+"rekurzie:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:90
 msgid "Same option as in the original relationship chart."
-msgstr ""
+msgstr "Rovnaká voľba, ako v originálnej schéme vzťahov."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:106
 msgid "Searching for all possible relationships can take a lot of time in complex trees."
 msgstr ""
+"Vyhľadanie všetkých možných vzťahov môže trvať v niektorých rodokmeňoch "
+"veľmi dlho."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:163
 #: ExtendedRelationshipModuleTrait.php:194
 msgid "Searching for regular overall connections would be pointless here because there is always a trivial HUSB - WIFE connection."
 msgstr ""
+"Hľadanie bežných vzťahov by bolo zbytočné, lebo vždy existuje triviálny "
+"vzťah manžel-manželka."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:145
@@ -421,7 +438,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:207
 #: ExtendedRelationshipModuleTrait.php:247
 msgid "Show common ancestors"
-msgstr ""
+msgstr "Zobraziť spoločných predkov"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:56
