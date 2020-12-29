@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-09-19 15:42+0200\n"
-"PO-Revision-Date: 2020-12-29 15:29+0000\n"
+"PO-Revision-Date: 2020-12-29 18:29+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
@@ -443,7 +443,7 @@ msgstr "Zobraziť spoločných predkov"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:56
 msgid "Show common ancestors on top of relationship paths"
-msgstr ""
+msgstr "Zobraziť spoločných predkov hore na cestách vzťahov"
 
 #. I18N: Reverse the order of two individuals
 #: resources/views/page.phtml:75
@@ -458,7 +458,7 @@ msgstr "Synchronizácia"
 #: ExtendedRelationshipModule.php:164
 #: ExtendedRelationshipsChartController.php:257
 msgid "Synchronize trees to obtain dated relationship links"
-msgstr ""
+msgstr "Synchronizovať rodokmene, aby sa získali vzťahy s dátumom"
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
