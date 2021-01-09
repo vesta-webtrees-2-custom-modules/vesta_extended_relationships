@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-09-19 15:42+0200\n"
-"PO-Revision-Date: 2020-12-29 18:29+0000\n"
+"PO-Revision-Date: 2021-01-09 11:32+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
@@ -472,42 +472,62 @@ msgstr "Detaily (po anglicky) nájdete tu: "
 #: ExtendedRelationshipModuleTrait.php:259
 msgid "The following options refer to the same algorithms as used in the extended relationships chart:"
 msgstr ""
+"Nasledujúce možnosti zodpovedajú tým istým algoritmom ako v schéme "
+"rozšírených vzťahov:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:269
 msgid "The following options use dated links, i.e. links that have been established before the date of the respective event."
 msgstr ""
+"Nasledujúce možnosti využívajú prepojenia s dátumom, t.j. prepojenia, ktoré "
+"vznikli pred dátumom príslušnej udalosti."
 
 #: resources/views/sync.phtml:19
 msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
 msgstr ""
+"Proces by sa mal zopakovať (ale bude trvať výrazne kratšie) vždy, keď sa "
+"zmení rodokmeň, ináč môžu vzniknúť nekonzistentné údaje o vzťahoch. "
+"Zobrazené vzťahy sú vždy platné, ale ak tu nebol rodokmeň synchronizovaný, "
+"tak možno nevznikli v daný okamih, ."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:164
 #: ExtendedRelationshipModuleTrait.php:195
 msgid "Therefore, if one of the following options is selected, overall connections are determined via dated links, i.e. links that have been established before the date of the respective event."
 msgstr ""
+"Preto ak je zvolená jedna z nasledujúcich možností, tak sú vzťahy určované "
+"pomocou dátumových prepojení, t.j. vzťahy, ktoré vznikli pred dátumom "
+"príslušnej udalosti."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:166
 #: ExtendedRelationshipModuleTrait.php:197
 msgid "These relationships may only be calculated efficiently by preprocessing the tree data, via the synchronization link at the top of this page."
 msgstr ""
+"Takéto vzťahy sa môžu efektívne vypočítať, len ak sa pomocou odkazu na "
+"synchronizáciu, ktorý je v hornej časti tejto stránky, predpripravia údaje "
+"stromu."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:165
 #: ExtendedRelationshipModuleTrait.php:196
 msgid "This allows you to present meaningful connections, such as 'widowed husband marries the sister of his dead wife'."
 msgstr ""
+"Takto sa môžu zobraziť zmysluplné vzťahy, ako napr. „ovdovelý manžel si vzal "
+"sestru svojej mŕtvej ženy“."
 
 #: resources/views/sync.phtml:13
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
 msgstr ""
+"Tento proces počíta dátumy pre všetky vzťahy osôb a rodín, takže sa dá "
+"efektívne vypočítať rodinný vzťah k určitému dátumu."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:270
 msgid "This seems more useful in most cases (e.g. to determine the relationship to a godparent at the time of the baptism)."
 msgstr ""
+"To sa zdá byť užitočné vo väčšine prípadov (napr. zistiť vzťah ku krstnému "
+"rodičovi v čase krstu)."
 
 #: HelpTexts.php:15
 msgid "Uncorrected CoR (Coefficient of Relationship)"
@@ -526,7 +546,7 @@ msgstr "Ďalšie  informácie (po anglicky) nájdete tu: "
 #: ExtendedRelationshipModuleTrait.php:313
 #: ExtendedRelationshipModuleTrait.php:320
 msgid "You may also adjust the access level of this part of the module."
-msgstr ""
+msgstr "Mali by ste upraviť aj prístupové práve pre túto časť modulu."
 
 #: ExtendedRelationshipsChartController.php:188
 msgid "parents"
