@@ -32,10 +32,10 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 ### Download<a name="download"/>
 
-* Current version: 2.0.10.5.0
-* Based on and tested with webtrees 2.0.10. Requires webtrees 2.0.9 or later.
+* Current version: 2.0.11.0.0
+* Based on and tested with webtrees 2.0.11. Requires webtrees 2.0.9 or later.
 * Requires the ⚶ Vesta Common module ('vesta_common').
-* Displays data via the ⚶ Vesta Families module ('vesta_families'). 
+* Displays data via the ⚶ Vesta Families module ('vesta_relatives'). 
 * Displays data via the ⚶ Vesta Facts and events module ('vesta_personal_facts'). 
 * Download the zipped module, including all related modules, [here](https://cissee.de/vesta.latest.zip).
 * Support, suggestions, feature requests: <ric@richard-cissee.de>. See also [this webtrees forum thread](https://www.webtrees.net/index.php/en/forum/4-customising/31587-extended-relationships-module-feature-requests).

@@ -128,6 +128,8 @@ class FunctionsPrintRels {
           }
           $fam = $record;
 
+          //huh - just use the standard family name!
+          /*
           $names = array();
           foreach ($fam->spouses() as $indi) {
             $html = "";
@@ -137,7 +139,9 @@ class FunctionsPrintRels {
             $names[] = $indi->fullName();
           }
           $famName = implode(' & ', $names);
-
+          */
+          $famName = $record->fullName();
+          
           $html = "";
           $html .= '<a href="' . $fam->url() . '" title="' . strip_tags($famName) . '">';
           $html .= $famName . '</a>';

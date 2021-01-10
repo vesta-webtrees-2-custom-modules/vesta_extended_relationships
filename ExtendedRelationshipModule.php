@@ -3,10 +3,10 @@
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Aura\Router\RouterContainer;
-use Cissee\Webtrees\Hook\HookInterfaces\EmptyIndividualFactsTabExtender;
-use Cissee\Webtrees\Hook\HookInterfaces\EmptyRelativesTabExtender;
-use Cissee\Webtrees\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
-use Cissee\Webtrees\Hook\HookInterfaces\RelativesTabExtenderInterface;
+use Vesta\Hook\HookInterfaces\EmptyIndividualFactsTabExtender;
+use Vesta\Hook\HookInterfaces\EmptyRelativesTabExtender;
+use Vesta\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
+use Vesta\Hook\HookInterfaces\RelativesTabExtenderInterface;
 use Cissee\Webtrees\Module\ExtendedRelationships\AjaxRequests;
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipController;
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipModuleTrait;
@@ -428,7 +428,11 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
       $date = RelationshipUtils::getFamilyEstablishedNoLaterThan($family);
       if ($date->isOK()) {
         $beforeJD = $date->minimumJulianDay();
+      } else {
+        //no need to load anything!
+        return GenericViewElement::createEmpty();
       }
+      
       /*
         $date = $family->getMarriageDate();
         if ($date->isOK()) {
@@ -466,7 +470,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     }
 
     $url = route('module', $parameters);
-
+    
     //must disambiguate with $beforeJD - may show up multiple times!
     //(and technically with everything else that goes into the url)
     //hash alone would be sufficient, explicit xrefs here only for easier debugging!
