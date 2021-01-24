@@ -43,11 +43,16 @@ trait ExtendedRelationshipModuleTrait {
                 null,
                 'VESTA',
                 '1'),*/
-        new ControlPanelCheckbox(
-                CommonI18N::vestaSymbolInChartTitle(),
-                CommonI18N::vestaSymbolInTitle2(),
-                'VESTA_CHART',
-                '1')));
+                new ControlPanelCheckbox(
+                    CommonI18N::vestaSymbolInChartTitle(),
+                    CommonI18N::vestaSymbolInTitle2(),
+                    'VESTA_CHART',
+                    '1'),
+                new ControlPanelCheckbox(
+                    CommonI18N::vestaSymbolInListTitle(),
+                    null,
+                    'VESTA_LIST',
+                    '1')));
 
     $chartSub = array();
     $chartSub[] = new ControlPanelSubsection(

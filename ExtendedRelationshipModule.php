@@ -3,10 +3,6 @@
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Aura\Router\RouterContainer;
-use Vesta\Hook\HookInterfaces\EmptyIndividualFactsTabExtender;
-use Vesta\Hook\HookInterfaces\EmptyRelativesTabExtender;
-use Vesta\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
-use Vesta\Hook\HookInterfaces\RelativesTabExtenderInterface;
 use Cissee\Webtrees\Module\ExtendedRelationships\AjaxRequests;
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipController;
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipModuleTrait;
@@ -29,15 +25,23 @@ use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
+use Fisharebest\Webtrees\Module\ModuleListInterface;
+use Fisharebest\Webtrees\Module\ModuleListTrait;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\Services\LocalizationService;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\User;
+use Fisharebest\Webtrees\View;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Vesta\Hook\HookInterfaces\EmptyIndividualFactsTabExtender;
+use Vesta\Hook\HookInterfaces\EmptyRelativesTabExtender;
+use Vesta\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
+use Vesta\Hook\HookInterfaces\RelativesTabExtenderInterface;
 use Vesta\Model\GenericViewElement;
 use Vesta\VestaModuleTrait;
 use const CAL_GREGORIAN;
@@ -53,11 +57,12 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
   ModuleCustomInterface, 
   ModuleConfigInterface, 
   ModuleChartInterface, 
+  ModuleListInterface,
   RequestHandlerInterface, 
   IndividualFactsTabExtenderInterface, 
   RelativesTabExtenderInterface {
 
-  use ModuleCustomTrait, ModuleConfigTrait, ModuleChartTrait, VestaModuleTrait {
+  use ModuleCustomTrait, ModuleConfigTrait, ModuleChartTrait, ModuleListTrait, VestaModuleTrait {
     VestaModuleTrait::customTranslations insteadof ModuleCustomTrait;
     VestaModuleTrait::customModuleLatestVersion insteadof ModuleCustomTrait;
     VestaModuleTrait::getAssetAction insteadof ModuleCustomTrait;
@@ -75,6 +80,8 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
   
   protected const ROUTE_URL  = '/tree/{tree}/vesta-relationships-{ancestors}-{recursion}/{xref}{/xref2}';
 
+  protected const ROUTE_URL_LIST = '/tree/{tree}/individual-patriarchs-list';
+
   /** It would be more correct to use PHP_INT_MAX, but this isn't friendly in URLs */
   public const UNLIMITED_RECURSION = 99;
 
@@ -86,9 +93,14 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
       'ancestors' => self::DEFAULT_ANCESTORS,
       'recursion' => self::DEFAULT_RECURSION,
   ];
-    
+  
+  /** @var ExtendedIndividualListController */
+  protected $listController;
+        
   public function __construct(TreeService $tree_service) {
     parent::__construct($tree_service);
+    $localization_service = app(LocalizationService::class);
+    $this->listController = new ExtendedIndividualListController($localization_service);
   }    
     
   public function customModuleAuthorName(): string {
@@ -148,6 +160,21 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
                 'ancestors' => '\d+',
                 'generations' => '\d+',
             ]);
+      
+      $router_container->getMap()
+            ->get(ExtendedIndividualListController::class, static::ROUTE_URL_LIST, $this->listController);
+      
+      // Replace an existing view with our own version.
+      // this is hacky, but easier than patching IndividualListModule.
+      // as usual, webtrees code isn't very extensible.
+      View::registerCustomView('::lists/individuals-table', $this->name() . '::lists/individuals-table-switch');            
+      View::registerCustomView('::lists/individuals-table-with-patriarchs', $this->name() . '::lists/individuals-table-with-patriarchs');      
+
+      //same here
+      View::registerCustomView('::lists/surnames-table', $this->name() . '::lists/surnames-table-switch');            
+      View::registerCustomView('::lists/surnames-table-with-patriarchs', $this->name() . '::lists/surnames-table-with-patriarchs');
+      
+      $this->flashWhatsNew('\Cissee\Webtrees\Module\ExtendedRelationships\WhatsNew', 1);
   }
   
   protected function editConfigAfterFaq() {
@@ -935,5 +962,20 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         }
       }
     }
+  }
+  
+  //////////////////////////////////////////////////////////////////////////////
+  
+  public function listTitle(): string {
+    return $this->getListTitle(
+            /* I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')*/I18N::translate('Individuals with Patriarchs'));
+  }
+  
+  public function listMenuClass(): string {
+    return 'menu-list-indi';
+  }
+  
+  public function listUrl(Tree $tree, array $parameters = []): string {
+    return $this->listController->listUrl($tree, $parameters);
   }
 }

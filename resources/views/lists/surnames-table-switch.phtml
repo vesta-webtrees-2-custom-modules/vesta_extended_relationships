@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+use Cissee\Webtrees\Module\ExtendedRelationships\SurnamesWithPatriarchs;
+use Fisharebest\Webtrees\Tree;
+
+/**
+ * @var surnames
+ * @var families
+ * @var module
+ * @var Tree $tree
+ */
+
+if (sizeof($surnames) > 0) {
+  if (current($surnames) instanceof SurnamesWithPatriarchs) {
+    /** @var SurnamesWithPatriarchs */
+    $wrapped = current($surnames);
+    
+    //adjusted view
+    echo view('lists/surnames-table-with-patriarchs', [
+      'surnames' => $wrapped->getArray(),
+      'families' => $families,  
+      'module' => $module,
+      'tree' => $tree]);
+    
+    return;
+  }
+  
+  //original view
+  echo view('::lists/surnames-table', [
+    'surnames' => $surnames,
+    'families' => $families,  
+    'module' => $module,
+    'tree' => $tree]);
+}

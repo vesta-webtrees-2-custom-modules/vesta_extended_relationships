@@ -4,7 +4,6 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\Webtrees\Module\ExtendedRelationships\OptimizedDijkstra;
 use Cissee\Webtrees\Module\ExtendedRelationships\Sync;
-use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Services\TreeService;
