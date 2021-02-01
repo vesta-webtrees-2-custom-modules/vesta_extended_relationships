@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-12-27 11:51+0100\n"
-"PO-Revision-Date: 2021-01-31 20:18+0000\n"
+"PO-Revision-Date: 2021-02-02 00:42+0000\n"
 "Last-Translator: Bernd Schwendinger <b0ernie@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
@@ -315,7 +315,7 @@ msgstr ""
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
 #: ExtendedRelationshipModule.php:971
 msgid "Individuals with Patriarchs"
-msgstr ""
+msgstr "Personen mit Patriarchen"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:31
@@ -324,7 +324,10 @@ msgstr "Ist als Ersatz für das ursprüngliche Modul 'Beziehungen' gedacht."
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
-msgstr " "
+msgstr ""
+"Es ist komplizierter diesen genauen CoR zu bestimmen und die Unterschiede "
+"sind in der Regel ohnehin gering. Daher wird nur der unkorrigierte CoR "
+"berechnet."
 
 #: resources/views/sync.phtml:8
 msgid "Modules"
