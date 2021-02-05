@@ -8,46 +8,49 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-01-24 13:35+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-02-05 19:41+0000\n"
+"Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: ExtendedRelationshipModule.php:186 ExtendedRelationshipModule.php:803
 #: ExtendedRelationshipModule.php:809
 msgid "Synchronization"
-msgstr ""
+msgstr "Senkronizasyon"
 
 #: ExtendedRelationshipModule.php:191
 #: ExtendedRelationshipsChartController.php:257
 msgid "Synchronize trees to obtain dated relationship links"
-msgstr ""
+msgstr "Tarihli ilişki bağlantıları elde etmek için ağaçları senkronize edin"
 
 #: ExtendedRelationshipModule.php:193
 msgid " (see below for details)."
-msgstr ""
+msgstr " (ayrıntılar için aşağıya bakınız)."
 
 #: ExtendedRelationshipModule.php:227
 msgid "No relationship found"
-msgstr ""
+msgstr "Hiçbir ilişki bulunamadı"
 
 #: ExtendedRelationshipModule.php:244 ExtendedRelationshipModule.php:578
 #: ExtendedRelationshipModule.php:718
 msgid "Relationships"
-msgstr ""
+msgstr "İlişkiler"
 
 #: ExtendedRelationshipModule.php:570
 msgid "Relationship to me"
-msgstr ""
+msgstr "Benimle ilişki"
 
 #. I18N: %s are individual’s names
 #: ExtendedRelationshipModule.php:703
 #, php-format
 msgid "Relationships between %1$s and %2$s"
-msgstr ""
+msgstr "%1$s ile %2$s arasındaki ilişkiler"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:931 ExtendedRelationshipModuleTrait.php:68
@@ -57,7 +60,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:241
 #: ExtendedRelationshipModuleTrait.php:266
 msgid "Find a closest relationship via common ancestors"
-msgstr ""
+msgstr "Ortak atalar aracılığıyla en yakın ilişkiyi bulun"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:935 ExtendedRelationshipModuleTrait.php:73
@@ -68,6 +71,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:267
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr ""
+"En küçük ortak ataların tümünü bulun, her biri için en yakın bağlantıyı "
+"gösterin"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:939 ExtendedRelationshipModuleTrait.php:78
@@ -77,7 +82,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:243
 #: ExtendedRelationshipModuleTrait.php:268
 msgid "Find all relationships via lowest common ancestors"
-msgstr ""
+msgstr "En küçük ortak atalar aracılığıyla tüm ilişkileri bulun"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:945 ExtendedRelationshipModuleTrait.php:84
@@ -88,7 +93,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:269
 #: ExtendedRelationshipModuleTrait.php:277
 msgid "Find the closest overall connections (preferably via common ancestors)"
-msgstr ""
+msgstr "En yakın genel bağlantıları bulun (tercihen ortak atalar aracılığıyla)"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:949 ExtendedRelationshipModuleTrait.php:89
@@ -100,6 +105,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:278
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
 msgstr ""
+"Ortak atalar aracılığıyla en yakın ilişkiyi bulun veya en yakın genel "
+"bağlantıya geri dönün"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:953 ExtendedRelationshipModuleTrait.php:94
@@ -110,84 +117,103 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:271
 #: ExtendedRelationshipModuleTrait.php:279
 msgid "Find the closest overall connections"
-msgstr ""
+msgstr "En yakın genel bağlantıları bulun"
 
 #: ExtendedRelationshipModule.php:959
 msgid "Find all overall connections"
-msgstr ""
+msgstr "Tüm genel bağlantıları bulun"
 
 #: ExtendedRelationshipModule.php:961
 msgid "Find other overall connections"
-msgstr ""
+msgstr "Diğer genel bağlantıları bulun"
 
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
 #: ExtendedRelationshipModule.php:971
 msgid "Individuals with Patriarchs"
-msgstr ""
+msgstr "Aile reisleri ile bireyler"
 
 #: ExtendedRelationshipModuleTrait.php:22
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
 msgstr ""
+"İlişkileri belirlemek için kullanılan çeşitli algoritmalar sağlayan bir "
+"modül. Orijinal 'İlişkiler' modülünün yerine iki kişi arasındaki ilişkileri "
+"gösteren bir grafik içerir."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:28
 msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
 msgstr ""
+"İlişkileri belirlemek için kullanılan çeşitli algoritmalar sağlayan bir "
+"modül. Genişletilmiş bir 'İlişkiler' grafiği içerir."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:29
 msgid "Displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab."
 msgstr ""
+"Genişletilmiş 'Aileler' sekmesi ve genişletilmiş 'Gerçekler ve Olaylar' "
+"sekmesi aracılığıyla ek ilişki bilgilerini görüntüler."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:31
 msgid "Intended as a replacement for the original 'Relationships' module."
-msgstr ""
+msgstr "Orijinal 'İlişkiler' modülünün yerine geçmesi amaçlanmıştır."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:59
 msgid "Display"
-msgstr ""
+msgstr "Görüntüle"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:61
 msgid "Show common ancestors on top of relationship paths"
-msgstr ""
+msgstr "İlişki yollarının üstünde ortak ataları göster"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:66
 msgid "Options to show in the chart"
-msgstr ""
+msgstr "Grafikte gösterilecek seçenekler"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:69
 msgid "Determines the shortest path between two individuals via a LCA (lowest common ancestor), i.e. a common ancestor who only appears on the path once."
 msgstr ""
+"Bir LCA (en küçük ortak ata), yani yolda yalnızca bir kez görünen ortak bir "
+"ata aracılığıyla iki birey arasındaki en kısa yolu belirler."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:74
 msgid "Each SLCA (smallest lowest common ancestor) essentially represents a part of the tree which both individuals share (as part of their ancestors). More technically, the SLCA set of two individuals is a subset of the LCA set (excluding all LCAs that are themselves ancestors of other LCAs)."
 msgstr ""
+"Her SLCA (en küçük ortak ata), temelde ağacın her iki bireyin paylaştığı ("
+"atalarının bir parçası olarak) bir bölümünü temsil eder. Daha teknik olarak, "
+"iki kişiden oluşan SLCA grubu, LCA setinin bir alt kümesidir (kendileri "
+"diğer LCA'ların ataları olan tüm LCA'lar hariç)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79
 msgid "All paths between the two individuals that contribute to the CoR (Coefficient of Relationship), as defined here:"
 msgstr ""
+"CoR'e (İlişki Katsayısı) katkıda bulunan iki birey arasındaki tüm yollar, "
+"burada tanımlandığı gibi:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:85
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
 msgstr ""
+"Doğrudan ortak atalar olmasa bile, ortak atalar aracılığıyla kısmi yolları "
+"tercih eder."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:90
 msgid "For close relationships similar to the previous option, but faster. Internally just a combination of two other methods."
 msgstr ""
+"Yakın ilişkiler için önceki seçeneğe benzer, ancak daha hızlı. Dahili olarak "
+"sadece diğer iki yöntemin bir kombinasyonu."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:95
 msgid "Same option as in the original relationship chart."
-msgstr ""
+msgstr "Orijinal ilişki grafiğinde olduğu gibi aynı seçenek."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:99
@@ -198,34 +224,36 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:273
 #: ExtendedRelationshipModuleTrait.php:280
 msgid "Find other/all overall connections"
-msgstr ""
+msgstr "Diğer/tüm genel bağlantıları bul"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:100
 msgid "Same option as in the original relationship chart, further configurable via recursion level:"
 msgstr ""
+"Orijinal ilişki grafiğinde olduğu gibi aynı seçenek, özyineleme seviyesi ile "
+"daha da yapılandırılabilir:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:110
 msgid "unlimited"
-msgstr ""
+msgstr "sınırsız"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:111
 msgid "Searching for all possible relationships can take a lot of time in complex trees."
-msgstr ""
+msgstr "Tüm olası ilişkileri aramak, karmaşık ağaçlarda çok zaman alabilir."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:119
 #: ExtendedRelationshipModuleTrait.php:221
 msgid "Allow persistent toggle (user may show/hide relationships)"
-msgstr ""
+msgstr "Kalıcı geçişe izin ver (kullanıcı ilişkileri gösterebilir/gizleyebilir)"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
 #: ExtendedRelationshipModuleTrait.php:233
 msgid "How to determine relationships to the default individual"
-msgstr ""
+msgstr "Varsayılan kişiyle ilişkiler nasıl belirlenir"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:136
@@ -234,7 +262,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:238
 #: ExtendedRelationshipModuleTrait.php:263
 msgid "Do not show any relationship"
-msgstr ""
+msgstr "Herhangi bir ilişki gösterme"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:137
@@ -244,6 +272,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:264
 msgid "The following options refer to the same algorithms as used in the extended relationships chart:"
 msgstr ""
+"Aşağıdaki seçenekler, genişletilmiş ilişkiler grafiğinde kullanılan "
+"algoritmalarla aynıdır:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:150
@@ -251,246 +281,309 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:212
 #: ExtendedRelationshipModuleTrait.php:252
 msgid "Show common ancestors"
-msgstr ""
+msgstr "Ortak ataları göster"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:156
 msgid "How to determine relationships between parents"
-msgstr ""
+msgstr "Ebeveynler arasındaki ilişkiler nasıl belirlenir"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:168
 #: ExtendedRelationshipModuleTrait.php:199
 msgid "Searching for regular overall connections would be pointless here because there is always a trivial HUSB - WIFE connection."
 msgstr ""
+"Düzenli genel bağlantılar aramak burada anlamsız olacaktır, çünkü her zaman "
+"önemsiz bir HUSB - WİFE bağlantısı vardır."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:169
 #: ExtendedRelationshipModuleTrait.php:200
 msgid "Therefore, if one of the following options is selected, overall connections are determined via dated links, i.e. links that have been established before the date of the respective event."
 msgstr ""
+"Bu nedenle, aşağıdaki seçeneklerden biri seçilirse, genel bağlantılar, "
+"tarihli bağlantılar, yani ilgili olayın tarihinden önce kurulan bağlantılar "
+"aracılığıyla belirlenir."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:170
 #: ExtendedRelationshipModuleTrait.php:201
 msgid "This allows you to present meaningful connections, such as 'widowed husband marries the sister of his dead wife'."
 msgstr ""
+"Bu, 'dul koca, ölen karısının kız kardeşiyle evlenir' gibi anlamlı "
+"bağlantılar sunmanızı sağlar."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:171
 #: ExtendedRelationshipModuleTrait.php:202
 msgid "These relationships may only be calculated efficiently by preprocessing the tree data, via the synchronization link at the top of this page."
 msgstr ""
+"Bu ilişkiler, yalnızca bu sayfanın üst kısmındaki senkronizasyon bağlantısı "
+"aracılığıyla ağaç verilerinin ön işlenmesiyle verimli bir şekilde "
+"hesaplanabilir."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:187
 msgid "How to determine relationships to spouses"
-msgstr ""
+msgstr "Eşlerle ilişkiler nasıl belirlenir"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:258
 msgid "How to determine relationships to associated persons"
-msgstr ""
+msgstr "İlişkili kişilerle ilişkiler nasıl belirlenir"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:274
 msgid "The following options use dated links, i.e. links that have been established before the date of the respective event."
 msgstr ""
+"Aşağıdaki seçenekler, tarihli bağlantıları, yani ilgili olay tarihinden önce "
+"kurulmuş bağlantıları kullanır."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:275
 msgid "This seems more useful in most cases (e.g. to determine the relationship to a godparent at the time of the baptism)."
 msgstr ""
+"Bu, çoğu durumda daha yararlı görünmektedir (örneğin, vaftiz sırasında bir "
+"vaftiz babasıyla ilişkiyi belirlemek için)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:288
 msgid "Only show relationships for specific facts and events"
-msgstr ""
+msgstr "Sadece belirli gerçekler ve olaylar için ilişkileri göster"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:289
 msgid "Associated facts and events are displayed when the respective toggle checkbox is selected on the tab."
 msgstr ""
+"İlişkili gerçekler ve olaylar, sekmede ilgili geçiş onay kutusu seçildiğinde "
+"görüntülenir."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:290
 msgid "If this option is checked, relationships to the associated individuals are only shown for the following facts and events."
 msgstr ""
+"Bu seçenek işaretlenirse, ilişkili bireylerle ilişkiler yalnızca aşağıdaki "
+"gerçekler ve olaylar için gösterilir."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:291
 msgid "In particular if both lists are empty, relationships will never be shown for these facts and events."
 msgstr ""
+"Özellikle, her iki liste de boşsa, bu gerçekler ve olaylar için ilişkiler "
+"asla gösterilmez."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:292
 msgid "Note that the facts and events to be displayed at all may be filtered via the preferences of the tab."
 msgstr ""
+"Görüntülenecek gerçeklerin ve olayların sekmenin tercihleri aracılığıyla "
+"filtrelenebileceğini unutmayın."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:310
 msgid "Chart Settings"
-msgstr ""
+msgstr "Grafik Ayarları"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:311
 #, php-format
 msgid "If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name)."
 msgstr ""
+"Grafik işlevini kullanmak istemiyorsanız, bu grafiği Kontrol Paneli > "
+"Grafikler > %1$s Vesta Genişletilmiş İlişkiler yoluyla gizleyin (grafiğin "
+"modül adı altında listelendiğini unutmayın)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:315
 msgid "Families Tab Settings"
-msgstr ""
+msgstr "Aileler Sekmesi Ayarları"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:316
 msgid "If you do not want to change the functionality with respect to the original Families tab, select 'Do not show any relationship' everywhere."
 msgstr ""
+"Orijinal Aileler sekmesine göre işlevselliği değiştirmek istemiyorsanız, her "
+"yerde 'Herhangi bir ilişki gösterme' seçeneğini seçin."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:317
 msgid "In that case, you should also disallow persistent toggle, as it has no visible effect."
 msgstr ""
+"Bu durumda, görünür bir etkisi olmadığı için kalıcı geçişlere de izin "
+"vermemelisiniz."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:318
 #: ExtendedRelationshipModuleTrait.php:325
 msgid "You may also adjust the access level of this part of the module."
-msgstr ""
+msgstr "Ayrıca modülün bu bölümünün erişim seviyesini de ayarlayabilirsiniz."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:323
 msgid "If you do not want to change the functionality with respect to the original Facts and Events tab, select 'Do not show any relationship' in the first block."
 msgstr ""
+"Orijinal Gerçekler ve Olaylar sekmesine göre işlevselliği değiştirmek "
+"istemiyorsanız, ilk blokta 'Herhangi bir ilişki gösterme' seçeneğini seçin."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:324
 msgid "If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect."
 msgstr ""
+"Bu seçeneği her yerde seçerseniz, görünür bir etkisi olmadığı için kalıcı "
+"geçişlere de izin vermemelisiniz."
 
 #: ExtendedRelationshipsChartController.php:55
 #, php-format
 msgid "Uncorrected CoR (Coefficient of Relationship): %s"
-msgstr ""
+msgstr "Düzeltilmemiş CoR (İlişki Katsayısı): %s"
 
 #: ExtendedRelationshipsChartController.php:57
 #, php-format
 msgid "(Number of relationships: %s)"
-msgstr ""
+msgstr "(İlişki sayısı: %s)"
 
 #: ExtendedRelationshipsChartController.php:61
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
 msgstr ""
+"(bu genel olarak ortak atalar aracılığıyla en yakın ilişkiden önemli ölçüde "
+"çok daha yakın değildir)"
 
 #: ExtendedRelationshipsChartController.php:65
 #, php-format
 msgid "(that's overall as close as: %1$s)"
-msgstr ""
+msgstr "(genel olarak şu kadar yakın: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:67
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
-msgstr ""
+msgstr "((bu, neredeyse şu kadar yakın: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:69
 #, php-format
 msgid "(that's overall closer than: %1$s)"
-msgstr ""
+msgstr "(bu genel olarak şundan daha yakın: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:94
 #, php-format
 msgid "Relationship: %s"
-msgstr ""
+msgstr "İlişki: %s"
 
 #: ExtendedRelationshipsChartController.php:188
 msgid "parents"
-msgstr ""
+msgstr "ebeveynler"
 
 #. I18N::translate('No link between the two individuals could be found.'), '</p>';
 #: ExtendedRelationshipsChartController.php:243
 msgid "No link between the two individuals could be found."
-msgstr ""
+msgstr "İki kişi arasında hiçbir bağlantı bulunamadı."
 
 #: ExtendedRelationshipsChartController.php:253
 msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
 msgstr ""
+"Bu beklenmedik bir durumsa ve son zamanlarda değişiklikler varsa, şu "
+"bağlantıyı izlemeniz gerekebilir: "
 
 #. I18N: (person 1) is (relative, e.g. father) of (person2)
 #: FunctionsPrintRels.php:100
 #, php-format
 msgid "%1$s is %2$s of %3$s."
-msgstr ""
+msgstr "%1$s, %3$s'den %2$s'dir."
 
 #: FunctionsPrintRels.php:121
 msgid "Common ancestor: "
-msgstr ""
+msgstr "Ortak ata: "
 
 #: FunctionsPrintRels.php:148
 msgid "Common ancestors: "
-msgstr ""
+msgstr "Ortak atalar: "
 
 #: HelpTexts.php:15
 msgid "Uncorrected CoR (Coefficient of Relationship)"
-msgstr ""
+msgstr "Düzeltilmemiş CoR (İlişki Katsayısı)"
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
 msgstr ""
+"CoR (İlişki Katsayısı), iki kişinin genetik ilişkilerinin bir sonucu olarak "
+"sahip olduğu ortak gen sayısı ile orantılıdır. Hesaplaması, Sewall Wright'ın "
+"yol katsayıları yöntemine dayanmaktadır. Değeri, iki akraba birey tarafından "
+"tüm popülasyon tarafından ortak tutulanların ötesinde ortak tutulan genlerin "
+"oranını temsil eder. Daha fazla ayrıntı burada: "
 
 #: HelpTexts.php:20
 #, php-format
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
 msgstr ""
+"Temel olarak, iki birey arasındaki her bir yol (ortak atalar aracılığıyla), "
+"uzunluğuyla ters orantılı olarak CoR'ye katkıda bulunur: 2 uzunluğundaki her "
+"yol (örneğin, tam kardeşler arasında) %1$s ekler, 4 uzunluğundaki her yol ("
+"örneğin ilk kuzenler arasında) %2$s ekler, genel olarak n uzunluğundaki her "
+"yol (0.5)<sup>n</sup> ekler."
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
 msgstr ""
+"Normal koşullar altında, atadan nesile aktarılan genlerin oranı &ndash;, Σ(0."
+"5)<sup>n</sup> &ndash; tarafından tahmin edildiği gibi  ve ortak tuttukları "
+"genlerin oranı (ilişkinin gerçek katsayısı) aynıdır. Bununla birlikte, "
+"herhangi bir akrabalık varsa, burada açıklandığı gibi hafif bir tutarsızlık "
+"olabilir: "
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
 msgstr ""
+"Bu kesin CoR'i belirlemek daha karmaşıktır ve farklılıklar yine de "
+"genellikle küçüktür. Bu nedenle, yalnızca Düzeltilmemiş CoR hesaplanır."
 
 #: resources/views/page.phtml:56
 #, php-format
 msgid "Options referring to overall connections established before %1$s."
-msgstr ""
+msgstr "%1$s'den önce kurulan genel bağlantılara ilişkin seçenekler."
 
 #. I18N: A button label.
 #: resources/views/page.phtml:70
 msgid "view"
-msgstr ""
+msgstr "görünüm"
 
 #. I18N: Reverse the order of two individuals
 #: resources/views/page.phtml:75
 msgid "Swap individuals"
-msgstr ""
+msgstr "Bireyleri değiştirin"
 
 #. I18N: Module Configuration
 #: resources/views/sync-complete.phtml:5
 msgid "Finished - all link dates are up-to-date."
-msgstr ""
+msgstr "Bitti - tüm bağlantı tarihleri güncel."
 
 #: resources/views/sync.phtml:8
 msgid "Control panel"
-msgstr ""
+msgstr "Kontrol paneli"
 
 #: resources/views/sync.phtml:8
 msgid "Modules"
-msgstr ""
+msgstr "Modüller"
 
 #: resources/views/sync.phtml:13
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
 msgstr ""
+"Bu süreç tüm INDI - FAM bağlantıları için tarihleri hesaplar, böylece "
+"belirli bir zamandaki ilişkiler verimli bir şekilde hesaplanabilir."
 
 #: resources/views/sync.phtml:16
 msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
 msgstr ""
+"Büyük ağaçlar için bu işlem başlangıçta birkaç dakika sürebilir. Her zaman "
+"güvenle iptal edebilir ve daha sonra devam edebilirsiniz."
 
 #: resources/views/sync.phtml:19
 msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
 msgstr ""
+"Bir ağaç düzenlendiğinde işlem tekrarlanmalıdır (ancak çok daha hızlı sona "
+"erecektir), aksi takdirde tutarsız ilişki verileri elde edebilirsiniz ("
+"görüntülenen ilişkiler her zaman geçerlidir, ancak ağaçtaki değişiklikler "
+"burada senkronize edilmezse, belirli bir tarihte gerçekten kurulmamış "
+"olabilirler)."
 
 #: resources/views/sync.phtml:24
 msgid "Calculating…"
-msgstr ""
+msgstr "Hesaplanıyor…"
