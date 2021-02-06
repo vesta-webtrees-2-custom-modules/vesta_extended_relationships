@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2020-12-27 11:51+0100\n"
-"PO-Revision-Date: 2021-02-02 00:42+0000\n"
-"Last-Translator: Bernd Schwendinger <b0ernie@gmx.net>\n"
+"PO-Revision-Date: 2021-02-05 19:41+0000\n"
+"Last-Translator: mpwt <der@bauschaffen.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
 "Language: de\n"
@@ -102,7 +102,7 @@ msgstr "Gemeinsame Vorfahren: "
 
 #: resources/views/sync.phtml:8
 msgid "Control panel"
-msgstr "Bedienfeld"
+msgstr "Verwaltung"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:69
