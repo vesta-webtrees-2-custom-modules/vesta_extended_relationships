@@ -89,6 +89,8 @@ use function GuzzleHttp\json_encode;
                     }
                     if (($patriarch != null) && $patriarch->canShow()) {
                       ?><a href="<?= e($patriarch->url()) ?>"><?= $patriarch->fullName() ?></a><br /><?php
+                    } else {
+                      ?><br /><?php
                     }
                   }
                   ?>

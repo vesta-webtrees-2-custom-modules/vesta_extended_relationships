@@ -4,23 +4,26 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\Webtrees\Module\ExtendedRelationships\OptimizedDijkstra;
 use Cissee\Webtrees\Module\ExtendedRelationships\Sync;
+use Closure;
+use Exception;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Query\JoinClause;
+use ReflectionClass;
 
 class Descendant {
 
   private $xref; //xref
 
-  public function xref() {
+  public function xref(): string {
     return $this->xref;
   }
 
   public function __construct($xref) {
-    $this->xref = $xref;
+    $this->xref = (string)$xref;
   }
 
 }
@@ -30,11 +33,11 @@ class IdWithDescendant {
   private $id; //xref
   private $descendant; //Descendant
 
-  public function getId() {
+  public function getId(): string {
     return $this->id;
   }
 
-  public function getDescendant() {
+  public function getDescendant(): Descendant {
     return $this->descendant;
   }
 
@@ -43,7 +46,7 @@ class IdWithDescendant {
   }
 
   public function __construct($id, Descendant $descendant) {
-    $this->id = $id;
+    $this->id = (string)$id;
     $this->descendant = $descendant;
   }
 
@@ -62,7 +65,7 @@ class CommonAncestorAndPath {
   private $ca; //xref
   private $path; //string[]
 
-  public function getCommonAncestor() {
+  public function getCommonAncestor(): string {
     return $this->ca;
   }
 
@@ -75,10 +78,10 @@ class CommonAncestorAndPath {
   }
 
   public function __construct($ca, $path) {
-    $this->ca = $ca;
-    $this->path = $path;
+    $this->ca = (string)$ca;
+    $this->path = array_map(ExtendedRelationshipController::stringMapper(), $path);
   }
-
+    
   /**
    *
    * @return IdWithPathElement	 
@@ -139,7 +142,7 @@ class ExtendedRelationshipController {
     $this->oldStyleRelationshipPathProvider = new RelationshipsChartModule(app(TreeService::class));
 
     //grrr
-    $class = new \ReflectionClass($this->oldStyleRelationshipPathProvider);
+    $class = new ReflectionClass($this->oldStyleRelationshipPathProvider);
     $this->oldStyleRelationshipPathMethod = $class->getMethod('oldStyleRelationshipPath');
     $this->oldStyleRelationshipPathMethod->setAccessible(true);
   }
@@ -444,7 +447,7 @@ class ExtendedRelationshipController {
       //return $this->x_calculateCaAndPaths_123456($tree, $xref1, $xref2, 5, $recursion, $beforeJD);
     }
 
-    throw new \Exception("unexpected mode!");
+    throw new Exception("unexpected mode!");
   }
 
   public static function compareCommonAncestorAndPath(CommonAncestorAndPath $a, CommonAncestorAndPath $b) {
@@ -988,12 +991,29 @@ class ExtendedRelationshipController {
     // Extract the paths from the queue, removing duplicates.
     $paths = array();
     foreach ($queue as $next) {
-      $paths[implode('-', $next['path'])] = $next['path'];
+      // The Dijkstra library does not use strict types, and converts
+      // numeric array keys (XREFs) from strings to integers;
+      $path = array_map(ExtendedRelationshipController::stringMapper(), $next['path']);
+            
+      $paths[implode('-', $next['path'])] = $path;
     }
 
     return $paths;
   }
 
+  
+  /**
+   * Convert numeric values to strings
+   *
+   * @return Closure
+   */
+  public static function stringMapper(): Closure
+  {
+      return static function ($xref) {
+          return (string)$xref;
+      };
+  }
+  
   public static function adjustPaths($paths) {
     //clean up paths
     $finalPaths = array();
