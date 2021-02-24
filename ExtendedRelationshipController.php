@@ -65,7 +65,7 @@ class CommonAncestorAndPath {
   private $ca; //xref
   private $path; //string[]
 
-  public function getCommonAncestor(): string {
+  public function getCommonAncestor(): ?string {
     return $this->ca;
   }
 
@@ -78,7 +78,7 @@ class CommonAncestorAndPath {
   }
 
   public function __construct($ca, $path) {
-    $this->ca = (string)$ca;
+    $this->ca = ($ca === null)?null:(string)$ca;
     $this->path = array_map(ExtendedRelationshipController::stringMapper(), $path);
   }
     
