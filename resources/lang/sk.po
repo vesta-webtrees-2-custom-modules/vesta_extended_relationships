@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-01-24 13:35+0100\n"
-"PO-Revision-Date: 2021-01-09 11:32+0000\n"
-"Last-Translator: ro-la <lacoros@gmail.com>\n"
-"Language-Team: Slovak <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
+"PO-Revision-Date: 2021-03-07 12:08+0000\n"
+"Last-Translator: Richard Cissée <ric@richard-cissee.de>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.1-dev\n"
+"X-Generator: Weblate 4.5.1\n"
 
 #: ExtendedRelationshipModule.php:193
 msgid " (see below for details)."
@@ -130,7 +131,11 @@ msgstr "Nezobrazovať žiaden vzťah"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:74
 msgid "Each SLCA (smallest lowest common ancestor) essentially represents a part of the tree which both individuals share (as part of their ancestors). More technically, the SLCA set of two individuals is a subset of the LCA set (excluding all LCAs that are themselves ancestors of other LCAs)."
-msgstr "Každý NNSP (najmenší najnižší spoločný predok) representuje časť stromu, ktorý zdieľajú obe osoby ako podmnožinu svojich predkov. Vyjadrené technickejšie, množina NNSP dvoch osôb je podmnožina NSP (okrem okrem tých NSP, ktorí sú predkovia iných NSP)."
+msgstr ""
+"Každý NNSP (najmenší najnižší spoločný predok) representuje časť stromu, "
+"ktorý zdieľajú obe osoby ako podmnožinu svojich predkov. Vyjadrené "
+"technickejšie, množina NNSP dvoch osôb je podmnožina NSP (okrem tých NSP, "
+"ktorí sú predkovia iných NSP)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:315
