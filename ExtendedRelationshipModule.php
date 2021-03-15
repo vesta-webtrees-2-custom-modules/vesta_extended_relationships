@@ -9,6 +9,8 @@ use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipModuleTrait
 use Cissee\Webtrees\Module\ExtendedRelationships\HelpTexts;
 use Cissee\Webtrees\Module\ExtendedRelationships\Sync;
 use Cissee\WebtreesExt\Functions\FunctionsExt;
+use Cissee\WebtreesExt\Module\ModuleMetaInterface;
+use Cissee\WebtreesExt\Module\ModuleMetaTrait;
 use Cissee\WebtreesExt\Requests;
 use Fig\Http\Message\RequestMethodInterface;
 use Fisharebest\Localization\Translation;
@@ -55,6 +57,7 @@ use function view;
 // we extend RelationshipsChartModule so that links to this chart are used even in non-extended tabs etc.
 class ExtendedRelationshipModule extends RelationshipsChartModule implements 
   ModuleCustomInterface, 
+  ModuleMetaInterface, 
   ModuleConfigInterface, 
   ModuleChartInterface, 
   ModuleListInterface,
@@ -62,13 +65,13 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
   IndividualFactsTabExtenderInterface, 
   RelativesTabExtenderInterface {
 
-  use ModuleCustomTrait, ModuleConfigTrait, ModuleChartTrait, ModuleListTrait, VestaModuleTrait {
+  use ModuleCustomTrait, ModuleMetaTrait, ModuleConfigTrait, ModuleChartTrait, ModuleListTrait, VestaModuleTrait {
     VestaModuleTrait::customTranslations insteadof ModuleCustomTrait;
-    VestaModuleTrait::customModuleLatestVersion insteadof ModuleCustomTrait;
     VestaModuleTrait::getAssetAction insteadof ModuleCustomTrait;
     VestaModuleTrait::assetUrl insteadof ModuleCustomTrait;
-    
     VestaModuleTrait::getConfigLink insteadof ModuleConfigTrait;
+    ModuleMetaTrait::customModuleVersion insteadof ModuleCustomTrait;
+    ModuleMetaTrait::customModuleLatestVersion insteadof ModuleCustomTrait;
   }
   
   use EmptyIndividualFactsTabExtender;
@@ -107,12 +110,12 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     return 'Richard Cissée';
   }
 
-  public function customModuleVersion(): string {
-    return file_get_contents(__DIR__ . '/latest-version.txt');
-  }
-
-  public function customModuleLatestVersionUrl(): string {
-    return 'https://raw.githubusercontent.com/vesta-webtrees-2-custom-modules/vesta_extended_relationships/master/latest-version.txt';
+  public function customModuleMetaDatasJson(): string {
+    return file_get_contents(__DIR__ . '/metadata.json');
+  } 
+  
+  public function customModuleLatestMetaDatasJsonUrl(): string {
+    return 'https://raw.githubusercontent.com/vesta-webtrees-2-custom-modules/vesta_extended_relationships/master/metadata.json';
   }
 
   public function customModuleSupportUrl(): string {
