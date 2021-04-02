@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-01-24 13:35+0100\n"
-"PO-Revision-Date: 2021-03-17 14:18+0000\n"
+"PO-Revision-Date: 2021-04-02 18:26+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.5.2-dev\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 #: ExtendedRelationshipModule.php:193
 msgid " (see below for details)."
@@ -282,7 +282,10 @@ msgstr "Ak nechcete meniť funkcionalitu oproti pôvodnej záložke Rodiny, zvo�
 #: ExtendedRelationshipModuleTrait.php:311
 #, php-format
 msgid "If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name)."
-msgstr "Ak nechcete používať funkcionalitu diagramu, ukryte túto schému cez Riadiaci panel > Schémy > %1$s Vesta Rozšírené vzťahy (diagram je v zozname pod názvom modulu)."
+msgstr ""
+"Ak nechcete používať funkcionalitu schémy, ukryte túto schému cez Riadiaci "
+"panel > Schémy > %1$s Vesta Rozšírené vzťahy (schéma je v zozname pod názvom "
+"modulu)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:324
