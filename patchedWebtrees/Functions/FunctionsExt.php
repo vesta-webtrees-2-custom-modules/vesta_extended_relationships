@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Cissee\WebtreesExt\Functions;
 
+use Cissee\WebtreesExt\Modules\LanguageGermanExt;
 use Exception;
+use Fisharebest\Localization\Locale\LocaleDe;
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\Gedcom;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
@@ -624,7 +627,45 @@ class FunctionsExt
      *
      * @return string
      */
-    public static function getRelationshipNameFromPath($path, Individual $person1 = null, Individual $person2 = null): string    
+    public static function getRelationshipNameFromPath($path, Individual $person1 = null, Individual $person2 = null): string {
+          
+      //for now, always fall back to legacy impl for short paths
+      //(this addresses 'twin sister', 'ex-husband' etc.)
+      if (strlen($path) < 4) {
+        return Functions::getRelationshipNameFromPath($path, $person1, $person2);
+      }
+
+      if (I18N::locale() instanceof LocaleDe) {
+        $ext = new LanguageGermanExt();
+        return $ext->getRelationshipNameFromPath($path, $person1, $person2);
+      }
+      
+      return FunctionsExt::doGetRelationshipNameFromPath($path, $person1, $person2);
+      
+      /*
+      $start = hrtime(true);   
+      $orig = FunctionsExt::doGetRelationshipNameFromPath($path, $person1, $person2);
+      $end = hrtime(true);
+      $time1 = ($end - $start) / 1000000;
+      
+      error_log("--------");
+      
+      $start = hrtime(true);
+      $ext = new LanguageGermanExt();
+      $experimental = $ext->getRelationshipNameFromPath($path, $person1, $person2);
+      $end = hrtime(true);
+      $time2 = ($end - $start) / 1000000;
+            
+      error_log("experimental: " . $experimental);
+      error_log("orig time: " . $time1);
+      error_log("exp time: " . $time2);
+       
+      return $orig;
+
+      */      
+    }
+    
+    public static function doGetRelationshipNameFromPath($path, Individual $person1 = null, Individual $person2 = null): string    
     {
     
         if (!preg_match('/^(mot|fat|par|hus|wif|spo|son|dau|chi|bro|sis|sib)*$/', $path)) {
@@ -2368,18 +2409,18 @@ class FunctionsExt
                     }
 
                     if ($down < $up) {
-                        return self::cousinName2($cousin + 1, $sex2, self::getRelationshipNameFromPath('sib' . $descent));
+                        return self::cousinName2($cousin + 1, $sex2, self::doGetRelationshipNameFromPath('sib' . $descent));
                     }
 
                     if ($sex2 === 'M') {
-                        return self::cousinName2($cousin + 1, $sex2, self::getRelationshipNameFromPath('bro' . $descent));
+                        return self::cousinName2($cousin + 1, $sex2, self::doGetRelationshipNameFromPath('bro' . $descent));
                     }
 
                     if ($sex2 === 'F') {
-                        return self::cousinName2($cousin + 1, $sex2, self::getRelationshipNameFromPath('sis' . $descent));
+                        return self::cousinName2($cousin + 1, $sex2, self::doGetRelationshipNameFromPath('sis' . $descent));
                     }
 
-                    return self::cousinName2($cousin + 1, $sex2, self::getRelationshipNameFromPath('sib' . $descent));
+                    return self::cousinName2($cousin + 1, $sex2, self::doGetRelationshipNameFromPath('sib' . $descent));
                 //[RC] ADDED	
                 case 'de':
                   // Source: https://de.wikipedia.org/wiki/Verwandtschaftsbeziehung
@@ -2390,16 +2431,16 @@ class FunctionsExt
                   if ($down < $up) {
                     $relevantAscent = substr($ascent, $cousin * 3);
                     if ($sex2 === 'M') {
-                        return self::cousinName3($cousin + 1, $sex2, self::getRelationshipNameFromPath($relevantAscent . 'bro', null, null));
+                        return self::cousinName3($cousin + 1, $sex2, self::doGetRelationshipNameFromPath($relevantAscent . 'bro', null, null));
                     }    
                     if ($sex2 === 'F') {
-                        return self::cousinName3($cousin + 1, $sex2, self::getRelationshipNameFromPath($relevantAscent . 'sis', null, null));
+                        return self::cousinName3($cousin + 1, $sex2, self::doGetRelationshipNameFromPath($relevantAscent . 'sis', null, null));
                     }
-                    return self::cousinName3($cousin + 1, $sex2, self::getRelationshipNameFromPath($relevantAscent . 'sib', null, null));
+                    return self::cousinName3($cousin + 1, $sex2, self::doGetRelationshipNameFromPath($relevantAscent . 'sib', null, null));
                   } 
                     
                   $relevantDescent = substr($descent, $cousin * 3);
-                  return self::cousinName3($cousin + 1, $sex2, self::getRelationshipNameFromPath('sib' . $relevantDescent, null, null));
+                  return self::cousinName3($cousin + 1, $sex2, self::doGetRelationshipNameFromPath('sib' . $relevantDescent, null, null));
                   
                 case 'en_AU': // See: http://en.wikipedia.org/wiki/File:CousinTree.svg
                 case 'en_GB':
@@ -2462,21 +2503,21 @@ class FunctionsExt
                 //we have to construct the relationship name in a different way than usual.
                 //This is grammatically still somewhat dubious, 
                 //but proper construction of the genitive case would be even more complicated. 				
-                $sub = self::getRelationshipNameFromPath($path1, null, null);
+                $sub = self::doGetRelationshipNameFromPath($path1, null, null);
                 if (substr($sub, -1) === 's') {
                   $tmp = I18N::translate(
                                   // I18N: A complex relationship, such as “third-cousin’s great-uncle”. First part ends with “s”
                                   '%1$s’ %2$s',
-                                  self::getRelationshipNameFromPath($path1, null, null), // TODO: need the actual people
-                                  self::getRelationshipNameFromPath($path2, null, null)
+                                  self::doGetRelationshipNameFromPath($path1, null, null), // TODO: need the actual people
+                                  self::doGetRelationshipNameFromPath($path2, null, null)
                   );
                 } else {
                   // I18N: A complex relationship, such as “third-cousin’s great-uncle”
                   $tmp = I18N::translate(
                                   // I18N: A complex relationship, such as “third-cousin’s great-uncle”
                                   '%1$s’s %2$s',
-                                  self::getRelationshipNameFromPath($path1, null, null), // TODO: need the actual people
-                                  self::getRelationshipNameFromPath($path2, null, null)
+                                  self::doGetRelationshipNameFromPath($path1, null, null), // TODO: need the actual people
+                                  self::doGetRelationshipNameFromPath($path2, null, null)
                   );
                 }
                 break;
@@ -2485,8 +2526,8 @@ class FunctionsExt
                 $tmp = I18N::translate(
                                 // I18N: A complex relationship, such as “third-cousin’s great-uncle”
                                 '%1$s’s %2$s',
-                                self::getRelationshipNameFromPath($path1, null, null), // TODO: need the actual people
-                                self::getRelationshipNameFromPath($path2, null, null)
+                                self::doGetRelationshipNameFromPath($path1, null, null), // TODO: need the actual people
+                                self::doGetRelationshipNameFromPath($path2, null, null)
                 );
             }
             if (!$relationship || strlen($tmp) < strlen($relationship)) {
