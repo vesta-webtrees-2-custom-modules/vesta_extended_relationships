@@ -8,46 +8,49 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-01-24 13:35+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-04-05 22:14+0000\n"
+"Last-Translator: Hasse Häljeskog <hasse.haljeskog@gmail.com>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 #: ExtendedRelationshipModule.php:186 ExtendedRelationshipModule.php:803
 #: ExtendedRelationshipModule.php:809
 msgid "Synchronization"
-msgstr ""
+msgstr "Synkronisering"
 
 #: ExtendedRelationshipModule.php:191
 #: ExtendedRelationshipsChartController.php:257
 msgid "Synchronize trees to obtain dated relationship links"
-msgstr ""
+msgstr "Synkronisera träd för att få daterade relationslänkar"
 
 #: ExtendedRelationshipModule.php:193
 msgid " (see below for details)."
-msgstr ""
+msgstr " (se nedan för detaljer)."
 
 #: ExtendedRelationshipModule.php:227
 msgid "No relationship found"
-msgstr ""
+msgstr "Ingen relation hittad"
 
 #: ExtendedRelationshipModule.php:244 ExtendedRelationshipModule.php:578
 #: ExtendedRelationshipModule.php:718
 msgid "Relationships"
-msgstr ""
+msgstr "Relationer"
 
 #: ExtendedRelationshipModule.php:570
 msgid "Relationship to me"
-msgstr ""
+msgstr "Relation till mig"
 
 #. I18N: %s are individual’s names
 #: ExtendedRelationshipModule.php:703
 #, php-format
 msgid "Relationships between %1$s and %2$s"
-msgstr ""
+msgstr "Relationer mellan %1$s och %2$s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:931 ExtendedRelationshipModuleTrait.php:68
@@ -57,7 +60,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:241
 #: ExtendedRelationshipModuleTrait.php:266
 msgid "Find a closest relationship via common ancestors"
-msgstr ""
+msgstr "Hitta närmaste relation via gemensamma anor"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:935 ExtendedRelationshipModuleTrait.php:73
@@ -68,6 +71,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:267
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr ""
+"Hitta alla minsta och lägsta gemensamma anor, visa närmaste koppling för "
+"varje"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:939 ExtendedRelationshipModuleTrait.php:78
@@ -77,7 +82,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:243
 #: ExtendedRelationshipModuleTrait.php:268
 msgid "Find all relationships via lowest common ancestors"
-msgstr ""
+msgstr "Hitta alla relationer via lägsta gemensamma anor"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:945 ExtendedRelationshipModuleTrait.php:84
@@ -89,6 +94,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:277
 msgid "Find the closest overall connections (preferably via common ancestors)"
 msgstr ""
+"Hitta den närmaste övergripande kopplingen (i första hand via gemensamma "
+"anor)"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:949 ExtendedRelationshipModuleTrait.php:89
@@ -100,6 +107,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:278
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
 msgstr ""
+"Hitta en närmaste relation via gemensamma anor, eller använd den närmaste "
+"överordnade kopplingen om det inte går att hitta"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:953 ExtendedRelationshipModuleTrait.php:94
@@ -110,24 +119,27 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:271
 #: ExtendedRelationshipModuleTrait.php:279
 msgid "Find the closest overall connections"
-msgstr ""
+msgstr "Hitta den närmaste överordnade kopplingen"
 
 #: ExtendedRelationshipModule.php:959
 msgid "Find all overall connections"
-msgstr ""
+msgstr "Hitta alla överordnade kopplingar"
 
 #: ExtendedRelationshipModule.php:961
 msgid "Find other overall connections"
-msgstr ""
+msgstr "Hitta andra överordnade kopplingar"
 
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
 #: ExtendedRelationshipModule.php:971
 msgid "Individuals with Patriarchs"
-msgstr ""
+msgstr "Individer med patriarker"
 
 #: ExtendedRelationshipModuleTrait.php:22
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
 msgstr ""
+"En modul som tillhandahåller olika algoritmer som används för att bestämma "
+"relationer eller släktskap. Inkluderar en graf som visar relationer mellan "
+"två individer, som en ersättning för original 'Relationer' modulen."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:28
