@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Cissee\WebtreesExt\Functions;
 
 use Cissee\WebtreesExt\Modules\LanguageGermanExt;
+use Cissee\WebtreesExt\Modules\LanguageSlovakExt;
 use Exception;
 use Fisharebest\Localization\Locale\LocaleDe;
+use Fisharebest\Localization\Locale\LocaleSk;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\Gedcom;
@@ -637,6 +639,11 @@ class FunctionsExt
 
       if (I18N::locale() instanceof LocaleDe) {
         $ext = new LanguageGermanExt();
+        return $ext->getRelationshipNameFromPath($path, $person1, $person2);
+      }
+      
+      if (I18N::locale() instanceof LocaleSk) {
+        $ext = new LanguageSlovakExt();
         return $ext->getRelationshipNameFromPath($path, $person1, $person2);
       }
       
