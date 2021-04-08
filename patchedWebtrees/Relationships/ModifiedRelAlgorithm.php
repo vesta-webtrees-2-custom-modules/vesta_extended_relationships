@@ -5,11 +5,18 @@ declare(strict_types=1);
 namespace Cissee\WebtreesExt\Relationships;
 
 //shortest length, as in original impl (Functions.php)
+//(if $minimizeSplits is set, that is the first criteria)
 //but
 //only split within common-ancestor-based subpaths if there is no alternative at all
 //(in other words, prefer "partner's cousin_even_if_this_is_a_long_term" over "father-in-law's niece")
 class ModifiedRelAlgorithm extends DefaultRelAlgorithm implements RelAlgorithm {
-           
+  
+  public function __construct(
+          bool $minimizeSplits = false) {
+    
+    parent::__construct($minimizeSplits);
+  }
+  
   public function getFullyMatchedPath(
           RelDefs $defs,
           RelPathJoiner $joiner,

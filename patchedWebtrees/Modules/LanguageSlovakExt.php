@@ -20,8 +20,7 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
           Individual $person1 = null, 
           Individual $person2 = null): string {
     
-    $algorithm = new ModifiedRelAlgorithm(); //modified splitting!
-    //$algorithm = new DefaultRelAlgorithm();
+    $algorithm = new ModifiedRelAlgorithm(true); //modified splitting AND minimize number of splits
     $joiner = new DefaultRelPathJoiner();
     
     return $algorithm->getRelationshipNameFromPath(
@@ -114,6 +113,7 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
 	  $defs []= RelPath::any()->mother()->brother()->is('ujo', 'uja');
 	  $defs []= RelPath::any()->mother()->brother()->wife()->is('ujčiná', 'ujčinej');
     $defs []= RelPath::any()->parent()->brother()->is('strýko', 'strýka');
+    
     $defs []= RelPath::any()->parent(Times::fixed(2))->brother()->is('prastrýko', 'prastrýka');
     $defs []= RelPath::any()->parent(Times::fixed(3))->brother()->is('pra-prastrýko', 'pra-prastrýka');
     $defs []= RelPath::any()->parent(Times::min(4, -2))->brother()->is('%s×prastrýko', '%s×prastrýka');
@@ -121,7 +121,7 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->parent(Times::fixed(2))->sister()->is('prateta', 'pratety');
     $defs []= RelPath::any()->parent(Times::fixed(3))->sister()->is('pra-prateta', 'pra-pratety');
     $defs []= RelPath::any()->parent(Times::min(4, -2))->sister()->is('%s×prateta', '%s×pratety');
-        
+    
     ////////
 
     $defs []= RelPath::any()->sibling()->son()->is('synovec', 'synovca');
@@ -135,11 +135,20 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
 
     $defs []= RelPath::any()->parent()->sibling()->son()->is('bratranec', 'bratranca');
     
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(3))->sibling()->child(Times::fixed(3))->son()->is('bratranec zo 4. kolena', 'bratranca zo 4. kolena');
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(5))->sibling()->child(Times::fixed(5))->son()->is('bratranec zo 6. kolena', 'bratranca zo 6. kolena');
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(6))->sibling()->child(Times::fixed(6))->son()->is('bratranec zo 7. kolena', 'bratranca zo 7. kolena');
+
     //IMPL NOTE: used as back-reference (i.e. count must match in '->child($ref)')
     $ref = Times::min(1, 1); 
     $defs []= RelPath::any()->parent()->parent($ref)->sibling()->child($ref)->son()->is('bratranec z %s. kolena', 'bratranca z %s. kolena');
 
     $defs []= RelPath::any()->parent()->sibling()->daughter()->is('sesternica', 'sesternice');
+
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(3))->sibling()->child(Times::fixed(3))->daughter()->is('sesternica zo 4. kolena', 'sesternice zo 4. kolena');
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(5))->sibling()->child(Times::fixed(5))->daughter()->is('sesternica zo 6. kolena', 'sesternice zo 6. kolena');
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(6))->sibling()->child(Times::fixed(6))->daughter()->is('sesternica zo 7. kolena', 'sesternice zo 7. kolena');
+
     $defs []= RelPath::any()->parent()->parent($ref)->sibling()->child($ref)->daughter()->is('sesternica z %s. kolena', 'sesternice z %s. kolena');
   
     return new RelDefs(new Collection($defs));

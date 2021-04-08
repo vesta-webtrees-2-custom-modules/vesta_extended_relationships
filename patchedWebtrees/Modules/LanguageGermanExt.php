@@ -20,8 +20,7 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
           Individual $person1 = null, 
           Individual $person2 = null): string {
     
-    $algorithm = new ModifiedRelAlgorithm(); //modified splitting!
-    //$algorithm = new DefaultRelAlgorithm();
+    $algorithm = new ModifiedRelAlgorithm(); //modified splitting! ($minimizeSplits not expected to be relevant here)
     $joiner = new DefaultRelPathJoiner();
     
     return $algorithm->getRelationshipNameFromPath(

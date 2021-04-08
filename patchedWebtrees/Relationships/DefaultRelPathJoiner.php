@@ -15,7 +15,8 @@ class DefaultRelPathJoiner implements RelPathJoiner {
       return new FullyMatchedPath(
             //"Vater's Ehefrau"
             MoreI18N::xlate('%1$s’s %2$s', $a->nominative(), $b->nominative()), 
-            null);
+            null,
+            $a->numberOfSplits() + $b->numberOfSplits());
     }
     
     $bg = $b->genitive();
@@ -24,6 +25,7 @@ class DefaultRelPathJoiner implements RelPathJoiner {
     //$b "Ehefrau", "der Ehefrau"
     return new FullyMatchedPath(
             $b->nominative() . ' ' . $ag, //"Ehefrau des Vaters"
-            ($bg === null)?null:$bg . ' ' . $ag);  //"der Ehefrau des Vaters"
+            ($bg === null)?null:$bg . ' ' . $ag, //"der Ehefrau des Vaters"
+            $a->numberOfSplits() + $b->numberOfSplits());
   }
 }

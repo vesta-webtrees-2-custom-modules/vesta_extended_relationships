@@ -7,7 +7,16 @@ namespace Cissee\WebtreesExt\Relationships;
 use Fisharebest\Webtrees\Individual;
 
 //shortest length, as in original impl (Functions.php)
+//(if $minimizeSplits is set, that is the first criteria)
 class DefaultRelAlgorithm implements RelAlgorithm {
+  
+  protected $minimizeSplits;
+  
+  public function __construct(
+          bool $minimizeSplits = false) {
+    
+    $this->minimizeSplits = $minimizeSplits;
+  }
   
   public function getRelationshipNameFromPath(
           RelDefs $defs,
@@ -82,6 +91,22 @@ class DefaultRelAlgorithm implements RelAlgorithm {
     
     return $relationship;
   }
+  
+  protected function compare(FullyMatchedPath $a, FullyMatchedPath $b): int {
+    
+    $primary = 0;
+    if ($this->minimizeSplits) {
+      $primary = $a->numberOfSplits() <=> $b->numberOfSplits();
+    }
+    
+    if ($primary !== 0) {
+      return $primary;
+    }
+    
+    //this assumes the length of nominative and genitive doesn't differ widely
+    return strlen($a->nominative()) <=> strlen($b->nominative());
+  }
+          
           
   /**
    * 
@@ -119,8 +144,7 @@ class DefaultRelAlgorithm implements RelAlgorithm {
         if (($a !== null) && ($b !== null)) {
           $tmp = $joiner->join($a, $b);
 
-          //this assumes the length of nominative and genitive doesn't differ widely
-          if (($relationship === null) || strlen($tmp->nominative()) < strlen($relationship->nominative())) {
+          if (($relationship === null) || ($this->compare($tmp, $relationship) < 0)) {
             $relationship = $tmp;
           }        
         }        
