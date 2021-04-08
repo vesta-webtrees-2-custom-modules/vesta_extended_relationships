@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-04-02 18:26+0000\n"
+"POT-Creation-Date: 2021-01-24 13:35+0100\n"
+"PO-Revision-Date: 2021-04-08 21:26+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
 "Language: sk\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ExtendedRelationshipModule.php:197
 msgid " (see below for details)."
-msgstr " (pozri nižšie pre detaily)."
+msgstr " (detaily pozri nižšie)."
 
 #. I18N: (person 1) is (relative, e.g. father) of (person2)
 #: FunctionsPrintRels.php:119
@@ -36,21 +36,23 @@ msgstr "(Počet vzťahov: %s)"
 #: ExtendedRelationshipsChartController.php:75
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
-msgstr "(to je celkovo skoro tak blízky vzťah ako: %1$s)"
+msgstr "(celkovo je to skoro tak blízky vzťah ako: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:73
 #, php-format
 msgid "(that's overall as close as: %1$s)"
-msgstr "(to je celkovo tak blízky vzťah ako: %1$s)"
+msgstr "(celkovo je to tak blízky vzťah ako: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:77
 #, php-format
 msgid "(that's overall closer than: %1$s)"
-msgstr "(to je celkovo bližší vzťah ako: %1$s)"
+msgstr "(celkovo je to bližší vzťah ako: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:63
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
-msgstr "(to nie je celkovo významne bližšie ako najbližší vzťah cez spoločných predkov)"
+msgstr ""
+"(celkovo to nie je významne bližšie ako najbližší vzťah cez spoločných "
+"predkov)"
 
 #: ExtendedRelationshipModuleTrait.php:22
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -311,7 +313,9 @@ msgstr "Plánované ako náhrada za originálny modul „Vzťahy“."
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
-msgstr "Zistiť presný CoR je omnoho zložitejšie, okrem toho rozdiely sú poväčšinou malé. Preto sa vypočítava len nekorigovaný CoR."
+msgstr ""
+"Zistiť presný CoR je omnoho zložitejšie, okrem toho rozdiely sú väčšinou "
+"malé. Preto sa vypočítava len nekorigovaný CoR."
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
@@ -486,7 +490,7 @@ msgstr "Nekorigovaný CoR (koeficient vzťahov): %s"
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
-msgstr "Ďalšie  informácie (po anglicky) nájdete tu: "
+msgstr "Ďalšie informácie (po anglicky) nájdete tu: "
 
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
