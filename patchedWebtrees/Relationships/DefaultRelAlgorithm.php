@@ -10,7 +10,7 @@ use Cissee\WebtreesExt\Modules\RelationshipPathSplitPredicate;
 
 //shortest length, as in original impl (Functions.php)
 //(if $minimizeSplits is set, that is the first criteria)
-class DefaultRelAlgorithm implements RelAlgorithm2 {
+class DefaultRelAlgorithm implements RelAlgorithm {
   
   protected $minimizeSplits;
   
@@ -36,7 +36,7 @@ class DefaultRelAlgorithm implements RelAlgorithm2 {
           RelPathJoiner $joiner,
           RelationshipPath $path): ?FullyMatchedPath {
         
-    $matchedPath = $defs->getMatchedPath2($path);
+    $matchedPath = $defs->getMatchedPath($path);
     
     if ($matchedPath !== null) {
       return $matchedPath;

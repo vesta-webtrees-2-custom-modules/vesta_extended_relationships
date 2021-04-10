@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace Cissee\WebtreesExt\Relationships;
 
+use Cissee\WebtreesExt\Modules\RelationshipPath;
+
 class MatchedPartialPath {
   
-  protected $matchedPath; 
-  protected $remainingSex;
+  protected $matchedPathElements; 
   protected $remainingPath;  
   protected $refs;
   
-  public function matchedPath(): string {
-    return $this->matchedPath;
+  public function matchedPathElements(): int {
+    return $this->matchedPathElements;
   }
   
-  public function remainingSex(): string {
-    return $this->remainingSex;
-  }
-  
-  public function remainingPath(): string {
+  public function remainingPath(): RelationshipPath {
     return $this->remainingPath;
   }
   
@@ -28,13 +25,11 @@ class MatchedPartialPath {
   }
   
   public function __construct(
-          string $matchedPath,
-          string $remainingSex,
-          string $remainingPath,
+          int $matchedPathElements,
+          RelationshipPath $remainingPath,
           array $refs) {
     
-    $this->matchedPath = $matchedPath;
-    $this->remainingSex = $remainingSex;
+    $this->matchedPathElements = $matchedPathElements;
     $this->remainingPath = $remainingPath;
     $this->refs = $refs;
   }

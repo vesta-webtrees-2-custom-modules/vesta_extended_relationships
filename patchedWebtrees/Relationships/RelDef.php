@@ -66,9 +66,9 @@ class RelDef {
   /**
    * 
    * @param RelationshipPath $path
-   * @return Collection<MatchedPath2>
+   * @return Collection<MatchedPath>
    */
-  public function matchPath2(
+  public function matchPath(
           RelationshipPath $path): ?Collection {
     
     if ($this->minTimes > $path->size()) {
@@ -92,16 +92,16 @@ class RelDef {
     }
     
     $currentMatchedPaths = [];
-    $currentMatchedPaths []= new MatchedPartialPath2(0, $path, []);
+    $currentMatchedPaths []= new MatchedPartialPath(0, $path, []);
     
     foreach ($this->elements as $element) {
       /** @var RelPathElement $element */
       
       $nextMatchedPaths = [];
       foreach ($currentMatchedPaths as $currentMatchedPath) {
-        /** @var MatchedPartialPath2 $currentMatchedPath */
+        /** @var MatchedPartialPath $currentMatchedPath */
         
-        $next = $element->matchPath2(
+        $next = $element->matchPath(
                 $currentMatchedPath->matchedPathElements(),
                 $currentMatchedPath->remainingPath(), 
                 $currentMatchedPath->refs())->all();
@@ -120,78 +120,8 @@ class RelDef {
 
     $ret = [];
     foreach ($currentMatchedPaths as $currentMatchedPath) {
-      $ret []= new MatchedPath2(
-              $currentMatchedPath->matchedPathElements(), 
-              $currentMatchedPath->remainingPath(), 
-              $this->nominative($currentMatchedPath->refs()), 
-              $this->genitive($currentMatchedPath->refs()));
-    }
-    
-    return new Collection($ret);
-  }
-  
-  //////////////////////////////////////////////////////////////////////////////
-  
-  /**
-   * 
-   * @param string $sex
-   * @param string $path
-   * @return Collection<MatchedPath>
-   */
-  public function matchPath(
-          string $sex, 
-          string $path): ?Collection {
-    
-    //error_log("RelDef: ". print_r($this->elements, true));
-    //error_log("RelDef matchPath: ". $sex . '/' . $path);
-    
-    if (!preg_match('/^[MFU]$/', $sex)) {
-      return null;
-    }
-    
-    if (!preg_match('/^(mot|fat|par|hus|wif|spo|son|dau|chi|bro|sis|sib)+$/', $path)) {
-      return null;
-    }
-    
-    switch ($this->sex) {
-      case "M":
-      case "F":
-      case "U":
-        if ($sex !== $this->sex) {
-          return null;
-        }
-      default:
-        break;
-    }
-    
-    $currentMatchedPaths = [];
-    $currentMatchedPaths []= new MatchedPartialPath('', $sex, $path, []);
-    
-    foreach ($this->elements as $element) {
-      $nextMatchedPaths = [];
-      foreach ($currentMatchedPaths as $currentMatchedPath) {
-        $next = $element->matchPath(
-                $currentMatchedPath->matchedPath(),
-                $currentMatchedPath->remainingPath(), 
-                $currentMatchedPath->refs())->all();
-        
-        $nextMatchedPaths = array_merge(
-                $nextMatchedPaths,
-                $next);
-      }
-      $currentMatchedPaths = $nextMatchedPaths;
-      
-      if (empty($currentMatchedPaths)) {
-        //functionally not required but pointless to continue
-        return null;
-      } 
-    }
-
-    $ret = [];
-    foreach ($currentMatchedPaths as $currentMatchedPath) {
       $ret []= new MatchedPath(
-              $currentMatchedPath->matchedPath(), 
-              $currentMatchedPath->remainingSex(), 
+              $currentMatchedPath->matchedPathElements(), 
               $currentMatchedPath->remainingPath(), 
               $this->nominative($currentMatchedPath->refs()), 
               $this->genitive($currentMatchedPath->refs()));

@@ -13,7 +13,7 @@ use Cissee\WebtreesExt\Modules\RelationshipPathSplitPredicate;
 //but
 //only split within common-ancestor-based subpaths if there is no alternative at all
 //(in other words, prefer "partner's cousin_even_if_this_is_a_long_term" over "father-in-law's niece")
-class ModifiedRelAlgorithm2 extends DefaultRelAlgorithm2 implements RelAlgorithm2 {
+class ModifiedRelAlgorithm extends DefaultRelAlgorithm implements RelAlgorithm {
   
   public function __construct(
           bool $minimizeSplits = false) {
@@ -26,7 +26,7 @@ class ModifiedRelAlgorithm2 extends DefaultRelAlgorithm2 implements RelAlgorithm
           RelPathJoiner $joiner,
           RelationshipPath $path): ?FullyMatchedPath {
     
-    $matchedPath = $defs->getMatchedPath2($path);
+    $matchedPath = $defs->getMatchedPath($path);
     
     if ($matchedPath !== null) {
       return $matchedPath;

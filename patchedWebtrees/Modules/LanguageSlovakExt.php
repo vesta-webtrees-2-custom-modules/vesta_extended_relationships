@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Cissee\WebtreesExt\Modules;
 
 use Cissee\WebtreesExt\Relationships\DefaultRelPathJoiner;
-use Cissee\WebtreesExt\Relationships\ModifiedRelAlgorithm2;
+use Cissee\WebtreesExt\Relationships\ModifiedRelAlgorithm;
 use Cissee\WebtreesExt\Relationships\RelDefs;
 use Cissee\WebtreesExt\Relationships\RelPath;
 use Cissee\WebtreesExt\Relationships\Times;
@@ -17,7 +17,7 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
   public function getRelationshipName(
           RelationshipPath $path): string {
     
-    $algorithm = new ModifiedRelAlgorithm2(true); //modified splitting AND minimize number of splits
+    $algorithm = new ModifiedRelAlgorithm(true); //modified splitting AND minimize number of splits
     $joiner = new DefaultRelPathJoiner();
     
     return $algorithm->getRelationshipName(

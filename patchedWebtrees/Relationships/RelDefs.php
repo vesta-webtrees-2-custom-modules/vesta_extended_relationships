@@ -39,25 +39,25 @@ class RelDefs {
               });
   }
   
-  public function getMatchedPath2(
+  public function getMatchedPath(
           RelationshipPath $path): ?FullyMatchedPath {
     
     //optimize, this doesn't seem to have much of an effect though
     if ($path->size() === 1) {
-      return $this->doGetMatchedPath2($this->defsForPathSize1, $path);
+      return $this->doGetMatchedPath($this->defsForPathSize1, $path);
     }
     
     //optimize, this doesn't seem to have much of an effect though
     if ($path->size() === 2) {
-      return $this->doGetMatchedPath2($this->defsForPathSize2, $path);
+      return $this->doGetMatchedPath($this->defsForPathSize2, $path);
     }
     
-    return $this->doGetMatchedPath2($this->allDefs, $path);
+    return $this->doGetMatchedPath($this->allDefs, $path);
   }
   
   protected static $relationshipsCache = [];
   
-  protected function doGetMatchedPath2(
+  protected function doGetMatchedPath(
           Collection $defs,
           RelationshipPath $path): ?FullyMatchedPath {
     
@@ -69,10 +69,10 @@ class RelDefs {
     foreach ($defs as $def) {
           
       /** @var RelDef $def */
-      $matched = $def->matchPath2($path);
+      $matched = $def->matchPath($path);
       if ($matched !== null) {
         foreach ($matched as $match) {
-           /** @var MatchedPathialPath2 $match */
+           /** @var MatchedPathialPath $match */
            if ($match->remainingPath()->isEmpty()) {
             $ret = new FullyMatchedPath(
                     $match->nominative(),
@@ -87,55 +87,6 @@ class RelDefs {
                     $match->nominative(),
                     $match->genitive());
             }            
-          }         
-        }
-      }
-      
-      if ($ret !== null) {
-        //abort
-        return $ret;
-      }
-    }
-    
-    return $ret;
-  }
-  
-  //////////////////////////////////////////////////////////////////////////////
-    
-  /**
-   * 
-   * @param string $sex
-   * @param string $path
-   * @return ?FullyMatchedPath
-   */
-  public function getMatchedPath(
-          string $sex,
-          string $path): ?FullyMatchedPath {
-    
-    if (array_key_exists($sex.$path, self::$relationshipsCache)) {
-      return self::$relationshipsCache[$sex.$path];
-    }
-    
-    $ret = null;
-    foreach ($this->allDefs as $def) {
-      /** @var RelDef $def */
-      $matched = $def->matchPath($sex, $path);
-      if ($matched !== null) {
-        foreach ($matched as $match) {
-          if (empty($match->remainingPath())) {
-            $ret = new FullyMatchedPath(
-                    $match->nominative(),
-                    $match->genitive());
-            
-            self::$relationshipsCache[$sex.$path] = $ret;
-          } else {
-            //we can at least cache the non-full match
-            $key = $sex.$match->matchedPath();
-            if (!array_key_exists($key, self::$relationshipsCache)) {
-              self::$relationshipsCache[$key] = new FullyMatchedPath(
-                    $match->nominative(),
-                    $match->genitive());
-            }
           }         
         }
       }

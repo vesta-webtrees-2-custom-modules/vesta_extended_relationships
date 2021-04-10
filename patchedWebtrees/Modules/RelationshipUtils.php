@@ -14,13 +14,6 @@ class RelationshipUtils {
   public static function getRelationshipName(
           RelationshipPath $path): string {
 
-      //TODO REMOVE THIS      
-      //for now, always fall back to legacy impl for short paths
-      //(this addresses 'twin sister', 'ex-husband' etc.)
-      if ($path->size() < 3) {
-        return $path->getRelationshipNameLegacy();
-      }
-
       if (I18N::locale() instanceof LocaleDe) {
         $ext = new LanguageGermanExt();
         

@@ -630,63 +630,7 @@ class FunctionsExt
      * @return string
      */
     public static function getRelationshipNameFromPath($path, Individual $person1 = null, Individual $person2 = null): string {
-          
-      //for now, always fall back to legacy impl for short paths
-      //(this addresses 'twin sister', 'ex-husband' etc.)
-      if (strlen($path) < 4) {
-        return Functions::getRelationshipNameFromPath($path, $person1, $person2);
-      }
-
-      if (I18N::locale() instanceof LocaleDe) {
-        $ext = new LanguageGermanExt();
-        
-        $start = hrtime(true);
-        $ret = $ext->getRelationshipNameFromPath($path, $person1, $person2);
-        $end = hrtime(true);
-        $time1 = ($end - $start) / 1000000;
-        
-        error_log("--------");
-      
-        $start = hrtime(true);
-        $ext = new LanguageGermanExt();
-        FunctionsExt::doGetRelationshipNameFromPath($path, $person1, $person2);
-        $end = hrtime(true);
-        $time2 = ($end - $start) / 1000000;
-
-        error_log("orig time: " . $time2);
-        error_log("new time: " . $time1);
-        
-        return $ret;
-      }
-      
-      if (I18N::locale() instanceof LocaleSk) {
-        $ext = new LanguageSlovakExt();
-        return $ext->getRelationshipNameFromPath($path, $person1, $person2);
-      }
-      
       return FunctionsExt::doGetRelationshipNameFromPath($path, $person1, $person2);
-      
-      /*
-      $start = hrtime(true);   
-      $orig = FunctionsExt::doGetRelationshipNameFromPath($path, $person1, $person2);
-      $end = hrtime(true);
-      $time1 = ($end - $start) / 1000000;
-      
-      error_log("--------");
-      
-      $start = hrtime(true);
-      $ext = new LanguageGermanExt();
-      $experimental = $ext->getRelationshipNameFromPath($path, $person1, $person2);
-      $end = hrtime(true);
-      $time2 = ($end - $start) / 1000000;
-            
-      error_log("experimental: " . $experimental);
-      error_log("orig time: " . $time1);
-      error_log("exp time: " . $time2);
-       
-      return $orig;
-
-      */      
     }
     
     public static function doGetRelationshipNameFromPath($path, Individual $person1 = null, Individual $person2 = null): string    
