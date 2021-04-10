@@ -93,8 +93,20 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
         // Cannot see one of the families/individuals, due to privacy;
         continue;
       }
-      echo '<h3>', I18N::translate('Relationship: %s', FunctionsExt::getRelationshipNameFromPath(implode('', $relationships), $individual1, $individual2)), '</h3>';
-      echo '<h3>', I18N::translate('Relationship: %s', RelationshipUtils::getRelationshipName(RelationshipPath::create($tree, $path))), '</h3>';
+      
+      $rel = RelationshipUtils::getRelationshipName(RelationshipPath::create($tree, $path));
+      echo '<h3>', I18N::translate('Relationship: %s', $rel), '</h3>';
+
+      $debugWebtreesRel = $showCa = boolval($this->module->getPreference('CHART_SHOW_LEGACY', '1'));
+      if ($debugWebtreesRel) {
+        $webtreesRel = FunctionsExt::getRelationshipNameFromPath(implode('', $relationships), $individual1, $individual2);
+        if ($rel !== $webtreesRel) {
+          echo '<h4>', '(', I18N::translate('via legacy algorithm: %s', $webtreesRel), ')';
+          echo FunctionsPrintExtHelpLink::helpLink($this->module->name(), 'Legacy Algorithm');
+          echo '</h4>';
+        }        
+      }
+      
       $num_paths++;
 
       //[RC] added

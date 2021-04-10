@@ -28,6 +28,14 @@ class HelpTexts {
                 '</p>';
         break;
 
+      case 'Legacy Algorithm':
+        $title = I18N::translate('Legacy algorithm for Relationship path names');
+        $text = '<p>' .
+                I18N::translate('You can disable this via the module preferences, it\'s mainly intended for debugging.') . ' ' .
+                I18N::translate('And hopefully it shows how much better the new algorithm works ...') .
+                '</p>';
+        break;
+      
       default:
         $title = MoreI18N::xlate('Help');
         $text = MoreI18N::xlate('The help text has not been written for this item.');

@@ -28,6 +28,16 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
   
   public static function defs(): RelDefs {
     
+    //documentation:
+    
+    //only add customary terms here - do not use this to control how complex rels are generated.
+    //use RelAlgorithm for that!
+    
+    //order is relevant
+    
+    //see RelDefBuilder*Axis for available methods
+    //(split into 4 interfaces because not all combinations are required)
+    
     $defs = [];
     
     $defs []= RelPath::any()->father()->is('Vater', 'des Vaters');
@@ -37,6 +47,14 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->husband()->is('Ehemann', 'des Ehemannes');
     $defs []= RelPath::any()->wife()->is('Ehefrau', 'der Ehefrau');
     $defs []= RelPath::any()->spouse()->is('Ehepartner', 'des Ehepartners');
+
+    $defs []= RelPath::any()->exHusband()->is('Ex-Ehemann', 'des Ex-Ehemannes');
+    $defs []= RelPath::any()->exWife()->is('Ex-Ehefrau', 'der Ex-Ehefrau');
+    $defs []= RelPath::any()->exSpouse()->is('Ex-Ehepartner', 'des Ex-Ehepartners');
+
+    $defs []= RelPath::any()->malePartner()->is('Partner', 'des Partners');
+    $defs []= RelPath::any()->femalePartner()->is('Partnerin', 'der Partnerin');
+    $defs []= RelPath::any()->partner()->is('Partner/Partnerin', 'des Partner/der Partnerin');
     
     $defs []= RelPath::any()->son()->is('Sohn', 'des Sohnes');
     $defs []= RelPath::any()->daughter()->is('Tochter', 'der Tochter');

@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 
 class RelDef {
     
-  protected $sex;
+  protected $from;
   protected $elements;
   protected $nominative;
   protected $genitive;
@@ -31,17 +31,17 @@ class RelDef {
   
   /**
    * 
-   * @param string $sex
+   * @param RelPathFrom $from
    * @param Collection<RelPathElement> $elements
    * @param string $nominative
    */
   public function __construct(
-          string $sex,
+          RelPathFrom $from,
           Collection $elements,
           string $nominative,
           ?string $genitive) {
     
-    $this->sex = $sex;
+    $this->from = $from;
     $this->elements = $elements;
     $this->nominative = $nominative;
     $this->genitive = $genitive;
@@ -79,16 +79,8 @@ class RelDef {
       return null;
     }
     
-    //TODO expand this
-    switch ($this->sex) {
-      case "M":
-      case "F":
-      case "U":
-        if ($path->from->sex() !== $this->sex) {
-          return null;
-        }
-      default:
-        break;
+    if (!$this->from->matchFrom($path->sex(), $path->from())) {
+      return null;
     }
     
     $currentMatchedPaths = [];

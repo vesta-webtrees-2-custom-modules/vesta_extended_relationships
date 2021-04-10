@@ -38,8 +38,8 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->wife()->is('manželka', 'manželky');
     $defs []= RelPath::any()->spouse()->is('manžel/manželka', 'manžela/manželky');
 	
-	  //$defs []= RelPath::any()->partner(sex::'M')->is('partner', 'partnera');
-	  //$defs []= RelPath::any()->partner(sex::'F')->is('partnerka', 'partnerky');
+	  $defs []= RelPath::any()->malePartner()->is('partner', 'partnera');
+	  $defs []= RelPath::any()->femalePartner()->is('partnerka', 'partnerky');
     
     $defs []= RelPath::any()->son()->is('syn', 'syna');
     $defs []= RelPath::any()->daughter()->is('dcéra', 'dcéry');
@@ -76,7 +76,7 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
     ////////
     
     $defs []= RelPath::any()->parent()->father()->is('starý otec', 'starého otca');
-    $defs []= RelPath::any()->parent(Times::fixed(2))->father()->is('prastarý otec', 'prastarý otec');
+    $defs []= RelPath::any()->parent(Times::fixed(2))->father()->is('prastarý otec', 'prastarého otca');
     $defs []= RelPath::any()->parent(Times::min(2))->parent()->father()->is('%s×prastarý otec', '%s×prastarého otca');
     
     $defs []= RelPath::any()->parent()->mother()->is('stará matka', 'starej matky');
@@ -104,27 +104,27 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
     ////////
 	
     $defs []= RelPath::any()->father()->brother()->is('strýko', 'strýka');
-	  $defs []= RelPath::any()->father()->brother()->wife()->is('stryná', 'stranej');
+	  $defs []= RelPath::any()->father()->brother()->wife()->is('stryná', 'strynej');
 	  $defs []= RelPath::any()->mother()->brother()->is('ujo', 'uja');
 	  $defs []= RelPath::any()->mother()->brother()->wife()->is('ujčiná', 'ujčinej');
     $defs []= RelPath::any()->parent()->brother()->is('strýko', 'strýka');
     
     $defs []= RelPath::any()->parent(Times::fixed(2))->brother()->is('prastrýko', 'prastrýka');
-    $defs []= RelPath::any()->parent(Times::fixed(3))->brother()->is('pra-prastrýko', 'pra-prastrýka');
-    $defs []= RelPath::any()->parent(Times::min(4, -2))->brother()->is('%s×prastrýko', '%s×prastrýka');
+    // $defs []= RelPath::any()->parent(Times::fixed(3))->brother()->is('pra-prastrýko', 'pra-prastrýka');
+    // $defs []= RelPath::any()->parent(Times::min(4, -2))->brother()->is('%s× prastrýko', '%s× prastrýka');
     $defs []= RelPath::any()->parent()->sister()->is('teta', 'tety');
     $defs []= RelPath::any()->parent(Times::fixed(2))->sister()->is('prateta', 'pratety');
-    $defs []= RelPath::any()->parent(Times::fixed(3))->sister()->is('pra-prateta', 'pra-pratety');
-    $defs []= RelPath::any()->parent(Times::min(4, -2))->sister()->is('%s×prateta', '%s×pratety');
+    // $defs []= RelPath::any()->parent(Times::fixed(3))->sister()->is('pra-prateta', 'pra-pratety');
+    // $defs []= RelPath::any()->parent(Times::min(4, -2))->sister()->is('%s× prateta', '%s× pratety');
     
     ////////
 
     $defs []= RelPath::any()->sibling()->son()->is('synovec', 'synovca');
     $defs []= RelPath::any()->sibling()->child()->son()->is('prasynovec', 'prasynovca');
-    $defs []= RelPath::any()->sibling()->child(Times::min(2, -1))->son()->is('%s×prasynovec', '%s×prasynovca');
+    // $defs []= RelPath::any()->sibling()->child(Times::min(2, -1))->son()->is('%s× prasynovec', '%s× prasynovca');
     $defs []= RelPath::any()->sibling()->daughter()->is('neter', 'netere');
     $defs []= RelPath::any()->sibling()->child()->daughter()->is('praneter', 'pranetere');
-    $defs []= RelPath::any()->sibling()->child(Times::min(2, -1))->daughter()->is('%s×praneter', '%s×pranetere');
+    // $defs []= RelPath::any()->sibling()->child(Times::min(2, -1))->daughter()->is('%s× praneter', '%s× pranetere');
     
     ////////
 
@@ -133,6 +133,9 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->parent()->parent(Times::fixed(3))->sibling()->child(Times::fixed(3))->son()->is('bratranec zo 4. kolena', 'bratranca zo 4. kolena');
     $defs []= RelPath::any()->parent()->parent(Times::fixed(5))->sibling()->child(Times::fixed(5))->son()->is('bratranec zo 6. kolena', 'bratranca zo 6. kolena');
     $defs []= RelPath::any()->parent()->parent(Times::fixed(6))->sibling()->child(Times::fixed(6))->son()->is('bratranec zo 7. kolena', 'bratranca zo 7. kolena');
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(13))->sibling()->child(Times::fixed(3))->son()->is('bratranec zo 14. kolena', 'bratranca zo 14. kolena');
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(15))->sibling()->child(Times::fixed(5))->son()->is('bratranec zo 16. kolena', 'bratranca zo 16. kolena');
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(16))->sibling()->child(Times::fixed(6))->son()->is('bratranec zo 17. kolena', 'bratranca zo 17. kolena');
 
     //IMPL NOTE: used as back-reference (i.e. count must match in '->child($ref)')
     $ref = Times::min(1, 1); 
@@ -143,6 +146,9 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->parent()->parent(Times::fixed(3))->sibling()->child(Times::fixed(3))->daughter()->is('sesternica zo 4. kolena', 'sesternice zo 4. kolena');
     $defs []= RelPath::any()->parent()->parent(Times::fixed(5))->sibling()->child(Times::fixed(5))->daughter()->is('sesternica zo 6. kolena', 'sesternice zo 6. kolena');
     $defs []= RelPath::any()->parent()->parent(Times::fixed(6))->sibling()->child(Times::fixed(6))->daughter()->is('sesternica zo 7. kolena', 'sesternice zo 7. kolena');
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(13))->sibling()->child(Times::fixed(3))->daughter()->is('sesternica zo 14. kolena', 'sesternice zo 14. kolena');
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(15))->sibling()->child(Times::fixed(5))->daughter()->is('sesternica zo 16. kolena', 'sesternice zo 16. kolena');
+    $defs []= RelPath::any()->parent()->parent(Times::fixed(16))->sibling()->child(Times::fixed(6))->daughter()->is('sesternica zo 17. kolena', 'sesternice zo 17. kolena');
 
     $defs []= RelPath::any()->parent()->parent($ref)->sibling()->child($ref)->daughter()->is('sesternica z %s. kolena', 'sesternice z %s. kolena');
   

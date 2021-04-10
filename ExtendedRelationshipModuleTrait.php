@@ -62,6 +62,15 @@ trait ExtendedRelationshipModuleTrait {
                 null,
                 'CHART_SHOW_CAS',
                 '1')));
+    
+    $chartSub[] = new ControlPanelSubsection(
+            /* I18N: Module Configuration */I18N::translate('Debugging'),
+            array(new ControlPanelCheckbox(
+                /* I18N: Module Configuration */I18N::translate('Show legacy relationship path names'),
+                null,
+                'CHART_SHOW_LEGACY',
+                '1')));
+    
     $chartSub[] = new ControlPanelSubsection(
             /* I18N: Module Configuration */I18N::translate('Options to show in the chart'),
             array(new ControlPanelCheckbox(

@@ -22,6 +22,7 @@ class RelationshipUtils {
         $end = hrtime(true);
         $time1 = ($end - $start) / 1000000;
         
+        /*
         error_log("--------");
       
         $start = hrtime(true);
@@ -31,6 +32,7 @@ class RelationshipUtils {
 
         error_log("orig time: " . $time2);
         error_log("new time: " . $time1);
+        */
         
         return $ret;
       }
