@@ -5,6 +5,8 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\WebtreesExt\Functions\FunctionsExt;
 use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
+use Cissee\WebtreesExt\Modules\RelationshipPath;
+use Cissee\WebtreesExt\Modules\RelationshipUtils;
 use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Http\Controllers\AbstractBaseController;
@@ -92,6 +94,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
         continue;
       }
       echo '<h3>', I18N::translate('Relationship: %s', FunctionsExt::getRelationshipNameFromPath(implode('', $relationships), $individual1, $individual2)), '</h3>';
+      echo '<h3>', I18N::translate('Relationship: %s', RelationshipUtils::getRelationshipName(RelationshipPath::create($tree, $path))), '</h3>';
       $num_paths++;
 
       //[RC] added

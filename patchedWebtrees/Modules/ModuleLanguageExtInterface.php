@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Cissee\WebtreesExt\Modules;
 
-use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\ModuleInterface;
 
 /**
@@ -12,10 +11,6 @@ use Fisharebest\Webtrees\Module\ModuleInterface;
  */
 interface ModuleLanguageExtInterface extends ModuleInterface
 {
-
-    //replacement for Functions.getRelationshipNameFromPath
-    public function getRelationshipNameFromPath(
-          string $path, 
-          Individual $person1 = null, 
-          Individual $person2 = null): string;
+    public function getRelationshipName(
+          RelationshipPath $path): string;
 }

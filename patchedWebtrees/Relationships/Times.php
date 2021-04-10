@@ -10,6 +10,18 @@ class Times {
   protected $minCount;
   protected $offset;
   
+  public function minTimes(): int {
+    return ($this->fixedCount !== -1)?$this->fixedCount:$this->minCount;
+  }
+  
+  /**
+   * 
+   * @return int -1 indicates unlimited
+   */
+  public function maxTimes(): int {
+    return $this->fixedCount;
+  }
+  
   public function fixedCount(): int {
     return $this->fixedCount;
   }

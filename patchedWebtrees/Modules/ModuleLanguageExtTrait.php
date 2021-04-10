@@ -1,11 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Fisharebest\Webtrees\Module;
-
+use Cissee\WebtreesExt\Modules\RelationshipPath;
 use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\Individual;
+
+declare(strict_types=1);
+
+namespace Cissee\WebtreesExt\Modules;
 
 /**
  * Trait ModuleLanguageExtTrait - default implementation of ModuleLanguageExtInterface.
@@ -13,11 +14,9 @@ use Fisharebest\Webtrees\Individual;
 trait ModuleLanguageExtTrait
 {
   
-  public function getRelationshipNameFromPath(
-          string $path, 
-          Individual $person1 = null, 
-          Individual $person2 = null): string {
+  public function getRelationshipName(
+          RelationshipPath $path): string {
     
-    return Functions::getRelationshipNameFromPath($path, $person1, $person2);
+    return $path->getRelationshipNameLegacy();
   }
 }

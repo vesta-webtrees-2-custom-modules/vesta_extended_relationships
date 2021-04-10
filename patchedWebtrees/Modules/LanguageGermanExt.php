@@ -5,30 +5,25 @@ declare(strict_types=1);
 namespace Cissee\WebtreesExt\Modules;
 
 use Cissee\WebtreesExt\Relationships\DefaultRelPathJoiner;
-use Cissee\WebtreesExt\Relationships\ModifiedRelAlgorithm;
+use Cissee\WebtreesExt\Relationships\ModifiedRelAlgorithm2;
 use Cissee\WebtreesExt\Relationships\RelDefs;
 use Cissee\WebtreesExt\Relationships\RelPath;
 use Cissee\WebtreesExt\Relationships\Times;
-use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Illuminate\Support\Collection;
 
 class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInterface {
   
-  public function getRelationshipNameFromPath(
-          string $path, 
-          Individual $person1 = null, 
-          Individual $person2 = null): string {
+  public function getRelationshipName(
+          RelationshipPath $path): string {
     
-    $algorithm = new ModifiedRelAlgorithm(); //modified splitting! ($minimizeSplits not expected to be relevant here)
+    $algorithm = new ModifiedRelAlgorithm2(); //modified splitting! ($minimizeSplits not expected to be relevant here)
     $joiner = new DefaultRelPathJoiner();
     
-    return $algorithm->getRelationshipNameFromPath(
+    return $algorithm->getRelationshipName(
             self::defs(),
             $joiner,
-            $path,
-            $person1,
-            $person2);
+            $path);
   }
   
   public static function defs(): RelDefs {
