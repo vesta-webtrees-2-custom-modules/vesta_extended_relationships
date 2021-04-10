@@ -81,8 +81,8 @@ class RelationshipPathElement {
    */
   public function __construct(
           string $rel,
-          ?Family $family,
-          ?Individual $to) {
+          ?Family $family = null,
+          ?Individual $to = null) {
     
     if (!preg_match('/^(mot|fat|par|hus|wif|spo|son|dau|chi|bro|sis|sib)$/', $rel)) {
       throw new Exception();

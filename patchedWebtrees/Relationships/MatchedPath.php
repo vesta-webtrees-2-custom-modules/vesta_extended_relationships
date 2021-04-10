@@ -25,7 +25,7 @@ class MatchedPath {
     return $this->nominative;
   }
   
-  public function genitive(): string {
+  public function genitive(): ?string {
     return $this->genitive;
   }
   public function __construct(

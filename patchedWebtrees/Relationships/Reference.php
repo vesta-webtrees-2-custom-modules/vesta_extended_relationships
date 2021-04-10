@@ -8,6 +8,7 @@ class Reference {
   
   protected $ref;
   protected $value;
+  protected $resolver;
   
   public function ref(): Times {
     return $this->ref;
@@ -15,6 +16,17 @@ class Reference {
   
   public function value(): int {
     return $this->value;
+  }
+  
+  public function resolve(): string {
+    $finalValue = ($this->value + $this->ref->offset());
+    
+    $resolver = $this->ref->resolver();
+    if ($resolver === null) {
+      return '' . $finalValue;
+    }
+    
+    return $resolver->resolve($finalValue);
   }
   
   public function __construct(

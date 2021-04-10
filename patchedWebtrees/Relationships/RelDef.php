@@ -125,19 +125,21 @@ class RelDef {
   protected function nominative(array $refs): string {
     $args = [];
     foreach ($refs as $ref) {      
-      $args []= "" . ($ref->value() + $ref->ref()->offset());
+      $args []= $ref->resolve();
     }
     return empty($args)?$this->nominative:sprintf($this->nominative, ...$args);
   }
   
   protected function genitive(array $refs): ?string {
     
+    if ($this->genitive === null) {
+      return null;
+    }
+    
     $args = [];
     foreach ($refs as $ref) {
-      $args []= "" . ($ref->value() + $ref->ref()->offset());
+      $args []= $ref->resolve();
     }
-    return ($this->genitive == null)?
-      null:
-      empty($args)?$this->genitive:sprintf($this->genitive, ...$args);
+    return empty($args)?$this->genitive:sprintf($this->genitive, ...$args);
   }
 }

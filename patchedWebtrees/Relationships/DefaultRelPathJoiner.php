@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Cissee\WebtreesExt\Relationships;
 
+use Cissee\WebtreesExt\MoreI18N;
+
 class DefaultRelPathJoiner implements RelPathJoiner {
   
   public function join(FullyMatchedPath $a, FullyMatchedPath $b): FullyMatchedPath {
@@ -18,7 +20,6 @@ class DefaultRelPathJoiner implements RelPathJoiner {
             null,
             $a->numberOfSplits() + $b->numberOfSplits());
     }
-    
     $bg = $b->genitive();
     
     //$a "Vater", "des Vaters"

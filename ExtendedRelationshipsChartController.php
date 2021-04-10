@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
-use Cissee\WebtreesExt\Functions\FunctionsExt;
 use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
 use Cissee\WebtreesExt\Modules\RelationshipPath;
 use Cissee\WebtreesExt\Modules\RelationshipUtils;
 use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\Http\Controllers\AbstractBaseController;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
@@ -62,7 +62,13 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
         if ($er === null) {
           echo I18N::translate('(that\'s overall not significantly closer than the closest relationship via common ancestors)');
         } else {
-          $rel = FunctionsExt::getRelationshipNameFromPath(implode('', $er), $individual1, $individual2);
+          
+          //we could do this better - nevermind for now
+          $relationshipPath = RelationshipPath::createVirtual($individual1->sex(), $er);
+          $rel = RelationshipUtils::getRelationshipName($relationshipPath);
+          
+          //$rel = FunctionsExt::getRelationshipNameFromPath(implode('', $er), $individual1, $individual2);
+          
           if ($corPlus->getActuallyBetterThan() === 0) {
             echo I18N::translate('(that\'s overall as close as: %1$s)', $rel);
           } else if ($corPlus->getActuallyBetterThan() < 0) {
@@ -84,6 +90,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
 
     $num_paths = 0;
     //foreach ($paths as $path) {
+    
     foreach ($caAndPaths as $caAndPath) {
       $path = $caAndPath->getPath();
 
@@ -96,16 +103,17 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
       
       $relationshipPath = RelationshipPath::create($tree, $path);
       $rel = RelationshipUtils::getRelationshipName($relationshipPath);
+      
       echo '<h3>', I18N::translate('Relationship: %s', $rel), '</h3>';
 
-      $debugWebtreesRel = $showCa = boolval($this->module->getPreference('CHART_SHOW_LEGACY', '1'));
+      $debugWebtreesRel = boolval($this->module->getPreference('CHART_SHOW_LEGACY', '1'));
       if ($debugWebtreesRel) {
-        $webtreesRel = FunctionsExt::getRelationshipNameFromPath(implode('', $relationships), $individual1, $individual2);
+        $webtreesRel = Functions::getRelationshipNameFromPath(implode('', $relationships), $individual1, $individual2);
         if ($rel !== $webtreesRel) {
           echo '<h4>', '(', I18N::translate('via legacy algorithm: %s', $webtreesRel), ')';
           echo FunctionsPrintExtHelpLink::helpLink($this->module->name(), 'Legacy Algorithm');
           echo '</h4>';
-        }        
+        }
       }
       
       $num_paths++;

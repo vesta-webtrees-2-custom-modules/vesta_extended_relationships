@@ -23,9 +23,15 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
           
           //primarily prefer splits resulting in common ancestor-based subpaths
           if (RelationshipPathSplitUtils::isNextToSpouse($split)) {
-            return 4;
+            return 5;
           }
           
+          //then, splits without a sibling rel
+          //(mainly for performance reasons)
+          if (RelationshipPathSplitUtils::isAscentToDescent($split)) {
+            return 4;
+          }
+
           //prefer 'sister' + 'great-grandson'
           //rather than 'niece' +'grandson'
           //(but use isNextToTerminalSibling instead of isNextToSibling in order to account for cases below)

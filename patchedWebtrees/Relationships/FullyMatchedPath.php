@@ -14,7 +14,7 @@ class FullyMatchedPath {
     return $this->nominative;
   }
   
-  public function genitive(): string {
+  public function genitive(): ?string {
     return $this->genitive;
   }
   

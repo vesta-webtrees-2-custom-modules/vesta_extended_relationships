@@ -49,7 +49,7 @@ class RelationshipPath {
    */
   public function key(): string {
     if ($this->key === null) {
-      $this->key = ($this->from === null)?$sex:$this->from->xref() . '|';
+      $this->key = ($this->from === null)?$this->sex:$this->from->xref() . '|';
       $this->key .= implode('|', $this->elements
               ->map(static function (RelationshipPathElement $element): string {
                   return $element->key();
@@ -191,6 +191,25 @@ class RelationshipPath {
             $this->oldStylePath(), 
             $this->from(), 
             $last->to());
+  }
+  
+  /**
+   * 
+   * @param string $sex
+   * @param array $path 'old-style' path
+   * @return RelationshipPath
+   */
+  public static function createVirtual(string $sex, array $path): RelationshipPath {
+    $relationships = [];
+    
+    $codes = new Collection($path);
+    
+    $relationships = $codes
+            ->map(static function (string $code): RelationshipPathElement {
+                return new RelationshipPathElement($code);
+            });
+    
+    return new RelationshipPath($sex, null, new Collection($relationships));
   }
   
   /**

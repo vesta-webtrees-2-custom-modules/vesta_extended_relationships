@@ -25,6 +25,27 @@ class RelationshipPathSplitUtils {
     }
     return $previous->relIsAnySpouse() || $next->relIsAnySpouse();
   }
+    
+  /**
+   * using this predicate with a high priority within RelationshipPathSplitPredicate
+   * helps to manage common-ancestor based relationships without a sibling rel
+   * in case there is no explicit RelDef for it
+   * (often very useful for performance improvement, even in cases where the resulting name isn't affected)
+   * 
+   * @param $split
+   * @return bool
+   */
+  public static function isAscentToDescent(RelationshipPathSplit $split): bool {
+    $previous = $split->head()->last();
+    if ($previous === null) {
+      return false;
+    }
+    $next = $split->tail()->first();
+    if ($next === null) {
+      return false;
+    }
+    return $previous->relIsAnyParent() && $next->relIsAnyChild();
+  }
   
   /**
    * using this predicate with a high priority within RelationshipPathSplitPredicate

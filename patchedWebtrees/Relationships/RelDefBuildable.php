@@ -6,6 +6,8 @@ namespace Cissee\WebtreesExt\Relationships;
 
 interface RelDefBuildable {
   
-  public function is(string $nominative, ?string $genitive): RelDef;
+  public function is(
+          string $nominative, 
+          ?string $genitive = null): RelDef;
   
 }

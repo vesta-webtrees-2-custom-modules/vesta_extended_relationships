@@ -13,6 +13,7 @@ use Fisharebest\Webtrees\Individual;
 /**
  * Class Functions - common functions
  */
+//DEPRECATED!
 class FunctionsExt
 {
     /**

@@ -3,7 +3,8 @@
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipController;
-use Cissee\WebtreesExt\Functions\FunctionsExt;
+use Cissee\WebtreesExt\Modules\RelationshipPath;
+use Cissee\WebtreesExt\Modules\RelationshipUtils;
 use Exception;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Family;
@@ -86,6 +87,7 @@ class FunctionsPrintRels {
       $slcaKey = $caAndPath->getCommonAncestor();
       $path = $caAndPath->getPath();
 
+      /*
       // Extract the relationship names between pairs of individuals
       $relationships = $slcaController->oldStyleRelationshipPath($person1->tree(), $path);
       if (empty($relationships)) {
@@ -94,8 +96,25 @@ class FunctionsPrintRels {
       }
 
       $rel = FunctionsExt::getRelationshipNameFromPath(implode('', $relationships), $person1, $person2);
+      */
+      
+      // Extract the relationship names between pairs of individuals
+      $relationshipPath = RelationshipPath::create($person1->tree(), $path);
+      if ($relationshipPath === null) {
+        // Cannot see one of the families/individuals, due to privacy;
+        
+        continue;
+      }
+      $rel = RelationshipUtils::getRelationshipName($relationshipPath);
 
-      $link = ExtendedRelationshipModule::getRelationshipLink($moduleName, $person1->tree(), $rel, $person1->xref(), $person2->xref(), $mode, $beforeJD);
+      $link = ExtendedRelationshipModule::getRelationshipLink(
+              $moduleName, 
+              $person1->tree(), 
+              $rel, 
+              $person1->xref(), 
+              $person2->xref(), 
+              $mode, 
+              $beforeJD);
 
       $print = /* I18N: (person 1) is (relative, e.g. father) of (person2)*/ I18N::translate('%1$s is %2$s of %3$s.',
                       $person2->fullName(),
@@ -104,6 +123,7 @@ class FunctionsPrintRels {
       $print .= "<br/>";
 
       if (($slcaKey !== null) && ($showCa)) {
+       
         //add actual common ancestor(s), unless already mentioned)
         //not correct in all cases: INDIs may use different prefixes!
         //$caIsIndi = (substr($slcaKey, 0, 1) === "I");

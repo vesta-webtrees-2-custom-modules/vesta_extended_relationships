@@ -597,7 +597,7 @@ class ExtendedRelationshipController {
     foreach ($cas as $caKey => $caValue) {
       foreach ($caValue as $caValue2) {
         $caPaths = self::getPaths($caKey, $caValue2->xref(), $mode, $cas, $ancestors1, $ancestors2);
-        foreach ($caPaths as $caPath) {
+        foreach ($caPaths as $caPath) {          
           $paths[] = new CommonAncestorAndPath($caKey, $caPath);
         }
       }

@@ -234,7 +234,7 @@ class RelPath implements
     return $this;
   }
   
-  public function is(string $nominative, ?string $genitive): RelDef {
+  public function is(string $nominative, ?string $genitive = null): RelDef {
     return new RelDef($this->from, $this->elements, $nominative, $genitive);
   }
 }

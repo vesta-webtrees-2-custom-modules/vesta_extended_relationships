@@ -6,7 +6,7 @@ use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\Individual;
 
-class RelationshipUtils {
+class ExtendedRelationshipUtils {
 
   public static function getBornNoLaterThan(Individual $individual): Date {
     $date = $individual->getBirthDate();
@@ -46,7 +46,7 @@ class RelationshipUtils {
     }
 
     foreach ($family->children() as $child) {
-      $date = RelationshipUtils::getBornNoLaterThan($child);
+      $date = ExtendedRelationshipUtils::getBornNoLaterThan($child);
       if ($date->isOK()) {
         $dates[] = $date;
       }

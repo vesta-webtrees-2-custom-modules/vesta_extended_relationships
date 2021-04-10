@@ -23,16 +23,23 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
           
           //prefer splits resulting in common ancestor-based subpaths
           if (RelationshipPathSplitUtils::isNextToSpouse($split)) {
+            return 3;
+          }
+
+          //then, splits without a sibling rel
+          //(mainly for performance reasons)
+          if (RelationshipPathSplitUtils::isAscentToDescent($split)) {
             return 2;
           }
-          
-          //everything else adequately covered by explicit RelDef's
           
           return 1;
         }
     };
             
-    $algorithm = new DefaultRelAlgorithm($splitter); 
+    $algorithm = new DefaultRelAlgorithm(
+            $splitter, 
+            true); //minimize number of splits
+    
     $joiner = new DefaultRelPathJoiner();
     
     return $algorithm->getRelationshipName(
@@ -42,16 +49,6 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
   }
   
   public static function defs(): RelDefs {
-    
-    //documentation:
-    
-    //only add customary terms here - do not use this to control how complex rels are generated.
-    //use RelAlgorithm for that!
-    
-    //order is relevant
-    
-    //see RelDefBuilder*Axis for available methods
-    //(split into 4 interfaces because not all combinations are required)
     
     $defs = [];
     

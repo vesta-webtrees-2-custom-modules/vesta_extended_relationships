@@ -224,7 +224,7 @@ class Sync extends AbstractBaseController {
       //$indi = new DirectIndividual($id, $gedcom, "" . $file);
       $tree = app(TreeService::class)->find($file);
       $indi = new Individual($id, $gedcom, null, $tree);
-      $date = RelationshipUtils::getBornNoLaterThan($indi);
+      $date = ExtendedRelationshipUtils::getBornNoLaterThan($indi);
 
       $maxJD = null;
       if ($date->isOK()) {
@@ -270,7 +270,7 @@ class Sync extends AbstractBaseController {
       //$fam = new DirectFamily($id, $gedcom, "" . $file);
       $tree = app(TreeService::class)->find($file);
       $fam = new Family($id, $gedcom, null, $tree);
-      $date = RelationshipUtils::getFamilyEstablishedNoLaterThan($fam);
+      $date = ExtendedRelationshipUtils::getFamilyEstablishedNoLaterThan($fam);
       $maxJD = null;
       if ($date->isOK()) {
         $maxJD = $date->minimumJulianDay();

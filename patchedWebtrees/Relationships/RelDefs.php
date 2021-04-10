@@ -72,7 +72,7 @@ class RelDefs {
       $matched = $def->matchPath($path);
       if ($matched !== null) {
         foreach ($matched as $match) {
-           /** @var MatchedPathialPath $match */
+           /** @var MatchedPath $match */
            if ($match->remainingPath()->isEmpty()) {
             $ret = new FullyMatchedPath(
                     $match->nominative(),
@@ -86,7 +86,7 @@ class RelDefs {
               self::$relationshipsCache[$partial->key()] = new FullyMatchedPath(
                     $match->nominative(),
                     $match->genitive());
-            }            
+            }
           }         
         }
       }

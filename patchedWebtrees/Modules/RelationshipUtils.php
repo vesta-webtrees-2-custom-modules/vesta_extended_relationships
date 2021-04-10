@@ -5,41 +5,57 @@ declare(strict_types=1);
 namespace Cissee\WebtreesExt\Modules;
 
 use Fisharebest\Localization\Locale\LocaleDe;
+use Fisharebest\Localization\Locale\LocaleEn;
 use Fisharebest\Localization\Locale\LocaleSk;
 use Fisharebest\Webtrees\I18N;
 use function hrtime;
 
 class RelationshipUtils {
-   
+  
   public static function getRelationshipName(
           RelationshipPath $path): string {
+    
+    $start = hrtime(true);
+    $ret = self::doGetRelationshipName($path);        
+    $end = hrtime(true);
+    $time1 = intdiv((int)($end - $start), 1000000);
 
-      if (I18N::locale() instanceof LocaleDe) {
-        $ext = new LanguageGermanExt();
-        
-        $start = hrtime(true);
-        $ret = $ext->getRelationshipName($path);
-        $end = hrtime(true);
-        $time1 = ($end - $start) / 1000000;
-        
-        /*
-        error_log("--------");
+    if ($time1 > 1000) {
+      error_log('[RelationshipUtils] slow path, optimize this via better splitting! '.$path);
+      error_log('[RelationshipUtils] getRelationshipName took: ' . $time1 . ' ms');
+      error_log('[RelationshipUtils] language: ' . I18N::languageTag());
+    }
+    
+    return $ret;
+  }
+  
+  protected static $ext = null;  
+ 
+  protected static function doGetRelationshipName(
+          RelationshipPath $path): string {
       
-        $start = hrtime(true);
-        $path->getRelationshipNameLegacy();
-        $end = hrtime(true);
-        $time2 = ($end - $start) / 1000000;
-
-        error_log("orig time: " . $time2);
-        error_log("new time: " . $time1);
-        */
+      if (I18N::locale() instanceof LocaleDe) {
+        if (self::$ext === null) {
+          self::$ext = new LanguageGermanExt();
+        }        
         
-        return $ret;
+        return self::$ext->getRelationshipName($path);        
       }
       
       if (I18N::locale() instanceof LocaleSk) {
-        $ext = new LanguageSlovakExt();
-        return $ext->getRelationshipName($path);
+        if (self::$ext === null) {
+          self::$ext = new LanguageSlovakExt();
+        }
+        
+        return self::$ext->getRelationshipName($path);
+      }
+      
+      if (I18N::locale() instanceof LocaleEn) {
+        if (self::$ext === null) {
+          self::$ext = new LanguageEnglishExt();
+        }
+        
+        return self::$ext->getRelationshipName($path);
       }
       
       return $path->getRelationshipNameLegacy();

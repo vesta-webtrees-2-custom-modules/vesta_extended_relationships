@@ -8,9 +8,10 @@ use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipController;
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipModuleTrait;
 use Cissee\Webtrees\Module\ExtendedRelationships\HelpTexts;
 use Cissee\Webtrees\Module\ExtendedRelationships\Sync;
-use Cissee\WebtreesExt\Functions\FunctionsExt;
 use Cissee\WebtreesExt\Module\ModuleMetaInterface;
 use Cissee\WebtreesExt\Module\ModuleMetaTrait;
+use Cissee\WebtreesExt\Modules\RelationshipPath;
+use Cissee\WebtreesExt\Modules\RelationshipUtils;
 use Cissee\WebtreesExt\Requests;
 use Fig\Http\Message\RequestMethodInterface;
 use Fisharebest\Localization\Translation;
@@ -199,13 +200,30 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     <?php
   }
 
-  public static function getRelationshipLink($moduleName, Tree $tree, $text, $xref1, $xref2, $mode, $beforeJD = null) {
+  public static function getRelationshipLink(
+          $moduleName, 
+          Tree $tree, 
+          $text, 
+          $xref1, 
+          $xref2, 
+          $mode, 
+          $beforeJD = null) {
+    
     if ($text === null) {
       $slcaController = new ExtendedRelationshipController;
 
       $paths = $slcaController->x_calculateRelationships_123456($tree, $xref1, $xref2, $mode, 1, $beforeJD);
 
       foreach ($paths as $path) {
+        
+        $relationshipPath = RelationshipPath::create($tree, $path);
+        if ($relationshipPath === null) {
+          // Cannot see one of the families/individuals, due to privacy;
+          continue;
+        }
+        $text = RelationshipUtils::getRelationshipName($relationshipPath);
+      
+        /*
         // Extract the relationship names between pairs of individuals
         $relationships = $slcaController->oldStyleRelationshipPath($tree, $path);
         if (empty($relationships)) {
@@ -222,7 +240,9 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         //also, 'husband' may not always be correct either, if the marriage e.g. occured after the birth of a child
         //once we use additional events to establish family (such as ENGA), it gets more complicated
         //should use 'fiancée' etc. at certain dates
-        $text = FunctionsExt::getRelationshipNameFromPath(implode('', $relationships), $indi1, $indi2);
+        $text = FunctionsExt::getRelationshipNameFromPath(implode('', $relationships), $indi1, $indi2);        
+        */
+        
         break;
       }
     }
@@ -455,7 +475,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
       //same strategy as in Sync.php
       //'f_from' = 'family established no later than' (= minimum of date of marriage, first childbirth).
 
-      $date = RelationshipUtils::getFamilyEstablishedNoLaterThan($family);
+      $date = ExtendedRelationshipUtils::getFamilyEstablishedNoLaterThan($family);
       if ($date->isOK()) {
         $beforeJD = $date->minimumJulianDay();
       } else {
