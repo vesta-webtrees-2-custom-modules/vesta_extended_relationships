@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 namespace Cissee\WebtreesExt\Functions;
 
-use Cissee\WebtreesExt\Modules\LanguageGermanExt;
-use Cissee\WebtreesExt\Modules\LanguageSlovakExt;
 use Exception;
-use Fisharebest\Localization\Locale\LocaleDe;
-use Fisharebest\Localization\Locale\LocaleSk;
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\Gedcom;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
@@ -732,6 +727,7 @@ class FunctionsExt
                 return I18N::translate('child');
             case 'bro':
                 if ($person1 && $person2) {
+                  
                     $dob1 = $person1->getBirthDate();
                     $dob2 = $person2->getBirthDate();
                     if ($dob1->isOK() && $dob2->isOK()) {

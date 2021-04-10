@@ -96,29 +96,43 @@ class RelationshipPath {
     return $this->oldStylePath();
   }
   
-  public function splitBefore(int $index): RelationshipPathSplit {    
+  public function sliceBefore(int $index, int $length): RelationshipPath {
+    if (($index < 0) || ($this->size() < $index)) {
+      throw new \Exception("index out of bounds: " . $index  . " vs " . $this->size());
+    }
+    
+    if (($length < 1) || ($this->size() < $index + $length)) {
+      throw new \Exception("length out of bounds: " . $length  . " vs " . $this->size());
+    }
+    
+    //edge case not allowed here!
+    
+    /** @var RelationshipPath $head */
+    $head = $this->elements->slice(0,$index);
+    
+    /** @var RelationshipPath $tail */
+    $tail = $this->elements->slice($index, $length);
+    
+    $last = $head->last();
+    if ($last === null) {
+      //empty head
+      $last = $this->elements->last();
+    }
+    
+    return new RelationshipPath($last->toSex(), $last->to(), $tail);
+  }
+  
+  public function splitBefore(int $index): RelationshipPathSplit {
     if (($index < 0) || ($this->size() < $index)) {
       throw new \Exception("index out of bounds: " . $index  . " vs " . $this->size());
     }
     
     //edge case
-    if ($index === 0) {
-      //empty head
+    if ($this->size() === 0) {
       return new RelationshipPathSplit(
-              new RelationshipPath($this->sex, $this->from, new Collection()),
-              $this);
-    }
-    
-    //edge case
-    if ($index === $this->size()) {
-      //empty tail
-      $last = $this->elements->last();      
-      assert($last !== null); //$this->size() === 0 already checked via preceding checks
-      
-      return new RelationshipPathSplit(
-              $this,
-              new RelationshipPath($last->toSex(), $last->to(), new Collection()));
-    }    
+            new RelationshipPath($this->sex, $this->from, new Collection()),
+            new RelationshipPath($this->sex, $this->from, new Collection()));
+    }   
     
     /** @var RelationshipPath $head */
     $head = $this->elements->slice(0,$index);
@@ -126,15 +140,21 @@ class RelationshipPath {
     /** @var RelationshipPath $tail */
     $tail = $this->elements->slice($index);
     
+    $last = $head->last();
+    if ($last === null) {
+      //empty head
+      $last = $this->elements->last();
+    }
+    
     return new RelationshipPathSplit(
             new RelationshipPath($this->sex, $this->from, $head),
-            new RelationshipPath($head->last()->toSex(), $head->last()->to(), $tail));
+            new RelationshipPath($last->toSex(), $last->to(), $tail));
   }
            
   /**
    * 
    * @param RelationshipPathSplitPredicate|null $splitter
-   * @return Collection<RelationshipPathSplit>
+   * @return Collection<Collection<RelationshipPathSplit>> sorted by splitter priority
    */
   public function split(?RelationshipPathSplitPredicate $splitter = null): Collection {
     $splits = [];
@@ -142,10 +162,21 @@ class RelationshipPath {
       /** @var RelationshipPathSplit $split */
       $split = $this->splitBefore($i);
       
-      if (($splitter === null) || ($splitter->allow($split))) {
-        $splits []= $split;
+      $priority = 1;
+      if ($splitter !== null) {
+        $priority = $splitter->prioritize($split);
+      }
+      
+      if ($priority > 0) {
+        if (!array_key_exists($priority, $splits)) {
+          $splits[$priority] = new Collection();
+        }
+        $splits[$priority]->add($split);
       }
     }
+    
+    //sort by key, reversed
+    krsort($splits);
     
     return new Collection($splits);
   }
@@ -165,12 +196,10 @@ class RelationshipPath {
   /**
    * Convert a path (list of XREFs) to a modernized RelationshipPath.
    *
-   * Return an empty array, if privacy rules prevent us viewing any node.
-   *
    * @param Tree     $tree
    * @param string[] $path Alternately Individual / Family
    *
-   * @return RelationshipPath|null
+   * @return RelationshipPath|null null if privacy rules prevent us viewing any node.
    */
   public static function create(Tree $tree, array $path): ?RelationshipPath {
     

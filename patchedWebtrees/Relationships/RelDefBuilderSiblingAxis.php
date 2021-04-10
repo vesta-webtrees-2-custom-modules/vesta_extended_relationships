@@ -13,6 +13,24 @@ interface RelDefBuilderSiblingAxis {
   
   public function sibling(): RelDefBuilderSibling;
   
+  public function elderBrother(): RelDefBuilderSibling;
+  
+  public function elderSister(): RelDefBuilderSibling;
+  
+  public function elderSibling(): RelDefBuilderSibling;
+
+  public function youngerBrother(): RelDefBuilderSibling;
+  
+  public function youngerSister(): RelDefBuilderSibling;
+  
+  public function youngerSibling(): RelDefBuilderSibling;
+
+  public function twinBrother(): RelDefBuilderSibling;
+  
+  public function twinSister(): RelDefBuilderSibling;
+  
+  public function twinSibling(): RelDefBuilderSibling;
+  
   /**
    * 
    * @param RelPathElement $element match dynamically (you may evaluate INDI and FAM facts of the current as well as preceding path elements)

@@ -94,7 +94,8 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
         continue;
       }
       
-      $rel = RelationshipUtils::getRelationshipName(RelationshipPath::create($tree, $path));
+      $relationshipPath = RelationshipPath::create($tree, $path);
+      $rel = RelationshipUtils::getRelationshipName($relationshipPath);
       echo '<h3>', I18N::translate('Relationship: %s', $rel), '</h3>';
 
       $debugWebtreesRel = $showCa = boolval($this->module->getPreference('CHART_SHOW_LEGACY', '1'));
@@ -136,6 +137,9 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
       // For each node in the path.
       foreach ($path as $n => $xref) {
         if ($n % 2 === 1) {
+          $relName = RelationshipUtils::getRelationshipName(
+                  $relationshipPath->sliceBefore(intdiv($n,2),1));
+                
           switch ($relationships[$n]) {
             case 'hus':
             case 'wif':
@@ -145,8 +149,8 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
             case 'sib':
               //[RC] adjusted
               //only draw this in certain cases!
-              if ((!$fam) || (count($fam->spouses()) === 0)) {
-                $table[$x + 1][$y] = '<div style="background:url(' . e(asset('css/images/hline.png')) . ') repeat-x center;  width: 94px; text-align: center"><div class="hline-text" style="height: 32px;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Registry::individualFactory()->make($path[$n - 1], $tree), Registry::individualFactory()->make($path[$n + 1], $tree)) . '</div><div style="height: 32px;">' . view('icons/arrow-right') . '</div></div>';
+              if ((!$fam) || (count($fam->spouses()) === 0)) {                
+                $table[$x + 1][$y] = '<div style="background:url(' . e(asset('css/images/hline.png')) . ') repeat-x center;  width: 94px; text-align: center"><div class="hline-text" style="height: 32px;">' . $relName . '</div><div style="height: 32px;">' . view('icons/arrow-right') . '</div></div>';
               } else {
                 //keep the relationship for later
                 $skippedRelationship = $relationships[$n];
@@ -156,11 +160,11 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
             case 'son':
             case 'dau':
             case 'chi':
-              if ($n > 2 && preg_match('/fat|mot|par/', $relationships[$n - 2])) {
-                $table[$x + 1][$y - 1] = '<div style="background:url(' . $diagonal2 . '); width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: end;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Registry::individualFactory()->make($path[$n - 1], $tree), Registry::individualFactory()->make($path[$n + 1], $tree)) . '</div><div style="height: 32px; text-align: start;">' . view('icons/arrow-down') . '</div></div>';
+              if ($n > 2 && preg_match('/fat|mot|par/', $relationships[$n - 2])) {                
+                $table[$x + 1][$y - 1] = '<div style="background:url(' . $diagonal2 . '); width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: end;">' . $relName . '</div><div style="height: 32px; text-align: start;">' . view('icons/arrow-down') . '</div></div>';
                 $x += 2;
               } else {
-                $table[$x][$y - 1] = '<div style="background:url(' . e('"' . asset('css/images/vline.png') . '"') . ') repeat-y center; height: 64px; text-align: center;"><div class="vline-text" style="display: inline-block; width:50%; line-height: 64px;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Registry::individualFactory()->make($path[$n - 1], $tree), Registry::individualFactory()->make($path[$n + 1], $tree)) . '</div><div style="display: inline-block; width:50%; line-height: 64px;">' . view('icons/arrow-down') . '</div></div>';
+                $table[$x][$y - 1] = '<div style="background:url(' . e('"' . asset('css/images/vline.png') . '"') . ') repeat-y center; height: 64px; text-align: center;"><div class="vline-text" style="display: inline-block; width:50%; line-height: 64px;">' . $relName . '</div><div style="display: inline-block; width:50%; line-height: 64px;">' . view('icons/arrow-down') . '</div></div>';
               }
               $y -= 2;
               break;
@@ -168,10 +172,10 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
             case 'mot':
             case 'par':
               if ($n > 2 && preg_match('/son|dau|chi/', $relationships[$n - 2])) {
-                $table[$x + 1][$y + 1] = '<div style="background:url(' . $diagonal1 . '); background-position: top right; width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: start;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Registry::individualFactory()->make($path[$n - 1], $tree), Registry::individualFactory()->make($path[$n + 1], $tree)) . '</div><div style="height: 32px; text-align: end;">' . view('icons/arrow-down') . '</div></div>';
+                $table[$x + 1][$y + 1] = '<div style="background:url(' . $diagonal1 . '); background-position: top right; width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: start;">' . $relName . '</div><div style="height: 32px; text-align: end;">' . view('icons/arrow-down') . '</div></div>';
                 $x += 2;
               } else {
-                $table[$x][$y + 1] = '<div style="background:url(' . e('"' . asset('css/images/vline.png') . '"') . ') repeat-y center; height: 64px; text-align:center; "><div class="vline-text" style="display: inline-block; width: 50%; line-height: 64px;">' . FunctionsExt::getRelationshipNameFromPath($relationships[$n], Registry::individualFactory()->make($path[$n - 1], $tree), Registry::individualFactory()->make($path[$n + 1], $tree)) . '</div><div style="display: inline-block; width: 50%; line-height: 32px">' . view('icons/arrow-up') . '</div></div>';
+                $table[$x][$y + 1] = '<div style="background:url(' . e('"' . asset('css/images/vline.png') . '"') . ') repeat-y center; height: 64px; text-align:center; "><div class="vline-text" style="display: inline-block; width: 50%; line-height: 64px;">' . $relName . '</div><div style="display: inline-block; width: 50%; line-height: 32px">' . view('icons/arrow-up') . '</div></div>';
               }
               $y += 2;
               break;

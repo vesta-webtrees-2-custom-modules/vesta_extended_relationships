@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Cissee\WebtreesExt\Modules;
 
+use Cissee\WebtreesExt\Relationships\DefaultRelAlgorithm;
 use Cissee\WebtreesExt\Relationships\DefaultRelPathJoiner;
-use Cissee\WebtreesExt\Relationships\ModifiedRelAlgorithm;
 use Cissee\WebtreesExt\Relationships\RelDefs;
 use Cissee\WebtreesExt\Relationships\RelPath;
 use Cissee\WebtreesExt\Relationships\Times;
@@ -17,7 +17,41 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
   public function getRelationshipName(
           RelationshipPath $path): string {
     
-    $algorithm = new ModifiedRelAlgorithm(true); //modified splitting AND minimize number of splits
+    //modified splitting!
+    $splitter = new class implements RelationshipPathSplitPredicate {
+        public function prioritize(RelationshipPathSplit $split): int {
+          
+          //primarily prefer splits resulting in common ancestor-based subpaths
+          if (RelationshipPathSplitUtils::isNextToSpouse($split)) {
+            return 4;
+          }
+          
+          //prefer 'sister' + 'great-grandson'
+          //rather than 'niece' +'grandson'
+          //(but use isNextToTerminalSibling instead of isNextToSibling in order to account for cases below)
+          if (RelationshipPathSplitUtils::isNextToTerminalSibling($split)) {
+            return 3;
+          }
+          
+          //prefer 'grandfather' + 'second cousin'
+          //rather than 'great-x3-grandfather' + 'great-x2-nephew'
+          if (RelationshipPathSplitUtils::isWithinAscent($split)) {
+            return 2;
+          }
+          
+          //similar on the other side
+          if (RelationshipPathSplitUtils::isWithinDescent($split)) {
+            return 2;
+          }
+          
+          return 1;
+        }
+    };
+            
+    $algorithm = new DefaultRelAlgorithm(
+            $splitter, 
+            true); //minimize number of splits
+    
     $joiner = new DefaultRelPathJoiner();
     
     return $algorithm->getRelationshipName(

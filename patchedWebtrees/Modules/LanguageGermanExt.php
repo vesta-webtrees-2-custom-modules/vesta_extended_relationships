@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Cissee\WebtreesExt\Modules;
 
+use Cissee\WebtreesExt\Relationships\DefaultRelAlgorithm;
 use Cissee\WebtreesExt\Relationships\DefaultRelPathJoiner;
-use Cissee\WebtreesExt\Relationships\ModifiedRelAlgorithm;
 use Cissee\WebtreesExt\Relationships\RelDefs;
 use Cissee\WebtreesExt\Relationships\RelPath;
 use Cissee\WebtreesExt\Relationships\Times;
@@ -17,7 +17,22 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
   public function getRelationshipName(
           RelationshipPath $path): string {
     
-    $algorithm = new ModifiedRelAlgorithm(); //modified splitting! ($minimizeSplits not expected to be relevant here)
+    //modified splitting!
+    $splitter = new class implements RelationshipPathSplitPredicate {
+        public function prioritize(RelationshipPathSplit $split): int {
+          
+          //prefer splits resulting in common ancestor-based subpaths
+          if (RelationshipPathSplitUtils::isNextToSpouse($split)) {
+            return 2;
+          }
+          
+          //everything else adequately covered by explicit RelDef's
+          
+          return 1;
+        }
+    };
+            
+    $algorithm = new DefaultRelAlgorithm($splitter); 
     $joiner = new DefaultRelPathJoiner();
     
     return $algorithm->getRelationshipName(
@@ -59,6 +74,10 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->son()->is('Sohn', 'des Sohnes');
     $defs []= RelPath::any()->daughter()->is('Tochter', 'der Tochter');
     $defs []= RelPath::any()->child()->is('Kind', 'des Kindes');
+    
+    $defs []= RelPath::any()->twinBrother()->is('Zwillingsbruder', 'des Zwillingsbruders');
+    $defs []= RelPath::any()->twinSister()->is('Zwillingsschwester', 'der Zwillingsschwester');
+    $defs []= RelPath::any()->twinSibling()->is('Zwilling', 'des Zwillings');    
     
     $defs []= RelPath::any()->brother()->is('Bruder', 'des Bruders');
     $defs []= RelPath::any()->sister()->is('Schwester', 'der Schwester');

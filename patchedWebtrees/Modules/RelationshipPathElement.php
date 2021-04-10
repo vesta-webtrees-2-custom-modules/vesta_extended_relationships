@@ -35,9 +35,21 @@ class RelationshipPathElement {
   public function rel(): string {
     return $this->rel;
   }
-  
+    
+  public function relIsAnyParent(): bool {
+    return (preg_match('/^(fat|mot|par)$/', $this->rel) === 1);
+  }
+
   public function relIsAnySpouse(): bool {
     return (preg_match('/^(hus|wif|spo)$/', $this->rel) === 1);
+  }
+  
+  public function relIsAnyChild(): bool {
+    return (preg_match('/^(son|dau|chi)$/', $this->rel) === 1);
+  }
+  
+  public function relIsAnySibling(): bool {
+    return (preg_match('/^(bro|sis|sib)$/', $this->rel) === 1);
   }
   
   public function family(): ?Family {

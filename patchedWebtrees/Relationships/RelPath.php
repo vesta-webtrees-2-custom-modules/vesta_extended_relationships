@@ -183,7 +183,52 @@ class RelPath implements
     $this->elements->add(new SimpleRelPathElement("sib", Times::one()));
     return $this;
   }
-    
+  
+  public function elderBrother(): RelDefBuilderSibling {
+    $this->elements->add(new SiblingRelPathElement("bro", 1));
+    return $this;
+  }
+  
+  public function elderSister(): RelDefBuilderSibling {
+    $this->elements->add(new SiblingRelPathElement("sis", 1));
+    return $this;
+  }
+  
+  public function elderSibling(): RelDefBuilderSibling {
+    $this->elements->add(new SiblingRelPathElement("sib", 1));
+    return $this;
+  }
+  
+  public function youngerBrother(): RelDefBuilderSibling {
+    $this->elements->add(new SiblingRelPathElement("bro", -1));
+    return $this;
+  }
+  
+  public function youngerSister(): RelDefBuilderSibling {
+    $this->elements->add(new SiblingRelPathElement("sis", -1));
+    return $this;
+  }
+  
+  public function youngerSibling(): RelDefBuilderSibling {
+    $this->elements->add(new SiblingRelPathElement("sib", -1));
+    return $this;
+  }
+  
+  public function twinBrother(): RelDefBuilderSibling {
+    $this->elements->add(new SiblingRelPathElement("bro", 0));
+    return $this;
+  }
+  
+  public function twinSister(): RelDefBuilderSibling {
+    $this->elements->add(new SiblingRelPathElement("sis", 0));
+    return $this;
+  }
+  
+  public function twinSibling(): RelDefBuilderSibling {
+    $this->elements->add(new SiblingRelPathElement("sib", 0));
+    return $this;
+  }
+  
   public function siblingAxisVia(RelPathElement $element): RelDefBuilderSibling {
     $this->elements->add($element);
     return $this;

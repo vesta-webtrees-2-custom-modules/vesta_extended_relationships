@@ -9,14 +9,20 @@ use Cissee\WebtreesExt\Modules\RelationshipPathSplit;
 use Cissee\WebtreesExt\Modules\RelationshipPathSplitPredicate;
 
 //shortest length, as in original impl (Functions.php)
+//with following extension options:
+//
 //(if $minimizeSplits is set, that is the first criteria)
+//(if $splitter is set, it is used to prioritize splits)
 class DefaultRelAlgorithm implements RelAlgorithm {
   
   protected $minimizeSplits;
-  
+  protected $splitter;
+   
   public function __construct(
+          ?RelationshipPathSplitPredicate $splitter = null,
           bool $minimizeSplits = false) {
-    
+   
+    $this->splitter = $splitter;
     $this->minimizeSplits = $minimizeSplits;
   }
   
@@ -86,35 +92,36 @@ class DefaultRelAlgorithm implements RelAlgorithm {
    * @param RelDefs $defs
    * @param RelPathJoiner $joiner
    * @param RelationshipPath $path
-   * @param RelationshipPathSplitPredicate|null $splitter override hook
    * @return FullyMatchedPath|null
    */
   protected function getFullyMatchedPathViaSplit(
           RelDefs $defs,
           RelPathJoiner $joiner,
-          RelationshipPath $path,
-          ?RelationshipPathSplitPredicate $splitter = null): ?FullyMatchedPath {
+          RelationshipPath $path): ?FullyMatchedPath {
     
     //error_log("getFullyMatchedPathViaSplit for ".$path);
-    $relationship = null;
     
-    $splits = $path->split($splitter);
+    $splits = $path->split($this->splitter);
     
-    foreach ($splits as $split) {
-      /** @var RelationshipPathSplit $split */
-      
-      $a = $this->getFullyMatchedPath($defs, $joiner, $split->head());
-      $b = $this->getFullyMatchedPath($defs, $joiner, $split->tail());
+    foreach ($splits as $splitGroup) {
+      $relationship = null;
+      foreach ($splitGroup as $split) {
+        /** @var RelationshipPathSplit $split */
 
-      if (($a !== null) && ($b !== null)) {
-        $tmp = $joiner->join($a, $b);
+        $a = $this->getFullyMatchedPath($defs, $joiner, $split->head());
+        $b = $this->getFullyMatchedPath($defs, $joiner, $split->tail());
 
-        if (($relationship === null) || ($this->compare($tmp, $relationship) < 0)) {
-          $relationship = $tmp;
-        }        
+        if (($a !== null) && ($b !== null)) {
+          $tmp = $joiner->join($a, $b);
+
+          if (($relationship === null) || ($this->compare($tmp, $relationship) < 0)) {
+            $relationship = $tmp;
+          }        
+        }
       }
-    }
+      return $relationship;
+    }  
     
-    return $relationship;
+    return null;
   }
 }
