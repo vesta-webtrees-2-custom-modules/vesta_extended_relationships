@@ -52,10 +52,20 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     
     $defs = [];
     
+    $defs []= RelPath::any()->adoptiveFather()->is('Adoptivvater', 'des Adoptivvaters');
+    $defs []= RelPath::any()->adoptiveMother()->is('Adoptivmutter', 'der Adoptivmutter');
+    $defs []= RelPath::any()->adoptiveParent()->is('Adoptiv-Elternteil', 'des Adoptiv-Elternteils');
+    
+    $defs []= RelPath::any()->fosterFather()->is('Pflegevater', 'des Pflegevaters');
+    $defs []= RelPath::any()->fosterMother()->is('Pflegemutter', 'der Pflegemutter');
+    $defs []= RelPath::any()->fosterParent()->is('Pflege-Elternteil', 'des Pflege-Elternteils');
+    
     $defs []= RelPath::any()->father()->is('Vater', 'des Vaters');
     $defs []= RelPath::any()->mother()->is('Mutter', 'der Mutter');
     $defs []= RelPath::any()->parent()->is('Elternteil', 'des Elternteils');
 
+    ////////
+    
     $defs []= RelPath::any()->husband()->is('Ehemann', 'des Ehemannes');
     $defs []= RelPath::any()->wife()->is('Ehefrau', 'der Ehefrau');
     $defs []= RelPath::any()->spouse()->is('Ehepartner', 'des Ehepartners');
@@ -67,31 +77,46 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->malePartner()->is('Partner', 'des Partners');
     $defs []= RelPath::any()->femalePartner()->is('Partnerin', 'der Partnerin');
     $defs []= RelPath::any()->partner()->is('Partner/Partnerin', 'des Partner/der Partnerin');
+
+    ////////
+
+    $defs []= RelPath::any()->adoptiveSon()->is('Adoptivsohn', 'des Adoptivsohnes');
+    $defs []= RelPath::any()->adoptiveDaughter()->is('Adoptivtochter', 'der Adoptivtochter');
+    $defs []= RelPath::any()->adoptiveChild()->is('Adoptivkind', 'des Adoptivkindes');
+    
+    $defs []= RelPath::any()->fosterSon()->is('Pflegesohn', 'des Pflegesohnes');
+    $defs []= RelPath::any()->fosterDaughter()->is('Pflegetochter', 'der Pflegetochter');
+    $defs []= RelPath::any()->fosterChild()->is('Pflegekind', 'des Pflegekindes');
     
     $defs []= RelPath::any()->son()->is('Sohn', 'des Sohnes');
     $defs []= RelPath::any()->daughter()->is('Tochter', 'der Tochter');
     $defs []= RelPath::any()->child()->is('Kind', 'des Kindes');
     
+    ////////
+    
     $defs []= RelPath::any()->twinBrother()->is('Zwillingsbruder', 'des Zwillingsbruders');
     $defs []= RelPath::any()->twinSister()->is('Zwillingsschwester', 'der Zwillingsschwester');
     $defs []= RelPath::any()->twinSibling()->is('Zwilling', 'des Zwillings');    
-    
+
     $defs []= RelPath::any()->brother()->is('Bruder', 'des Bruders');
     $defs []= RelPath::any()->sister()->is('Schwester', 'der Schwester');
     $defs []= RelPath::any()->sibling()->is('Geschwisterteil', 'des Geschwisterteils');
     
     ////////
 
-    $defs []= RelPath::any()->spouse()->father()->is('Schwiegervater', 'des Schwiegervaters');
-    $defs []= RelPath::any()->spouse()->mother()->is('Schwiegermutter', 'der Schwiegermutter');
-
-    $defs []= RelPath::any()->child()->husband()->is('Schwiegersohn', 'des Schwiegersohns');
-    $defs []= RelPath::any()->child()->wife()->is('Schwiegertochter', 'der Schwiegertochter');
+    //$ignoreLaterEvents: according to § 1590 BGB (https://www.gesetze-im-internet.de/bgb/__1590.html),
+    //schwägerschaft is forever
     
-    $defs []= RelPath::any()->spouse()->brother()->is('Schwager', 'des Schwagers');
-    $defs []= RelPath::any()->sibling()->husband()->is('Schwager', 'des Schwagers');
-    $defs []= RelPath::any()->spouse()->sister()->is('Schwägerin', 'der Schwägerin');
-    $defs []= RelPath::any()->sibling()->wife()->is('Schwägerin', 'der Schwägerin');
+    $defs []= RelPath::any()->spouse(true)->father()->is('Schwiegervater', 'des Schwiegervaters');
+    $defs []= RelPath::any()->spouse(true)->mother()->is('Schwiegermutter', 'der Schwiegermutter');
+
+    $defs []= RelPath::any()->child()->husband(true)->is('Schwiegersohn', 'des Schwiegersohns');
+    $defs []= RelPath::any()->child()->wife(true)->is('Schwiegertochter', 'der Schwiegertochter');
+    
+    $defs []= RelPath::any()->spouse(true)->brother()->is('Schwager', 'des Schwagers');
+    $defs []= RelPath::any()->sibling()->husband(true)->is('Schwager', 'des Schwagers');
+    $defs []= RelPath::any()->spouse(true)->sister()->is('Schwägerin', 'der Schwägerin');
+    $defs []= RelPath::any()->sibling()->wife(true)->is('Schwägerin', 'der Schwägerin');
         
     ////////
 
@@ -156,7 +181,6 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
 
     $defs []= RelPath::any()->parent()->sibling()->son()->is('Cousin', 'des Cousins');
     
-    //IMPL NOTE: used as back-reference (i.e. count must match in '->child($ref)')
     $ref = Times::min(1, 1); 
     $defs []= RelPath::any()->parent()->parent($ref)->sibling()->child($ref)->son()->is('Cousin %s. Grades', 'des Cousins %s. Grades');
 
@@ -176,7 +200,6 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->parent(Times::fixed(4))->parent($ref)->sibling()->child($ref)->son()->is('Urgroßonkel %s. Grades', 'des Urgroßonkels %s. Grades');
     
     $defs []= RelPath::any()->parent(Times::min(5, -3))->sibling()->son()->is('%s×Ur-Großonkel 2. Grades', 'des %s×Ur-Großonkels 2. Grades');    
-    //IMPL NOTE: multiple 'times' instances are assigned to the term in the order they are first encountered
     $defs []= RelPath::any()->parent(Times::min(5, -3))->parent($ref)->sibling()->child($ref)->son()->is('%1$s×Ur-Großonkel %2$s. Grades', 'des %1$s×Ur-Großonkels %2$s. Grades');
 
     $defs []= RelPath::any()->parent(Times::fixed(2))->sibling()->daughter()->is('Tante 2. Grades', 'der Tante 2. Grades');

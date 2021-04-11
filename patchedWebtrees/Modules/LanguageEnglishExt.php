@@ -67,10 +67,20 @@ class LanguageEnglishExt extends AbstractModule implements ModuleLanguageExtInte
     
     $defs = [];
     
+    $defs []= RelPath::any()->adoptiveFather()->is('adoptive father');
+    $defs []= RelPath::any()->adoptiveMother()->is('adoptive mother');
+    $defs []= RelPath::any()->adoptiveParent()->is('adoptive parent');
+    
+    $defs []= RelPath::any()->fosterFather()->is('foster father');
+    $defs []= RelPath::any()->fosterMother()->is('foster mother');
+    $defs []= RelPath::any()->fosterParent()->is('foster parent');
+    
     $defs []= RelPath::any()->father()->is('father');
     $defs []= RelPath::any()->mother()->is('mother');
     $defs []= RelPath::any()->parent()->is('parent');
 
+    ////////
+    
     $defs []= RelPath::any()->husband()->is('husband');
     $defs []= RelPath::any()->wife()->is('wife');
     $defs []= RelPath::any()->spouse()->is('spouse');
@@ -85,9 +95,21 @@ class LanguageEnglishExt extends AbstractModule implements ModuleLanguageExtInte
 
     $defs []= RelPath::any()->partner()->is('partner');
     
+    ////////
+    
+    $defs []= RelPath::any()->adoptiveSon()->is('adoptive son');
+    $defs []= RelPath::any()->adoptiveDaughter()->is('adoptive daughter');
+    $defs []= RelPath::any()->adoptiveChild()->is('adoptive child');
+    
+    $defs []= RelPath::any()->fosterSon()->is('foster son');
+    $defs []= RelPath::any()->fosterDaughter()->is('foster daughter');
+    $defs []= RelPath::any()->fosterChild()->is('foster child');
+    
     $defs []= RelPath::any()->son()->is('son');
     $defs []= RelPath::any()->daughter()->is('daughter');
     $defs []= RelPath::any()->child()->is('child');
+    
+    ////////
     
     $defs []= RelPath::any()->twinBrother()->is('twin brother');
     $defs []= RelPath::any()->twinSister()->is('twin sister');

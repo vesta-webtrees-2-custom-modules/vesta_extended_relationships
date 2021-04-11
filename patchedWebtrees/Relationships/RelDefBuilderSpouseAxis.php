@@ -8,27 +8,31 @@ namespace Cissee\WebtreesExt\Relationships;
 interface RelDefBuilderSpouseAxis {
   
   /**
-   * family has a marriage event as last event relevant in this context
-   * 
-   * @return RelDefBuilderSpouse
-   */
-  public function husband(): RelDefBuilderSpouse;
-  
-  /**
-   * family has a marriage event as last event relevant in this context
+   * family has a marriage event, 
+   * either as last event relevant in this context, or regardless of later events
    * (relevant events are: ['ANUL', 'DIV', 'ENGA', 'MARR', '_NMR'])
    * 
    * @return RelDefBuilderSpouse
    */
-  public function wife(): RelDefBuilderSpouse;
+  public function husband(bool $ignoreLaterEvents = false): RelDefBuilderSpouse;
   
   /**
-   * family has a marriage event as last event relevant in this context
+   * family has a marriage event,
+   * either as last event relevant in this context, or regardless of later events
    * (relevant events are: ['ANUL', 'DIV', 'ENGA', 'MARR', '_NMR'])
    * 
    * @return RelDefBuilderSpouse
    */
-  public function spouse(): RelDefBuilderSpouse;
+  public function wife(bool $ignoreLaterEvents = false): RelDefBuilderSpouse;
+  
+  /**
+   * family has a marriage event,
+   * either as last event relevant in this context, or regardless of later events
+   * (relevant events are: ['ANUL', 'DIV', 'ENGA', 'MARR', '_NMR'])
+   * 
+   * @return RelDefBuilderSpouse
+   */
+  public function spouse(bool $ignoreLaterEvents = false): RelDefBuilderSpouse;
   
   /**
    * family has an engagement event as last event relevant in this context

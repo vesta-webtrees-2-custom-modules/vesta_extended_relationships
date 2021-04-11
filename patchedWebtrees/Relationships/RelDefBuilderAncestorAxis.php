@@ -13,6 +13,18 @@ interface RelDefBuilderAncestorAxis {
   
   public function parent(?Times $times = null): RelDefBuilderAncestor;
   
+  public function adoptiveFather(): RelDefBuilderAncestor;
+  
+  public function adoptiveMother(): RelDefBuilderAncestor;
+  
+  public function adoptiveParent(): RelDefBuilderAncestor;
+
+  public function fosterFather(): RelDefBuilderAncestor;
+  
+  public function fosterMother(): RelDefBuilderAncestor;
+  
+  public function fosterParent(): RelDefBuilderAncestor;
+  
   /**
    * 
    * @param RelPathElement $element match dynamically (you may evaluate INDI and FAM facts of the current as well as preceding path elements)

@@ -113,13 +113,16 @@ class RelationshipPath {
     /** @var RelationshipPath $tail */
     $tail = $this->elements->slice($index, $length);
     
-    $last = $head->last();
-    if ($last === null) {
-      //empty head
-      $last = $this->elements->last();
-    }
+    $sex = $this->sex;
+    $from = $this->from;
     
-    return new RelationshipPath($last->toSex(), $last->to(), $tail);
+    $last = $head->last();
+    if ($last !== null) {
+      $sex = $last->toSex();
+      $from = $last->to();
+    } //else empty head
+    
+    return new RelationshipPath($sex, $from, $tail);
   }
   
   public function splitBefore(int $index): RelationshipPathSplit {

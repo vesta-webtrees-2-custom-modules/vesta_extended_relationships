@@ -5,22 +5,21 @@ declare(strict_types=1);
 namespace Cissee\WebtreesExt\Relationships;
 
 use Cissee\WebtreesExt\Modules\RelationshipPath;
-use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Fact;
+use Fisharebest\Webtrees\Family;
+use Fisharebest\Webtrees\Individual;
 use Illuminate\Support\Collection;
 
-class SpouseRelPathElement implements RelPathElement {
+class ParentRelPathElement implements RelPathElement {
   
   const CODES = array(
-      'hus:hus' => 'M',
-      'hus:spo' => 'M',
-      'wif:wif' => 'F',
-      'wif:spo' => 'F',
-      'spo:spo' => 'U');
+      'fat:fat' => 'M',
+      'fat:par' => 'M',
+      'mot:mot' => 'F',
+      'mot:par' => 'F',
+      'par:par' => 'U');
     
   protected $code;
-  protected $facts;
-  protected $relevantFacts;
+  protected $pedigree;
 
   public function minTimes(): int {
     return 1;
@@ -33,17 +32,14 @@ class SpouseRelPathElement implements RelPathElement {
   /**
    * 
    * @param string $code
-   * @param array[string] $facts e.g. 'FAM:MARR'
-   * @param array[string] $relevantFacts e.g. 'MARR'
+   * @param string $pedigree
    */
   public function __construct(
           string $code,
-          array $facts,
-          array $relevantFacts) {
+          string $pedigree) {
     
     $this->code = $code;
-    $this->facts = $facts;
-    $this->relevantFacts = $relevantFacts;
+    $this->pedigree = $pedigree;
   }
   
   public function matchPath(
@@ -58,7 +54,7 @@ class SpouseRelPathElement implements RelPathElement {
     $split = $path->splitBefore(1);
     $head = $split->head();
     $tail = $split->tail();
-      
+    
     $sex = $this->match($head->last()->rel());
     if ($sex === null) {
       return new Collection();
@@ -69,15 +65,18 @@ class SpouseRelPathElement implements RelPathElement {
       return new Collection();
     }
     
-    $event = $family->facts($this->relevantFacts, true, Auth::PRIV_HIDE, true)->last();
-    
-    if (!($event instanceof Fact)) {
-      return new Collection();
-    }  
-    
-    if (!in_array($event->tag(), $this->facts)) {
+    $previous = $head->from();
+    if ($previous === null) {
       return new Collection();
     }
+    
+    $pedigree = $this->getChildFamilyLabel($family, $previous);
+    
+    if ($pedigree !== $this->pedigree) {
+      return new Collection();
+    }
+    
+    //TODO: should we additionally check ADOP event?
     
     //we have a match!
     //error_log("RelPathElement matched fixed! ". $path . " as " . $sex);
@@ -96,7 +95,11 @@ class SpouseRelPathElement implements RelPathElement {
     return null;
   }
   
-  public static function typicalRelevantFacts(): array {
-    return ['ANUL', 'DIV', 'ENGA', 'MARR', '_NMR'];
+  //cf Individual.getChildFamilyPedigree
+  //expected values:
+  //'birth', 'adopted', 'foster', 'sealing', 'rada'
+  protected function getChildFamilyLabel(Family $family, Individual $individual): string {
+    preg_match('/\n1 FAMC @' . $family->xref() . '@(?:\n[2-9].*)*\n2 PEDI (.+)/', $individual->gedcom(), $match);
+    return $match[1] ?? 'birth';
   }
 }
