@@ -160,6 +160,20 @@ class LanguageEnglishExt extends AbstractModule implements ModuleLanguageExtInte
 
     ////////
 
+    $defs []= RelPath::any()->stepFather()->is('step-father');
+    $defs []= RelPath::any()->stepMother()->is('step-mother');
+    $defs []= RelPath::any()->stepParent()->is('step-parent');
+    
+    $defs []= RelPath::any()->stepSon()->is('step-son');
+    $defs []= RelPath::any()->stepDaughter()->is('step-daughter');
+    $defs []= RelPath::any()->stepChild()->is('step-child');
+    
+    $defs []= RelPath::any()->stepBrother()->is('step-brother');
+    $defs []= RelPath::any()->stepSister()->is('step-sister');
+    $defs []= RelPath::any()->stepSibling()->is('step-sibling');
+    
+    ////////
+
     $defs []= RelPath::any()->child()->son()->is('grandson');
     $defs []= RelPath::any()->child(Times::fixed(2))->son()->is('great-grandson');
     $defs []= RelPath::any()->child(Times::min(2))->child()->son()->is('great ×%s grandson');

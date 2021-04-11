@@ -306,6 +306,51 @@ class RelPath implements
     $this->elements->add($element);
     return $this;
   }
+    
+  public function stepFather(): RelDefBuilderSpouse {
+    $this->elements->add(new StepParentRelPathElement('par', 'hus'));
+    return $this;
+  }
+  
+  public function stepMother(): RelDefBuilderSpouse {
+    $this->elements->add(new StepParentRelPathElement('par', 'wif'));
+    return $this;
+  }
+  
+  public function stepParent(): RelDefBuilderSpouse {
+    $this->elements->add(new StepParentRelPathElement('par', 'spo'));
+    return $this;
+  }
+     
+  public function stepSon(): RelDefBuilderDescendant {
+    $this->elements->add(new StepChildRelPathElement('spo', 'son'));
+    return $this;
+  }
+  
+  public function stepDaughter(): RelDefBuilderDescendant {
+    $this->elements->add(new StepChildRelPathElement('spo', 'dau'));
+    return $this;
+  }
+  
+  public function stepChild(): RelDefBuilderDescendant {
+    $this->elements->add(new StepChildRelPathElement('spo', 'chi'));
+    return $this;
+  }
+  
+  public function stepBrother(): RelDefBuilderDescendant {
+    $this->elements->add(new StepSiblingRelPathElement('par', 'spo', 'son'));
+    return $this;
+  }
+  
+  public function stepSister(): RelDefBuilderDescendant {
+    $this->elements->add(new StepSiblingRelPathElement('par', 'spo', 'dau'));
+    return $this;
+  }
+  
+  public function stepSibling(): RelDefBuilderDescendant {
+    $this->elements->add(new StepSiblingRelPathElement('par', 'spo', 'chi'));
+    return $this;
+  }
   
   public function is(string $nominative, ?string $genitive = null): RelDef {
     return new RelDef($this->from, $this->elements, $nominative, $genitive);

@@ -123,7 +123,20 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->parent()->son()->is('Halbbruder', 'des Halbbruders');
     $defs []= RelPath::any()->parent()->daughter()->is('Halbschwester', 'der Halbschwester');
     
-    //TODO: make step-x relationships available/configurable?
+    $defs []= RelPath::any()->stepFather()->is('Stiefvater');
+    $defs []= RelPath::any()->stepMother()->is('Stiefmutter');
+    $defs []= RelPath::any()->stepParent()->is('Stief-Elternteil');
+    
+    $defs []= RelPath::any()->stepSon()->is('Stiefsohn');
+    $defs []= RelPath::any()->stepDaughter()->is('Stieftochter');
+    $defs []= RelPath::any()->stepChild()->is('Stiefkind');
+    
+    $defs []= RelPath::any()->stepBrother()->is('Stiefbruder');
+    $defs []= RelPath::any()->stepSister()->is('Stiefschwester');
+    $defs []= RelPath::any()->stepSibling()->is('Stief-Geschwisterteil');
+    
+    ////////
+
     
     ////////
     

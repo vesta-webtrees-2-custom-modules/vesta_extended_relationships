@@ -24,6 +24,54 @@ interface RelDefBuilderAncestorAxis {
   public function fosterMother(): RelDefBuilderAncestor;
   
   public function fosterParent(): RelDefBuilderAncestor;
+    
+  /**
+   * restricted to marriages after birth of the child.
+   * if this is unintended, just use a combination of '->parent()->spouse()' etc. instead
+   * 
+   * @return RelDefBuilderSpouse
+   */
+  public function stepFather(): RelDefBuilderSpouse;
+  
+  /**
+   * restricted to marriages after birth of the child.
+   * if this is unintended, just use a combination of '->parent()->spouse()' etc. instead
+   * 
+   * @return RelDefBuilderSpouse
+   */
+  public function stepMother(): RelDefBuilderSpouse;
+  
+  /**
+   * restricted to marriages after birth of the child.
+   * if this is unintended, just use a combination of '->parent()->spouse()' etc. instead
+   * 
+   * @return RelDefBuilderSpouse
+   */
+  public function stepParent(): RelDefBuilderSpouse;
+  
+  /**
+   * restricted to marriages after birth of the children.
+   * if this is unintended, just use a combination of '->parent()->spouse()->child()' etc. instead
+   * 
+   * @return RelDefBuilderDescendant
+   */
+  public function stepBrother(): RelDefBuilderDescendant;
+  
+  /**
+   * restricted to marriages after birth of the children.
+   * if this is unintended, just use a combination of '->parent()->spouse()->child()' etc. instead
+   * 
+   * @return RelDefBuilderDescendant
+   */
+  public function stepSister(): RelDefBuilderDescendant;
+  
+  /**
+   * restricted to marriages after birth of the children.
+   * if this is unintended, just use a combination of '->parent()->spouse()->child()' etc. instead
+   * 
+   * @return RelDefBuilderDescendant
+   */
+  public function stepSibling(): RelDefBuilderDescendant;
   
   /**
    * 

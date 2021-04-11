@@ -113,6 +113,30 @@ interface RelDefBuilderSpouseAxis {
   public function partner(): RelDefBuilderSpouse;
   
   /**
+   * restricted to marriages after birth of the child.
+   * if this is unintended, just use a combination of '->spouse()->child()' etc. instead
+   * 
+   * @return RelDefBuilderDescendant
+   */
+  public function stepSon(): RelDefBuilderDescendant;
+  
+  /**
+   * restricted to marriages after birth of the child.
+   * if this is unintended, just use a combination of '->spouse()->child()' etc. instead
+   * 
+   * @return RelDefBuilderDescendant
+   */
+  public function stepDaughter(): RelDefBuilderDescendant;
+  
+  /**
+   * restricted to marriages after birth of the child.
+   * if this is unintended, just use a combination of '->spouse()->child()' etc. instead
+   * 
+   * @return RelDefBuilderDescendant
+   */
+  public function stepChild(): RelDefBuilderDescendant;
+  
+  /**
    * 
    * @param RelPathElement $element match dynamically (you may evaluate INDI and FAM facts of the current as well as preceding path elements)
    * @return RelDefBuilderSpouse
