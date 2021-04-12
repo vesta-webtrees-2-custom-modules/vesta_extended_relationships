@@ -13,5 +13,11 @@
 		"version": "2.0.15.0.0",
 		"from": "2.0.12",
 		"to": "2.1"
+	},
+	{
+		"version": "2.0.15.1.0",
+		"from": "2.0.12",
+		"to": "2.1",
+		"changelog": ["Improved relationship names (better sub-relationship splitting, genitive constructions, additional relationships). Currently supported for English, German, and Slovak. Additional languages to follow."]
 	}
 ]

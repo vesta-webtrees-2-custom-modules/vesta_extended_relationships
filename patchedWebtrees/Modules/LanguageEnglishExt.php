@@ -123,7 +123,6 @@ class LanguageEnglishExt extends AbstractModule implements ModuleLanguageExtInte
 
     $defs []= RelPath::any()->spouse()->father()->is('father-in-law');
     $defs []= RelPath::any()->spouse()->mother()->is('mother-in-law');
-
     $defs []= RelPath::any()->child()->husband()->is('son-in-law');
     $defs []= RelPath::any()->child()->wife()->is('daughter-in-law');
     
@@ -131,7 +130,17 @@ class LanguageEnglishExt extends AbstractModule implements ModuleLanguageExtInte
     $defs []= RelPath::any()->sibling()->husband()->is('brother-in-law');
     $defs []= RelPath::any()->spouse()->sister()->is('sister-in-law');
     $defs []= RelPath::any()->sibling()->wife()->is('sister-in-law');
-        
+     
+    $defs []= RelPath::any()->exSpouse()->father()->is('ex-father-in-law');
+    $defs []= RelPath::any()->exSpouse()->mother()->is('ex-mother-in-law');
+    $defs []= RelPath::any()->child()->exHusband()->is('ex-son-in-law');
+    $defs []= RelPath::any()->child()->exWife()->is('ex-daughter-in-law');
+    
+    $defs []= RelPath::any()->exSpouse()->brother()->is('ex-brother-in-law');
+    $defs []= RelPath::any()->sibling()->exHusband()->is('ex-brother-in-law');
+    $defs []= RelPath::any()->exSpouse()->sister()->is('ex-sister-in-law');
+    $defs []= RelPath::any()->sibling()->exWife()->is('ex-sister-in-law');
+    
     ////////
 
     $defs []= RelPath::any()->parent()->son()->is('half-brother');
@@ -154,6 +163,8 @@ class LanguageEnglishExt extends AbstractModule implements ModuleLanguageExtInte
     $defs []= RelPath::any()->parent(Times::fixed(2))->mother()->is('great-grandmother');
     $defs []= RelPath::any()->parent(Times::min(2))->parent()->mother()->is('great ×%s grandmother');
 
+    $defs []= RelPath::any()->father()->parent()->is('paternal grandparent');
+    $defs []= RelPath::any()->mother()->parent()->is('maternal grandparent');
     $defs []= RelPath::any()->parent()->parent()->is('grandparent');
     $defs []= RelPath::any()->parent(Times::fixed(2))->parent()->is('great-grandparent');
     $defs []= RelPath::any()->parent(Times::min(2))->parent()->parent()->is('great ×%s grandparent');

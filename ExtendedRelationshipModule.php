@@ -178,7 +178,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
       View::registerCustomView('::lists/surnames-table', $this->name() . '::lists/surnames-table-switch');            
       View::registerCustomView('::lists/surnames-table-with-patriarchs', $this->name() . '::lists/surnames-table-with-patriarchs');
       
-      $this->flashWhatsNew('\Cissee\Webtrees\Module\ExtendedRelationships\WhatsNew', 1);
+      $this->flashWhatsNew('\Cissee\Webtrees\Module\ExtendedRelationships\WhatsNew', 2);
   }
   
   protected function editConfigAfterFaq() {
