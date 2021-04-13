@@ -8,9 +8,10 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-01-24 13:35+0100\n"
-"PO-Revision-Date: 2021-04-08 21:26+0000\n"
+"PO-Revision-Date: 2021-04-13 08:01+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
-"Language-Team: Slovak <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +77,7 @@ msgstr "Zobraziť checkbox (užívateľ môže zapnúť/vypnúť zobrazenie rodi
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
-msgstr ""
+msgstr "Dúfajme, že ukazuje o koľko lepšie funguje nový algoritmus ..."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:298
@@ -108,7 +109,7 @@ msgstr "Spoloční predkovia: "
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:67
 msgid "Debugging"
-msgstr ""
+msgstr "Testovanie"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:78
@@ -319,7 +320,7 @@ msgstr ""
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
-msgstr ""
+msgstr "Pôvodný algoritmus pre názvy rodinných vzťahov"
 
 #: ExtendedRelationshipModule.php:250
 msgid "No relationship found"
@@ -349,7 +350,7 @@ msgstr "Možnosti, ktoré sa môžu zvoliť v schéme"
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
 #: resources/views/lists/surnames-table-with-patriarchs.phtml:31
 msgid "Patriarch"
-msgstr ""
+msgstr "Patriarcha"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
@@ -413,7 +414,7 @@ msgstr "Zobraziť spoločných predkov hore na cestách vzťahov"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:69
 msgid "Show legacy relationship path names"
-msgstr ""
+msgstr "Zobraziť názvy rodinných vzťahov podľa pôvodného algoritmu"
 
 #. I18N: Reverse the order of two individuals
 #: resources/views/page.phtml:75
@@ -495,6 +496,8 @@ msgstr "Ďalšie informácie (po anglicky) nájdete tu: "
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
 msgstr ""
+"Toto môžete vypnúť cez nastavenia modulu, je to určené hlavne pre účely "
+"testovania."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:327
@@ -514,7 +517,7 @@ msgstr "neobmedzene"
 #: ExtendedRelationshipsChartController.php:113
 #, php-format
 msgid "via legacy algorithm: %s"
-msgstr ""
+msgstr "v pôvodnom algoritme: %s"
 
 #. I18N: A button label.
 #: resources/views/page.phtml:70
