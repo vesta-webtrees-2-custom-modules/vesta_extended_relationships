@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-02-05 19:41+0000\n"
-"Last-Translator: mpwt <der@bauschaffen.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
+"PO-Revision-Date: 2021-04-13 14:26+0000\n"
+"Last-Translator: Gunnar-GO <gunnar@go-designs.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 #: ExtendedRelationshipModule.php:197
 msgid " (see below for details)."
@@ -75,6 +76,7 @@ msgstr "Checkbox anzeigen (Benutzer kann die Anzeige von Verwandschaftsbeziehung
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
 msgstr ""
+"Und hoffentlich zeigt es, wie viel besser der neue Algorithmus arbeitet..."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:298
@@ -106,7 +108,7 @@ msgstr "Gemeinsame Vorfahren: "
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:67
 msgid "Debugging"
-msgstr ""
+msgstr "Debuggen"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:78
@@ -315,7 +317,7 @@ msgstr "Es ist komplizierter diesen genauen CoR zu bestimmen und die Unterschied
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
-msgstr ""
+msgstr "Alter Algorithmus für Namen der Beziehungspfade"
 
 #: ExtendedRelationshipModule.php:250
 msgid "No relationship found"
@@ -345,7 +347,7 @@ msgstr "Im Diagramm auswählbare Optionen"
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
 #: resources/views/lists/surnames-table-with-patriarchs.phtml:31
 msgid "Patriarch"
-msgstr ""
+msgstr "Ältester männlicher Vorfahr"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
@@ -409,7 +411,7 @@ msgstr "Gemeinsame Vorfahren zu Beginn der Beziehungspfade anzeigen"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:69
 msgid "Show legacy relationship path names"
-msgstr ""
+msgstr "Zeige alte Namen der Beziehungspfade"
 
 #. I18N: Reverse the order of two individuals
 #: resources/views/page.phtml:75
@@ -491,6 +493,8 @@ msgstr "Unter normalen Umständen sind der Anteil der vom Vorfahren auf den Nach
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
 msgstr ""
+"Du kannst dies über die Moduleinstellungen deaktivieren. Es ist in erster "
+"Linie zur Fehlerbereinigung gedacht."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:327
@@ -510,7 +514,7 @@ msgstr "unbegrenzt"
 #: ExtendedRelationshipsChartController.php:113
 #, php-format
 msgid "via legacy algorithm: %s"
-msgstr ""
+msgstr "über alten Algorithmus: %s"
 
 #. I18N: A button label.
 #: resources/views/page.phtml:70
