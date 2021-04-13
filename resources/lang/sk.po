@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-04-02 18:26+0000\n"
+"POT-Creation-Date: 2021-01-24 13:35+0100\n"
+"PO-Revision-Date: 2021-04-13 08:01+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
-"Language-Team: Slovak <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: ExtendedRelationshipModule.php:197
 msgid " (see below for details)."
-msgstr " (pozri nižšie pre detaily)."
+msgstr " (detaily pozri nižšie)."
 
 #. I18N: (person 1) is (relative, e.g. father) of (person2)
 #: FunctionsPrintRels.php:119
@@ -36,21 +37,23 @@ msgstr "(Počet vzťahov: %s)"
 #: ExtendedRelationshipsChartController.php:75
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
-msgstr "(to je celkovo skoro tak blízky vzťah ako: %1$s)"
+msgstr "(celkovo je to skoro tak blízky vzťah ako: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:73
 #, php-format
 msgid "(that's overall as close as: %1$s)"
-msgstr "(to je celkovo tak blízky vzťah ako: %1$s)"
+msgstr "(celkovo je to tak blízky vzťah ako: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:77
 #, php-format
 msgid "(that's overall closer than: %1$s)"
-msgstr "(to je celkovo bližší vzťah ako: %1$s)"
+msgstr "(celkovo je to bližší vzťah ako: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:63
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
-msgstr "(to nie je celkovo významne bližšie ako najbližší vzťah cez spoločných predkov)"
+msgstr ""
+"(celkovo to nie je významne bližšie ako najbližší vzťah cez spoločných "
+"predkov)"
 
 #: ExtendedRelationshipModuleTrait.php:22
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -74,7 +77,7 @@ msgstr "Zobraziť checkbox (užívateľ môže zapnúť/vypnúť zobrazenie rodi
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
-msgstr ""
+msgstr "Dúfajme, že ukazuje o koľko lepšie funguje nový algoritmus ..."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:298
@@ -106,7 +109,7 @@ msgstr "Spoloční predkovia: "
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:67
 msgid "Debugging"
-msgstr ""
+msgstr "Testovanie"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:78
@@ -311,11 +314,13 @@ msgstr "Plánované ako náhrada za originálny modul „Vzťahy“."
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
-msgstr "Zistiť presný CoR je omnoho zložitejšie, okrem toho rozdiely sú poväčšinou malé. Preto sa vypočítava len nekorigovaný CoR."
+msgstr ""
+"Zistiť presný CoR je omnoho zložitejšie, okrem toho rozdiely sú väčšinou "
+"malé. Preto sa vypočítava len nekorigovaný CoR."
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
-msgstr ""
+msgstr "Pôvodný algoritmus pre názvy rodinných vzťahov"
 
 #: ExtendedRelationshipModule.php:250
 msgid "No relationship found"
@@ -345,7 +350,7 @@ msgstr "Možnosti, ktoré sa môžu zvoliť v schéme"
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
 #: resources/views/lists/surnames-table-with-patriarchs.phtml:31
 msgid "Patriarch"
-msgstr ""
+msgstr "Patriarcha"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
@@ -409,7 +414,7 @@ msgstr "Zobraziť spoločných predkov hore na cestách vzťahov"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:69
 msgid "Show legacy relationship path names"
-msgstr ""
+msgstr "Zobraziť názvy rodinných vzťahov podľa pôvodného algoritmu"
 
 #. I18N: Reverse the order of two individuals
 #: resources/views/page.phtml:75
@@ -486,11 +491,13 @@ msgstr "Nekorigovaný CoR (koeficient vzťahov): %s"
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
-msgstr "Ďalšie  informácie (po anglicky) nájdete tu: "
+msgstr "Ďalšie informácie (po anglicky) nájdete tu: "
 
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
 msgstr ""
+"Toto môžete vypnúť cez nastavenia modulu, je to určené hlavne pre účely "
+"testovania."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:327
@@ -510,7 +517,7 @@ msgstr "neobmedzene"
 #: ExtendedRelationshipsChartController.php:113
 #, php-format
 msgid "via legacy algorithm: %s"
-msgstr ""
+msgstr "v pôvodnom algoritme: %s"
 
 #. I18N: A button label.
 #: resources/views/page.phtml:70

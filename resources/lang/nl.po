@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-02-20 11:50+0000\n"
-"Last-Translator: Richard Cissée <ric@richard-cissee.de>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
+"PO-Revision-Date: 2021-04-13 08:01+0000\n"
+"Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 #: ExtendedRelationshipModule.php:197
 msgid " (see below for details)."
@@ -74,7 +75,7 @@ msgstr "Permanente schakeling toestaan (gebruiker kan verwantschappen weergeven/
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
-msgstr ""
+msgstr "En hopelijk laat het zien hoeveel beter het nieuwe algoritme werkt ..."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:298
@@ -106,7 +107,7 @@ msgstr "Gemeenschappelijke voorouders: "
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:67
 msgid "Debugging"
-msgstr ""
+msgstr "Foutopsporing"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:78
@@ -315,7 +316,7 @@ msgstr "Het is ingewikkelder om deze exacte verwantschapscoëfficiënt bepalen, 
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
-msgstr ""
+msgstr "Verouderd algoritme voor verwantschapspadnamen"
 
 #: ExtendedRelationshipModule.php:250
 msgid "No relationship found"
@@ -345,7 +346,7 @@ msgstr "Opties die in het diagram moeten worden getoond"
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
 #: resources/views/lists/surnames-table-with-patriarchs.phtml:31
 msgid "Patriarch"
-msgstr ""
+msgstr "Stamvader"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
@@ -409,7 +410,7 @@ msgstr "Toon gemeenschappelijke voorouders boven verwantschapspaden"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:69
 msgid "Show legacy relationship path names"
-msgstr ""
+msgstr "Toon verouderde verwantschapspadnamen"
 
 #. I18N: Reverse the order of two individuals
 #: resources/views/page.phtml:75
@@ -491,6 +492,8 @@ msgstr "Onder normale omstandigheden is het percentage genen dat wordt overgedra
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
 msgstr ""
+"U kunt dit uitschakelen via de modulevoorkeuren, het is voornamelijk bedoeld "
+"voor foutopsporing."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:327
@@ -510,7 +513,7 @@ msgstr "onbeperkt"
 #: ExtendedRelationshipsChartController.php:113
 #, php-format
 msgid "via legacy algorithm: %s"
-msgstr ""
+msgstr "via verouderd algoritme: %s"
 
 #. I18N: A button label.
 #: resources/views/page.phtml:70
