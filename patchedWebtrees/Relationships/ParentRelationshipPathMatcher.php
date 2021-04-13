@@ -9,7 +9,7 @@ use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\Individual;
 use Illuminate\Support\Collection;
 
-class ParentRelPathElement implements RelPathElement {
+class ParentRelationshipPathMatcher implements RelationshipPathMatcher {
   
   const CODES = array(
       'fat:fat' => 'M',
@@ -79,7 +79,7 @@ class ParentRelPathElement implements RelPathElement {
     //TODO: should we additionally check ADOP event?
     
     //we have a match!
-    //error_log("RelPathElement matched fixed! ". $path . " as " . $sex);
+    //error_log("RelationshipPathMatcher matched fixed! ". $path . " as " . $sex);
     
     $ret = [];
     $ret []= new MatchedPartialPath($matchedPathElements + 1, $tail, $refs);

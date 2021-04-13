@@ -75,8 +75,8 @@ interface RelDefBuilderAncestorAxis {
   
   /**
    * 
-   * @param RelPathElement $element match dynamically (you may evaluate INDI and FAM facts of the current as well as preceding path elements)
+   * @param RelationshipPathMatcher $element match dynamically (you may evaluate INDI and FAM facts of the current as well as preceding path elements)
    * @return RelDefBuilderSpouse
    */
-  public function ancestorAxisVia(RelPathElement $element): RelDefBuilderAncestor;
+  public function ancestorAxisVia(RelationshipPathMatcher $element): RelDefBuilderAncestor;
 }

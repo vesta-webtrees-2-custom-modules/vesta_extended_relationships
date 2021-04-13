@@ -8,7 +8,7 @@ use Cissee\WebtreesExt\Modules\RelationshipPath;
 use Cissee\WebtreesExt\Modules\RelationshipPathSplit;
 use Illuminate\Support\Collection;
 
-class SimpleRelPathElement implements RelPathElement {
+class SimpleRelationshipPathMatcher implements RelationshipPathMatcher {
   
   const CODES = array(
       'fat:fat' => 'M',
@@ -65,7 +65,7 @@ class SimpleRelPathElement implements RelPathElement {
     
     $count = $this->times->fixedCount();
     
-    //error_log("RelPathElement matchPath: ". $path . " times " . $count);
+    //error_log("RelationshipPathMatcher matchPath: ". $path . " times " . $count);
     
     if ($count > 0) {
       return $this->matchFixedPath($matchedPathElements, $path, $refs, $count);
@@ -95,7 +95,7 @@ class SimpleRelPathElement implements RelPathElement {
       return new Collection();
     }
     
-    //error_log("RelPathElement matchDynamicPath: ". $path);
+    //error_log("RelationshipPathMatcher matchDynamicPath: ". $path);
 
     for ($i=1; $i<=$minCount; $i++) {
       /** @var RelationshipPathSplit $split */
@@ -111,7 +111,7 @@ class SimpleRelPathElement implements RelPathElement {
     
     $ret = [];    
     while ($sex !== null) {
-      //error_log("RelPathElement matched dynamically! ". $path);
+      //error_log("RelationshipPathMatcher matched dynamically! ". $path);
     
       $nextRefs = [];
       foreach ($refs as $ref) {
@@ -145,7 +145,7 @@ class SimpleRelPathElement implements RelPathElement {
           array $refs, 
           int $count): Collection {
     
-    //error_log("RelPathElement matchFixedPath: ". $path . "/" . $count);
+    //error_log("RelationshipPathMatcher matchFixedPath: ". $path . "/" . $count);
     
     if ($path->size() < $count) {
       return new Collection();
@@ -165,7 +165,7 @@ class SimpleRelPathElement implements RelPathElement {
     }
     
     //we have a match!
-    //error_log("RelPathElement matched fixed! ". $path . " as " . $sex);
+    //error_log("RelationshipPathMatcher matched fixed! ". $path . " as " . $sex);
     
     $ret = [];
     $ret []= new MatchedPartialPath($matchedPathElements + $count, $tail, $refs);

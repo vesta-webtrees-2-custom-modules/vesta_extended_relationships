@@ -7,10 +7,10 @@ namespace Cissee\WebtreesExt\Relationships;
 use Cissee\WebtreesExt\Modules\RelationshipPath;
 use Illuminate\Support\Collection;
 
-class TotalPathLengthPathElement implements RelPathElement {
+class PathSexRelationshipPathMatcher implements RelationshipPathMatcher {
 
-  protected $times;
-
+  protected $sex;
+  
   public function minTimes(): int {
     return 0; //we're only peeking, so we don't contribute here!
   }
@@ -20,9 +20,13 @@ class TotalPathLengthPathElement implements RelPathElement {
   }
   
   public function __construct(
-          Times $times) {
+          string $sex) {
     
-    $this->times = $times;
+    if (!preg_match('/^[MFU]$/', $sex)) {
+      throw new Exception();
+    }
+    
+    $this->sex = $sex;
   }
   
   public function matchPath(
@@ -30,25 +34,12 @@ class TotalPathLengthPathElement implements RelPathElement {
           RelationshipPath $path, 
           array $refs): Collection {    
     
-    if ($path->isEmpty()) {
+    if ($path->sex() !== $this->sex) {
       return new Collection();
     }
     
-    $totalPathLength = $matchedPathElements + $path->size();
-    if ($this->times->minTimes() > $totalPathLength) {
-      return new Collection();
-    }
-    
-    $ret = [];    
-    
-    $nextRefs = [];
-    foreach ($refs as $ref) {
-      $nextRefs []= $ref;
-    }
-    $nextRefs []= new Reference($this->times, $totalPathLength);
-
-    $ret []= new MatchedPartialPath($matchedPathElements, $path, $nextRefs);
-      
+    $ret = [];
+    $ret []= new MatchedPartialPath($matchedPathElements, $path, $refs);      
     return new Collection($ret);
   }
 }

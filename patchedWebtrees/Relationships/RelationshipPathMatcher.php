@@ -7,7 +7,7 @@ namespace Cissee\WebtreesExt\Relationships;
 use Cissee\WebtreesExt\Modules\RelationshipPath;
 use Illuminate\Support\Collection;
 
-interface RelPathElement {
+interface RelationshipPathMatcher {
   
   public function minTimes(): int;
   

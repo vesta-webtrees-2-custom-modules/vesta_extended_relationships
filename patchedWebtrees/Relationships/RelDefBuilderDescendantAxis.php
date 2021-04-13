@@ -27,8 +27,8 @@ interface RelDefBuilderDescendantAxis {
   
   /**
    * 
-   * @param RelPathElement $element match dynamically (you may evaluate INDI and FAM facts of the current as well as preceding path elements)
+   * @param RelationshipPathMatcher $element match dynamically (you may evaluate INDI and FAM facts of the current as well as preceding path elements)
    * @return RelDefBuilderSpouse
    */
-  public function descendantAxisVia(RelPathElement $element): RelDefBuilderDescendant;
+  public function descendantAxisVia(RelationshipPathMatcher $element): RelDefBuilderDescendant;
 }

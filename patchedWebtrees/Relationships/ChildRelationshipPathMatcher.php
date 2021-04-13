@@ -5,22 +5,21 @@ declare(strict_types=1);
 namespace Cissee\WebtreesExt\Relationships;
 
 use Cissee\WebtreesExt\Modules\RelationshipPath;
-use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Fact;
+use Fisharebest\Webtrees\Family;
+use Fisharebest\Webtrees\Individual;
 use Illuminate\Support\Collection;
 
-class SpouseRelPathElement implements RelPathElement {
+class ChildRelationshipPathMatcher implements RelationshipPathMatcher {
   
   const CODES = array(
-      'hus:hus' => 'M',
-      'hus:spo' => 'M',
-      'wif:wif' => 'F',
-      'wif:spo' => 'F',
-      'spo:spo' => 'U');
+      'son:son' => 'M',
+      'son:chi' => 'M',
+      'dau:dau' => 'F',
+      'dau:chi' => 'F',
+      'chi:chi' => 'U');
     
   protected $code;
-  protected $facts;
-  protected $relevantFacts;
+  protected $pedigree;
 
   public function minTimes(): int {
     return 1;
@@ -33,17 +32,14 @@ class SpouseRelPathElement implements RelPathElement {
   /**
    * 
    * @param string $code
-   * @param array[string] $facts e.g. 'FAM:MARR'
-   * @param array[string] $relevantFacts e.g. 'MARR'
+   * @param string $pedigree
    */
   public function __construct(
           string $code,
-          array $facts,
-          array $relevantFacts) {
+          string $pedigree) {
     
     $this->code = $code;
-    $this->facts = $facts;
-    $this->relevantFacts = $relevantFacts;
+    $this->pedigree = $pedigree;
   }
   
   public function matchPath(
@@ -69,18 +65,21 @@ class SpouseRelPathElement implements RelPathElement {
       return new Collection();
     }
     
-    $event = $family->facts($this->relevantFacts, true, Auth::PRIV_HIDE, true)->last();
-    
-    if (!($event instanceof Fact)) {
-      return new Collection();
-    }  
-    
-    if (!in_array($event->tag(), $this->facts)) {
+    $next = $head->last()->to();
+    if ($next === null) {
       return new Collection();
     }
     
+    $pedigree = $this->getChildFamilyLabel($family, $next);
+    
+    if ($pedigree !== $this->pedigree) {
+      return new Collection();
+    }
+    
+    //TODO: should we additionally check ADOP event?
+    
     //we have a match!
-    //error_log("RelPathElement matched fixed! ". $path . " as " . $sex);
+    //error_log("RelationshipPathMatcher matched fixed! ". $path . " as " . $sex);
     
     $ret = [];
     $ret []= new MatchedPartialPath($matchedPathElements + 1, $tail, $refs);
@@ -96,7 +95,11 @@ class SpouseRelPathElement implements RelPathElement {
     return null;
   }
   
-  public static function typicalRelevantFacts(): array {
-    return ['ANUL', 'DIV', 'ENGA', 'MARR', '_NMR'];
+  //cf Individual.getChildFamilyPedigree
+  //expected values:
+  //'birth', 'adopted', 'foster', 'sealing', 'rada'
+  protected function getChildFamilyLabel(Family $family, Individual $individual): string {
+    preg_match('/\n1 FAMC @' . $family->xref() . '@(?:\n[2-9].*)*\n2 PEDI (.+)/', $individual->gedcom(), $match);
+    return $match[1] ?? 'birth';
   }
 }

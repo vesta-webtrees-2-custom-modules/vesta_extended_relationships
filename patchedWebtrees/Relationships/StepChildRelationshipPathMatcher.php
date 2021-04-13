@@ -9,21 +9,21 @@ use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Fact;
 use Illuminate\Support\Collection;
 
-class StepParentRelPathElement implements RelPathElement {
+class StepChildRelationshipPathMatcher implements RelationshipPathMatcher {
   
   const CODES1 = array(
-      'fat:fat' => 'M',
-      'fat:par' => 'M',
-      'mot:mot' => 'F',
-      'mot:par' => 'F',
-      'par:par' => 'U');
-  
-  const CODES2 = array(    
       'hus:hus' => 'M',
       'hus:spo' => 'M',
       'wif:wif' => 'F',
       'wif:spo' => 'F',
       'spo:spo' => 'U');
+  
+  const CODES2 = array(    
+      'son:son' => 'M',
+      'son:chi' => 'M',
+      'dau:dau' => 'F',
+      'dau:chi' => 'F',
+      'chi:chi' => 'U');
     
   protected $code1;
   protected $code2;
@@ -61,28 +61,7 @@ class StepParentRelPathElement implements RelPathElement {
     if ($sex === null) {
       return new Collection();
     }
-    
-    $child = $head->from();
-    if ($child === null) {
-      return new Collection();
-    }
-    
-    $birthDate = $child->getBirthDate();
-    if (!$birthDate->isOK()) {
-      return new Collection();
-    }
-    
-    ////////
-
-    $split = $tail->splitBefore(1);
-    $head = $split->head();
-    $tail = $split->tail();
-      
-    $sex = $this->match2($head->last()->rel());
-    if ($sex === null) {
-      return new Collection();
-    }
-    
+        
     $family = $head->last()->family();
     if ($family === null) {
       return new Collection();
@@ -103,6 +82,27 @@ class StepParentRelPathElement implements RelPathElement {
       return new Collection();
     }
     
+    ////////
+    
+    $split = $tail->splitBefore(1);
+    $head = $split->head();
+    $tail = $split->tail();
+      
+    $sex = $this->match2($head->last()->rel());
+    if ($sex === null) {
+      return new Collection();
+    }
+    
+    $child = $head->last()->to();
+    if ($child === null) {
+      return new Collection();
+    }
+    
+    $birthDate = $child->getBirthDate();
+    if (!$birthDate->isOK()) {
+      return new Collection();
+    }
+    
     //is the MARR after the BIRT?
     if ($birthDate->minimumJulianDay() >= $eventDate->maximumJulianDay()) {
       return new Collection();
@@ -111,7 +111,7 @@ class StepParentRelPathElement implements RelPathElement {
     ////////
     
     //we have a match!
-    //error_log("RelPathElement matched fixed! ". $path . " as " . $sex);
+    //error_log("RelationshipPathMatcher matched fixed! ". $path . " as " . $sex);
     
     $ret = [];
     $ret []= new MatchedPartialPath($matchedPathElements + 2, $tail, $refs);

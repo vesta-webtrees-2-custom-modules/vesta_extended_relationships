@@ -33,8 +33,8 @@ interface RelDefBuilderSiblingAxis {
   
   /**
    * 
-   * @param RelPathElement $element match dynamically (you may evaluate INDI and FAM facts of the current as well as preceding path elements)
+   * @param RelationshipPathMatcher $element match dynamically (you may evaluate INDI and FAM facts of the current as well as preceding path elements)
    * @return RelDefBuilderSpouse
    */
-  public function siblingAxisVia(RelPathElement $element): RelDefBuilderSibling;
+  public function siblingAxisVia(RelationshipPathMatcher $element): RelDefBuilderSibling;
 }

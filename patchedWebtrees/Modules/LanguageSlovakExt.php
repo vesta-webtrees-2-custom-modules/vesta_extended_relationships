@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Cissee\WebtreesExt\Modules;
 
+use Cissee\WebtreesExt\Relationships\DefaultFullyMatchedPathJoiner;
 use Cissee\WebtreesExt\Relationships\DefaultRelAlgorithm;
-use Cissee\WebtreesExt\Relationships\DefaultRelPathJoiner;
+use Cissee\WebtreesExt\Relationships\RelDefBuilder;
 use Cissee\WebtreesExt\Relationships\RelDefs;
-use Cissee\WebtreesExt\Relationships\RelPath;
 use Cissee\WebtreesExt\Relationships\Times;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Illuminate\Support\Collection;
@@ -58,7 +58,7 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
             $splitter, 
             true); //minimize number of splits
     
-    $joiner = new DefaultRelPathJoiner();
+    $joiner = new DefaultFullyMatchedPathJoiner();
     
     return $algorithm->getRelationshipName(
             self::defs(),
@@ -70,127 +70,127 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
     
     $defs = [];
     
-    $defs []= RelPath::any()->father()->is('otec', 'otca');
-    $defs []= RelPath::any()->mother()->is('matka', 'matky');
-    $defs []= RelPath::any()->parent()->is('rodič', 'rodiča');
+    $defs []= RelDefBuilder::def()->father()->is('otec', 'otca');
+    $defs []= RelDefBuilder::def()->mother()->is('matka', 'matky');
+    $defs []= RelDefBuilder::def()->parent()->is('rodič', 'rodiča');
 
-    $defs []= RelPath::any()->husband()->is('manžel', 'manžela');
-    $defs []= RelPath::any()->wife()->is('manželka', 'manželky');
-    $defs []= RelPath::any()->spouse()->is('manžel/manželka', 'manžela/manželky');
+    $defs []= RelDefBuilder::def()->husband()->is('manžel', 'manžela');
+    $defs []= RelDefBuilder::def()->wife()->is('manželka', 'manželky');
+    $defs []= RelDefBuilder::def()->spouse()->is('manžel/manželka', 'manžela/manželky');
 	
-	  $defs []= RelPath::any()->malePartner()->is('partner', 'partnera');
-	  $defs []= RelPath::any()->femalePartner()->is('partnerka', 'partnerky');
+	  $defs []= RelDefBuilder::def()->malePartner()->is('partner', 'partnera');
+	  $defs []= RelDefBuilder::def()->femalePartner()->is('partnerka', 'partnerky');
     
-    $defs []= RelPath::any()->son()->is('syn', 'syna');
-    $defs []= RelPath::any()->daughter()->is('dcéra', 'dcéry');
-    $defs []= RelPath::any()->child()->is('dieťa', 'deťaťa');
+    $defs []= RelDefBuilder::def()->son()->is('syn', 'syna');
+    $defs []= RelDefBuilder::def()->daughter()->is('dcéra', 'dcéry');
+    $defs []= RelDefBuilder::def()->child()->is('dieťa', 'deťaťa');
     
-    $defs []= RelPath::any()->brother()->is('brat', 'brata');
-    $defs []= RelPath::any()->sister()->is('sestra', 'sestry');
-    $defs []= RelPath::any()->sibling()->is('súrodenec', 'súrodenca');
+    $defs []= RelDefBuilder::def()->brother()->is('brat', 'brata');
+    $defs []= RelDefBuilder::def()->sister()->is('sestra', 'sestry');
+    $defs []= RelDefBuilder::def()->sibling()->is('súrodenec', 'súrodenca');
     
     ////////
     
-	  $defs []= RelPath::any()->wife()->father()->is('tesť', 'tesťa');
-	  $defs []= RelPath::any()->wife()->mother()->is('testiná', 'testinej');
-	  $defs []= RelPath::any()->husband()->father()->is('svokor', 'svokra');
-	  $defs []= RelPath::any()->husband()->mother()->is('svokora', 'svokry');
-    $defs []= RelPath::any()->spouse()->father()->is('svokor', 'svokra');
-    $defs []= RelPath::any()->spouse()->mother()->is('svokra', 'svokry');
+	  $defs []= RelDefBuilder::def()->wife()->father()->is('tesť', 'tesťa');
+	  $defs []= RelDefBuilder::def()->wife()->mother()->is('testiná', 'testinej');
+	  $defs []= RelDefBuilder::def()->husband()->father()->is('svokor', 'svokra');
+	  $defs []= RelDefBuilder::def()->husband()->mother()->is('svokora', 'svokry');
+    $defs []= RelDefBuilder::def()->spouse()->father()->is('svokor', 'svokra');
+    $defs []= RelDefBuilder::def()->spouse()->mother()->is('svokra', 'svokry');
 
-    $defs []= RelPath::any()->child()->husband()->is('zať', 'zaťa');
-    $defs []= RelPath::any()->child()->wife()->is('nevesta', 'nevesty');
+    $defs []= RelDefBuilder::def()->child()->husband()->is('zať', 'zaťa');
+    $defs []= RelDefBuilder::def()->child()->wife()->is('nevesta', 'nevesty');
     
-    $defs []= RelPath::any()->spouse()->brother()->is('švagor', 'švagra');
-    $defs []= RelPath::any()->sibling()->husband()->is('švagor', 'švagra');
-    $defs []= RelPath::any()->spouse()->sister()->is('švagriná', 'švagrinej');
-    $defs []= RelPath::any()->sibling()->wife()->is('švagriná', 'švagrinej');
+    $defs []= RelDefBuilder::def()->spouse()->brother()->is('švagor', 'švagra');
+    $defs []= RelDefBuilder::def()->sibling()->husband()->is('švagor', 'švagra');
+    $defs []= RelDefBuilder::def()->spouse()->sister()->is('švagriná', 'švagrinej');
+    $defs []= RelDefBuilder::def()->sibling()->wife()->is('švagriná', 'švagrinej');
         
     ////////
 
-    $defs []= RelPath::any()->parent()->son()->is('nevlastný brat', 'nevlastného brata');
-    $defs []= RelPath::any()->parent()->daughter()->is('nevlastná sestra', 'nevlastnej sestry');
+    $defs []= RelDefBuilder::def()->parent()->son()->is('nevlastný brat', 'nevlastného brata');
+    $defs []= RelDefBuilder::def()->parent()->daughter()->is('nevlastná sestra', 'nevlastnej sestry');
     
     //TODO: make step-x relationships available/configurable?
     
     ////////
     
-    $defs []= RelPath::any()->parent()->father()->is('starý otec', 'starého otca');
-    $defs []= RelPath::any()->parent(Times::fixed(2))->father()->is('prastarý otec', 'prastarého otca');
-    $defs []= RelPath::any()->parent(Times::min(2))->parent()->father()->is('%s×prastarý otec', '%s×prastarého otca');
+    $defs []= RelDefBuilder::def()->parent()->father()->is('starý otec', 'starého otca');
+    $defs []= RelDefBuilder::def()->parent(Times::fixed(2))->father()->is('prastarý otec', 'prastarého otca');
+    $defs []= RelDefBuilder::def()->parent(Times::min(2))->parent()->father()->is('%s×prastarý otec', '%s×prastarého otca');
     
-    $defs []= RelPath::any()->parent()->mother()->is('stará matka', 'starej matky');
-    $defs []= RelPath::any()->parent(Times::fixed(2))->mother()->is('prastará matka', 'prastarej matky');
-    $defs []= RelPath::any()->parent(Times::min(2))->parent()->mother()->is('%s×prastará matka', '%s×prastarej matky');
+    $defs []= RelDefBuilder::def()->parent()->mother()->is('stará matka', 'starej matky');
+    $defs []= RelDefBuilder::def()->parent(Times::fixed(2))->mother()->is('prastará matka', 'prastarej matky');
+    $defs []= RelDefBuilder::def()->parent(Times::min(2))->parent()->mother()->is('%s×prastará matka', '%s×prastarej matky');
 
-    $defs []= RelPath::any()->parent()->parent()->is('starý rodič', 'starého rodiča');
-    $defs []= RelPath::any()->parent(Times::fixed(2))->parent()->is('prastarý rodič', 'prastarého rodiča');
-    $defs []= RelPath::any()->parent(Times::min(2))->parent()->parent()->is('%s×prastarý rodič', '%s×prastarého rodiča');
+    $defs []= RelDefBuilder::def()->parent()->parent()->is('starý rodič', 'starého rodiča');
+    $defs []= RelDefBuilder::def()->parent(Times::fixed(2))->parent()->is('prastarý rodič', 'prastarého rodiča');
+    $defs []= RelDefBuilder::def()->parent(Times::min(2))->parent()->parent()->is('%s×prastarý rodič', '%s×prastarého rodiča');
 
     ////////
 
-    $defs []= RelPath::any()->child()->son()->is('vnuk', 'vnuka');
-    $defs []= RelPath::any()->child(Times::fixed(2))->son()->is('pravnuk', 'pravnuka');
-    $defs []= RelPath::any()->child(Times::min(2))->child()->son()->is('%s×pravnuk', '%s×pravnuka');
+    $defs []= RelDefBuilder::def()->child()->son()->is('vnuk', 'vnuka');
+    $defs []= RelDefBuilder::def()->child(Times::fixed(2))->son()->is('pravnuk', 'pravnuka');
+    $defs []= RelDefBuilder::def()->child(Times::min(2))->child()->son()->is('%s×pravnuk', '%s×pravnuka');
     
-    $defs []= RelPath::any()->child()->daughter()->is('vnučka', 'vnučky');
-    $defs []= RelPath::any()->child(Times::fixed(2))->daughter()->is('pravnučka', 'pravnučky');
-    $defs []= RelPath::any()->child(Times::min(2))->child()->daughter()->is('%s×pravnučka', '%s×pravnučky');
+    $defs []= RelDefBuilder::def()->child()->daughter()->is('vnučka', 'vnučky');
+    $defs []= RelDefBuilder::def()->child(Times::fixed(2))->daughter()->is('pravnučka', 'pravnučky');
+    $defs []= RelDefBuilder::def()->child(Times::min(2))->child()->daughter()->is('%s×pravnučka', '%s×pravnučky');
     
-    $defs []= RelPath::any()->child()->child()->is('vnúča', 'vnúčaťa');
-    $defs []= RelPath::any()->child(Times::fixed(2))->child()->is('pravnúča', 'pravnúčaťa');
-    $defs []= RelPath::any()->child(Times::min(2))->child()->child()->is('%s×pravnúča', '%s×pravnúčaťa');
+    $defs []= RelDefBuilder::def()->child()->child()->is('vnúča', 'vnúčaťa');
+    $defs []= RelDefBuilder::def()->child(Times::fixed(2))->child()->is('pravnúča', 'pravnúčaťa');
+    $defs []= RelDefBuilder::def()->child(Times::min(2))->child()->child()->is('%s×pravnúča', '%s×pravnúčaťa');
 
     ////////
 	
-    $defs []= RelPath::any()->father()->brother()->is('strýko', 'strýka');
-	  $defs []= RelPath::any()->father()->brother()->wife()->is('stryná', 'strynej');
-	  $defs []= RelPath::any()->mother()->brother()->is('ujo', 'uja');
-	  $defs []= RelPath::any()->mother()->brother()->wife()->is('ujčiná', 'ujčinej');
-    $defs []= RelPath::any()->parent()->brother()->is('strýko', 'strýka');
+    $defs []= RelDefBuilder::def()->father()->brother()->is('strýko', 'strýka');
+	  $defs []= RelDefBuilder::def()->father()->brother()->wife()->is('stryná', 'strynej');
+	  $defs []= RelDefBuilder::def()->mother()->brother()->is('ujo', 'uja');
+	  $defs []= RelDefBuilder::def()->mother()->brother()->wife()->is('ujčiná', 'ujčinej');
+    $defs []= RelDefBuilder::def()->parent()->brother()->is('strýko', 'strýka');
     
-    $defs []= RelPath::any()->parent(Times::fixed(2))->brother()->is('prastrýko', 'prastrýka');
-    // $defs []= RelPath::any()->parent(Times::fixed(3))->brother()->is('pra-prastrýko', 'pra-prastrýka');
-    // $defs []= RelPath::any()->parent(Times::min(4, -2))->brother()->is('%s× prastrýko', '%s× prastrýka');
-    $defs []= RelPath::any()->parent()->sister()->is('teta', 'tety');
-    $defs []= RelPath::any()->parent(Times::fixed(2))->sister()->is('prateta', 'pratety');
-    // $defs []= RelPath::any()->parent(Times::fixed(3))->sister()->is('pra-prateta', 'pra-pratety');
-    // $defs []= RelPath::any()->parent(Times::min(4, -2))->sister()->is('%s× prateta', '%s× pratety');
-    
-    ////////
-
-    $defs []= RelPath::any()->sibling()->son()->is('synovec', 'synovca');
-    $defs []= RelPath::any()->sibling()->child()->son()->is('prasynovec', 'prasynovca');
-    // $defs []= RelPath::any()->sibling()->child(Times::min(2, -1))->son()->is('%s× prasynovec', '%s× prasynovca');
-    $defs []= RelPath::any()->sibling()->daughter()->is('neter', 'netere');
-    $defs []= RelPath::any()->sibling()->child()->daughter()->is('praneter', 'pranetere');
-    // $defs []= RelPath::any()->sibling()->child(Times::min(2, -1))->daughter()->is('%s× praneter', '%s× pranetere');
+    $defs []= RelDefBuilder::def()->parent(Times::fixed(2))->brother()->is('prastrýko', 'prastrýka');
+    // $defs []= RelDefBuilder::def()->parent(Times::fixed(3))->brother()->is('pra-prastrýko', 'pra-prastrýka');
+    // $defs []= RelDefBuilder::def()->parent(Times::min(4, -2))->brother()->is('%s× prastrýko', '%s× prastrýka');
+    $defs []= RelDefBuilder::def()->parent()->sister()->is('teta', 'tety');
+    $defs []= RelDefBuilder::def()->parent(Times::fixed(2))->sister()->is('prateta', 'pratety');
+    // $defs []= RelDefBuilder::def()->parent(Times::fixed(3))->sister()->is('pra-prateta', 'pra-pratety');
+    // $defs []= RelDefBuilder::def()->parent(Times::min(4, -2))->sister()->is('%s× prateta', '%s× pratety');
     
     ////////
 
-    $defs []= RelPath::any()->parent()->sibling()->son()->is('bratranec', 'bratranca');
+    $defs []= RelDefBuilder::def()->sibling()->son()->is('synovec', 'synovca');
+    $defs []= RelDefBuilder::def()->sibling()->child()->son()->is('prasynovec', 'prasynovca');
+    // $defs []= RelDefBuilder::def()->sibling()->child(Times::min(2, -1))->son()->is('%s× prasynovec', '%s× prasynovca');
+    $defs []= RelDefBuilder::def()->sibling()->daughter()->is('neter', 'netere');
+    $defs []= RelDefBuilder::def()->sibling()->child()->daughter()->is('praneter', 'pranetere');
+    // $defs []= RelDefBuilder::def()->sibling()->child(Times::min(2, -1))->daughter()->is('%s× praneter', '%s× pranetere');
     
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(3))->sibling()->child(Times::fixed(3))->son()->is('bratranec zo 4. kolena', 'bratranca zo 4. kolena');
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(5))->sibling()->child(Times::fixed(5))->son()->is('bratranec zo 6. kolena', 'bratranca zo 6. kolena');
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(6))->sibling()->child(Times::fixed(6))->son()->is('bratranec zo 7. kolena', 'bratranca zo 7. kolena');
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(13))->sibling()->child(Times::fixed(3))->son()->is('bratranec zo 14. kolena', 'bratranca zo 14. kolena');
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(15))->sibling()->child(Times::fixed(5))->son()->is('bratranec zo 16. kolena', 'bratranca zo 16. kolena');
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(16))->sibling()->child(Times::fixed(6))->son()->is('bratranec zo 17. kolena', 'bratranca zo 17. kolena');
+    ////////
+
+    $defs []= RelDefBuilder::def()->parent()->sibling()->son()->is('bratranec', 'bratranca');
+    
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(3))->sibling()->child(Times::fixed(3))->son()->is('bratranec zo 4. kolena', 'bratranca zo 4. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(5))->sibling()->child(Times::fixed(5))->son()->is('bratranec zo 6. kolena', 'bratranca zo 6. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(6))->sibling()->child(Times::fixed(6))->son()->is('bratranec zo 7. kolena', 'bratranca zo 7. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(13))->sibling()->child(Times::fixed(3))->son()->is('bratranec zo 14. kolena', 'bratranca zo 14. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(15))->sibling()->child(Times::fixed(5))->son()->is('bratranec zo 16. kolena', 'bratranca zo 16. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(16))->sibling()->child(Times::fixed(6))->son()->is('bratranec zo 17. kolena', 'bratranca zo 17. kolena');
 
     //IMPL NOTE: used as back-reference (i.e. count must match in '->child($ref)')
     $ref = Times::min(1, 1); 
-    $defs []= RelPath::any()->parent()->parent($ref)->sibling()->child($ref)->son()->is('bratranec z %s. kolena', 'bratranca z %s. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent($ref)->sibling()->child($ref)->son()->is('bratranec z %s. kolena', 'bratranca z %s. kolena');
 
-    $defs []= RelPath::any()->parent()->sibling()->daughter()->is('sesternica', 'sesternice');
+    $defs []= RelDefBuilder::def()->parent()->sibling()->daughter()->is('sesternica', 'sesternice');
 
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(3))->sibling()->child(Times::fixed(3))->daughter()->is('sesternica zo 4. kolena', 'sesternice zo 4. kolena');
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(5))->sibling()->child(Times::fixed(5))->daughter()->is('sesternica zo 6. kolena', 'sesternice zo 6. kolena');
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(6))->sibling()->child(Times::fixed(6))->daughter()->is('sesternica zo 7. kolena', 'sesternice zo 7. kolena');
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(13))->sibling()->child(Times::fixed(3))->daughter()->is('sesternica zo 14. kolena', 'sesternice zo 14. kolena');
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(15))->sibling()->child(Times::fixed(5))->daughter()->is('sesternica zo 16. kolena', 'sesternice zo 16. kolena');
-    $defs []= RelPath::any()->parent()->parent(Times::fixed(16))->sibling()->child(Times::fixed(6))->daughter()->is('sesternica zo 17. kolena', 'sesternice zo 17. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(3))->sibling()->child(Times::fixed(3))->daughter()->is('sesternica zo 4. kolena', 'sesternice zo 4. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(5))->sibling()->child(Times::fixed(5))->daughter()->is('sesternica zo 6. kolena', 'sesternice zo 6. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(6))->sibling()->child(Times::fixed(6))->daughter()->is('sesternica zo 7. kolena', 'sesternice zo 7. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(13))->sibling()->child(Times::fixed(3))->daughter()->is('sesternica zo 14. kolena', 'sesternice zo 14. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(15))->sibling()->child(Times::fixed(5))->daughter()->is('sesternica zo 16. kolena', 'sesternice zo 16. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(16))->sibling()->child(Times::fixed(6))->daughter()->is('sesternica zo 17. kolena', 'sesternice zo 17. kolena');
 
-    $defs []= RelPath::any()->parent()->parent($ref)->sibling()->child($ref)->daughter()->is('sesternica z %s. kolena', 'sesternice z %s. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent($ref)->sibling()->child($ref)->daughter()->is('sesternica z %s. kolena', 'sesternice z %s. kolena');
   
     return new RelDefs(new Collection($defs));
   }

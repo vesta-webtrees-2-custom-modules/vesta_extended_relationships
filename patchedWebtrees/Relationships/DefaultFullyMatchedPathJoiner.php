@@ -6,7 +6,7 @@ namespace Cissee\WebtreesExt\Relationships;
 
 use Cissee\WebtreesExt\MoreI18N;
 
-class DefaultRelPathJoiner implements RelPathJoiner {
+class DefaultFullyMatchedPathJoiner implements FullyMatchedPathJoiner {
   
   public function join(FullyMatchedPath $a, FullyMatchedPath $b): FullyMatchedPath {
     $ag = $a->genitive();

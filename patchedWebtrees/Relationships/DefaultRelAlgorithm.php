@@ -28,7 +28,7 @@ class DefaultRelAlgorithm implements RelAlgorithm {
   
   public function getRelationshipName(
           RelDefs $defs,
-          RelPathJoiner $joiner,
+          FullyMatchedPathJoiner $joiner,
           RelationshipPath $path): string {
         
     $ret = $this->getFullyMatchedPath($defs, $joiner, $path);
@@ -39,7 +39,7 @@ class DefaultRelAlgorithm implements RelAlgorithm {
          
   public function getFullyMatchedPath(
           RelDefs $defs,
-          RelPathJoiner $joiner,
+          FullyMatchedPathJoiner $joiner,
           RelationshipPath $path): ?FullyMatchedPath {
         
     $matchedPath = $defs->getMatchedPath($path);
@@ -90,13 +90,13 @@ class DefaultRelAlgorithm implements RelAlgorithm {
   /**
    * 
    * @param RelDefs $defs
-   * @param RelPathJoiner $joiner
+   * @param FullyMatchedPathJoiner $joiner
    * @param RelationshipPath $path
    * @return FullyMatchedPath|null
    */
   protected function getFullyMatchedPathViaSplit(
           RelDefs $defs,
-          RelPathJoiner $joiner,
+          FullyMatchedPathJoiner $joiner,
           RelationshipPath $path): ?FullyMatchedPath {
     
     //error_log("getFullyMatchedPathViaSplit for ".$path);

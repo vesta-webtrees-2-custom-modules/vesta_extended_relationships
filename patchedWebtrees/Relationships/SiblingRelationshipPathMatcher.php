@@ -7,7 +7,7 @@ namespace Cissee\WebtreesExt\Relationships;
 use Cissee\WebtreesExt\Modules\RelationshipPath;
 use Illuminate\Support\Collection;
 
-class SiblingRelPathElement implements RelPathElement {
+class SiblingRelationshipPathMatcher implements RelationshipPathMatcher {
   
   const CODES = array(
       'bro:bro' => 'M',
@@ -95,7 +95,7 @@ class SiblingRelPathElement implements RelPathElement {
     }  
     
     //we have a match!
-    //error_log("RelPathElement matched fixed! ". $path . " as " . $sex);
+    //error_log("RelationshipPathMatcher matched fixed! ". $path . " as " . $sex);
     
     $ret = [];
     $ret []= new MatchedPartialPath($matchedPathElements + 1, $tail, $refs);

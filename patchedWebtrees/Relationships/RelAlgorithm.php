@@ -10,7 +10,7 @@ interface RelAlgorithm {
   
   public function getRelationshipName(
           RelDefs $defs,
-          RelPathJoiner $joiner,
+          FullyMatchedPathJoiner $joiner,
           RelationshipPath $path): string;
   
 }

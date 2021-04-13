@@ -9,7 +9,6 @@ use Illuminate\Support\Collection;
 
 class RelDef {
     
-  protected $from;
   protected $elements;
   protected $nominative;
   protected $genitive;
@@ -31,23 +30,20 @@ class RelDef {
   
   /**
    * 
-   * @param RelPathFrom $from
-   * @param Collection<RelPathElement> $elements
+   * @param Collection<RelationshipPathMatcher> $elements
    * @param string $nominative
    */
   public function __construct(
-          RelPathFrom $from,
           Collection $elements,
           string $nominative,
           ?string $genitive) {
     
-    $this->from = $from;
     $this->elements = $elements;
     $this->nominative = $nominative;
     $this->genitive = $genitive;
     
     $this->minTimes = $this->elements
-              ->map(static function (RelPathElement $element): int {
+              ->map(static function (RelationshipPathMatcher $element): int {
                   return $element->minTimes();
               })
               ->reduce(static function (int $carry, int $item): int {
@@ -55,7 +51,7 @@ class RelDef {
               }, 0);
               
     $this->maxTimes = $this->elements
-              ->map(static function (RelPathElement $element): int {
+              ->map(static function (RelationshipPathMatcher $element): int {
                   return $element->maxTimes();
               })
               ->reduce(static function (int $carry, int $item): int {
@@ -83,15 +79,11 @@ class RelDef {
       return null;
     }
     
-    if (!$this->from->matchFrom($path->sex(), $path->from())) {
-      return null;
-    }
-    
     $currentMatchedPaths = [];
     $currentMatchedPaths []= new MatchedPartialPath(0, $path, []);
     
     foreach ($this->elements as $element) {
-      /** @var RelPathElement $element */
+      /** @var RelationshipPathMatcher $element */
       
       $nextMatchedPaths = [];
       foreach ($currentMatchedPaths as $currentMatchedPath) {
