@@ -1,5 +1,6 @@
 <?php
 
+use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\FamilyListModule;
@@ -18,22 +19,22 @@ use function GuzzleHttp\json_encode;
     data-order="<?= e(json_encode($order ?? [[1, 'desc']])) ?>"
 >
     <caption class="sr-only">
-        <?= I18N::translate('Surnames') ?>
+        <?= MoreI18N::xlate('Surnames') ?>
     </caption>
     <thead>
         <tr>
             <th>
-                <?= I18N::translate('Surname') ?>
+                <?= MoreI18N::xlate('Surname') ?>
             </th>
             <?php
               //[RC] added
             ?>
-            <th><?= I18N::translate('Patriarch') ?></th>
+            <th><?= /* I18N: end-of line ancestor, 'Spitzenahn' */ I18N::translate('Patriarch') ?></th>
             <th>
                 <?php if ($families) :?>
-                    <?= I18N::translate('Spouses') ?>
+                    <?= MoreI18N::xlate('Spouses') ?>
                 <?php else : ?>
-                    <?= I18N::translate('Individuals') ?>
+                    <?= MoreI18N::xlate('Individuals') ?>
                 <?php endif ?>
             </th>
         </tr>

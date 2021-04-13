@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\Age;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Carbon;
@@ -130,13 +131,13 @@ for ($year = 1400; $year < 2050; $year += 10) {
 $birthData = [
     [
         [
-            'label' => I18N::translate('Century'),
+            'label' => MoreI18N::xlate('Century'),
             'type'  => 'date',
         ], [
-            'label' => I18N::translate('Males'),
+            'label' => MoreI18N::xlate('Males'),
             'type'  => 'number',
         ], [
-            'label' => I18N::translate('Females'),
+            'label' => MoreI18N::xlate('Females'),
             'type'  => 'number',
         ],
     ]
@@ -145,13 +146,13 @@ $birthData = [
 $deathData = [
     [
         [
-            'label' => I18N::translate('Century'),
+            'label' => MoreI18N::xlate('Century'),
             'type'  => 'date',
         ], [
-            'label' => I18N::translate('Males'),
+            'label' => MoreI18N::xlate('Males'),
             'type'  => 'number',
         ], [
-            'label' => I18N::translate('Females'),
+            'label' => MoreI18N::xlate('Females'),
             'type'  => 'number',
         ],
     ]
@@ -159,10 +160,10 @@ $deathData = [
 
 $deathAgeData = [
     [
-        I18N::translate('Age'),
-        I18N::translate('Males'),
-        I18N::translate('Females'),
-        I18N::translate('Average age'),
+        MoreI18N::xlate('Age'),
+        MoreI18N::xlate('Males'),
+        MoreI18N::xlate('Females'),
+        MoreI18N::xlate('Average age'),
     ]
 ];
 
@@ -177,93 +178,93 @@ $deathAgeData = [
                 <th colspan="16">
                     <div class="btn-toolbar d-flex justify-content-between mb-2" role="toolbar">
                         <div class="btn-group btn-group-toggle btn-group-sm" data-toggle="buttons">
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show only males.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show only males.') ?>">
                                 <input type="checkbox" data-filter-column="12" data-filter-value="M" autocomplete="off">
                                 <?= view('icons/sex', ['sex' => 'M']) ?>
                             </label>
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show only females.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show only females.') ?>">
                                 <input type="checkbox" data-filter-column="12" data-filter-value="F" autocomplete="off">
                                 <?= view('icons/sex', ['sex' => 'F']) ?>
                             </label>
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show only individuals for whom the gender is not known.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show only individuals for whom the gender is not known.') ?>">
                                 <input type="checkbox" data-filter-column="12" data-filter-value="U" autocomplete="off">
                                 <?= view('icons/sex', ['sex' => 'U']) ?>
                             </label>
                         </div>
 
                         <div class="btn-group btn-group-toggle btn-group-sm" data-toggle="buttons">
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show individuals who are alive or couples where both partners are alive.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals who are alive or couples where both partners are alive.') ?>">
                                 <input type="checkbox" data-filter-column="14" data-filter-value="N" autocomplete="off">
-                                <?= I18N::translate('Alive') ?>
+                                <?= MoreI18N::xlate('Alive') ?>
                             </label>
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show individuals who are dead or couples where both partners are dead.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals who are dead or couples where both partners are dead.') ?>">
                                 <input type="checkbox" data-filter-column="14" data-filter-value="Y" autocomplete="off">
-                                <?= I18N::translate('Dead') ?>
+                                <?= MoreI18N::xlate('Dead') ?>
                             </label>
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show individuals who died more than 100 years ago.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals who died more than 100 years ago.') ?>">
                                 <input type="checkbox" data-filter-column="14" data-filter-value="YES" autocomplete="off">
-                                <?= I18N::translate('Death') ?>&gt;100
+                                <?= MoreI18N::xlate('Death') ?>&gt;100
                             </label>
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show individuals who died within the last 100 years.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals who died within the last 100 years.') ?>">
                                 <input type="checkbox" data-filter-column="14" data-filter-value="Y100" autocomplete="off">
-                                <?= I18N::translate('Death') ?>&lt;=100
+                                <?= MoreI18N::xlate('Death') ?>&lt;=100
                             </label>
                         </div>
 
                         <div class="btn-group btn-group-toggle btn-group-sm" data-toggle="buttons">
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show individuals born more than 100 years ago.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals born more than 100 years ago.') ?>">
                                 <input type="checkbox" data-filter-column="13" data-filter-value="YES" autocomplete="off">
-                                <?= I18N::translate('Birth') ?>&gt;100
+                                <?= MoreI18N::xlate('Birth') ?>&gt;100
                             </label>
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show individuals born within the last 100 years.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals born within the last 100 years.') ?>">
                                 <input type="checkbox" data-filter-column="13" data-filter-value="Y100" autocomplete="off">
-                                <?= I18N::translate('Birth') ?>&lt;=100
+                                <?= MoreI18N::xlate('Birth') ?>&lt;=100
                             </label>
                         </div>
 
                         <div class="btn-group btn-group-toggle btn-group-sm" data-toggle="buttons">
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show “roots” couples or individuals. These individuals may also be called “patriarchs”. They are individuals who have no parents recorded in the database.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show “roots” couples or individuals. These individuals may also be called “patriarchs”. They are individuals who have no parents recorded in the database.') ?>">
                                 <input type="checkbox" data-filter-column="15" data-filter-value="R" autocomplete="off">
-                                <?= I18N::translate('Roots') ?>
+                                <?= MoreI18N::xlate('Roots') ?>
                             </label>
-                            <label class="btn btn-outline-secondary" title="<?= I18N::translate('Show “leaves” couples or individuals. These are individuals who are alive but have no children recorded in the database.') ?>">
+                            <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show “leaves” couples or individuals. These are individuals who are alive but have no children recorded in the database.') ?>">
                                 <input type="checkbox" data-filter-column="15" data-filter-value="L" autocomplete="off">
-                                <?= I18N::translate('Leaves') ?>
+                                <?= MoreI18N::xlate('Leaves') ?>
                             </label>
                         </div>
                     </div>
                 </th>
             </tr>
             <tr>
-                <th><?= I18N::translate('Given names') ?></th>
-                <th><?= I18N::translate('Surname') ?></th>
+                <th><?= MoreI18N::xlate('Given names') ?></th>
+                <th><?= MoreI18N::xlate('Surname') ?></th>
                 
                 <?php
                   //[RC] added
                 ?>
-                <th><?= I18N::translate('Patriarch') ?></th>
+                <th><?= /* I18N: end-of line ancestor, 'Spitzenahn' */ I18N::translate('Patriarch') ?></th>
                 
                 <th><?= /* I18N: Abbreviation for “Sosa-Stradonitz number”. This is an individual’s surname, so may need transliterating into non-latin alphabets. */
-                    I18N::translate('Sosa') ?></th>
-                <th><?= I18N::translate('Birth') ?></th>
+                    MoreI18N::xlate('Sosa') ?></th>
+                <th><?= MoreI18N::xlate('Birth') ?></th>
                 <th>
-                    <span title="<?= I18N::translate('Anniversary') ?>">
+                    <span title="<?= MoreI18N::xlate('Anniversary') ?>">
                         <?= view('icons/anniversary') ?>
                     </span>
                 </th>
-                <th><?= I18N::translate('Place') ?></th>
+                <th><?= MoreI18N::xlate('Place') ?></th>
                 <th>
-                    <i class="icon-children" title="<?= I18N::translate('Children') ?>"></i>
+                    <i class="icon-children" title="<?= MoreI18N::xlate('Children') ?>"></i>
                 </th>
-                <th><?= I18N::translate('Death') ?></th>
+                <th><?= MoreI18N::xlate('Death') ?></th>
                 <th>
-                    <span title="<?= I18N::translate('Anniversary') ?>">
+                    <span title="<?= MoreI18N::xlate('Anniversary') ?>">
                         <?= view('icons/anniversary') ?>
                     </span>
                 </th>
-                <th><?= I18N::translate('Age') ?></th>
-                <th><?= I18N::translate('Place') ?></th>
-                <th><?= I18N::translate('Last change') ?></th>
+                <th><?= MoreI18N::xlate('Age') ?></th>
+                <th><?= MoreI18N::xlate('Place') ?></th>
+                <th><?= MoreI18N::xlate('Last change') ?></th>
                 <th hidden></th>
                 <th hidden></th>
                 <th hidden></th>
@@ -316,7 +317,7 @@ $deathAgeData = [
                 <td class="text-center" data-sort="<?= $key ?>">
                     <?php if ($sosa) : ?>
                         <?php if ($module instanceof RelationshipsChartModule) : ?>
-                            <a href="<?= e($module->chartUrl($individuals[1], ['xref2' => $individual->xref()])) ?>" rel="nofollow" title="<?= I18N::translate('Relationships') ?>" rel="nofollow">
+                            <a href="<?= e($module->chartUrl($individuals[1], ['xref2' => $individual->xref()])) ?>" rel="nofollow" title="<?= MoreI18N::xlate('Relationships') ?>" rel="nofollow">
                                 <?= I18N::number($key) ?>
                             </a>
                         <?php else : ?>
@@ -453,10 +454,10 @@ $deathAgeData = [
                 <th colspan="16">
                     <div class="btn-group btn-group-sm">
                         <button id="btn-toggle-parents" class="btn btn-outline-secondary" data-toggle="button" data-persist="show-parents">
-                            <?= I18N::translate('Show parents') ?>
+                            <?= MoreI18N::xlate('Show parents') ?>
                         </button>
                         <button id="btn-toggle-statistics" class="btn btn-outline-secondary" data-toggle="button" data-persist="show-statistics">
-                            <?= I18N::translate('Show statistics charts') ?>
+                            <?= MoreI18N::xlate('Show statistics charts') ?>
                         </button>
                     </div>
                 </th>
@@ -471,7 +472,7 @@ $deathAgeData = [
             <div class="col-lg-12 col-md-12 mb-3">
                 <div class="card m-0">
                     <div class="card-header">
-                        <?= I18N::translate('Decade of birth') ?>
+                        <?= MoreI18N::xlate('Decade of birth') ?>
                     </div>
                     <div class="card-body">
                         <?php
@@ -488,7 +489,7 @@ $deathAgeData = [
                             }
                         }
                         ?>
-                        <?= view('lists/chart-by-decade', ['data' => $birthData, 'title' => I18N::translate('Decade of birth')]) ?>
+                        <?= view('lists/chart-by-decade', ['data' => $birthData, 'title' => MoreI18N::xlate('Decade of birth')]) ?>
                     </div>
                 </div>
             </div>
@@ -497,7 +498,7 @@ $deathAgeData = [
             <div class="col-lg-12 col-md-12 mb-3">
                 <div class="card m-0">
                     <div class="card-header">
-                        <?= I18N::translate('Decade of death') ?>
+                        <?= MoreI18N::xlate('Decade of death') ?>
                     </div>
                     <div class="card-body">
                         <?php
@@ -514,7 +515,7 @@ $deathAgeData = [
                             }
                         }
                         ?>
-                        <?= view('lists/chart-by-decade', ['data' => $deathData, 'title' => I18N::translate('Decade of death')]) ?>
+                        <?= view('lists/chart-by-decade', ['data' => $deathData, 'title' => MoreI18N::xlate('Decade of death')]) ?>
                     </div>
                 </div>
             </div>
@@ -523,7 +524,7 @@ $deathAgeData = [
             <div class="col-lg-12 col-md-12 mb-3">
                 <div class="card m-0">
                     <div class="card-header">
-                        <?= I18N::translate('Age related to death year') ?>
+                        <?= MoreI18N::xlate('Age related to death year') ?>
                     </div>
                     <div class="card-body">
                         <?php
@@ -565,7 +566,7 @@ $deathAgeData = [
                             ];
                         }
                         ?>
-                        <?= view('lists/chart-by-age', ['data' => $deathAgeData, 'title' => I18N::translate('Age related to death year')]) ?>
+                        <?= view('lists/chart-by-age', ['data' => $deathAgeData, 'title' => MoreI18N::xlate('Age related to death year')]) ?>
                     </div>
                 </div>
             </div>

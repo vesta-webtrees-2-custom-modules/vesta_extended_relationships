@@ -266,8 +266,7 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
     }
 
     if (!$num_paths) {
-      //echo '<p>', I18N::translate('No link between the two individuals could be found.'), '</p>';
-      echo '<p>', I18N::translate('No link between the two individuals could be found.');
+      echo '<p>', MoreI18N::xlate('No link between the two individuals could be found.');
       
       //[RC] extended
       if ($beforeJD !== null) {
