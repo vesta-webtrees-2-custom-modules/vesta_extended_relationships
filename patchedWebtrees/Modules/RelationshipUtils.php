@@ -6,6 +6,7 @@ namespace Cissee\WebtreesExt\Modules;
 
 use Fisharebest\Localization\Locale\LocaleDe;
 use Fisharebest\Localization\Locale\LocaleEn;
+use Fisharebest\Localization\Locale\LocaleNl;
 use Fisharebest\Localization\Locale\LocaleSk;
 use Fisharebest\Webtrees\I18N;
 use function hrtime;
@@ -34,6 +35,14 @@ class RelationshipUtils {
   protected static function doGetRelationshipName(
           RelationshipPath $path): string {
       
+      if (I18N::locale() instanceof LocaleEn) {
+        if (self::$ext === null) {
+          self::$ext = new LanguageEnglishExt();
+        }
+        
+        return self::$ext->getRelationshipName($path);
+      }
+      
       if (I18N::locale() instanceof LocaleDe) {
         if (self::$ext === null) {
           self::$ext = new LanguageGermanExt();
@@ -50,9 +59,9 @@ class RelationshipUtils {
         return self::$ext->getRelationshipName($path);
       }
       
-      if (I18N::locale() instanceof LocaleEn) {
+      if (I18N::locale() instanceof LocaleNl) {
         if (self::$ext === null) {
-          self::$ext = new LanguageEnglishExt();
+          self::$ext = new LanguageDutchExt();
         }
         
         return self::$ext->getRelationshipName($path);
