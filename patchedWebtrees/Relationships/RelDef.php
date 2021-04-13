@@ -70,8 +70,12 @@ class RelDef {
    */
   public function matchPath(
           RelationshipPath $path): ?Collection {
+        
+    //error_log("path: ".$path->size());
+    //error_log("min: ".$this->minTimes);
+    //error_log("max: ".$this->maxTimes);
     
-    if ($this->minTimes > $path->size()) {
+    if ($this->minTimes > $path->size()) {      
       return null;
     }
     

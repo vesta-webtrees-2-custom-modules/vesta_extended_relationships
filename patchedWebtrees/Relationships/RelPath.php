@@ -352,6 +352,13 @@ class RelPath implements
     return $this;
   }
   
+  ////////
+  
+  public function peekTotalPathLength(Times $times): RelPath {
+    $this->elements->add(new TotalPathLengthPathElement($times));
+    return $this;
+  }
+  
   public function is(string $nominative, ?string $genitive = null): RelDef {
     return new RelDef($this->from, $this->elements, $nominative, $genitive);
   }

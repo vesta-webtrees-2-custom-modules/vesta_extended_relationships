@@ -136,59 +136,66 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->stepSibling()->is('Stief-Geschwisterteil');
     
     ////////
-
-    
-    ////////
     
     $defs []= RelPath::any()->parent()->father()->is('Großvater', 'des Großvaters');
     $defs []= RelPath::any()->parent(Times::fixed(2))->father()->is('Urgroßvater', 'des Urgroßvaters');
-    $defs []= RelPath::any()->parent(Times::min(2))->parent()->father()->is('%s×Ur-Großvater', 'des %s×Ur-Großvaters');
+    $defs []= RelPath::any()->parent(Times::fixed(3))->father()->is('Ururgroßvater', 'des Ururgroßvaters');
+    $defs []= RelPath::any()->parent(Times::min(3))->parent()->father()->is('%s×Ur-Großvater', 'des %s×Ur-Großvaters');
     
     $defs []= RelPath::any()->parent()->mother()->is('Großmutter', 'der Großmutter');
     $defs []= RelPath::any()->parent(Times::fixed(2))->mother()->is('Urgroßmutter', 'der Urgroßmutter');
-    $defs []= RelPath::any()->parent(Times::min(2))->parent()->mother()->is('%s×Ur-Großmutter', 'der %s×Ur-Großmutter');
+    $defs []= RelPath::any()->parent(Times::fixed(3))->mother()->is('Ururgroßmutter', 'der Ururgroßmutter');
+    $defs []= RelPath::any()->parent(Times::min(3))->parent()->mother()->is('%s×Ur-Großmutter', 'der %s×Ur-Großmutter');
 
     $defs []= RelPath::any()->parent()->parent()->is('Großelternteil', 'des Großelternteils');
     $defs []= RelPath::any()->parent(Times::fixed(2))->parent()->is('Urgroßelternteil', 'des Urgroßelternteils');
-    $defs []= RelPath::any()->parent(Times::min(2))->parent()->parent()->is('%s×Ur-Großelternteil', 'des %s×Ur-Großelternteils');
+    $defs []= RelPath::any()->parent(Times::fixed(3))->parent()->is('Ururgroßelternteil', 'des Ururgroßelternteils');
+    $defs []= RelPath::any()->parent(Times::min(3))->parent()->parent()->is('%s×Ur-Großelternteil', 'des %s×Ur-Großelternteils');
 
     ////////
 
     $defs []= RelPath::any()->child()->son()->is('Enkelsohn', 'des Enkelsohns');
     $defs []= RelPath::any()->child(Times::fixed(2))->son()->is('Urenkelsohn', 'des Urenkelsohns');
-    $defs []= RelPath::any()->child(Times::min(2))->child()->son()->is('%s×Ur-Enkelsohn', 'des %s×Ur-Enkelsohns');
+    $defs []= RelPath::any()->child(Times::fixed(3))->son()->is('Ururenkelsohn', 'des Ururenkelsohns');
+    $defs []= RelPath::any()->child(Times::min(3))->child()->son()->is('%s×Ur-Enkelsohn', 'des %s×Ur-Enkelsohns');
     
     $defs []= RelPath::any()->child()->daughter()->is('Enkeltochter', 'der Enkeltochter');
     $defs []= RelPath::any()->child(Times::fixed(2))->daughter()->is('Urenkeltochter', 'der Urenkeltochter');
-    $defs []= RelPath::any()->child(Times::min(2))->child()->daughter()->is('%s×Ur-Enkeltochter', 'der %s×Ur-Enkeltochter');
+    $defs []= RelPath::any()->child(Times::fixed(3))->daughter()->is('Ururenkeltochter', 'der Ururenkeltochter');
+    $defs []= RelPath::any()->child(Times::min(3))->child()->daughter()->is('%s×Ur-Enkeltochter', 'der %s×Ur-Enkeltochter');
     
     $defs []= RelPath::any()->child()->child()->is('Enkelkind', 'der Enkelkindes');
     $defs []= RelPath::any()->child(Times::fixed(2))->child()->is('Urenkelkind', 'des Urenkelkindes');
-    $defs []= RelPath::any()->child(Times::min(2))->child()->child()->is('%s×Ur-Enkelkind', 'des %s×Ur-Enkelkindes');
+    $defs []= RelPath::any()->child(Times::fixed(3))->child()->is('Ururenkelkind', 'des Ururenkelkindes');
+    $defs []= RelPath::any()->child(Times::min(3))->child()->child()->is('%s×Ur-Enkelkind', 'des %s×Ur-Enkelkindes');
 
     ////////
 
     $defs []= RelPath::any()->parent()->brother()->is('Onkel', 'des Onkels');
     $defs []= RelPath::any()->parent(Times::fixed(2))->brother()->is('Großonkel', 'des Großonkels');
     $defs []= RelPath::any()->parent(Times::fixed(3))->brother()->is('Urgroßonkel', 'des Urgroßonkels');
-    $defs []= RelPath::any()->parent(Times::min(4, -2))->brother()->is('%s×Ur-Großonkel', 'des %s×Ur-Großonkels');
+    $defs []= RelPath::any()->parent(Times::fixed(4))->brother()->is('Ururgroßonkel', 'des Ururgroßonkels');
+    $defs []= RelPath::any()->parent(Times::min(5, -2))->brother()->is('%s×Ur-Großonkel', 'des %s×Ur-Großonkels');
     
     $defs []= RelPath::any()->parent()->sister()->is('Tante', 'der Tante');
     $defs []= RelPath::any()->parent(Times::fixed(2))->sister()->is('Großtante', 'der Großtante');
     $defs []= RelPath::any()->parent(Times::fixed(3))->sister()->is('Urgroßtante', 'der Urgroßtante');
-    $defs []= RelPath::any()->parent(Times::min(4, -2))->sister()->is('%s×Ur-Großtante', 'der %s×Ur-Großtante');
+    $defs []= RelPath::any()->parent(Times::fixed(4))->sister()->is('Ururgroßtante', 'der Ururgroßtante');
+    $defs []= RelPath::any()->parent(Times::min(5, -2))->sister()->is('%s×Ur-Großtante', 'der %s×Ur-Großtante');
         
     ////////
 
     $defs []= RelPath::any()->sibling()->son()->is('Neffe', 'des Neffen');
     $defs []= RelPath::any()->sibling()->child()->son()->is('Großneffe', 'des Großneffen');
     $defs []= RelPath::any()->sibling()->child(Times::fixed(2))->son()->is('Urgroßneffe', 'des Urgroßneffen');
-    $defs []= RelPath::any()->sibling()->child(Times::min(3, -1))->son()->is('%s×Ur-Großneffe', 'des %s×Ur-Großneffen');
+    $defs []= RelPath::any()->sibling()->child(Times::fixed(3))->son()->is('Ururgroßneffe', 'des Ururgroßneffen');
+    $defs []= RelPath::any()->sibling()->child(Times::min(4, -1))->son()->is('%s×Ur-Großneffe', 'des %s×Ur-Großneffen');
 
     $defs []= RelPath::any()->sibling()->daughter()->is('Nichte', 'der Nichte');
     $defs []= RelPath::any()->sibling()->child()->daughter()->is('Großnichte', 'der Großnichte');
     $defs []= RelPath::any()->sibling()->child(Times::fixed(2))->daughter()->is('Urgroßnichte', 'der Urgroßnichte');
-    $defs []= RelPath::any()->sibling()->child(Times::min(3, -1))->daughter()->is('%s×Ur-Großnichte', 'der %s×Ur-Großnichte');
+    $defs []= RelPath::any()->sibling()->child(Times::fixed(3))->daughter()->is('Ururgroßnichte', 'der Ururgroßnichte');
+    $defs []= RelPath::any()->sibling()->child(Times::min(4, -1))->daughter()->is('%s×Ur-Großnichte', 'der %s×Ur-Großnichte');
     
     ////////
 
@@ -211,9 +218,12 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     
     $defs []= RelPath::any()->parent(Times::fixed(4))->sibling()->son()->is('Urgroßonkel 2. Grades', 'des Urgroßonkels 2. Grades');
     $defs []= RelPath::any()->parent(Times::fixed(4))->parent($ref)->sibling()->child($ref)->son()->is('Urgroßonkel %s. Grades', 'des Urgroßonkels %s. Grades');
+
+    $defs []= RelPath::any()->parent(Times::fixed(5))->sibling()->son()->is('Ururgroßonkel 2. Grades', 'des Ururgroßonkels 2. Grades');
+    $defs []= RelPath::any()->parent(Times::fixed(5))->parent($ref)->sibling()->child($ref)->son()->is('Ururgroßonkel %s. Grades', 'des Ururgroßonkels %s. Grades');
     
-    $defs []= RelPath::any()->parent(Times::min(5, -3))->sibling()->son()->is('%s×Ur-Großonkel 2. Grades', 'des %s×Ur-Großonkels 2. Grades');    
-    $defs []= RelPath::any()->parent(Times::min(5, -3))->parent($ref)->sibling()->child($ref)->son()->is('%1$s×Ur-Großonkel %2$s. Grades', 'des %1$s×Ur-Großonkels %2$s. Grades');
+    $defs []= RelPath::any()->parent(Times::min(6, -3))->sibling()->son()->is('%s×Ur-Großonkel 2. Grades', 'des %s×Ur-Großonkels 2. Grades');    
+    $defs []= RelPath::any()->parent(Times::min(6, -3))->parent($ref)->sibling()->child($ref)->son()->is('%1$s×Ur-Großonkel %2$s. Grades', 'des %1$s×Ur-Großonkels %2$s. Grades');
 
     $defs []= RelPath::any()->parent(Times::fixed(2))->sibling()->daughter()->is('Tante 2. Grades', 'der Tante 2. Grades');
     $defs []= RelPath::any()->parent(Times::fixed(2))->parent($ref)->sibling()->child($ref)->daughter()->is('Tante %s. Grades', 'der Tante %s. Grades');
@@ -223,9 +233,12 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     
     $defs []= RelPath::any()->parent(Times::fixed(4))->sibling()->daughter()->is('Urgroßtante 2. Grades', 'der Urgroßtante 2. Grades');
     $defs []= RelPath::any()->parent(Times::fixed(4))->parent($ref)->sibling()->child($ref)->daughter()->is('Urgroßtante %s. Grades', 'der Urgroßtante %s. Grades');
+
+    $defs []= RelPath::any()->parent(Times::fixed(5))->sibling()->daughter()->is('Ururgroßtante 2. Grades', 'der Ururgroßtante 2. Grades');
+    $defs []= RelPath::any()->parent(Times::fixed(5))->parent($ref)->sibling()->child($ref)->daughter()->is('Ururgroßtante %s. Grades', 'der Ururgroßtante %s. Grades');
     
-    $defs []= RelPath::any()->parent(Times::min(5, -3))->sibling()->daughter()->is('%s×Ur-Großtante 2. Grades', 'der %s×Ur-Großtante 2. Grades');    
-    $defs []= RelPath::any()->parent(Times::min(5, -3))->parent($ref)->sibling()->child($ref)->daughter()->is('%1$s×Ur-Großtante %2$s. Grades', 'der %1$s×Ur-Großtante %2$s. Grades');
+    $defs []= RelPath::any()->parent(Times::min(6, -3))->sibling()->daughter()->is('%s×Ur-Großtante 2. Grades', 'der %s×Ur-Großtante 2. Grades');    
+    $defs []= RelPath::any()->parent(Times::min(6, -3))->parent($ref)->sibling()->child($ref)->daughter()->is('%1$s×Ur-Großtante %2$s. Grades', 'der %1$s×Ur-Großtante %2$s. Grades');
     
     ////////
 
@@ -233,13 +246,15 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->son()->is('Neffe %s. Grades', 'des Neffen %s. Grades');
     $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child()->son()->is('Großneffe %s. Grades', 'des Großneffen %s. Grades');
     $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::fixed(2))->son()->is('Urgroßneffe %s. Grades', 'des Urgroßneffen %s. Grades');
-    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::min(3, -1))->son()->is('%2$s×Ur-Großneffe %1$s. Grades', 'des %2$s×Ur-Großneffen %1$s. Grades');
+    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::fixed(3))->son()->is('Ururgroßneffe %s. Grades', 'des Ururgroßneffen %s. Grades');
+    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::min(4, -1))->son()->is('%2$s×Ur-Großneffe %1$s. Grades', 'des %2$s×Ur-Großneffen %1$s. Grades');
         
     $ref = Times::min(1, 1);
     $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->daughter()->is('Nichte %s. Grades', 'der Nichte %s. Grades');
     $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child()->daughter()->is('Großnichte %s. Grades', 'der Großnichte %s. Grades');
     $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::fixed(2))->daughter()->is('Urgroßnichte %s. Grades', 'der Urgroßnichte %s. Grades');
-    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::min(3, -1))->daughter()->is('%2$s×Ur-Großnichte %1$s. Grades', 'der %2$s×Ur-Großnichte %1$s. Grades');
+    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::fixed(3))->daughter()->is('Ururgroßnichte %s. Grades', 'der Ururgroßnichte %s. Grades');
+    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::min(4, -1))->daughter()->is('%2$s×Ur-Großnichte %1$s. Grades', 'der %2$s×Ur-Großnichte %1$s. Grades');
     
     ////////
     

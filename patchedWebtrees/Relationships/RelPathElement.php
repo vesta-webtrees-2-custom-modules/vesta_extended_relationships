@@ -19,8 +19,8 @@ interface RelPathElement {
   
   /**
    * 
-   * @param int $matchedPathElements
-   * @param RelationshipPath $path
+   * @param int $matchedPathElements path already matched elsewhere
+   * @param RelationshipPath $path remaining path
    * @param array $refs back-references
    * @return Collection<MatchedPartialPath> we may be able to match in different ways
    */

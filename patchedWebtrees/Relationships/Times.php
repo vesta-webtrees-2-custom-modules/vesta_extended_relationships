@@ -48,6 +48,10 @@ class Times {
           int $offset = 0,
           ?TimesResolver $resolver = null) {
     
+    if ($minCount < 1) {
+      throw new \Exception;
+    }
+    
     $this->fixedCount = $fixedCount;
     $this->minCount = $minCount;
     $this->offset = $offset;

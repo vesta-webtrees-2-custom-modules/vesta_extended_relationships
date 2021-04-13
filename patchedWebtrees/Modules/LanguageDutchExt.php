@@ -50,6 +50,9 @@ class LanguageDutchExt extends AbstractModule implements ModuleLanguageExtInterf
   
   public static function defs(): RelDefs {
     
+    //overview:
+    //http://www.voorouders.net/help/verwantschappen/
+    
     $defs = [];
     
     $defs []= RelPath::any()->adoptiveFather()->is('adoptievader', 'van de adoptievader');
@@ -103,40 +106,43 @@ class LanguageDutchExt extends AbstractModule implements ModuleLanguageExtInterf
     $defs []= RelPath::any()->sibling()->is('broer of zus', 'van de broer of zus');
     
     ////////
-
-    //$ignoreLaterEvents: according to § 1590 BGB (https://www.gesetze-im-internet.de/bgb/__1590.html),
-    //schwägerschaft is forever
     
-    $defs []= RelPath::any()->spouse(true)->father()->is('schoonvader', 'van de schoonvader');
-    $defs []= RelPath::any()->spouse(true)->mother()->is('schoonmoeder', 'van de schoonmoeder');
-
-    $defs []= RelPath::any()->child()->husband(true)->is('schoonzoon', 'van de schoonzoon');
-    $defs []= RelPath::any()->child()->wife(true)->is('schoondochter', 'van de schoondochter');
+    $defs []= RelPath::any()->spouse()->father()->is('schoonvader', 'van de schoonvader');
+    $defs []= RelPath::any()->spouse()->mother()->is('schoonmoeder', 'van de schoonmoeder');
+    $defs []= RelPath::any()->child()->husband()->is('schoonzoon', 'van de schoonzoon');
+    $defs []= RelPath::any()->child()->wife()->is('schoondochter', 'van de schoondochter');
     
-    $defs []= RelPath::any()->spouse(true)->brother()->is('zwager', 'van de zwager');
-    $defs []= RelPath::any()->sibling()->husband(true)->is('zwager', 'van de zwager');
-    $defs []= RelPath::any()->spouse(true)->sister()->is('schoonzus', 'van de schoonzus');
-    $defs []= RelPath::any()->sibling()->wife(true)->is('schoonzus', 'van de schoonzus');
-        
+    $defs []= RelPath::any()->spouse()->brother()->is('zwager', 'van de zwager');
+    $defs []= RelPath::any()->sibling()->husband()->is('zwager', 'van de zwager');
+    $defs []= RelPath::any()->spouse()->sister()->is('schoonzus', 'van de schoonzus');
+    $defs []= RelPath::any()->sibling()->wife()->is('schoonzus', 'van de schoonzus');
+    
+    $defs []= RelPath::any()->exSpouse()->father()->is('ex-schoonvader', 'van de ex-schoonvader');
+    $defs []= RelPath::any()->exSpouse()->mother()->is('ex-schoonmoeder', 'van de ex-schoonmoeder');
+    $defs []= RelPath::any()->child()->exHusband()->is('ex-schoonzoon', 'van de ex-schoonzoon');
+    $defs []= RelPath::any()->child()->exWife()->is('ex-schoondochter', 'van de ex-schoondochter');
+    
+    $defs []= RelPath::any()->exSpouse()->brother()->is('ex-zwager', 'van de ex-zwager');
+    $defs []= RelPath::any()->sibling()->exHusband()->is('ex-zwager', 'van de ex-zwager');
+    $defs []= RelPath::any()->exSpouse()->sister()->is('ex-schoonzus', 'van de ex-schoonzus');
+    $defs []= RelPath::any()->sibling()->exWife()->is('ex-schoonzus', 'van de ex-schoonzus');
+    
     ////////
 
     $defs []= RelPath::any()->parent()->son()->is('halfbroer', 'van de halfbroer');
     $defs []= RelPath::any()->parent()->daughter()->is('halfzus', 'van de halfzus');
     
-    $defs []= RelPath::any()->stepFather()->is('stiefvader');
-    $defs []= RelPath::any()->stepMother()->is('stiefmoeder');
-    $defs []= RelPath::any()->stepParent()->is('stiefouder');
+    $defs []= RelPath::any()->stepFather()->is('stiefvader', 'van de stiefvader');
+    $defs []= RelPath::any()->stepMother()->is('stiefmoeder', 'van de stiefmoeder');
+    $defs []= RelPath::any()->stepParent()->is('stiefouder', 'van de stiefouder');
     
-    $defs []= RelPath::any()->stepSon()->is('stiefzoon');
-    $defs []= RelPath::any()->stepDaughter()->is('stiefdochter');
-    $defs []= RelPath::any()->stepChild()->is('stiefkind');
+    $defs []= RelPath::any()->stepSon()->is('stiefzoon', 'van de stiefzoon');
+    $defs []= RelPath::any()->stepDaughter()->is('stiefdochter', 'van de stiefdochter');
+    $defs []= RelPath::any()->stepChild()->is('stiefkind', 'van de stiefkind');
     
-    $defs []= RelPath::any()->stepBrother()->is('stiefbroer');
-    $defs []= RelPath::any()->stepSister()->is('stiefzus');
-    $defs []= RelPath::any()->stepSibling()->is('Stiefbroer of -zus');
-    
-    ////////
-
+    $defs []= RelPath::any()->stepBrother()->is('stiefbroer', 'van de stiefbroer');
+    $defs []= RelPath::any()->stepSister()->is('stiefzus', 'van de stiefzus');
+    $defs []= RelPath::any()->stepSibling()->is('stiefbroer of -zus', 'van de stiefbroer of -zus');
     
     ////////
     
@@ -181,65 +187,26 @@ class LanguageDutchExt extends AbstractModule implements ModuleLanguageExtInterf
     ////////
 
     $defs []= RelPath::any()->sibling()->son()->is('neef', 'van de neef');
-    $defs []= RelPath::any()->sibling()->child()->son()->is('achterneef', 'van de achterneef');
-    $defs []= RelPath::any()->sibling()->child(Times::fixed(2))->son()->is('achter-achterneef', 'van de achter-achterneef');
-    $defs []= RelPath::any()->sibling()->child(Times::min(3, -1))->son()->is('%s×achter-achterneef', 'van de %s×achter-achterneef');
+    $defs []= RelPath::any()->sibling()->child(Times::min(1, 3))->son()->is('achterneef %se graad', 'van de achterneef %se graad');
 
     $defs []= RelPath::any()->sibling()->daughter()->is('nicht', 'van de nicht');
-    $defs []= RelPath::any()->sibling()->child()->daughter()->is('achternicht', 'van de achternicht');
-    $defs []= RelPath::any()->sibling()->child(Times::fixed(2))->daughter()->is('achter-achternicht', 'van de achter-achternicht');
-    $defs []= RelPath::any()->sibling()->child(Times::min(3, -1))->daughter()->is('%s×achter-achternicht', 'van de %s×achter-achternicht');
+    $defs []= RelPath::any()->sibling()->child(Times::min(1, 3))->daughter()->is('achternicht %se graad', 'van de achternicht %se graad');
     
     ////////
 
+    //cousins
+    
     $defs []= RelPath::any()->parent()->sibling()->son()->is('neef', 'van de neef');
+    $defs []= RelPath::any()->parent()->sibling()->daughter()->is('nicht', 'van de nicht');
     
-    $ref = Times::min(1, 1); 
-    $defs []= RelPath::any()->parent()->parent($ref)->sibling()->child($ref)->son()->is('neef %s. graad', 'van de neef %s. graad');
-
-    $defs []= RelPath::any()->parent()->sibling()->daughter()->is('Cousine', 'van de nicht');
-    $defs []= RelPath::any()->parent()->parent($ref)->sibling()->child($ref)->daughter()->is('nicht %s. graad', 'van de nicht %s. graad');
+    //total path length, add one for sibling rel which is actually two steps ('genetically')
+    $ref = Times::min(4, 1);
     
-    ////////
-    
-    $ref = Times::min(1, 2);
-    $defs []= RelPath::any()->parent(Times::fixed(2))->sibling()->son()->is('oom 2. graad', 'van de oom 2. graad');
-    $defs []= RelPath::any()->parent(Times::fixed(2))->parent($ref)->sibling()->child($ref)->son()->is('oom %s. graad', 'van de oom %s. graad');
-    
-    $defs []= RelPath::any()->parent(Times::fixed(3))->sibling()->son()->is('oudoom 2. graad', 'van de oudoom 2. graad');
-    $defs []= RelPath::any()->parent(Times::fixed(3))->parent($ref)->sibling()->child($ref)->son()->is('oudoom %s. graad', 'van de oudoom %s. graad');
-    
-    $defs []= RelPath::any()->parent(Times::fixed(4))->sibling()->son()->is('oud-oudoom 2. graad', 'van de oud-oudoom 2. graad');
-    $defs []= RelPath::any()->parent(Times::fixed(4))->parent($ref)->sibling()->child($ref)->son()->is('Urgroßonkel %s. graad', 'van de Urgroßonkels %s. graad');
-    
-    $defs []= RelPath::any()->parent(Times::min(5, -3))->sibling()->son()->is('%s×oud-oudoom 2. graad', 'van de %s×oud-oudoom 2. graad');    
-    $defs []= RelPath::any()->parent(Times::min(5, -3))->parent($ref)->sibling()->child($ref)->son()->is('%1$s×oud-oudoom %2$s. graad', 'van de %1$s×oud-oudoom %2$s. graad');
-
-    $defs []= RelPath::any()->parent(Times::fixed(2))->sibling()->daughter()->is('tante 2. graad', 'van de tante 2. graad');
-    $defs []= RelPath::any()->parent(Times::fixed(2))->parent($ref)->sibling()->child($ref)->daughter()->is('tante %s. graad', 'van de tante %s. graad');
-    
-    $defs []= RelPath::any()->parent(Times::fixed(3))->sibling()->daughter()->is('oudtante 2. graad', 'van de oudtante 2. graad');
-    $defs []= RelPath::any()->parent(Times::fixed(3))->parent($ref)->sibling()->child($ref)->daughter()->is('oudtante %s. graad', 'van de oudtante %s. graad');
-    
-    $defs []= RelPath::any()->parent(Times::fixed(4))->sibling()->daughter()->is('oud-oudtante 2. graad', 'van de oud-oudtante 2. graad');
-    $defs []= RelPath::any()->parent(Times::fixed(4))->parent($ref)->sibling()->child($ref)->daughter()->is('oud-oudtante %s. graad', 'van de oud-oudtante %s. graad');
-    
-    $defs []= RelPath::any()->parent(Times::min(5, -3))->sibling()->daughter()->is('%s×oud-oudtante 2. graad', 'van de %s×oud-oudtante 2. graad');    
-    $defs []= RelPath::any()->parent(Times::min(5, -3))->parent($ref)->sibling()->child($ref)->daughter()->is('%1$s×oud-oudtante %2$s. graad', 'van de %1$s×oud-oudtante %2$s. graad');
-    
-    ////////
-
-    $ref = Times::min(1, 1);
-    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->son()->is('neef %s. graad', 'van de neef %s. graad');
-    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child()->son()->is('achterneef %s. graad', 'van de achterneef %s. graad');
-    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::fixed(2))->son()->is('achter-achterneef %s. graad', 'van de achter-achterneef %s. graad');
-    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::min(3, -1))->son()->is('%2$s×Uachter-achterneef %1$s. graad', 'van de %2$s×achter-achterneef %1$s. graad');
+    $defs []= RelPath::any()->peekTotalPathLength($ref)->parent(Times::min(2))->sibling()->son()->is('achterneef %1$se graad', 'van de achterneef %1$se graad');
+    $defs []= RelPath::any()->peekTotalPathLength($ref)->parent(Times::min(2))->sibling()->daughter()->is('achternicht %1$se graad', 'van de achternicht %1$se graad');
         
-    $ref = Times::min(1, 1);
-    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->daughter()->is('nicht %s. graad', 'van de nicht %s. graad');
-    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child()->daughter()->is('achternicht %s. graad', 'van de achternicht %s. graad');
-    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::fixed(2))->daughter()->is('achter-achternicht %s. graad', 'van de achter-achternicht %s. graad');
-    $defs []= RelPath::any()->parent($ref)->sibling()->child($ref)->child(Times::min(3, -1))->daughter()->is('%2$s×achter-achternicht %1$s. graad', 'van de %2$s×achter-achternicht %1$s. graad');
+    $defs []= RelPath::any()->peekTotalPathLength($ref)->parent(Times::min(1))->sibling()->child(Times::min(1))->son()->is('achterneef %1$se graad', 'van de achterneef %1$se graad');
+    $defs []= RelPath::any()->peekTotalPathLength($ref)->parent(Times::min(1))->sibling()->child(Times::min(1))->daughter()->is('achternicht %1$se graad', 'van de achternicht %1$se graad');
     
     ////////
     

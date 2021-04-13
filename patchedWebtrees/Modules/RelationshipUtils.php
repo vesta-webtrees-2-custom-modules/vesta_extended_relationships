@@ -34,7 +34,7 @@ class RelationshipUtils {
  
   protected static function doGetRelationshipName(
           RelationshipPath $path): string {
-      
+    
       if (I18N::locale() instanceof LocaleEn) {
         if (self::$ext === null) {
           self::$ext = new LanguageEnglishExt();
