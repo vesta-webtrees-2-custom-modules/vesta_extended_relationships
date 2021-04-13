@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-04-13 08:01+0000\n"
+"PO-Revision-Date: 2021-04-13 09:34+0000\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
@@ -303,7 +303,7 @@ msgstr "In dat geval moet u ook permanente schakeling verbieden, omdat het geen 
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
 #: ExtendedRelationshipModule.php:994
 msgid "Individuals with Patriarchs"
-msgstr "individuen met stamvader"
+msgstr "Personen met stamvaders"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:31
