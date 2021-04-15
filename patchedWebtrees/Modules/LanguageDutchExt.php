@@ -199,14 +199,14 @@ class LanguageDutchExt extends AbstractModule implements ModuleLanguageExtInterf
     $defs []= RelDefBuilder::def()->parent()->sibling()->son()->is('neef', 'van de neef');
     $defs []= RelDefBuilder::def()->parent()->sibling()->daughter()->is('nicht', 'van de nicht');
     
-    //reference for total path length (available via '%1$s'), we add 1 for sibling rel which is actually two steps ('genetically')
+    //reference for path length (available via '%1$s'), we add 1 for sibling rel which is actually two steps ('genetically')
     $ref = Times::min(4, 1);
     
-    $defs []= RelDefBuilder::def()->peekTotalPathLength($ref)->parent(Times::min(2))->sibling()->son()->is('achterneef %1$se graad', 'van de achterneef %1$se graad');
-    $defs []= RelDefBuilder::def()->peekTotalPathLength($ref)->parent(Times::min(2))->sibling()->daughter()->is('achternicht %1$se graad', 'van de achternicht %1$se graad');
+    $defs []= RelDefBuilder::def()->parent(Times::min(2))->sibling()->son()->matchedPathLengthAsFirstRef($ref)->is('achterneef %1$se graad', 'van de achterneef %1$se graad');
+    $defs []= RelDefBuilder::def()->parent(Times::min(2))->sibling()->daughter()->matchedPathLengthAsFirstRef($ref)->is('achternicht %1$se graad', 'van de achternicht %1$se graad');
         
-    $defs []= RelDefBuilder::def()->peekTotalPathLength($ref)->parent(Times::min(1))->sibling()->child(Times::min(1))->son()->is('achterneef %1$se graad', 'van de achterneef %1$se graad');
-    $defs []= RelDefBuilder::def()->peekTotalPathLength($ref)->parent(Times::min(1))->sibling()->child(Times::min(1))->daughter()->is('achternicht %1$se graad', 'van de achternicht %1$se graad');
+    $defs []= RelDefBuilder::def()->parent(Times::min(1))->sibling()->child(Times::min(1))->son()->matchedPathLengthAsFirstRef($ref)->is('achterneef %1$se graad', 'van de achterneef %1$se graad');
+    $defs []= RelDefBuilder::def()->parent(Times::min(1))->sibling()->child(Times::min(1))->daughter()->matchedPathLengthAsFirstRef($ref)->is('achternicht %1$se graad', 'van de achternicht %1$se graad');
     
     ////////
     

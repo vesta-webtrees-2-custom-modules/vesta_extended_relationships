@@ -56,6 +56,7 @@ class StepSiblingRelationshipPathMatcher implements RelationshipPathMatcher {
   
   public function matchPath(
           int $matchedPathElements,
+          bool $matchedPathDependsOnRemainingPath,
           RelationshipPath $path, 
           array $refs): Collection {    
     
@@ -150,7 +151,7 @@ class StepSiblingRelationshipPathMatcher implements RelationshipPathMatcher {
     //error_log("RelationshipPathMatcher matched fixed! ". $path . " as " . $sex);
     
     $ret = [];
-    $ret []= new MatchedPartialPath($matchedPathElements + 3, $tail, $refs);
+    $ret []= new MatchedPartialPath($matchedPathElements + 3, $matchedPathDependsOnRemainingPath, $tail, $refs);
     return new Collection($ret);
   }
   

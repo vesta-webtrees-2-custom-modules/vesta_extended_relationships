@@ -29,42 +29,28 @@ class RelationshipUtils {
     
     return $ret;
   }
-  
-  protected static $ext = null;  
  
   protected static function doGetRelationshipName(
           RelationshipPath $path): string {
     
-      if (I18N::locale() instanceof LocaleEn) {
-        if (self::$ext === null) {
-          self::$ext = new LanguageEnglishExt();
-        }
-        
-        return self::$ext->getRelationshipName($path);
+      if (I18N::locale() instanceof LocaleDe) {
+        $ext = new LanguageGermanExt();
+        return $ext->getRelationshipName($path);        
       }
       
-      if (I18N::locale() instanceof LocaleDe) {
-        if (self::$ext === null) {
-          self::$ext = new LanguageGermanExt();
-        }        
-        
-        return self::$ext->getRelationshipName($path);        
+      if (I18N::locale() instanceof LocaleEn) {
+        $ext = new LanguageEnglishExt();
+        return $ext->getRelationshipName($path);
+      }      
+      
+      if (I18N::locale() instanceof LocaleNl) {
+        $ext = new LanguageDutchExt();
+        return $ext->getRelationshipName($path);
       }
       
       if (I18N::locale() instanceof LocaleSk) {
-        if (self::$ext === null) {
-          self::$ext = new LanguageSlovakExt();
-        }
-        
-        return self::$ext->getRelationshipName($path);
-      }
-      
-      if (I18N::locale() instanceof LocaleNl) {
-        if (self::$ext === null) {
-          self::$ext = new LanguageDutchExt();
-        }
-        
-        return self::$ext->getRelationshipName($path);
+        $ext = new LanguageSlovakExt();
+        return $ext->getRelationshipName($path);
       }
       
       return $path->getRelationshipNameLegacy();

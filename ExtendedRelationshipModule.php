@@ -224,23 +224,11 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $text = RelationshipUtils::getRelationshipName($relationshipPath);
       
         /*
-        // Extract the relationship names between pairs of individuals
-        $relationships = $slcaController->oldStyleRelationshipPath($tree, $path);
-        if (empty($relationships)) {
-          // Cannot see one of the families/individuals, due to privacy;
-          continue;
-        }
-
-        //use $person1/ $person2 here! (e.g. for gendered rels, and 'younger brother' etc.)
-        $indi1 = Registry::individualFactory()->make($xref1, $tree);
-        $indi2 = Registry::individualFactory()->make($xref2, $tree);
-
-        //TODO: 'getRelationshipNameFromPath' requires a variant using $beforeJD,
+        //TODO: 'getRelationshipName' requires a variant using $beforeJD,
         //because 'ex-husband' etc. is not correct at all dates!
         //also, 'husband' may not always be correct either, if the marriage e.g. occured after the birth of a child
         //once we use additional events to establish family (such as ENGA), it gets more complicated
         //should use 'fiancée' etc. at certain dates
-        $text = FunctionsExt::getRelationshipNameFromPath(implode('', $relationships), $indi1, $indi2);        
         */
         
         break;

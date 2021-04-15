@@ -31,6 +31,7 @@ class PathSexRelationshipPathMatcher implements RelationshipPathMatcher {
   
   public function matchPath(
           int $matchedPathElements,
+          bool $matchedPathDependsOnRemainingPath,
           RelationshipPath $path, 
           array $refs): Collection {    
     
@@ -39,7 +40,7 @@ class PathSexRelationshipPathMatcher implements RelationshipPathMatcher {
     }
     
     $ret = [];
-    $ret []= new MatchedPartialPath($matchedPathElements, $path, $refs);      
+    $ret []= new MatchedPartialPath($matchedPathElements, $matchedPathDependsOnRemainingPath, $path, $refs);      
     return new Collection($ret);
   }
 }

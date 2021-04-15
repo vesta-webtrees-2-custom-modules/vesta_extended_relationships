@@ -87,17 +87,6 @@ class FunctionsPrintRels {
       $slcaKey = $caAndPath->getCommonAncestor();
       $path = $caAndPath->getPath();
 
-      /*
-      // Extract the relationship names between pairs of individuals
-      $relationships = $slcaController->oldStyleRelationshipPath($person1->tree(), $path);
-      if (empty($relationships)) {
-        // Cannot see one of the families/individuals, due to privacy;
-        continue;
-      }
-
-      $rel = FunctionsExt::getRelationshipNameFromPath(implode('', $relationships), $person1, $person2);
-      */
-      
       // Extract the relationship names between pairs of individuals
       $relationshipPath = RelationshipPath::create($person1->tree(), $path);
       if ($relationshipPath === null) {

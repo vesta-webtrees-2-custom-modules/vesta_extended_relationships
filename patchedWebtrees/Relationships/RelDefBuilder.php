@@ -12,15 +12,10 @@ class RelDefBuilder implements
   RelDefBuilderDescendant,
   RelDefBuilderSpouse {
   
-  /** @var Collection */
+  /** @var Collection<RelationshipPathMatcher> */
   protected $elements;
   
-  /**
-   * 
-   * @param Collection<RelationshipPathMatcher> $elements
-   */
-  protected function __construct() {
-    
+  protected function __construct() {    
     $this->elements = new Collection();
   }
   
@@ -44,43 +39,35 @@ class RelDefBuilder implements
   }
   
   public function father(): RelDefBuilderAncestor {
-    $this->elements->add(new SimpleRelationshipPathMatcher('fat', Times::one()));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('fat', Times::one()));
   }
   
   public function mother(): RelDefBuilderAncestor {
-    $this->elements->add(new SimpleRelationshipPathMatcher('mot', Times::one()));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('mot', Times::one()));
   }
   
   public function parent(?Times $times = null): RelDefBuilderAncestor {
-    $this->elements->add(new SimpleRelationshipPathMatcher('par', ($times === null)?Times::one():$times));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('par', ($times === null)?Times::one():$times));
   }
   
   public function adoptiveFather(): RelDefBuilderAncestor {
-    $this->elements->add(new ParentRelationshipPathMatcher('fat', 'adopted'));
-    return $this;
+    return $this->via(new ParentRelationshipPathMatcher('fat', 'adopted'));
   }
   
   public function adoptiveMother(): RelDefBuilderAncestor {
-    $this->elements->add(new ParentRelationshipPathMatcher('mot', 'adopted'));
-    return $this;
+    return $this->via(new ParentRelationshipPathMatcher('mot', 'adopted'));
   }
   
   public function adoptiveParent(): RelDefBuilderAncestor {
-    $this->elements->add(new ParentRelationshipPathMatcher('par', 'adopted'));
-    return $this;
+    return $this->via(new ParentRelationshipPathMatcher('par', 'adopted'));
   }
   
   public function fosterFather(): RelDefBuilderAncestor {
-    $this->elements->add(new ParentRelationshipPathMatcher('fat', 'foster'));
-    return $this;
+    return $this->via(new ParentRelationshipPathMatcher('fat', 'foster'));
   }
   
   public function fosterMother(): RelDefBuilderAncestor {
-    $this->elements->add(new ParentRelationshipPathMatcher('mot', 'foster'));
-    return $this;
+    return $this->via(new ParentRelationshipPathMatcher('mot', 'foster'));
   }
   
   public function fosterParent(): RelDefBuilderAncestor {
@@ -89,269 +76,220 @@ class RelDefBuilder implements
   }
   
   public function ancestorAxisVia(RelationshipPathMatcher $element): RelDefBuilderAncestor {
-    $this->elements->add($element);
-    return $this;
+    return $this->via($element);
   }
   
   public function husband(bool $ignoreLaterEvents = false): RelDefBuilderSpouse {
     if ($ignoreLaterEvents) {
-      $this->elements->add(new SpouseRelationshipPathMatcher('hus', ['FAM:MARR'], ['MARR']));
-    } else {
-      $this->elements->add(new SpouseRelationshipPathMatcher('hus', ['FAM:MARR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
+      return $this->via(new SpouseRelationshipPathMatcher('hus', ['FAM:MARR'], ['MARR']));
     }
-    return $this;
+    
+    return $this->via(new SpouseRelationshipPathMatcher('hus', ['FAM:MARR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function wife(bool $ignoreLaterEvents = false): RelDefBuilderSpouse {
     if ($ignoreLaterEvents) {
-      $this->elements->add(new SpouseRelationshipPathMatcher('wif', ['FAM:MARR'], ['MARR']));
-    } else {
-      $this->elements->add(new SpouseRelationshipPathMatcher('wif', ['FAM:MARR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
+      return $this->via(new SpouseRelationshipPathMatcher('wif', ['FAM:MARR'], ['MARR']));
     }
-    return $this;
+    
+    return $this->via(new SpouseRelationshipPathMatcher('wif', ['FAM:MARR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function spouse(bool $ignoreLaterEvents = false): RelDefBuilderSpouse {
     if ($ignoreLaterEvents) {
-      $this->elements->add(new SpouseRelationshipPathMatcher('spo', ['FAM:MARR'], ['MARR']));
-    } else {
-      $this->elements->add(new SpouseRelationshipPathMatcher('spo', ['FAM:MARR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
+      return $this->via(new SpouseRelationshipPathMatcher('spo', ['FAM:MARR'], ['MARR']));
     }
     
-    return $this;
+    return $this->via(new SpouseRelationshipPathMatcher('spo', ['FAM:MARR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function fiance(): RelDefBuilderSpouse {
-    $this->elements->add(new SpouseRelationshipPathMatcher('hus', ['FAM:ENGA'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
-    return $this;
+    return $this->via(new SpouseRelationshipPathMatcher('hus', ['FAM:ENGA'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function fiancee(): RelDefBuilderSpouse {
-    $this->elements->add(new SpouseRelationshipPathMatcher('wif', ['FAM:ENGA'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
-    return $this;
+    return $this->via(new SpouseRelationshipPathMatcher('wif', ['FAM:ENGA'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function betrothed(): RelDefBuilderSpouse {
-    $this->elements->add(new SpouseRelationshipPathMatcher('spo', ['FAM:ENGA'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
-    return $this;
+    return $this->via(new SpouseRelationshipPathMatcher('spo', ['FAM:ENGA'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function exHusband(): RelDefBuilderSpouse {
-    $this->elements->add(new SpouseRelationshipPathMatcher('hus', ['FAM:ANUL', 'FAM:DIV'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
-    return $this;
+    return $this->via(new SpouseRelationshipPathMatcher('hus', ['FAM:ANUL', 'FAM:DIV'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function exWife(): RelDefBuilderSpouse {
-    $this->elements->add(new SpouseRelationshipPathMatcher('wif', ['FAM:ANUL', 'FAM:DIV'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
-    return $this;
+    return $this->via(new SpouseRelationshipPathMatcher('wif', ['FAM:ANUL', 'FAM:DIV'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function exSpouse(): RelDefBuilderSpouse {
-    $this->elements->add(new SpouseRelationshipPathMatcher('spo', ['FAM:ANUL', 'FAM:DIV'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
-    return $this;
+    return $this->via(new SpouseRelationshipPathMatcher('spo', ['FAM:ANUL', 'FAM:DIV'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function nonMarriedMalePartner(): RelDefBuilderSpouse {
-    $this->elements->add(new SpouseRelationshipPathMatcher('hus', ['FAM:_NMR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
-    return $this;
+    return $this->via(new SpouseRelationshipPathMatcher('hus', ['FAM:_NMR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function nonMarriedFemalePartner(): RelDefBuilderSpouse {
-    $this->elements->add(new SpouseRelationshipPathMatcher('wif', ['FAM:_NMR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
-    return $this;
+    return $this->via(new SpouseRelationshipPathMatcher('wif', ['FAM:_NMR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function nonMarriedPartner(): RelDefBuilderSpouse {
-    $this->elements->add(new SpouseRelationshipPathMatcher('spo', ['FAM:_NMR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
-    return $this;
+    return $this->via(new SpouseRelationshipPathMatcher('spo', ['FAM:_NMR'], SpouseRelationshipPathMatcher::typicalRelevantFacts()));
   }
   
   public function malePartner(): RelDefBuilderSpouse {
-    $this->elements->add(new SimpleRelationshipPathMatcher('hus', Times::one()));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('hus', Times::one()));
   }
   
   public function femalePartner(): RelDefBuilderSpouse {
-    $this->elements->add(new SimpleRelationshipPathMatcher('wif', Times::one()));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('wif', Times::one()));
   }
   
   public function partner(): RelDefBuilderSpouse {
-    $this->elements->add(new SimpleRelationshipPathMatcher('spo', Times::one()));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('spo', Times::one()));
   }
   
   public function spouseAxisVia(RelationshipPathMatcher $element): RelDefBuilderSpouse {
-    $this->elements->add($element);
-    return $this;
+    return $this->via($element);
   }
 
   public function son(): RelDefBuilderDescendant {
-    $this->elements->add(new SimpleRelationshipPathMatcher('son', Times::one()));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('son', Times::one()));
   }
   
   public function daughter(): RelDefBuilderDescendant {
-    $this->elements->add(new SimpleRelationshipPathMatcher('dau', Times::one()));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('dau', Times::one()));
   }
   
   public function child(?Times $times = null): RelDefBuilderDescendant {
-    $this->elements->add(new SimpleRelationshipPathMatcher('chi', ($times === null)?Times::one():$times));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('chi', ($times === null)?Times::one():$times));
   }
  
   public function adoptiveSon(): RelDefBuilderDescendant {
-    $this->elements->add(new ChildRelationshipPathMatcher('son', 'adopted'));
-    return $this;
+    return $this->via(new ChildRelationshipPathMatcher('son', 'adopted'));
   }
   
   public function adoptiveDaughter(): RelDefBuilderDescendant {
-    $this->elements->add(new ChildRelationshipPathMatcher('dau', 'adopted'));
-    return $this;
+    return $this->via(new ChildRelationshipPathMatcher('dau', 'adopted'));
   }
   
   public function adoptiveChild(): RelDefBuilderDescendant {
-    $this->elements->add(new ChildRelationshipPathMatcher('chi', 'adopted'));
-    return $this;
+    return $this->via(new ChildRelationshipPathMatcher('chi', 'adopted'));
   }
   
   public function fosterSon(): RelDefBuilderDescendant {
-    $this->elements->add(new ChildRelationshipPathMatcher('son', 'foster'));
-    return $this;
+    return $this->via(new ChildRelationshipPathMatcher('son', 'foster'));
   }
   
   public function fosterDaughter(): RelDefBuilderDescendant {
-    $this->elements->add(new ChildRelationshipPathMatcher('dau', 'foster'));
-    return $this;
+    return $this->via(new ChildRelationshipPathMatcher('dau', 'foster'));
   }
   
   public function fosterChild(): RelDefBuilderDescendant {
-    $this->elements->add(new ChildRelationshipPathMatcher('chi', 'foster'));
-    return $this;
+    return $this->via(new ChildRelationshipPathMatcher('chi', 'foster'));
   }
   
   public function descendantAxisVia(RelationshipPathMatcher $element): RelDefBuilderDescendant {
-    $this->elements->add($element);
-    return $this;
+    return $this->via($element);
   }
   
   public function brother(): RelDefBuilderSibling {
-    $this->elements->add(new SimpleRelationshipPathMatcher('bro', Times::one()));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('bro', Times::one()));
   }
   
   public function sister(): RelDefBuilderSibling {
-    $this->elements->add(new SimpleRelationshipPathMatcher('sis', Times::one()));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('sis', Times::one()));
   }
   
   public function sibling(): RelDefBuilderSibling {
-    $this->elements->add(new SimpleRelationshipPathMatcher('sib', Times::one()));
-    return $this;
+    return $this->via(new SimpleRelationshipPathMatcher('sib', Times::one()));
   }
   
   public function elderBrother(): RelDefBuilderSibling {
-    $this->elements->add(new SiblingRelationshipPathMatcher('bro', 1));
-    return $this;
+    return $this->via(new SiblingRelationshipPathMatcher('bro', 1));
   }
   
   public function elderSister(): RelDefBuilderSibling {
-    $this->elements->add(new SiblingRelationshipPathMatcher('sis', 1));
-    return $this;
+    return $this->via(new SiblingRelationshipPathMatcher('sis', 1));
   }
   
   public function elderSibling(): RelDefBuilderSibling {
-    $this->elements->add(new SiblingRelationshipPathMatcher('sib', 1));
-    return $this;
+    return $this->via(new SiblingRelationshipPathMatcher('sib', 1));
   }
   
   public function youngerBrother(): RelDefBuilderSibling {
-    $this->elements->add(new SiblingRelationshipPathMatcher('bro', -1));
-    return $this;
+    return $this->via(new SiblingRelationshipPathMatcher('bro', -1));
   }
   
   public function youngerSister(): RelDefBuilderSibling {
-    $this->elements->add(new SiblingRelationshipPathMatcher('sis', -1));
-    return $this;
+    return $this->via(new SiblingRelationshipPathMatcher('sis', -1));
   }
   
   public function youngerSibling(): RelDefBuilderSibling {
-    $this->elements->add(new SiblingRelationshipPathMatcher('sib', -1));
-    return $this;
+    return $this->via(new SiblingRelationshipPathMatcher('sib', -1));
   }
   
   public function twinBrother(): RelDefBuilderSibling {
-    $this->elements->add(new SiblingRelationshipPathMatcher('bro', 0));
-    return $this;
+    return $this->via(new SiblingRelationshipPathMatcher('bro', 0));
   }
   
   public function twinSister(): RelDefBuilderSibling {
-    $this->elements->add(new SiblingRelationshipPathMatcher('sis', 0));
-    return $this;
+    return $this->via(new SiblingRelationshipPathMatcher('sis', 0));
   }
   
   public function twinSibling(): RelDefBuilderSibling {
-    $this->elements->add(new SiblingRelationshipPathMatcher('sib', 0));
-    return $this;
+    return $this->via(new SiblingRelationshipPathMatcher('sib', 0));
   }
   
   public function siblingAxisVia(RelationshipPathMatcher $element): RelDefBuilderSibling {
-    $this->elements->add($element);
-    return $this;
+    return $this->via($element);
   }
     
   public function stepFather(): RelDefBuilderSpouse {
-    $this->elements->add(new StepParentRelationshipPathMatcher('par', 'hus'));
-    return $this;
+    return $this->via(new StepParentRelationshipPathMatcher('par', 'hus'));
   }
   
   public function stepMother(): RelDefBuilderSpouse {
-    $this->elements->add(new StepParentRelationshipPathMatcher('par', 'wif'));
-    return $this;
+    return $this->via(new StepParentRelationshipPathMatcher('par', 'wif'));
   }
   
   public function stepParent(): RelDefBuilderSpouse {
-    $this->elements->add(new StepParentRelationshipPathMatcher('par', 'spo'));
-    return $this;
+    return $this->via(new StepParentRelationshipPathMatcher('par', 'spo'));
   }
      
   public function stepSon(): RelDefBuilderDescendant {
-    $this->elements->add(new StepChildRelationshipPathMatcher('spo', 'son'));
-    return $this;
+    return $this->via(new StepChildRelationshipPathMatcher('spo', 'son'));
   }
   
   public function stepDaughter(): RelDefBuilderDescendant {
-    $this->elements->add(new StepChildRelationshipPathMatcher('spo', 'dau'));
-    return $this;
+    return $this->via(new StepChildRelationshipPathMatcher('spo', 'dau'));
   }
   
   public function stepChild(): RelDefBuilderDescendant {
-    $this->elements->add(new StepChildRelationshipPathMatcher('spo', 'chi'));
-    return $this;
+    return $this->via(new StepChildRelationshipPathMatcher('spo', 'chi'));
   }
   
   public function stepBrother(): RelDefBuilderDescendant {
-    $this->elements->add(new StepSiblingRelationshipPathMatcher('par', 'spo', 'son'));
-    return $this;
+    return $this->via(new StepSiblingRelationshipPathMatcher('par', 'spo', 'son'));
   }
   
   public function stepSister(): RelDefBuilderDescendant {
-    $this->elements->add(new StepSiblingRelationshipPathMatcher('par', 'spo', 'dau'));
-    return $this;
+    return $this->via(new StepSiblingRelationshipPathMatcher('par', 'spo', 'dau'));
   }
   
   public function stepSibling(): RelDefBuilderDescendant {
-    $this->elements->add(new StepSiblingRelationshipPathMatcher('par', 'spo', 'chi'));
-    return $this;
+    return $this->via(new StepSiblingRelationshipPathMatcher('par', 'spo', 'chi'));
   }
   
   ////////
   
-  public function peekTotalPathLength(Times $times): RelDefBuilder {
-    $this->elements->add(new TotalPathLengthRelationshipPathMatcher($times));
-    return $this;
+  public function matchedPathLengthAsFirstRef(Times $times): RelDefBuilder {
+    return $this->via(new MatchedPathLengthRelationshipPathMatcher($times, true));
   }
+  
+  ////////
   
   public function via(RelationshipPathMatcher $element): RelDefBuilder {
     $this->elements->add($element);

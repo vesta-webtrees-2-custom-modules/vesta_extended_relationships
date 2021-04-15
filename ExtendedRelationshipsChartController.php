@@ -67,8 +67,6 @@ class ExtendedRelationshipsChartController extends AbstractBaseController {
           $relationshipPath = RelationshipPath::createVirtual($individual1->sex(), $er);
           $rel = RelationshipUtils::getRelationshipName($relationshipPath);
           
-          //$rel = FunctionsExt::getRelationshipNameFromPath(implode('', $er), $individual1, $individual2);
-          
           if ($corPlus->getActuallyBetterThan() === 0) {
             echo I18N::translate('(that\'s overall as close as: %1$s)', $rel);
           } else if ($corPlus->getActuallyBetterThan() < 0) {

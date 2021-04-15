@@ -80,7 +80,7 @@ class RelDef {
     }
     
     $currentMatchedPaths = [];
-    $currentMatchedPaths []= new MatchedPartialPath(0, $path, []);
+    $currentMatchedPaths []= new MatchedPartialPath(0, false, $path, []);
     
     foreach ($this->elements as $element) {
       /** @var RelationshipPathMatcher $element */
@@ -91,6 +91,7 @@ class RelDef {
         
         $next = $element->matchPath(
                 $currentMatchedPath->matchedPathElements(),
+                $currentMatchedPath->dependsOnRemainingPath(),
                 $currentMatchedPath->remainingPath(), 
                 $currentMatchedPath->refs())->all();
         
@@ -108,11 +109,13 @@ class RelDef {
 
     $ret = [];
     foreach ($currentMatchedPaths as $currentMatchedPath) {
-      $ret []= new MatchedPath(
+      if ($currentMatchedPath->remainingPath()->isEmpty() || !$currentMatchedPath->dependsOnRemainingPath()) {
+        $ret []= new MatchedPath(
               $currentMatchedPath->matchedPathElements(), 
               $currentMatchedPath->remainingPath(), 
               $this->nominative($currentMatchedPath->refs()), 
               $this->genitive($currentMatchedPath->refs()));
+      }
     }
     
     return new Collection($ret);

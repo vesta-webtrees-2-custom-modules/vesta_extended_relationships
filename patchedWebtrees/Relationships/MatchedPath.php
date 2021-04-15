@@ -28,6 +28,14 @@ class MatchedPath {
   public function genitive(): ?string {
     return $this->genitive;
   }
+  
+  /**
+   * 
+   * @param int $matchedPathElements
+   * @param RelationshipPath|null $remainingPath if non-null, name must not depend on remaining path!
+   * @param string $nominative
+   * @param string|null $genitive
+   */
   public function __construct(
           int $matchedPathElements,
           ?RelationshipPath $remainingPath,

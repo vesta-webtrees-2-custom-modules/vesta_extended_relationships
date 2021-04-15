@@ -105,7 +105,7 @@ class LanguageGermanExt extends AbstractModule implements ModuleLanguageExtInter
     ////////
 
     //$ignoreLaterEvents: according to § 1590 BGB (https://www.gesetze-im-internet.de/bgb/__1590.html),
-    //schwägerschaft is forever
+    //Schwägerschaft is forever
     
     $defs []= RelDefBuilder::def()->spouse(true)->father()->is('Schwiegervater', 'des Schwiegervaters');
     $defs []= RelDefBuilder::def()->spouse(true)->mother()->is('Schwiegermutter', 'der Schwiegermutter');

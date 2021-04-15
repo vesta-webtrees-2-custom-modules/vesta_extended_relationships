@@ -1,9 +1,5 @@
 <?php
 
-use Cissee\WebtreesExt\Modules\RelationshipPath;
-use Fisharebest\Webtrees\Functions\Functions;
-use Fisharebest\Webtrees\Individual;
-
 declare(strict_types=1);
 
 namespace Cissee\WebtreesExt\Modules;

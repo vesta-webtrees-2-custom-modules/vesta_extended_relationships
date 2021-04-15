@@ -56,6 +56,7 @@ class SimpleRelationshipPathMatcher implements RelationshipPathMatcher {
   
   public function matchPath(
           int $matchedPathElements,
+          bool $matchedPathDependsOnRemainingPath,
           RelationshipPath $path, 
           array $refs): Collection {    
     
@@ -68,7 +69,7 @@ class SimpleRelationshipPathMatcher implements RelationshipPathMatcher {
     //error_log("RelationshipPathMatcher matchPath: ". $path . " times " . $count);
     
     if ($count > 0) {
-      return $this->matchFixedPath($matchedPathElements, $path, $refs, $count);
+      return $this->matchFixedPath($matchedPathElements, $matchedPathDependsOnRemainingPath, $path, $refs, $count);
     }
     
     //is times a backreference?
@@ -77,16 +78,17 @@ class SimpleRelationshipPathMatcher implements RelationshipPathMatcher {
       if ($ref->ref() === $this->times) {
         //use its value as fixed count (offset is only for term)
         //error_log("GOT REFERENCE count: ". ($ref->value() ."/" . $this->times->offset()));
-        return $this->matchFixedPath($matchedPathElements, $path, $refs, $ref->value());
+        return $this->matchFixedPath($matchedPathElements, $matchedPathDependsOnRemainingPath, $path, $refs, $ref->value());
       }
     }
       
     $minCount = $this->times->minCount();      
-    return $this->matchDynamicPath($matchedPathElements, $path, $refs, $minCount);
+    return $this->matchDynamicPath($matchedPathElements, $matchedPathDependsOnRemainingPath, $path, $refs, $minCount);
   }
   
   public function matchDynamicPath(
           int $matchedPathElements,
+          bool $matchedPathDependsOnRemainingPath,
           RelationshipPath $path, 
           array $refs, 
           int $minCount): Collection {
@@ -119,7 +121,7 @@ class SimpleRelationshipPathMatcher implements RelationshipPathMatcher {
       }
       $nextRefs []= new Reference($this->times, $minCount);
 
-      $ret []= new MatchedPartialPath($matchedPathElements + $minCount, $tail, $nextRefs);
+      $ret []= new MatchedPartialPath($matchedPathElements + $minCount, $matchedPathDependsOnRemainingPath, $tail, $nextRefs);
       
       //can we match more?
       $minCount++;
@@ -141,6 +143,7 @@ class SimpleRelationshipPathMatcher implements RelationshipPathMatcher {
   
   public function matchFixedPath(
           int $matchedPathElements,
+          bool $matchedPathDependsOnRemainingPath,
           RelationshipPath $path, 
           array $refs, 
           int $count): Collection {
@@ -168,7 +171,7 @@ class SimpleRelationshipPathMatcher implements RelationshipPathMatcher {
     //error_log("RelationshipPathMatcher matched fixed! ". $path . " as " . $sex);
     
     $ret = [];
-    $ret []= new MatchedPartialPath($matchedPathElements + $count, $tail, $refs);
+    $ret []= new MatchedPartialPath($matchedPathElements + $count, $matchedPathDependsOnRemainingPath, $tail, $refs);
     return new Collection($ret);
   }
   

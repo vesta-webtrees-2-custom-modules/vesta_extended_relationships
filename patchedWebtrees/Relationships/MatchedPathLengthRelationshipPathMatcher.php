@@ -7,11 +7,10 @@ namespace Cissee\WebtreesExt\Relationships;
 use Cissee\WebtreesExt\Modules\RelationshipPath;
 use Illuminate\Support\Collection;
 
-//discouraged because partial matches are not cachable as they depend on the remaining path!
-//better option is to use MatchedPathLengthRelationshipPathMatcher
-class TotalPathLengthRelationshipPathMatcher implements RelationshipPathMatcher {
+class MatchedPathLengthRelationshipPathMatcher implements RelationshipPathMatcher {
 
   protected $times;
+  protected $asFirstRef;
 
   public function minTimes(): int {
     return 0; //we're only peeking, so we don't contribute here!
@@ -22,9 +21,11 @@ class TotalPathLengthRelationshipPathMatcher implements RelationshipPathMatcher 
   }
   
   public function __construct(
-          Times $times) {
+          Times $times,
+          bool $asFirstRef) {
     
     $this->times = $times;
+    $this->asFirstRef = $asFirstRef;
   }
   
   public function matchPath(
@@ -33,7 +34,7 @@ class TotalPathLengthRelationshipPathMatcher implements RelationshipPathMatcher 
           RelationshipPath $path, 
           array $refs): Collection {    
     
-    $totalPathLength = $matchedPathElements + $path->size();
+    $totalPathLength = $matchedPathElements;
     if ($this->times->minTimes() > $totalPathLength) {
       return new Collection();
     }
@@ -41,17 +42,19 @@ class TotalPathLengthRelationshipPathMatcher implements RelationshipPathMatcher 
     $ret = [];    
     
     $nextRefs = [];
+    if ($this->asFirstRef) {
+      $nextRefs []= new Reference($this->times, $totalPathLength);
+    }
     foreach ($refs as $ref) {
       $nextRefs []= $ref;
     }
-    $nextRefs []= new Reference($this->times, $totalPathLength);
-
-    //dependsOnRemainingPath!
-    $dependsOnRemainingPath = ($path->size() > 0);
-    
+    if (!$this->asFirstRef) {
+      $nextRefs []= new Reference($this->times, $totalPathLength);
+    }
+        
     $ret []= new MatchedPartialPath(
             $matchedPathElements, 
-            ($matchedPathDependsOnRemainingPath || $dependsOnRemainingPath), 
+            $matchedPathDependsOnRemainingPath, 
             $path, 
             $nextRefs);
       
