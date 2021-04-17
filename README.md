@@ -19,7 +19,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 <p align="center"><img src="chart.png" alt="Screenshot" align="center" width="67%"></p>
 
-* The module uses proper German relationship names, following [the German kinship system](https://de.wikipedia.org/wiki/Verwandtschaftsbeziehung#/media/File:European_kinship_system_de.svg) rather than using direct translations of [the system used in the English-speaking world](https://en.wikipedia.org/wiki/Family#/media/File:Relatives_Chart.svg): E.g. "Urgroßonkel 2. Grades" instead of "Cousin 3. Grades in aufsteigender Folge".
+* The module provides proper language-specific relationship names, currently for English, German, Slovak, and Dutch. Additional languages to follow.".
 * In the extended 'Families' tab, the relationship to the default individual is displayed, as well as prior relationships between married individuals. The latter are calculated relative to the date of the marriage (to avoid the trivial relationship husband/wife), which allows us to show e.g. that someone married his brother's wife's sister.
 
 <p align="center"><img src="relatives.png" alt="Screenshot" align="center" width="67%"></p>
@@ -32,7 +32,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 ### Download<a name="download"/>
 
-* Current version: 2.0.15.1.0
+* Current version: 2.0.15.2.0
 * Based on and tested with webtrees 2.0.15. Requires webtrees 2.0.12 or later.
 * Requires the ⚶ Vesta Common module ('vesta_common').
 * Displays data via the ⚶ Vesta Families module ('vesta_relatives'). 
