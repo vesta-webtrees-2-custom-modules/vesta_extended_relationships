@@ -168,7 +168,7 @@ class SimpleRelationshipPathMatcher implements RelationshipPathMatcher {
     }
     
     //we have a match!
-    //error_log("RelationshipPathMatcher matched fixed! ". $path . " as " . $sex);
+    //error_log("SimpleRelationshipPathMatcher matched fixed! ". $path . " as " . $sex . " code " . $this->code);
     
     $ret = [];
     $ret []= new MatchedPartialPath($matchedPathElements + $count, $matchedPathDependsOnRemainingPath, $tail, $refs);

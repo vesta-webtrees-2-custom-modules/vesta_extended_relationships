@@ -94,7 +94,7 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelDefBuilder::def()->wife()->father()->is('tesť', 'tesťa');
     $defs []= RelDefBuilder::def()->wife()->mother()->is('testiná', 'testinej');
     $defs []= RelDefBuilder::def()->husband()->father()->is('svokor', 'svokra');
-    $defs []= RelDefBuilder::def()->husband()->mother()->is('svokora', 'svokry');
+    $defs []= RelDefBuilder::def()->husband()->mother()->is('svokra', 'svokry');
     $defs []= RelDefBuilder::def()->spouse()->father()->is('svokor', 'svokra');
     $defs []= RelDefBuilder::def()->spouse()->mother()->is('svokra', 'svokry');
 
@@ -173,9 +173,9 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
     $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(3))->sibling()->child(Times::fixed(3))->son()->is('bratranec zo 4. kolena', 'bratranca zo 4. kolena');
     $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(5))->sibling()->child(Times::fixed(5))->son()->is('bratranec zo 6. kolena', 'bratranca zo 6. kolena');
     $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(6))->sibling()->child(Times::fixed(6))->son()->is('bratranec zo 7. kolena', 'bratranca zo 7. kolena');
-    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(13))->sibling()->child(Times::fixed(3))->son()->is('bratranec zo 14. kolena', 'bratranca zo 14. kolena');
-    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(15))->sibling()->child(Times::fixed(5))->son()->is('bratranec zo 16. kolena', 'bratranca zo 16. kolena');
-    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(16))->sibling()->child(Times::fixed(6))->son()->is('bratranec zo 17. kolena', 'bratranca zo 17. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(13))->sibling()->child(Times::fixed(13))->son()->is('bratranec zo 14. kolena', 'bratranca zo 14. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(15))->sibling()->child(Times::fixed(15))->son()->is('bratranec zo 16. kolena', 'bratranca zo 16. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(16))->sibling()->child(Times::fixed(16))->son()->is('bratranec zo 17. kolena', 'bratranca zo 17. kolena');
 
     //IMPL NOTE: used as back-reference (i.e. count must match in '->child($ref)')
     $ref = Times::min(1, 1); 
@@ -183,13 +183,16 @@ class LanguageSlovakExt extends AbstractModule implements ModuleLanguageExtInter
 
     $defs []= RelDefBuilder::def()->parent()->sibling()->daughter()->is('sesternica', 'sesternice');
 
+    //TODO WHY DONT THESE MATCH PARTIALLY????
+    
     $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(3))->sibling()->child(Times::fixed(3))->daughter()->is('sesternica zo 4. kolena', 'sesternice zo 4. kolena');
     $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(5))->sibling()->child(Times::fixed(5))->daughter()->is('sesternica zo 6. kolena', 'sesternice zo 6. kolena');
     $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(6))->sibling()->child(Times::fixed(6))->daughter()->is('sesternica zo 7. kolena', 'sesternice zo 7. kolena');
-    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(13))->sibling()->child(Times::fixed(3))->daughter()->is('sesternica zo 14. kolena', 'sesternice zo 14. kolena');
-    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(15))->sibling()->child(Times::fixed(5))->daughter()->is('sesternica zo 16. kolena', 'sesternice zo 16. kolena');
-    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(16))->sibling()->child(Times::fixed(6))->daughter()->is('sesternica zo 17. kolena', 'sesternice zo 17. kolena');
-
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(13))->sibling()->child(Times::fixed(13))->daughter()->is('sesternica zo 14. kolena', 'sesternice zo 14. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(15))->sibling()->child(Times::fixed(15))->daughter()->is('sesternica zo 16. kolena', 'sesternice zo 16. kolena');
+    $defs []= RelDefBuilder::def()->parent()->parent(Times::fixed(16))->sibling()->child(Times::fixed(16))->daughter()->is('sesternica zo 17. kolena', 'sesternice zo 17. kolena');
+ 
+    $ref = Times::min(1, 1);
     $defs []= RelDefBuilder::def()->parent()->parent($ref)->sibling()->child($ref)->daughter()->is('sesternica z %s. kolena', 'sesternice z %s. kolena');
 
     return new RelDefs(new Collection($defs));

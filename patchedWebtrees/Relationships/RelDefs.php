@@ -74,14 +74,20 @@ class RelDefs {
         foreach ($matched as $match) {
            /** @var MatchedPath $match */
            if ($match->remainingPath()->isEmpty()) {
+             
+            //error_log("matched fully!".$match->nominative());
+             
             $ret = new FullyMatchedPath(
                     $match->nominative(),
                     $match->genitive());
             
             self::$relationshipsCache[$path->key()] = $ret;
           } else if ($match->matchedPathElements() > 0) {
-            //we can at least cache the partial match
+            //we can at least cache the partial match            
             $partial = $path->splitBefore($match->matchedPathElements())->head();
+            
+            //error_log("matched partial!".$match->nominative());
+            
             if (!array_key_exists($partial->key(), self::$relationshipsCache)) {              
               self::$relationshipsCache[$partial->key()] = new FullyMatchedPath(
                     $match->nominative(),

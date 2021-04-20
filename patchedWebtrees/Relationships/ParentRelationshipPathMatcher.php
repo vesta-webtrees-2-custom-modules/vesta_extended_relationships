@@ -80,7 +80,7 @@ class ParentRelationshipPathMatcher implements RelationshipPathMatcher {
     //TODO: should we additionally check ADOP event?
     
     //we have a match!
-    //error_log("RelationshipPathMatcher matched fixed! ". $path . " as " . $sex);
+    //error_log("ParentRelationshipPathMatcher matched fixed! ". $path . " as " . $sex);
     
     $ret = [];
     $ret []= new MatchedPartialPath($matchedPathElements + 1, $matchedPathDependsOnRemainingPath, $tail, $refs);

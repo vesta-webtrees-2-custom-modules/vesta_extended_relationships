@@ -75,9 +75,16 @@ class RelDef {
       return null;
     }
     
+    //no - we want to match partially!
+    //otherwise (e.g. if this is included for performance reasons,
+    //we must not cache partial paths obtained elsewhere,
+    //because this might mess up the order of RelDefs:
+    //fixed length-based is skipped (but expected to have precedence), dynamic-length based is kept)
+    /*
     if (($this->maxTimes !== -1) && ($this->maxTimes < $path->size())) {
       return null;
     }
+    */
     
     $currentMatchedPaths = [];
     $currentMatchedPaths []= new MatchedPartialPath(0, false, $path, []);
@@ -110,6 +117,8 @@ class RelDef {
     $ret = [];
     foreach ($currentMatchedPaths as $currentMatchedPath) {
       if ($currentMatchedPath->remainingPath()->isEmpty() || !$currentMatchedPath->dependsOnRemainingPath()) {
+        //error_log("RelDef matched" . $currentMatchedPath->matchedPathElements());
+        
         $ret []= new MatchedPath(
               $currentMatchedPath->matchedPathElements(), 
               $currentMatchedPath->remainingPath(), 
