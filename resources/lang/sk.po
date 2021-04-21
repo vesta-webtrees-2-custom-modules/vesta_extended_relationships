@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-01-24 13:35+0100\n"
-"PO-Revision-Date: 2021-04-13 08:01+0000\n"
+"PO-Revision-Date: 2021-04-20 15:28+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ExtendedRelationshipModule.php:197
 msgid " (see below for details)."
@@ -178,7 +178,7 @@ msgstr "Nájsť všetky vzťahy"
 #: ExtendedRelationshipModuleTrait.php:252
 #: ExtendedRelationshipModuleTrait.php:277
 msgid "Find all relationships via lowest common ancestors"
-msgstr "Nájsť všety vzťahy cez najbližších spoločných predkov"
+msgstr "Nájsť všetky vzťahy cez najbližších spoločných predkov"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:958 ExtendedRelationshipModuleTrait.php:82
