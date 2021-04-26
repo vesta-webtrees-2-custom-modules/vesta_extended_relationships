@@ -222,7 +222,11 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
           continue;
         }
         $text = RelationshipUtils::getRelationshipName($relationshipPath);
-      
+        if ($text === '') {
+          $text = null;
+          continue;
+        }
+        
         /*
         //TODO: 'getRelationshipName' requires a variant using $beforeJD,
         //because 'ex-husband' etc. is not correct at all dates!

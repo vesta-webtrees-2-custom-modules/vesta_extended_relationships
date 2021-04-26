@@ -95,7 +95,10 @@ class FunctionsPrintRels {
         continue;
       }
       $rel = RelationshipUtils::getRelationshipName($relationshipPath);
-
+      if ($rel === '') {
+        continue;
+      }
+      
       $link = ExtendedRelationshipModule::getRelationshipLink(
               $moduleName, 
               $person1->tree(), 

@@ -366,6 +366,10 @@ class ExtendedRelationshipController {
   }
 
   public function calculateCaAndPaths_123456(Individual $individual1, Individual $individual2, $mode, $recursion, $beforeJD = null) {
+    if ($individual1->xref() === $individual2->xref()) {
+      return [];
+    }
+    
     return $this->x_calculateCaAndPaths_123456($individual1->tree(), $individual1->xref(), $individual2->xref(), $mode, $recursion, $beforeJD);
   }
 
