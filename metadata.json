@@ -2,39 +2,44 @@
 	{
 		"version": "2.0.13.0.0",
 		"from": "2.0.12",
-		"to": "2.0.16"
+		"to": "2.0.17"
 	},
 	{
 		"version": "2.0.13.1.0",
 		"from": "2.0.12",
-		"to": "2.0.16"
+		"to": "2.0.17"
 	},
 	{
 		"version": "2.0.15.0.0",
 		"from": "2.0.12",
-		"to": "2.0.16"
+		"to": "2.0.17"
 	},
 	{
 		"version": "2.0.15.1.0",
 		"from": "2.0.12",
-		"to": "2.0.16",
+		"to": "2.0.17",
 		"changelog": ["Improved relationship names (better sub-relationship splitting, genitive constructions, additional relationships). Currently supported for English, German, and Slovak."]
 	},
 	{
 		"version": "2.0.15.2.0",
 		"from": "2.0.12",
-		"to": "2.0.16",
+		"to": "2.0.17",
 		"changelog": ["Improved relationship names support for Dutch."]
 	},
 	{
 		"version": "2.0.15.3.0",
 		"from": "2.0.12",
-		"to": "2.0.16"
+		"to": "2.0.17"
 	},
 	{
 		"version": "2.0.15.4.0",
 		"from": "2.0.12",
-		"to": "2.0.16",
+		"to": "2.0.17",
 		"changelog": ["Small bugfixes."]
+	},
+	{
+		"version": "2.0.16.0.0",
+		"from": "2.0.12",
+		"to": "2.0.17"
 	}
 ]
