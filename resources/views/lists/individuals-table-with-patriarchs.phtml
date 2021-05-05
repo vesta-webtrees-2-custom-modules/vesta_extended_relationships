@@ -72,7 +72,7 @@ $("#<?= e($table_id) ?> > .wt-table-individual").dataTable({
         /* Filter death */ { sortable: false },
         /* Filter tree  */ { sortable: false }
     ],
-    sorting: <?= json_encode($sosa ? [[4, 'asc']] : [[1, 'asc']]) ?>
+    sorting: <?= json_encode($sosa ? [[5, 'asc']] : [[1, 'asc']]) ?>
 });
 
 $("#<?= e($table_id) ?>")
