@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-02-28 21:50+0000\n"
+"PO-Revision-Date: 2021-06-08 21:33+0000\n"
 "Last-Translator: Josef Prause <josef.prause@gmail.com>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/cs/>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.5\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ExtendedRelationshipModule.php:197
 msgid " (see below for details)."
@@ -74,7 +75,7 @@ msgstr "Povolit setrvalé přepnutí (uživatel může vztahy zobrazit/skrýt)"
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
-msgstr ""
+msgstr "A doufejme, že ukazuje, o kolik lépe ten nový algoritmus pracuje ..."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:298
@@ -106,7 +107,7 @@ msgstr "Společní předci: "
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:67
 msgid "Debugging"
-msgstr ""
+msgstr "Testování"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:78
@@ -315,7 +316,7 @@ msgstr "Je složitější určit přesný CoR a rozdíly jsou obvykle každopád
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
-msgstr ""
+msgstr "Původní algoritmus pro názvy rodinných vztahů"
 
 #: ExtendedRelationshipModule.php:250
 msgid "No relationship found"
@@ -345,7 +346,7 @@ msgstr "Volby pro zobrazení v diagramu"
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
 #: resources/views/lists/surnames-table-with-patriarchs.phtml:31
 msgid "Patriarch"
-msgstr ""
+msgstr "Patriarcha"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
@@ -409,7 +410,7 @@ msgstr "Zobrazit společné předky nad cestami vztahů"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:69
 msgid "Show legacy relationship path names"
-msgstr ""
+msgstr "Zobrazit původní názvy rodinných vztahů"
 
 #. I18N: Reverse the order of two individuals
 #: resources/views/page.phtml:75
@@ -491,6 +492,8 @@ msgstr "Za normálních okolností podíl genů přenesených z předka na potom
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
 msgstr ""
+"Toto můžete vypnout v předvolbách modulu, je to určené hlavně pro účely "
+"testování."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:327
@@ -510,7 +513,7 @@ msgstr "bez omezení"
 #: ExtendedRelationshipsChartController.php:113
 #, php-format
 msgid "via legacy algorithm: %s"
-msgstr ""
+msgstr "v původním algoritmu: %s"
 
 #. I18N: A button label.
 #: resources/views/page.phtml:70
