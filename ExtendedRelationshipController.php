@@ -287,6 +287,7 @@ class ExtendedRelationshipController {
   }
 
   public function x_calculateRelationships_123456($tree, $xref1, $xref2, $mode, $recursion, $beforeJD = null) {
+    
     if ($mode === 1) {
       //single slca
       $caAndPaths = $this->x_calculateRelationships_slca($tree, $xref1, $xref2, $mode);

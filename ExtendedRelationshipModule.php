@@ -626,7 +626,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     $tree = $request->getAttribute('tree');
     assert($tree instanceof Tree);
     
-    $link = AjaxRequests::getRelationshipLink($this->name(), $request, $tree);
+    $link = AjaxRequests::getRelationshipLink($this->name(), $request, $tree);    
     return response($link);
   }
 
