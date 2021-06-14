@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-06-11 14:33+0000\n"
+"PO-Revision-Date: 2021-06-14 07:34+0000\n"
 "Last-Translator: z-yurets <zaharchenko.yurij@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/uk/>\n"
@@ -28,7 +28,7 @@ msgstr "Синхронізація"
 #: ExtendedRelationshipModule.php:195
 #: ExtendedRelationshipsChartController.php:283
 msgid "Synchronize trees to obtain dated relationship links"
-msgstr "Синхронізуйте дерева для отримання датованих зв'язків відносин"
+msgstr "Синхронізуйте дерева для отримання датованих зв'язків стосунків"
 
 #: ExtendedRelationshipModule.php:197
 msgid " (see below for details)."
@@ -36,22 +36,22 @@ msgstr " (докладніше дивись нижче)."
 
 #: ExtendedRelationshipModule.php:250
 msgid "No relationship found"
-msgstr "Зв'язків не знайдено"
+msgstr "Стосунків не знайдено"
 
 #: ExtendedRelationshipModule.php:267 ExtendedRelationshipModule.php:601
 #: ExtendedRelationshipModule.php:741
 msgid "Relationships"
-msgstr "Зв'язки"
+msgstr "Родинні зв'язки"
 
 #: ExtendedRelationshipModule.php:593
 msgid "Relationship to me"
-msgstr "Відношення до мене"
+msgstr "Стосунки зі мною"
 
 #. I18N: %s are individual’s names
 #: ExtendedRelationshipModule.php:726
 #, php-format
 msgid "Relationships between %1$s and %2$s"
-msgstr "Зв'язок між %1$s та %2$s"
+msgstr "Стосунки між %1$s та %2$s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:954 ExtendedRelationshipModuleTrait.php:77
@@ -138,14 +138,14 @@ msgid "A module providing various algorithms used to determine relationships. In
 msgstr ""
 "Модуль надає різні алгоритми, що використовуються для визначення взаємозв’"
 "язків. Включає діаграму, що відображає стосунки між двома особами, як заміну "
-"оригінальному модулю \"Відносини\"."
+"оригінальному модулю \"Родинні зв'язки\"."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:28
 msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
 msgstr ""
-"Модуль надає різні алгоритми, що використовуються для визначення взаємозв’"
-"язків. Включає розширену діаграму \"Відносини\"."
+"Модуль надає різні алгоритми, що використовуються для визначення стосунків. "
+"Включає розширену діаграму \"Родинні зв'язки\"."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:29
@@ -157,7 +157,7 @@ msgstr ""
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:31
 msgid "Intended as a replacement for the original 'Relationships' module."
-msgstr "Призначений як заміна оригінального модуля \"Відносини\"."
+msgstr "Призначений як заміна оригінального модуля \"Родинні зв'язки\"."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:59
@@ -177,7 +177,7 @@ msgstr "Наладка"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:69
 msgid "Show legacy relationship path names"
-msgstr "Показати назви шляхів застарілих відносин"
+msgstr "Показати назви шляхів застарілих стосунків"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:75
@@ -224,7 +224,7 @@ msgstr ""
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:104
 msgid "Same option as in the original relationship chart."
-msgstr "Той самий варіант, що і в оригінальній діаграмі відносин."
+msgstr "Той самий варіант, що і в оригінальній діаграмі стосунків."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:108
@@ -241,7 +241,7 @@ msgstr "Знайти інші/всі загальні зв’язки"
 #: ExtendedRelationshipModuleTrait.php:109
 msgid "Same option as in the original relationship chart, further configurable via recursion level:"
 msgstr ""
-"Той самий варіант, що і в оригінальній діаграмі відносин, додатково "
+"Той самий варіант, що і в оригінальній діаграмі стосунків, додатково "
 "налаштовується за допомогою рівня рекурсії:"
 
 #. I18N: Module Configuration
@@ -383,7 +383,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:300
 msgid "In particular if both lists are empty, relationships will never be shown for these facts and events."
 msgstr ""
-"Зокрема, якщо обидва списки порожні, відносини ніколи не відображатимуться "
+"Зокрема, якщо обидва списки порожні, стосунки ніколи не відображатимуться "
 "для цих фактів та подій."
 
 #. I18N: Module Configuration
@@ -444,17 +444,17 @@ msgstr ""
 msgid "If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect."
 msgstr ""
 "Якщо ви обираєте цей параметр скрізь, вам також слід заборонити постійне "
-"перемикання, оскільки він не має видимого ефекту."
+"перемикання, оскільки воно не має видимого ефекту."
 
 #: ExtendedRelationshipsChartController.php:57
 #, php-format
 msgid "Uncorrected CoR (Coefficient of Relationship): %s"
-msgstr "Невиправлений CoR (коефіцієнт взаємовідносин): %s"
+msgstr "Невиправлений CoR (коефіцієнт стосунків): %s"
 
 #: ExtendedRelationshipsChartController.php:59
 #, php-format
 msgid "(Number of relationships: %s)"
-msgstr "(Кількість зв'язків: %s)"
+msgstr "(Кількість стосунків: %s)"
 
 #: ExtendedRelationshipsChartController.php:63
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
@@ -469,116 +469,144 @@ msgstr "(це загалом так близько, як: %1$s)"
 #: ExtendedRelationshipsChartController.php:75
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
-msgstr ""
+msgstr "(це загалом майже так само близько, як: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:77
 #, php-format
 msgid "(that's overall closer than: %1$s)"
-msgstr ""
+msgstr "(це загалом ближче ніж: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:107
 #, php-format
 msgid "Relationship: %s"
-msgstr ""
+msgstr "Родинний зв'язок: %s"
 
 #: ExtendedRelationshipsChartController.php:113
 #, php-format
 msgid "via legacy algorithm: %s"
-msgstr ""
+msgstr "через застарілий алгоритм: %s"
 
 #: ExtendedRelationshipsChartController.php:215
 msgid "parents"
-msgstr ""
+msgstr "батьки"
 
 #: ExtendedRelationshipsChartController.php:279
 msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
 msgstr ""
+"якщо це неочікувано, і є останні зміни, можливо, вам доведеться перейти за "
+"цим посиланням: "
 
 #. I18N: (person 1) is (relative, e.g. father) of (person2)
 #: FunctionsPrintRels.php:119
 #, php-format
 msgid "%1$s is %2$s of %3$s."
-msgstr ""
+msgstr "%1$s є %2$s до %3$s."
 
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
-msgstr ""
+msgstr "Спільний предок: "
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
-msgstr ""
+msgstr "Спільні предки: "
 
 #: HelpTexts.php:15
 msgid "Uncorrected CoR (Coefficient of Relationship)"
-msgstr ""
+msgstr "Нескоригований CoR (коефіцієнт взаємовідносин)"
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
 msgstr ""
+"CoR (Коефіцієнт взаємозв'язку) пропорційний кількості генів, спільних у двох "
+"особин в результаті їх генетичного зв'язку. Його обчислення базується на "
+"методі коефіцієнтів шляху Сьюола Райта. Його значення представляє частку "
+"генів, що є спільними для двох споріднених індивідів, а також більше, ніж "
+"загальних для всієї популяції. Детальніше тут: "
 
 #: HelpTexts.php:20
 #, php-format
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
 msgstr ""
+"В основному, кожен шлях (через спільних предків) між двома особами вносить "
+"свій внесок у CoR, обернено пропорційний його довжині: Кожен шлях довжиною 2 "
+"(наприклад, між повними братами та сестрами) додає %1$s, кожен шлях довжиною "
+"4 (наприклад, між першими кузенами) додає %2$s, загалом кожен шлях довжиною "
+"n додає (0,5)<sup>n</sup>."
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
 msgstr ""
+"За звичайних обставин частка генів, що передаються від предка до нащадка - "
+"за оцінкою Σ (0,5)<sup>n</sup> - і частка генів, які вони мають у своєму "
+"розпорядженні (справжній коефіцієнт взаємозв'язку) однакові. Однак, якщо "
+"було інбридинг, може виникнути незначна розбіжність, як пояснено тут: "
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
 msgstr ""
+"Визначити цей точний CoR складніше, і різниці, як правило, невеликі. Отже, "
+"обчислюється лише невиправлений CoR."
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
-msgstr ""
+msgstr "Спадковий алгоритм імен шляхів стосунків"
 
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
 msgstr ""
+"Ви можете вимкнути це за допомогою налаштувань модуля, він в основному "
+"призначений для налагодження."
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
-msgstr ""
+msgstr "І, сподіваємось, це показує, наскільки краще працює новий алгоритм..."
 
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
 #: resources/views/lists/surnames-table-with-patriarchs.phtml:31
 msgid "Patriarch"
-msgstr ""
+msgstr "Голова роду"
 
 #: resources/views/page.phtml:56
 #, php-format
 msgid "Options referring to overall connections established before %1$s."
-msgstr ""
+msgstr "Параметри, що стосуються загальних з'єднань, встановлених до %1$s."
 
 #. I18N: A button label.
 #: resources/views/page.phtml:70
 msgid "view"
-msgstr ""
+msgstr "вид"
 
 #. I18N: Reverse the order of two individuals
 #: resources/views/page.phtml:75
 msgid "Swap individuals"
-msgstr ""
+msgstr "Поміняти місцями осіб"
 
 #. I18N: Module Configuration
 #: resources/views/sync-complete.phtml:5
 msgid "Finished - all link dates are up-to-date."
-msgstr ""
+msgstr "Готово - усі дати посилань є актуальними."
 
 #: resources/views/sync.phtml:14
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
 msgstr ""
+"Цей процес обчислює дати для всіх посилань INDI - FAM, так що стосунки в "
+"певний момент часу можуть бути ефективно розраховані."
 
 #: resources/views/sync.phtml:17
 msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
 msgstr ""
+"Для великих дерев цей процес спочатку може зайняти кілька хвилин. Ви завжди "
+"можете спокійно перервати та продовжити пізніше."
 
 #: resources/views/sync.phtml:20
 msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
 msgstr ""
+"Процес слід повторювати (але закінчуватиметься набагато швидше) щоразу, коли "
+"дерево редагується, інакше ви можете отримати суперечливі дані (відображені "
+"стосунки завжди є дійсними, але вони можуть бути насправді не встановленими "
+"на вказану дату, якщо зміни в дереві тут не синхронізовані)."
 
 #: resources/views/sync.phtml:25
 msgid "Calculating…"
-msgstr ""
+msgstr "Обчислення…"
