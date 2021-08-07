@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-07-15 17:33+0000\n"
+"PO-Revision-Date: 2021-08-07 05:34+0000\n"
 "Last-Translator: ngohuuthuanfc9865b89dde4baf <ngohuuthuan@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/vi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: ExtendedRelationshipModule.php:190 ExtendedRelationshipModule.php:826
 #: ExtendedRelationshipModule.php:832
@@ -71,8 +71,8 @@ msgstr "Tìm mối quan hệ gần gũi nhất thông qua tổ tiên chung"
 #: ExtendedRelationshipModuleTrait.php:276
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr ""
-"Tìm tất cả các tổ tiên chung thấp nhất nhỏ nhất, hiển thị kết nối gần nhất "
-"cho mỗi"
+"Tìm tất cả các tổ tiên chung gần nhất, thể hiện quan hệ họ hàng với từng "
+"người trong số họ"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:962 ExtendedRelationshipModuleTrait.php:87
