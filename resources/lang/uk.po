@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-06-14 07:34+0000\n"
+"PO-Revision-Date: 2021-08-08 21:34+0000\n"
 "Last-Translator: z-yurets <zaharchenko.yurij@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/uk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: ExtendedRelationshipModule.php:190 ExtendedRelationshipModule.php:826
 #: ExtendedRelationshipModule.php:832
@@ -131,13 +131,13 @@ msgstr "Знайти інші загальні зв’язки"
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
 #: ExtendedRelationshipModule.php:994
 msgid "Individuals with Patriarchs"
-msgstr "Особи з патріархами"
+msgstr "Персони з патріархами"
 
 #: ExtendedRelationshipModuleTrait.php:22
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
 msgstr ""
 "Модуль надає різні алгоритми, що використовуються для визначення взаємозв’"
-"язків. Включає діаграму, що відображає стосунки між двома особами, як заміну "
+"язків. Включає діаграму, що відображає стосунки між двома людьми, як заміну "
 "оригінальному модулю \"Родинні зв'язки\"."
 
 #. I18N: Module Configuration
@@ -188,7 +188,7 @@ msgstr "Параметри для відображення на графіку"
 #: ExtendedRelationshipModuleTrait.php:78
 msgid "Determines the shortest path between two individuals via a LCA (lowest common ancestor), i.e. a common ancestor who only appears on the path once."
 msgstr ""
-"Визначає найкоротший шлях між двома особами через LCA (найнижчий загальний "
+"Визначає найкоротший шлях між двома персонами через LCA (найнижчий загальний "
 "предок), тобто загальний предок, який з'являється на шляху лише один раз."
 
 #. I18N: Module Configuration
@@ -196,7 +196,7 @@ msgstr ""
 msgid "Each SLCA (smallest lowest common ancestor) essentially represents a part of the tree which both individuals share (as part of their ancestors). More technically, the SLCA set of two individuals is a subset of the LCA set (excluding all LCAs that are themselves ancestors of other LCAs)."
 msgstr ""
 "Кожен SLCA (найменший найнижчий загальний предок) по суті являє собою "
-"частину дерева, якою обидві особини діляться (як частина своїх предків). "
+"частину дерева, якою обидві персони діляться (як частина своїх предків). "
 "Більш технічно, набір SLCA з двох осіб є підмножиною набору LCA (виключаючи "
 "всі LCA, які самі є предками інших LCA)."
 
@@ -204,7 +204,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:88
 msgid "All paths between the two individuals that contribute to the CoR (Coefficient of Relationship), as defined here:"
 msgstr ""
-"Усі шляхи між двома особами, які вносять свій внесок у CoR (Коефіцієнт "
+"Усі шляхи між двома людьми, які додають свій внесок у CoR (Коефіцієнт "
 "взаємовідносин), як визначено тут:"
 
 #. I18N: Module Configuration
@@ -376,7 +376,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:299
 msgid "If this option is checked, relationships to the associated individuals are only shown for the following facts and events."
 msgstr ""
-"Якщо цей параметр позначений, стосунки з асоційованими особами "
+"Якщо цей параметр позначений, стосунки з асоційованими персонами "
 "відображаються лише для наступних фактів та подій."
 
 #. I18N: Module Configuration
@@ -527,7 +527,7 @@ msgstr ""
 #, php-format
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
 msgstr ""
-"В основному, кожен шлях (через спільних предків) між двома особами вносить "
+"В основному, кожен шлях (через спільних предків) між двома людьми вносить "
 "свій внесок у CoR, обернено пропорційний його довжині: Кожен шлях довжиною 2 "
 "(наприклад, між повними братами та сестрами) додає %1$s, кожен шлях довжиною "
 "4 (наприклад, між першими кузенами) додає %2$s, загалом кожен шлях довжиною "
@@ -580,7 +580,7 @@ msgstr "вид"
 #. I18N: Reverse the order of two individuals
 #: resources/views/page.phtml:75
 msgid "Swap individuals"
-msgstr "Поміняти місцями осіб"
+msgstr "Поміняти персон місцями"
 
 #. I18N: Module Configuration
 #: resources/views/sync-complete.phtml:5
