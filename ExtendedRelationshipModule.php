@@ -928,7 +928,6 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
   }
 
   public function hFactsTabGetOutputAfterDBox(Individual $person) {
-    //cannot use longer prefix, DB column is restricted to 32 chars wtf
     return $this->getOutputAfterDescriptionBox($person, 'F', 'mainRelsFactstab', 'toggleableRelsFactstab');
   }
 
