@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-06-08 21:33+0000\n"
+"PO-Revision-Date: 2021-10-05 14:03+0000\n"
 "Last-Translator: Josef Prause <josef.prause@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/cs/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: ExtendedRelationshipModule.php:197
 msgid " (see below for details)."
@@ -429,7 +429,12 @@ msgstr "Synchronizovat rodokmeny k získání datovaných vztahů"
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
-msgstr "Koeficient vztahu CoR (Coefficient of Relationship) je úměrný počtu genů, které mají dvě osoby společné v důsledku jejich genetické příbuznosti. Jeho výpočet je založen na metodě Sewalla Wrighta pro koeficienty cest. Jeho hodnota představuje poměr genů společných u dvou příbuzných osob proti těm, které má společné celá populace. Podrobněji o tom zde: "
+msgstr ""
+"Koeficient příbuznosti CoR (Coefficient of Relationship) je úměrný počtu "
+"genů, které mají dvě osoby společné v důsledku jejich genetické příbuznosti. "
+"Jeho výpočet je založen na metodě Sewalla Wrighta pro koeficienty cest. Jeho "
+"hodnota představuje poměr genů společných u dvou příbuzných osob proti těm, "
+"které má společné celá populace. Podrobněji o tom zde: "
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:146
@@ -478,16 +483,21 @@ msgstr "Toto se zdá být užitečnější ve většině případů (např. urč
 
 #: HelpTexts.php:15
 msgid "Uncorrected CoR (Coefficient of Relationship)"
-msgstr "Koeficient vztahu CoR (Coefficient of Relationship) není korigován"
+msgstr "Koeficient příbuznosti CoR (Coefficient of Relationship) není korigován"
 
 #: ExtendedRelationshipsChartController.php:57
 #, php-format
 msgid "Uncorrected CoR (Coefficient of Relationship): %s"
-msgstr "Koeficient vztahu CoR (Coefficient of Relationship) není korigován: %s"
+msgstr ""
+"Koeficient příbuznosti CoR (Coefficient of Relationship) není korigován: %s"
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
-msgstr "Za normálních okolností podíl genů přenesených z předka na potomka &ndash; jak se odhaduje podle Σ(0.5)<sup>n</sup> &ndash;  a podíl genů, které drží dohromady (skutečný koeficient vztahu) jsou stejné. Pokud tam nastalo příbuzenské křížení, pak vznikne mírný nesoulad, jak je vysvětleno zde: "
+msgstr ""
+"Za normálních okolností podíl genů přenesených z předka na potomka &ndash; "
+"jak se odhaduje podle Σ(0.5)<sup>n</sup> &ndash;  a podíl genů, které drží "
+"dohromady (skutečný koeficient příbuznosti) jsou stejné. Pokud tam nastalo "
+"příbuzenské křížení, pak vznikne mírný nesoulad, jak je vysvětleno zde: "
 
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
