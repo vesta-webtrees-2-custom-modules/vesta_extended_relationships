@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-04-13 09:34+0000\n"
+"PO-Revision-Date: 2021-10-12 13:09+0000\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: ExtendedRelationshipModule.php:197
 msgid " (see below for details)."
@@ -80,7 +80,9 @@ msgstr "En hopelijk laat het zien hoeveel beter het nieuwe algoritme werkt ..."
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:298
 msgid "Associated facts and events are displayed when the respective toggle checkbox is selected on the tab."
-msgstr "Feiten en gebeurtenissen als medewerker of met medewerkers, worden getoond wanneer het desbetreffende schakelvakje is ingeschakeld op het tabblad."
+msgstr ""
+"Feiten en gebeurtenissen met gerelateerde personen worden getoond wanneer "
+"het desbetreffende schakelvakje is ingeschakeld op het tabblad."
 
 #: HelpTexts.php:20
 #, php-format
@@ -247,7 +249,7 @@ msgstr "Hoe verwantschappen tussen ouders te bepalen"
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:267
 msgid "How to determine relationships to associated persons"
-msgstr "Hoe verwantschappen als/met medewerker(s) te bepalen"
+msgstr "Hoe verwantschappen met gerelateerd personen te bepalen"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:196
@@ -267,7 +269,9 @@ msgstr "Als dit onverwacht is en er recente wijzigingen zijn, moet u mogelijk de
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:299
 msgid "If this option is checked, relationships to the associated individuals are only shown for the following facts and events."
-msgstr "Als deze optie is ingeschakeld, worden verwantschappen als/van medewerker(s) alleen getoond voor de volgende feiten en gebeurtenissen."
+msgstr ""
+"Als deze optie is ingeschakeld, worden verwantschappen met gerelateerde "
+"personen alleen getoond voor de volgende feiten en gebeurtenissen."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:332
@@ -465,7 +469,9 @@ msgstr "Deze verwantschappen kunnen alleen efficiënt worden berekend door de st
 #: ExtendedRelationshipModuleTrait.php:179
 #: ExtendedRelationshipModuleTrait.php:210
 msgid "This allows you to present meaningful connections, such as 'widowed husband marries the sister of his dead wife'."
-msgstr "Zo kun je betekenisvolle verbanden presenteren, zoals 'weduwnaar trouwt met de zus van zijn overleden vrouw'."
+msgstr ""
+"Zo kunt u betekenisvolle verbanden presenteren, zoals 'weduwnaar trouwt met "
+"de zus van zijn overleden vrouw'."
 
 #: resources/views/sync.phtml:14
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
