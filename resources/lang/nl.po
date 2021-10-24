@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2021-04-13 09:05+0200\n"
-"PO-Revision-Date: 2021-10-12 13:09+0000\n"
+"PO-Revision-Date: 2021-10-24 07:37+0000\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
@@ -433,7 +433,13 @@ msgstr "Stambomen synchroniseren om gedateerde verwantschapskoppelingen te verkr
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
-msgstr "De verwantschapscoëfficiënt is evenredig aan het aantal genen dat twee personen gemeen hebben als gevolg van hun genetische relatie. De berekening is gebaseerd op Sewall Wright's methode van padcoëfficiënten. De waarde ervan vertegenwoordigt het aandeel van de genen die gemeenschappelijk zijn voor twee verwante individuen boven die welke door de hele bevolking gemeenschappelijk zijn. Meer details hier: "
+msgstr ""
+"De verwantschapscoëfficiënt is evenredig aan het aantal genen dat twee "
+"personen gemeen hebben als gevolg van hun genetische verwantschap. De "
+"berekening is gebaseerd op Sewall Wright's methode van padcoëfficiënten. De "
+"waarde ervan vertegenwoordigt het aandeel van de genen die gemeenschappelijk "
+"zijn voor twee verwante individuen boven die welke door de hele bevolking "
+"gemeenschappelijk zijn. Meer details hier: "
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:146
