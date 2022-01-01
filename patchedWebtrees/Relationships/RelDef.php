@@ -55,7 +55,7 @@ class RelDef {
                   return $element->maxTimes();
               })
               ->reduce(static function (int $carry, int $item): int {
-                  return ($item === -1)?-1:($carry === -1)?-1:($carry + $item);
+                  return ($item === -1)?-1:(($carry === -1)?-1:($carry + $item));
               }, 0);
   }
   
