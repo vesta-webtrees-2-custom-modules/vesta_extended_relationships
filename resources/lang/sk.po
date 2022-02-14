@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2022-02-14 21:41+0100\n"
+"POT-Creation-Date: 2022-02-14 22:11+0100\n"
 "PO-Revision-Date: 2021-04-20 15:28+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
@@ -344,7 +344,7 @@ msgstr "Možnosti, ktoré sa môžu zvoliť v schéme"
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: HelpTexts.php:40
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:58
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:57
 msgid "Patriarch"
 msgstr "Patriarcha"
 
@@ -356,10 +356,6 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:94
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
 msgstr "Výpočet cesty preferuje čiastočné cesty cez spoločných predkov pre všetky časti cesty."
-
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:129
-msgid "Relationship"
-msgstr ""
 
 #: ExtendedRelationshipModule.php:588
 msgid "Relationship to me"

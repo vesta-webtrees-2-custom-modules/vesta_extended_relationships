@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2022-02-14 21:41+0100\n"
+"POT-Creation-Date: 2022-02-14 22:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -477,7 +477,7 @@ msgstr ""
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: HelpTexts.php:40
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:58
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:57
 msgid "Patriarch"
 msgstr ""
 
@@ -491,10 +491,6 @@ msgstr ""
 
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
-msgstr ""
-
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:129
-msgid "Relationship"
 msgstr ""
 
 #: resources/views/page.phtml:56

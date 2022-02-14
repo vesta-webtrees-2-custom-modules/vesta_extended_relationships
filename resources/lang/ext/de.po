@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webtrees 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2022-02-14 21:41+0100\n"
+"POT-Creation-Date: 2022-02-14 22:11+0100\n"
 "PO-Revision-Date: 2018-09-22 14:28+0200\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <http://translate.webtrees.net/projects/webtrees/webtrees/de/>\n"
@@ -339,7 +339,7 @@ msgstr ""
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: HelpTexts.php:40
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:58
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:57
 msgid "Patriarch"
 msgstr ""
 
@@ -350,10 +350,6 @@ msgstr ""
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
-msgstr ""
-
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:129
-msgid "Relationship"
 msgstr ""
 
 #: ExtendedRelationshipModule.php:588

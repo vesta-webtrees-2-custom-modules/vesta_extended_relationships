@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2022-02-14 21:41+0100\n"
+"POT-Creation-Date: 2022-02-14 22:11+0100\n"
 "PO-Revision-Date: 2021-05-13 11:53+0000\n"
 "Last-Translator: Продай Своё <ol810car@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/ru/>\n"
@@ -344,7 +344,7 @@ msgstr "Параметры для отображения на диаграмме
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: HelpTexts.php:40
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:58
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:57
 msgid "Patriarch"
 msgstr "Патриарх"
 
@@ -356,10 +356,6 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:94
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
 msgstr "Предпочитает частичные пути через общих предков, даже если нет прямого общего предка."
-
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:129
-msgid "Relationship"
-msgstr ""
 
 #: ExtendedRelationshipModule.php:588
 msgid "Relationship to me"

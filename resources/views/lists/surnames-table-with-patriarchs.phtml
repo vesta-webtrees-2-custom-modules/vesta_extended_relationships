@@ -1,7 +1,6 @@
 <?php
 
 use Cissee\Webtrees\Module\ExtendedRelationships\AllAncestors;
-use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
 use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Contracts\UserInterface;
@@ -126,7 +125,7 @@ if ($self instanceof Individual) {
                         $sosa = array_search($individual, $ancestors, true);
                         if (is_int($sosa) && $relationshipsChartModule instanceof RelationshipsChartModule) {
                             $sosa_class = 'search_hit';
-                            $sosa_html  = ' <a class="small wt-chart-box-' . strtolower($individual->sex()) . '" href="' . e($relationshipsChartModule->chartUrl($individual, ['xref2' => $ancestors[1]->xref()])) . '" rel="nofollow" title="' . I18N::translate('Relationship') . '">' . I18N::number($sosa) . '</a>' . AllAncestors::sosaGeneration($sosa);
+                            $sosa_html  = ' <a class="small wt-chart-box-' . strtolower($individual->sex()) . '" href="' . e($relationshipsChartModule->chartUrl($individual, ['xref2' => $ancestors[1]->xref()])) . '" rel="nofollow" title="' . MoreI18N::xlate('Relationship') . '">' . I18N::number($sosa) . '</a>' . AllAncestors::sosaGeneration($sosa);
                         } else {
                             $sosa_class = '';
                             $sosa_html  = '';
