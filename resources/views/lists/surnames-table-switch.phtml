@@ -20,6 +20,7 @@ if (sizeof($surnames) > 0) {
     //adjusted view
     echo view('lists/surnames-table-with-patriarchs', [
       'surnames' => $wrapped->getArray(),
+      'helpLink' => $wrapped->getHelpLink(),
       'families' => $families,  
       'module' => $module,
       'tree' => $tree]);

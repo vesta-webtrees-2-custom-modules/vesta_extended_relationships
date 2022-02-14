@@ -101,5 +101,11 @@
 		"version": "2.0.19.1.0",
 		"from": "2.0.12",
 		"to": "2.0.20"
+	},
+	{
+		"version": "2.0.19.2.0",
+		"from": "2.0.12",
+		"to": "2.0.20",
+		"changelog": ["Extended data for patriarchs in the list 'Individuals with patriarchs'."]
 	}
 ]

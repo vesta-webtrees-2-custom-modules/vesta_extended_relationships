@@ -35,7 +35,15 @@ class HelpTexts {
                 I18N::translate('And hopefully it shows how much better the new algorithm works ...') .
                 '</p>';
         break;
-      
+    
+      case 'Patriarch':
+        $title = I18N::translate('Patriarch');
+        $text = 
+                I18N::translate('Patriarchs are the male end-of-line ancestors (\'Spitzenahnen\').') . ' ' .
+                I18N::translate('The same information may be obtained via the branches list, where they show up as the heads of branches.') . ' ' .
+                I18N::translate('This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch.');
+        break;
+    
       default:
         $title = MoreI18N::xlate('Help');
         $text = MoreI18N::xlate('The help text has not been written for this item.');

@@ -104,7 +104,10 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
   public function __construct(TreeService $tree_service) {
     parent::__construct($tree_service);
     $localization_service = app(LocalizationService::class);
-    $this->listController = new ExtendedIndividualListController($localization_service);
+    
+    $this->listController = new ExtendedIndividualListController(
+            $localization_service,
+            $this);
   }    
     
   public function customModuleAuthorName(): string {

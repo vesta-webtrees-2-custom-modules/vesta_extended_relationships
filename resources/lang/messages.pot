@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2021-04-13 09:05+0200\n"
+"POT-Creation-Date: 2022-02-14 21:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,41 +17,41 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ExtendedRelationshipModule.php:190 ExtendedRelationshipModule.php:826
-#: ExtendedRelationshipModule.php:832
+#: ExtendedRelationshipModule.php:193 ExtendedRelationshipModule.php:821
+#: ExtendedRelationshipModule.php:827
 msgid "Synchronization"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:195
-#: ExtendedRelationshipsChartController.php:283
+#: ExtendedRelationshipModule.php:198
+#: ExtendedRelationshipsChartController.php:281
 msgid "Synchronize trees to obtain dated relationship links"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:197
+#: ExtendedRelationshipModule.php:200
 msgid " (see below for details)."
 msgstr ""
 
-#: ExtendedRelationshipModule.php:250
+#: ExtendedRelationshipModule.php:245
 msgid "No relationship found"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:267 ExtendedRelationshipModule.php:601
-#: ExtendedRelationshipModule.php:741
+#: ExtendedRelationshipModule.php:262 ExtendedRelationshipModule.php:596
+#: ExtendedRelationshipModule.php:736
 msgid "Relationships"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:593
+#: ExtendedRelationshipModule.php:588
 msgid "Relationship to me"
 msgstr ""
 
 #. I18N: %s are individual’s names
-#: ExtendedRelationshipModule.php:726
+#: ExtendedRelationshipModule.php:721
 #, php-format
 msgid "Relationships between %1$s and %2$s"
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:954 ExtendedRelationshipModuleTrait.php:77
+#: ExtendedRelationshipModule.php:948 ExtendedRelationshipModuleTrait.php:77
 #: ExtendedRelationshipModuleTrait.php:148
 #: ExtendedRelationshipModuleTrait.php:173
 #: ExtendedRelationshipModuleTrait.php:204
@@ -61,7 +61,7 @@ msgid "Find a closest relationship via common ancestors"
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:958 ExtendedRelationshipModuleTrait.php:82
+#: ExtendedRelationshipModule.php:952 ExtendedRelationshipModuleTrait.php:82
 #: ExtendedRelationshipModuleTrait.php:149
 #: ExtendedRelationshipModuleTrait.php:174
 #: ExtendedRelationshipModuleTrait.php:205
@@ -71,7 +71,7 @@ msgid "Find all smallest lowest common ancestors, show a closest connection for 
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:962 ExtendedRelationshipModuleTrait.php:87
+#: ExtendedRelationshipModule.php:956 ExtendedRelationshipModuleTrait.php:87
 #: ExtendedRelationshipModuleTrait.php:150
 #: ExtendedRelationshipModuleTrait.php:176
 #: ExtendedRelationshipModuleTrait.php:207
@@ -81,7 +81,7 @@ msgid "Find all relationships via lowest common ancestors"
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:968 ExtendedRelationshipModuleTrait.php:93
+#: ExtendedRelationshipModule.php:962 ExtendedRelationshipModuleTrait.php:93
 #: ExtendedRelationshipModuleTrait.php:151
 #: ExtendedRelationshipModuleTrait.php:182
 #: ExtendedRelationshipModuleTrait.php:213
@@ -92,7 +92,7 @@ msgid "Find the closest overall connections (preferably via common ancestors)"
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:972 ExtendedRelationshipModuleTrait.php:98
+#: ExtendedRelationshipModule.php:966 ExtendedRelationshipModuleTrait.php:98
 #: ExtendedRelationshipModuleTrait.php:152
 #: ExtendedRelationshipModuleTrait.php:183
 #: ExtendedRelationshipModuleTrait.php:214
@@ -103,7 +103,7 @@ msgid "Find a closest relationship via common ancestors, or fallback to the clos
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:976 ExtendedRelationshipModuleTrait.php:103
+#: ExtendedRelationshipModule.php:970 ExtendedRelationshipModuleTrait.php:103
 #: ExtendedRelationshipModuleTrait.php:153
 #: ExtendedRelationshipModuleTrait.php:184
 #: ExtendedRelationshipModuleTrait.php:215
@@ -113,16 +113,16 @@ msgstr ""
 msgid "Find the closest overall connections"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:982
+#: ExtendedRelationshipModule.php:976
 msgid "Find all overall connections"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:984
+#: ExtendedRelationshipModule.php:978
 msgid "Find other overall connections"
 msgstr ""
 
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
-#: ExtendedRelationshipModule.php:994
+#: ExtendedRelationshipModule.php:988
 msgid "Individuals with Patriarchs"
 msgstr ""
 
@@ -394,50 +394,50 @@ msgstr ""
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:73
+#: ExtendedRelationshipsChartController.php:71
 #, php-format
 msgid "(that's overall as close as: %1$s)"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:75
+#: ExtendedRelationshipsChartController.php:73
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:77
+#: ExtendedRelationshipsChartController.php:75
 #, php-format
 msgid "(that's overall closer than: %1$s)"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:107
+#: ExtendedRelationshipsChartController.php:105
 #, php-format
 msgid "Relationship: %s"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:113
+#: ExtendedRelationshipsChartController.php:111
 #, php-format
 msgid "via legacy algorithm: %s"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:215
+#: ExtendedRelationshipsChartController.php:213
 msgid "parents"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:279
+#: ExtendedRelationshipsChartController.php:277
 msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
 msgstr ""
 
 #. I18N: (person 1) is (relative, e.g. father) of (person2)
-#: FunctionsPrintRels.php:119
+#: FunctionsPrintRels.php:111
 #, php-format
 msgid "%1$s is %2$s of %3$s."
 msgstr ""
 
-#: FunctionsPrintRels.php:141
+#: FunctionsPrintRels.php:133
 msgid "Common ancestor: "
 msgstr ""
 
-#: FunctionsPrintRels.php:168
+#: FunctionsPrintRels.php:160
 msgid "Common ancestors: "
 msgstr ""
 
@@ -475,9 +475,26 @@ msgid "And hopefully it shows how much better the new algorithm works ..."
 msgstr ""
 
 #. I18N: end-of line ancestor, 'Spitzenahn'
+#: HelpTexts.php:40
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:31
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:58
 msgid "Patriarch"
+msgstr ""
+
+#: HelpTexts.php:42
+msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
+msgstr ""
+
+#: HelpTexts.php:43
+msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
+msgstr ""
+
+#: HelpTexts.php:44
+msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
+msgstr ""
+
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:129
+msgid "Relationship"
 msgstr ""
 
 #: resources/views/page.phtml:56

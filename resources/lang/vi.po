@@ -2,16 +2,15 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the vesta package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2021-04-13 09:05+0200\n"
+"POT-Creation-Date: 2022-02-14 21:41+0100\n"
 "PO-Revision-Date: 2021-08-07 05:34+0000\n"
 "Last-Translator: ngohuuthuanfc9865b89dde4baf <ngohuuthuan@gmail.com>\n"
-"Language-Team: Vietnamese <https://hosted.weblate.org/projects/"
-"vesta-webtrees-custom-modules/vesta-extended-relationships/vi/>\n"
+"Language-Team: Vietnamese <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,41 +18,132 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.8-dev\n"
 
-#: ExtendedRelationshipModule.php:190 ExtendedRelationshipModule.php:826
-#: ExtendedRelationshipModule.php:832
-msgid "Synchronization"
-msgstr "Đồng bộ hóa"
-
-#: ExtendedRelationshipModule.php:195
-#: ExtendedRelationshipsChartController.php:283
-msgid "Synchronize trees to obtain dated relationship links"
-msgstr "Đồng bộ hóa cây gia đình để có được các liên kết quan hệ ngày tháng"
-
-#: ExtendedRelationshipModule.php:197
+#: ExtendedRelationshipModule.php:200
 msgid " (see below for details)."
 msgstr " (Xem chi tiết bên dưới)."
 
-#: ExtendedRelationshipModule.php:250
-msgid "No relationship found"
-msgstr "Không tìm thấy mối quan hệ"
-
-#: ExtendedRelationshipModule.php:267 ExtendedRelationshipModule.php:601
-#: ExtendedRelationshipModule.php:741
-msgid "Relationships"
-msgstr "Các mối quan hệ"
-
-#: ExtendedRelationshipModule.php:593
-msgid "Relationship to me"
-msgstr "Mối quan hệ với tôi"
-
-#. I18N: %s are individual’s names
-#: ExtendedRelationshipModule.php:726
+#. I18N: (person 1) is (relative, e.g. father) of (person2)
+#: FunctionsPrintRels.php:111
 #, php-format
-msgid "Relationships between %1$s and %2$s"
-msgstr "Mối quan hệ giữa %1$s và %2$s"
+msgid "%1$s is %2$s of %3$s."
+msgstr "%1$s là %2$s của %3$s."
+
+#: ExtendedRelationshipsChartController.php:59
+#, php-format
+msgid "(Number of relationships: %s)"
+msgstr "(Số lượng mối quan hệ: %s)"
+
+#: ExtendedRelationshipsChartController.php:73
+#, php-format
+msgid "(that's overall almost as close as: %1$s)"
+msgstr "(nhìn chung gần như bằng: %1$s)"
+
+#: ExtendedRelationshipsChartController.php:71
+#, php-format
+msgid "(that's overall as close as: %1$s)"
+msgstr "(tổng thể gần bằng: %1$s)"
+
+#: ExtendedRelationshipsChartController.php:75
+#, php-format
+msgid "(that's overall closer than: %1$s)"
+msgstr "(nhìn chung gần hơn: %1$s)"
+
+#: ExtendedRelationshipsChartController.php:63
+msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
+msgstr "(nhìn chung không gần hơn đáng kể so với mối quan hệ gần nhất thông qua tổ tiên chung)"
+
+#: ExtendedRelationshipModuleTrait.php:22
+msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
+msgstr "Một mô-đun cung cấp các thuật toán khác nhau được sử dụng để xác định các mối quan hệ. Bao gồm một biểu đồ hiển thị mối quan hệ giữa hai cá nhân, thay thế cho mô-đun 'Mối quan hệ' ban đầu."
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:954 ExtendedRelationshipModuleTrait.php:77
+#: ExtendedRelationshipModuleTrait.php:28
+msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
+msgstr "Một mô-đun cung cấp các thuật toán khác nhau được sử dụng để xác định các mối quan hệ. Bao gồm biểu đồ 'Mối quan hệ' mở rộng."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:88
+msgid "All paths between the two individuals that contribute to the CoR (Coefficient of Relationship), as defined here:"
+msgstr "Tất cả các con đường giữa hai cá nhân đóng góp vào CoR (Hệ số quan hệ), như được định nghĩa ở đây:"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:128
+#: ExtendedRelationshipModuleTrait.php:230
+msgid "Allow persistent toggle (user may show/hide relationships)"
+msgstr "Cho phép chuyển đổi liên tục (người dùng có thể hiển thị / ẩn các mối quan hệ)"
+
+#: HelpTexts.php:35
+msgid "And hopefully it shows how much better the new algorithm works ..."
+msgstr "Và hy vọng nó cho thấy thuật toán mới hoạt động tốt hơn như thế nào ..."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:298
+msgid "Associated facts and events are displayed when the respective toggle checkbox is selected on the tab."
+msgstr "Sự kiện và số liệu liên quan được hiển thị khi hộp kiểm chuyển đổi tương ứng được chọn trên tab."
+
+#: HelpTexts.php:20
+#, php-format
+msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
+msgstr "Về cơ bản, mỗi con đường (thông qua tổ tiên chung) giữa hai cá nhân đóng góp vào CoR, tỷ lệ nghịch với độ dài của nó: Mỗi con đường có độ dài 2 (ví dụ: giữa các anh chị em ruột) them %1$s, mỗi đường dẫn có độ dài 4 (ví dụ: giữa các anh chị em họ đầu tiên ) them %2$s, nói chung mỗi đường dẫn có độ dài n thêm (0,5) <sup> n </sup>."
+
+#: resources/views/sync.phtml:25
+msgid "Calculating…"
+msgstr "Đang tính toán…"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:319
+msgid "Chart Settings"
+msgstr "Cài đặt biểu đồ"
+
+#: FunctionsPrintRels.php:133
+msgid "Common ancestor: "
+msgstr "Tổ tiên chung: "
+
+#: FunctionsPrintRels.php:160
+msgid "Common ancestors: "
+msgstr "Các Tổ tiên chung: "
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:67
+msgid "Debugging"
+msgstr "Gỡ lỗi"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:78
+msgid "Determines the shortest path between two individuals via a LCA (lowest common ancestor), i.e. a common ancestor who only appears on the path once."
+msgstr "Xác định đường đi ngắn nhất giữa hai cá thể thông qua LCA (tổ tiên chung thấp nhất), tức là tổ tiên chung chỉ xuất hiện trên đường đi một lần."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:59
+msgid "Display"
+msgstr "Hiển thị"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:29
+msgid "Displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab."
+msgstr "Hiển thị thông tin mối quan hệ bổ sung qua tab 'Gia đình' mở rộng và tab 'Sự kiện và sự kiện' mở rộng."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:145
+#: ExtendedRelationshipModuleTrait.php:170
+#: ExtendedRelationshipModuleTrait.php:201
+#: ExtendedRelationshipModuleTrait.php:247
+#: ExtendedRelationshipModuleTrait.php:272
+msgid "Do not show any relationship"
+msgstr "Không thể hiện bất kỳ mối quan hệ nào"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:83
+msgid "Each SLCA (smallest lowest common ancestor) essentially represents a part of the tree which both individuals share (as part of their ancestors). More technically, the SLCA set of two individuals is a subset of the LCA set (excluding all LCAs that are themselves ancestors of other LCAs)."
+msgstr "Mỗi SLCA (tổ tiên chung thấp nhất nhỏ nhất) về cơ bản đại diện cho một phần của cây mà cả hai cá thể đều chia sẻ (như một phần của tổ tiên của họ). Về mặt kỹ thuật, bộ SLCA của hai cá nhân là một tập hợp con của bộ LCA (không bao gồm tất cả các LCA tự là tổ tiên của các LCA khác)."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:324
+msgid "Families Tab Settings"
+msgstr "Cài đặt tab Gia đình"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:948 ExtendedRelationshipModuleTrait.php:77
 #: ExtendedRelationshipModuleTrait.php:148
 #: ExtendedRelationshipModuleTrait.php:173
 #: ExtendedRelationshipModuleTrait.php:204
@@ -63,19 +153,22 @@ msgid "Find a closest relationship via common ancestors"
 msgstr "Tìm mối quan hệ gần gũi nhất thông qua tổ tiên chung"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:958 ExtendedRelationshipModuleTrait.php:82
-#: ExtendedRelationshipModuleTrait.php:149
-#: ExtendedRelationshipModuleTrait.php:174
-#: ExtendedRelationshipModuleTrait.php:205
-#: ExtendedRelationshipModuleTrait.php:251
-#: ExtendedRelationshipModuleTrait.php:276
-msgid "Find all smallest lowest common ancestors, show a closest connection for each"
-msgstr ""
-"Tìm tất cả các tổ tiên chung gần nhất, thể hiện quan hệ họ hàng với từng "
-"người trong số họ"
+#: ExtendedRelationshipModule.php:966 ExtendedRelationshipModuleTrait.php:98
+#: ExtendedRelationshipModuleTrait.php:152
+#: ExtendedRelationshipModuleTrait.php:183
+#: ExtendedRelationshipModuleTrait.php:214
+#: ExtendedRelationshipModuleTrait.php:254
+#: ExtendedRelationshipModuleTrait.php:279
+#: ExtendedRelationshipModuleTrait.php:287
+msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
+msgstr "Tìm mối quan hệ gần nhất thông qua tổ tiên chung hoặc dự phòng cho mối quan hệ tổng thể gần nhất"
+
+#: ExtendedRelationshipModule.php:976
+msgid "Find all overall connections"
+msgstr "Tìm tất cả các kết nối tổng thể"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:962 ExtendedRelationshipModuleTrait.php:87
+#: ExtendedRelationshipModule.php:956 ExtendedRelationshipModuleTrait.php:87
 #: ExtendedRelationshipModuleTrait.php:150
 #: ExtendedRelationshipModuleTrait.php:176
 #: ExtendedRelationshipModuleTrait.php:207
@@ -85,145 +178,18 @@ msgid "Find all relationships via lowest common ancestors"
 msgstr "Tìm tất cả các mối quan hệ thông qua tổ tiên chung thấp nhất"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:968 ExtendedRelationshipModuleTrait.php:93
-#: ExtendedRelationshipModuleTrait.php:151
-#: ExtendedRelationshipModuleTrait.php:182
-#: ExtendedRelationshipModuleTrait.php:213
-#: ExtendedRelationshipModuleTrait.php:253
-#: ExtendedRelationshipModuleTrait.php:278
-#: ExtendedRelationshipModuleTrait.php:286
-msgid "Find the closest overall connections (preferably via common ancestors)"
-msgstr "Tìm các kết nối tổng thể gần nhất (tốt nhất là thông qua tổ tiên chung)"
+#: ExtendedRelationshipModule.php:952 ExtendedRelationshipModuleTrait.php:82
+#: ExtendedRelationshipModuleTrait.php:149
+#: ExtendedRelationshipModuleTrait.php:174
+#: ExtendedRelationshipModuleTrait.php:205
+#: ExtendedRelationshipModuleTrait.php:251
+#: ExtendedRelationshipModuleTrait.php:276
+msgid "Find all smallest lowest common ancestors, show a closest connection for each"
+msgstr "Tìm tất cả các tổ tiên chung gần nhất, thể hiện quan hệ họ hàng với từng người trong số họ"
 
-#. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:972 ExtendedRelationshipModuleTrait.php:98
-#: ExtendedRelationshipModuleTrait.php:152
-#: ExtendedRelationshipModuleTrait.php:183
-#: ExtendedRelationshipModuleTrait.php:214
-#: ExtendedRelationshipModuleTrait.php:254
-#: ExtendedRelationshipModuleTrait.php:279
-#: ExtendedRelationshipModuleTrait.php:287
-msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
-msgstr ""
-"Tìm mối quan hệ gần nhất thông qua tổ tiên chung hoặc dự phòng cho mối quan "
-"hệ tổng thể gần nhất"
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:976 ExtendedRelationshipModuleTrait.php:103
-#: ExtendedRelationshipModuleTrait.php:153
-#: ExtendedRelationshipModuleTrait.php:184
-#: ExtendedRelationshipModuleTrait.php:215
-#: ExtendedRelationshipModuleTrait.php:255
-#: ExtendedRelationshipModuleTrait.php:280
-#: ExtendedRelationshipModuleTrait.php:288
-msgid "Find the closest overall connections"
-msgstr "Tìm các kết nối tổng thể gần nhất"
-
-#: ExtendedRelationshipModule.php:982
-msgid "Find all overall connections"
-msgstr "Tìm tất cả các kết nối tổng thể"
-
-#: ExtendedRelationshipModule.php:984
+#: ExtendedRelationshipModule.php:978
 msgid "Find other overall connections"
 msgstr "Tìm các kết nối tổng thể khác"
-
-#. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
-#: ExtendedRelationshipModule.php:994
-msgid "Individuals with Patriarchs"
-msgstr "Cá nhân có Tổ phụ"
-
-#: ExtendedRelationshipModuleTrait.php:22
-msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
-msgstr ""
-"Một mô-đun cung cấp các thuật toán khác nhau được sử dụng để xác định các "
-"mối quan hệ. Bao gồm một biểu đồ hiển thị mối quan hệ giữa hai cá nhân, thay "
-"thế cho mô-đun 'Mối quan hệ' ban đầu."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:28
-msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
-msgstr ""
-"Một mô-đun cung cấp các thuật toán khác nhau được sử dụng để xác định các "
-"mối quan hệ. Bao gồm biểu đồ 'Mối quan hệ' mở rộng."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:29
-msgid "Displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab."
-msgstr ""
-"Hiển thị thông tin mối quan hệ bổ sung qua tab 'Gia đình' mở rộng và tab 'Sự "
-"kiện và sự kiện' mở rộng."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:31
-msgid "Intended as a replacement for the original 'Relationships' module."
-msgstr "Dự định thay thế cho mô-đun 'Mối quan hệ' ban đầu."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:59
-msgid "Display"
-msgstr "Hiển thị"
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:61
-msgid "Show common ancestors on top of relationship paths"
-msgstr "Hiển thị tổ tiên chung trên các con đường quan hệ"
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:67
-msgid "Debugging"
-msgstr "Gỡ lỗi"
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:69
-msgid "Show legacy relationship path names"
-msgstr "Hiển thị tên đường dẫn mối quan hệ kế thừa"
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:75
-msgid "Options to show in the chart"
-msgstr "Các tùy chọn để hiển thị trong biểu đồ"
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:78
-msgid "Determines the shortest path between two individuals via a LCA (lowest common ancestor), i.e. a common ancestor who only appears on the path once."
-msgstr ""
-"Xác định đường đi ngắn nhất giữa hai cá thể thông qua LCA (tổ tiên chung "
-"thấp nhất), tức là tổ tiên chung chỉ xuất hiện trên đường đi một lần."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:83
-msgid "Each SLCA (smallest lowest common ancestor) essentially represents a part of the tree which both individuals share (as part of their ancestors). More technically, the SLCA set of two individuals is a subset of the LCA set (excluding all LCAs that are themselves ancestors of other LCAs)."
-msgstr ""
-"Mỗi SLCA (tổ tiên chung thấp nhất nhỏ nhất) về cơ bản đại diện cho một phần "
-"của cây mà cả hai cá thể đều chia sẻ (như một phần của tổ tiên của họ). Về "
-"mặt kỹ thuật, bộ SLCA của hai cá nhân là một tập hợp con của bộ LCA (không "
-"bao gồm tất cả các LCA tự là tổ tiên của các LCA khác)."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:88
-msgid "All paths between the two individuals that contribute to the CoR (Coefficient of Relationship), as defined here:"
-msgstr ""
-"Tất cả các con đường giữa hai cá nhân đóng góp vào CoR (Hệ số quan hệ), như "
-"được định nghĩa ở đây:"
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:94
-msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
-msgstr ""
-"Ưu tiên con đường từng phần thông qua tổ tiên chung, ngay cả khi không có tổ "
-"tiên chung trực tiếp."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:99
-msgid "For close relationships similar to the previous option, but faster. Internally just a combination of two other methods."
-msgstr ""
-"Đối với các mối quan hệ thân thiết tương tự như tùy chọn trước đó, nhưng "
-"nhanh hơn. Bên trong chỉ là sự kết hợp của hai phương pháp khác."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:104
-msgid "Same option as in the original relationship chart."
-msgstr "Tùy chọn tương tự như trong biểu đồ mối quan hệ ban đầu."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:108
@@ -237,31 +203,55 @@ msgid "Find other/all overall connections"
 msgstr "Tìm các kết nối khác / tất cả các kết nối tổng thể"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:109
-msgid "Same option as in the original relationship chart, further configurable via recursion level:"
-msgstr ""
-"Tùy chọn tương tự như trong biểu đồ mối quan hệ ban đầu, có thể định cấu "
-"hình thêm thông qua mức đệ quy:"
+#: ExtendedRelationshipModule.php:970 ExtendedRelationshipModuleTrait.php:103
+#: ExtendedRelationshipModuleTrait.php:153
+#: ExtendedRelationshipModuleTrait.php:184
+#: ExtendedRelationshipModuleTrait.php:215
+#: ExtendedRelationshipModuleTrait.php:255
+#: ExtendedRelationshipModuleTrait.php:280
+#: ExtendedRelationshipModuleTrait.php:288
+msgid "Find the closest overall connections"
+msgstr "Tìm các kết nối tổng thể gần nhất"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:119
-msgid "unlimited"
-msgstr "không giới hạn"
+#: ExtendedRelationshipModule.php:962 ExtendedRelationshipModuleTrait.php:93
+#: ExtendedRelationshipModuleTrait.php:151
+#: ExtendedRelationshipModuleTrait.php:182
+#: ExtendedRelationshipModuleTrait.php:213
+#: ExtendedRelationshipModuleTrait.php:253
+#: ExtendedRelationshipModuleTrait.php:278
+#: ExtendedRelationshipModuleTrait.php:286
+msgid "Find the closest overall connections (preferably via common ancestors)"
+msgstr "Tìm các kết nối tổng thể gần nhất (tốt nhất là thông qua tổ tiên chung)"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:120
-msgid "Searching for all possible relationships can take a lot of time in complex trees."
-msgstr ""
-"Tìm kiếm tất cả các mối quan hệ có thể có có thể mất rất nhiều thời gian "
-"trong các cây phức tạp."
+#: resources/views/sync-complete.phtml:5
+msgid "Finished - all link dates are up-to-date."
+msgstr "Đã hoàn tất - tất cả các ngày liên kết đều được cập nhật."
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:128
-#: ExtendedRelationshipModuleTrait.php:230
-msgid "Allow persistent toggle (user may show/hide relationships)"
-msgstr ""
-"Cho phép chuyển đổi liên tục (người dùng có thể hiển thị / ẩn các mối quan "
-"hệ)"
+#: ExtendedRelationshipModuleTrait.php:99
+msgid "For close relationships similar to the previous option, but faster. Internally just a combination of two other methods."
+msgstr "Đối với các mối quan hệ thân thiết tương tự như tùy chọn trước đó, nhưng nhanh hơn. Bên trong chỉ là sự kết hợp của hai phương pháp khác."
+
+#: resources/views/sync.phtml:17
+msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
+msgstr "Đối với những cây lớn, quá trình này ban đầu có thể mất vài phút. Bạn luôn có thể hủy bỏ an toàn và tiếp tục sau đó."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:165
+msgid "How to determine relationships between parents"
+msgstr "Cách xác định mối quan hệ giữa cha mẹ"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:267
+msgid "How to determine relationships to associated persons"
+msgstr "Cách xác định mối quan hệ với những người có liên quan"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:196
+msgid "How to determine relationships to spouses"
+msgstr "Cách xác định mối quan hệ vợ chồng"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:140
@@ -269,25 +259,148 @@ msgstr ""
 msgid "How to determine relationships to the default individual"
 msgstr "Cách xác định mối quan hệ với cá nhân mặc định"
 
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:145
-#: ExtendedRelationshipModuleTrait.php:170
-#: ExtendedRelationshipModuleTrait.php:201
-#: ExtendedRelationshipModuleTrait.php:247
-#: ExtendedRelationshipModuleTrait.php:272
-msgid "Do not show any relationship"
-msgstr "Không thể hiện bất kỳ mối quan hệ nào"
+#: ExtendedRelationshipsChartController.php:277
+msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
+msgstr "Nếu điều này là không mong muốn và có những thay đổi gần đây, bạn có thể phải theo liên kết sau: "
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:146
-#: ExtendedRelationshipModuleTrait.php:171
-#: ExtendedRelationshipModuleTrait.php:202
-#: ExtendedRelationshipModuleTrait.php:248
-#: ExtendedRelationshipModuleTrait.php:273
-msgid "The following options refer to the same algorithms as used in the extended relationships chart:"
+#: ExtendedRelationshipModuleTrait.php:299
+msgid "If this option is checked, relationships to the associated individuals are only shown for the following facts and events."
+msgstr "Nếu tùy chọn này được chọn, mối quan hệ với các cá nhân liên quan chỉ được hiển thị cho các sự kiện và số liệu sau đây."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:332
+msgid "If you do not want to change the functionality with respect to the original Facts and Events tab, select 'Do not show any relationship' in the first block."
+msgstr "Nếu bạn không muốn thay đổi chức năng liên quan đến tab Sự kiện và Sự kiện ban đầu, hãy chọn 'Không hiển thị bất kỳ mối quan hệ nào' trong khối đầu tiên."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:325
+msgid "If you do not want to change the functionality with respect to the original Families tab, select 'Do not show any relationship' everywhere."
+msgstr "Nếu bạn không muốn thay đổi chức năng liên quan đến tab Gia đình ban đầu, hãy chọn 'Không hiển thị bất kỳ mối quan hệ nào' ở mọi nơi."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:320
+#, php-format
+msgid "If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name)."
+msgstr "Nếu bạn không muốn sử dụng chức năng biểu đồ, hãy ẩn biểu đồ này qua Control Panel> Charts> %1$s Vesta Extended Relationships (lưu ý rằng biểu đồ được liệt kê dưới tên mô-đun)."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:333
+msgid "If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect."
+msgstr "Nếu bạn chọn tùy chọn này ở mọi nơi, bạn cũng nên không cho phép chuyển đổi liên tục, vì nó không có tác dụng hiển thị."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:300
+msgid "In particular if both lists are empty, relationships will never be shown for these facts and events."
+msgstr "Đặc biệt nếu cả hai danh sách đều trống, các mối quan hệ sẽ không bao giờ được hiển thị cho các sự kiện và số liệu này."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:326
+msgid "In that case, you should also disallow persistent toggle, as it has no visible effect."
+msgstr "Trong trường hợp đó, bạn cũng không nên cho phép chuyển đổi liên tục, vì nó không có tác dụng rõ ràng."
+
+#. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
+#: ExtendedRelationshipModule.php:988
+msgid "Individuals with Patriarchs"
+msgstr "Cá nhân có Tổ phụ"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:31
+msgid "Intended as a replacement for the original 'Relationships' module."
+msgstr "Dự định thay thế cho mô-đun 'Mối quan hệ' ban đầu."
+
+#: HelpTexts.php:27
+msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
+msgstr "Việc xác định CoR chính xác này phức tạp hơn, và dù sao thì sự khác biệt thường rất nhỏ. Do đó, chỉ CoR không được điều chỉnh mới được tính toán."
+
+#: HelpTexts.php:32
+msgid "Legacy algorithm for Relationship path names"
+msgstr "Thuật toán kế thừa cho tên đường dẫn mối quan hệ"
+
+#: ExtendedRelationshipModule.php:245
+msgid "No relationship found"
+msgstr "Không tìm thấy mối quan hệ"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:301
+msgid "Note that the facts and events to be displayed at all may be filtered via the preferences of the tab."
+msgstr "Lưu ý rằng các dữ kiện và sự kiện sẽ được hiển thị có thể được lọc qua các tùy chọn của tab."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:297
+msgid "Only show relationships for specific facts and events"
+msgstr "Chỉ hiển thị các mối quan hệ đối với các sự kiện và số liệu cụ thể"
+
+#: resources/views/page.phtml:56
+#, php-format
+msgid "Options referring to overall connections established before %1$s."
+msgstr "Các tùy chọn đề cập đến các kết nối tổng thể được thiết lập trước %1$s."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:75
+msgid "Options to show in the chart"
+msgstr "Các tùy chọn để hiển thị trong biểu đồ"
+
+#. I18N: end-of line ancestor, 'Spitzenahn'
+#: HelpTexts.php:40
+#: resources/views/lists/individuals-table-with-patriarchs.phtml:245
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:58
+msgid "Patriarch"
+msgstr "Tổ phụ"
+
+#: HelpTexts.php:42
+msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr ""
-"Các tùy chọn sau đề cập đến các thuật toán tương tự như được sử dụng trong "
-"biểu đồ mối quan hệ mở rộng:"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:94
+msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
+msgstr "Ưu tiên con đường từng phần thông qua tổ tiên chung, ngay cả khi không có tổ tiên chung trực tiếp."
+
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:129
+msgid "Relationship"
+msgstr ""
+
+#: ExtendedRelationshipModule.php:588
+msgid "Relationship to me"
+msgstr "Mối quan hệ với tôi"
+
+#: ExtendedRelationshipsChartController.php:105
+#, php-format
+msgid "Relationship: %s"
+msgstr "Các mối quan hệ: %s"
+
+#: ExtendedRelationshipModule.php:262 ExtendedRelationshipModule.php:596
+#: ExtendedRelationshipModule.php:736
+msgid "Relationships"
+msgstr "Các mối quan hệ"
+
+#. I18N: %s are individual’s names
+#: ExtendedRelationshipModule.php:721
+#, php-format
+msgid "Relationships between %1$s and %2$s"
+msgstr "Mối quan hệ giữa %1$s và %2$s"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:109
+msgid "Same option as in the original relationship chart, further configurable via recursion level:"
+msgstr "Tùy chọn tương tự như trong biểu đồ mối quan hệ ban đầu, có thể định cấu hình thêm thông qua mức đệ quy:"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:104
+msgid "Same option as in the original relationship chart."
+msgstr "Tùy chọn tương tự như trong biểu đồ mối quan hệ ban đầu."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:120
+msgid "Searching for all possible relationships can take a lot of time in complex trees."
+msgstr "Tìm kiếm tất cả các mối quan hệ có thể có có thể mất rất nhiều thời gian trong các cây phức tạp."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:177
+#: ExtendedRelationshipModuleTrait.php:208
+msgid "Searching for regular overall connections would be pointless here because there is always a trivial HUSB - WIFE connection."
+msgstr "Việc tìm kiếm các kết nối tổng thể thông thường sẽ trở nên vô nghĩa ở đây vì luôn có một kết nối CHỒNG - VỢ bình thường."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:159
@@ -298,132 +411,103 @@ msgid "Show common ancestors"
 msgstr "Hiển thị tổ tiên chung"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:165
-msgid "How to determine relationships between parents"
-msgstr "Cách xác định mối quan hệ giữa cha mẹ"
+#: ExtendedRelationshipModuleTrait.php:61
+msgid "Show common ancestors on top of relationship paths"
+msgstr "Hiển thị tổ tiên chung trên các con đường quan hệ"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:177
-#: ExtendedRelationshipModuleTrait.php:208
-msgid "Searching for regular overall connections would be pointless here because there is always a trivial HUSB - WIFE connection."
+#: ExtendedRelationshipModuleTrait.php:69
+msgid "Show legacy relationship path names"
+msgstr "Hiển thị tên đường dẫn mối quan hệ kế thừa"
+
+#. I18N: Reverse the order of two individuals
+#: resources/views/page.phtml:75
+msgid "Swap individuals"
+msgstr "Hoán đổi các cá nhân"
+
+#: ExtendedRelationshipModule.php:193 ExtendedRelationshipModule.php:821
+#: ExtendedRelationshipModule.php:827
+msgid "Synchronization"
+msgstr "Đồng bộ hóa"
+
+#: ExtendedRelationshipModule.php:198
+#: ExtendedRelationshipsChartController.php:281
+msgid "Synchronize trees to obtain dated relationship links"
+msgstr "Đồng bộ hóa cây gia đình để có được các liên kết quan hệ ngày tháng"
+
+#: HelpTexts.php:17
+msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
+msgstr "CoR (Hệ số quan hệ) tỷ lệ thuận với số lượng gen mà hai cá thể có chung do mối quan hệ di truyền của họ. Tính toán của nó dựa trên phương pháp của Sewall Wright về hệ số đường đi. Giá trị của nó đại diện cho tỷ lệ các gen được giữ chung bởi hai cá thể có liên quan hơn và cao hơn những gen có điểm chung của cả quần thể. Thông tin chi tiết tại đây: "
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:146
+#: ExtendedRelationshipModuleTrait.php:171
+#: ExtendedRelationshipModuleTrait.php:202
+#: ExtendedRelationshipModuleTrait.php:248
+#: ExtendedRelationshipModuleTrait.php:273
+msgid "The following options refer to the same algorithms as used in the extended relationships chart:"
+msgstr "Các tùy chọn sau đề cập đến các thuật toán tương tự như được sử dụng trong biểu đồ mối quan hệ mở rộng:"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:283
+msgid "The following options use dated links, i.e. links that have been established before the date of the respective event."
+msgstr "Các tùy chọn sau sử dụng các liên kết ngày tháng, tức là các liên kết đã được thiết lập trước ngày diễn ra sự kiện tương ứng."
+
+#: resources/views/sync.phtml:20
+msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
+msgstr "Quá trình nên được lặp lại (nhưng sẽ kết thúc nhanh hơn nhiều) bất cứ khi nào cây được chỉnh sửa, nếu không, bạn có thể nhận được dữ liệu về mối quan hệ không nhất quán (các mối quan hệ được hiển thị luôn hợp lệ, nhưng chúng có thể không thực sự được thiết lập vào ngày nhất định, nếu thay đổi trong cây không được đồng bộ ở đây)."
+
+#: HelpTexts.php:43
+msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
-"Việc tìm kiếm các kết nối tổng thể thông thường sẽ trở nên vô nghĩa ở đây vì "
-"luôn có một kết nối CHỒNG - VỢ bình thường."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:178
 #: ExtendedRelationshipModuleTrait.php:209
 msgid "Therefore, if one of the following options is selected, overall connections are determined via dated links, i.e. links that have been established before the date of the respective event."
-msgstr ""
-"Do đó, nếu một trong các tùy chọn sau được chọn, các kết nối tổng thể được "
-"xác định thông qua các liên kết ngày tháng, tức là các liên kết đã được "
-"thiết lập trước ngày diễn ra sự kiện tương ứng."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:179
-#: ExtendedRelationshipModuleTrait.php:210
-msgid "This allows you to present meaningful connections, such as 'widowed husband marries the sister of his dead wife'."
-msgstr ""
-"Điều này cho phép bạn trình bày các kết nối có ý nghĩa, chẳng hạn như 'người "
-"chồng góa vợ kết hôn với em gái của người vợ đã chết'."
+msgstr "Do đó, nếu một trong các tùy chọn sau được chọn, các kết nối tổng thể được xác định thông qua các liên kết ngày tháng, tức là các liên kết đã được thiết lập trước ngày diễn ra sự kiện tương ứng."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:180
 #: ExtendedRelationshipModuleTrait.php:211
 msgid "These relationships may only be calculated efficiently by preprocessing the tree data, via the synchronization link at the top of this page."
+msgstr "Các mối quan hệ này chỉ có thể được tính toán một cách hiệu quả bằng cách xử lý trước dữ liệu cây, thông qua liên kết đồng bộ hóa ở đầu trang này."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:179
+#: ExtendedRelationshipModuleTrait.php:210
+msgid "This allows you to present meaningful connections, such as 'widowed husband marries the sister of his dead wife'."
+msgstr "Điều này cho phép bạn trình bày các kết nối có ý nghĩa, chẳng hạn như 'người chồng góa vợ kết hôn với em gái của người vợ đã chết'."
+
+#: HelpTexts.php:44
+msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
-"Các mối quan hệ này chỉ có thể được tính toán một cách hiệu quả bằng cách xử "
-"lý trước dữ liệu cây, thông qua liên kết đồng bộ hóa ở đầu trang này."
 
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:196
-msgid "How to determine relationships to spouses"
-msgstr "Cách xác định mối quan hệ vợ chồng"
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:267
-msgid "How to determine relationships to associated persons"
-msgstr "Cách xác định mối quan hệ với những người có liên quan"
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:283
-msgid "The following options use dated links, i.e. links that have been established before the date of the respective event."
-msgstr ""
-"Các tùy chọn sau sử dụng các liên kết ngày tháng, tức là các liên kết đã "
-"được thiết lập trước ngày diễn ra sự kiện tương ứng."
+#: resources/views/sync.phtml:14
+msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
+msgstr "Quá trình này tính toán ngày tháng cho tất cả các liên kết INDI - FAM, để các mối quan hệ tại một thời điểm cụ thể có thể được tính toán một cách hiệu quả."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:284
 msgid "This seems more useful in most cases (e.g. to determine the relationship to a godparent at the time of the baptism)."
-msgstr ""
-"Điều này có vẻ hữu ích hơn trong hầu hết các trường hợp (ví dụ: để xác định "
-"mối quan hệ với cha mẹ đỡ đầu vào thời điểm rửa tội)."
+msgstr "Điều này có vẻ hữu ích hơn trong hầu hết các trường hợp (ví dụ: để xác định mối quan hệ với cha mẹ đỡ đầu vào thời điểm rửa tội)."
 
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:297
-msgid "Only show relationships for specific facts and events"
-msgstr "Chỉ hiển thị các mối quan hệ đối với các sự kiện và số liệu cụ thể"
+#: HelpTexts.php:15
+msgid "Uncorrected CoR (Coefficient of Relationship)"
+msgstr "CoR không được điều chỉnh (Hệ số mối quan hệ)"
 
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:298
-msgid "Associated facts and events are displayed when the respective toggle checkbox is selected on the tab."
-msgstr ""
-"Sự kiện và số liệu liên quan được hiển thị khi hộp kiểm chuyển đổi tương ứng "
-"được chọn trên tab."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:299
-msgid "If this option is checked, relationships to the associated individuals are only shown for the following facts and events."
-msgstr ""
-"Nếu tùy chọn này được chọn, mối quan hệ với các cá nhân liên quan chỉ được "
-"hiển thị cho các sự kiện và số liệu sau đây."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:300
-msgid "In particular if both lists are empty, relationships will never be shown for these facts and events."
-msgstr ""
-"Đặc biệt nếu cả hai danh sách đều trống, các mối quan hệ sẽ không bao giờ "
-"được hiển thị cho các sự kiện và số liệu này."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:301
-msgid "Note that the facts and events to be displayed at all may be filtered via the preferences of the tab."
-msgstr ""
-"Lưu ý rằng các dữ kiện và sự kiện sẽ được hiển thị có thể được lọc qua các "
-"tùy chọn của tab."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:319
-msgid "Chart Settings"
-msgstr "Cài đặt biểu đồ"
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:320
+#: ExtendedRelationshipsChartController.php:57
 #, php-format
-msgid "If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name)."
-msgstr ""
-"Nếu bạn không muốn sử dụng chức năng biểu đồ, hãy ẩn biểu đồ này qua Control "
-"Panel> Charts> %1$s Vesta Extended Relationships (lưu ý rằng biểu đồ được "
-"liệt kê dưới tên mô-đun)."
+msgid "Uncorrected CoR (Coefficient of Relationship): %s"
+msgstr "CoR không hiệu chỉnh (Hệ số mối quan hệ): %s"
 
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:324
-msgid "Families Tab Settings"
-msgstr "Cài đặt tab Gia đình"
+#: HelpTexts.php:24
+msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
+msgstr "Trong những trường hợp bình thường, tỷ lệ gen được truyền từ tổ tiên sang con cháu &ndash; theo ước tính của Σ (0,5) <sup> n </sup> &ndash; và tỷ lệ các gen mà chúng giữ chung (hệ số quan hệ thực sự) là như nhau. Tuy nhiên, nếu đã có bất kỳ cuộc giao phối cận huyết nào, có thể có sự khác biệt nhỏ, như được giải thích ở đây: "
 
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:325
-msgid "If you do not want to change the functionality with respect to the original Families tab, select 'Do not show any relationship' everywhere."
-msgstr ""
-"Nếu bạn không muốn thay đổi chức năng liên quan đến tab Gia đình ban đầu, "
-"hãy chọn 'Không hiển thị bất kỳ mối quan hệ nào' ở mọi nơi."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:326
-msgid "In that case, you should also disallow persistent toggle, as it has no visible effect."
-msgstr ""
-"Trong trường hợp đó, bạn cũng không nên cho phép chuyển đổi liên tục, vì nó "
-"không có tác dụng rõ ràng."
+#: HelpTexts.php:34
+msgid "You can disable this via the module preferences, it's mainly intended for debugging."
+msgstr "Bạn có thể tắt tính năng này thông qua tùy chọn mô-đun, nó chủ yếu dùng để gỡ lỗi."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:327
@@ -431,186 +515,21 @@ msgstr ""
 msgid "You may also adjust the access level of this part of the module."
 msgstr "Bạn cũng có thể điều chỉnh mức độ truy cập của phần này của mô-đun."
 
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:332
-msgid "If you do not want to change the functionality with respect to the original Facts and Events tab, select 'Do not show any relationship' in the first block."
-msgstr ""
-"Nếu bạn không muốn thay đổi chức năng liên quan đến tab Sự kiện và Sự kiện "
-"ban đầu, hãy chọn 'Không hiển thị bất kỳ mối quan hệ nào' trong khối đầu "
-"tiên."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:333
-msgid "If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect."
-msgstr ""
-"Nếu bạn chọn tùy chọn này ở mọi nơi, bạn cũng nên không cho phép chuyển đổi "
-"liên tục, vì nó không có tác dụng hiển thị."
-
-#: ExtendedRelationshipsChartController.php:57
-#, php-format
-msgid "Uncorrected CoR (Coefficient of Relationship): %s"
-msgstr "CoR không hiệu chỉnh (Hệ số mối quan hệ): %s"
-
-#: ExtendedRelationshipsChartController.php:59
-#, php-format
-msgid "(Number of relationships: %s)"
-msgstr "(Số lượng mối quan hệ: %s)"
-
-#: ExtendedRelationshipsChartController.php:63
-msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
-msgstr ""
-"(nhìn chung không gần hơn đáng kể so với mối quan hệ gần nhất thông qua tổ "
-"tiên chung)"
-
-#: ExtendedRelationshipsChartController.php:73
-#, php-format
-msgid "(that's overall as close as: %1$s)"
-msgstr "(tổng thể gần bằng: %1$s)"
-
-#: ExtendedRelationshipsChartController.php:75
-#, php-format
-msgid "(that's overall almost as close as: %1$s)"
-msgstr "(nhìn chung gần như bằng: %1$s)"
-
-#: ExtendedRelationshipsChartController.php:77
-#, php-format
-msgid "(that's overall closer than: %1$s)"
-msgstr "(nhìn chung gần hơn: %1$s)"
-
-#: ExtendedRelationshipsChartController.php:107
-#, php-format
-msgid "Relationship: %s"
-msgstr "Các mối quan hệ: %s"
-
-#: ExtendedRelationshipsChartController.php:113
-#, php-format
-msgid "via legacy algorithm: %s"
-msgstr "thông qua thuật toán kế thừa: : %s"
-
-#: ExtendedRelationshipsChartController.php:215
+#: ExtendedRelationshipsChartController.php:213
 msgid "parents"
 msgstr "bố mẹ"
 
-#: ExtendedRelationshipsChartController.php:279
-msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
-msgstr ""
-"Nếu điều này là không mong muốn và có những thay đổi gần đây, bạn có thể "
-"phải theo liên kết sau: "
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:119
+msgid "unlimited"
+msgstr "không giới hạn"
 
-#. I18N: (person 1) is (relative, e.g. father) of (person2)
-#: FunctionsPrintRels.php:119
+#: ExtendedRelationshipsChartController.php:111
 #, php-format
-msgid "%1$s is %2$s of %3$s."
-msgstr "%1$s là %2$s của %3$s."
-
-#: FunctionsPrintRels.php:141
-msgid "Common ancestor: "
-msgstr "Tổ tiên chung: "
-
-#: FunctionsPrintRels.php:168
-msgid "Common ancestors: "
-msgstr "Các Tổ tiên chung: "
-
-#: HelpTexts.php:15
-msgid "Uncorrected CoR (Coefficient of Relationship)"
-msgstr "CoR không được điều chỉnh (Hệ số mối quan hệ)"
-
-#: HelpTexts.php:17
-msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
-msgstr ""
-"CoR (Hệ số quan hệ) tỷ lệ thuận với số lượng gen mà hai cá thể có chung do "
-"mối quan hệ di truyền của họ. Tính toán của nó dựa trên phương pháp của "
-"Sewall Wright về hệ số đường đi. Giá trị của nó đại diện cho tỷ lệ các gen "
-"được giữ chung bởi hai cá thể có liên quan hơn và cao hơn những gen có điểm "
-"chung của cả quần thể. Thông tin chi tiết tại đây: "
-
-#: HelpTexts.php:20
-#, php-format
-msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
-msgstr ""
-"Về cơ bản, mỗi con đường (thông qua tổ tiên chung) giữa hai cá nhân đóng góp "
-"vào CoR, tỷ lệ nghịch với độ dài của nó: Mỗi con đường có độ dài 2 (ví dụ: "
-"giữa các anh chị em ruột) them %1$s, mỗi đường dẫn có độ dài 4 (ví dụ: giữa "
-"các anh chị em họ đầu tiên ) them %2$s, nói chung mỗi đường dẫn có độ dài n "
-"thêm (0,5) <sup> n </sup>."
-
-#: HelpTexts.php:24
-msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
-msgstr ""
-"Trong những trường hợp bình thường, tỷ lệ gen được truyền từ tổ tiên sang "
-"con cháu &ndash; theo ước tính của Σ (0,5) <sup> n </sup> &ndash; và tỷ lệ "
-"các gen mà chúng giữ chung (hệ số quan hệ thực sự) là như nhau. Tuy nhiên, "
-"nếu đã có bất kỳ cuộc giao phối cận huyết nào, có thể có sự khác biệt nhỏ, "
-"như được giải thích ở đây: "
-
-#: HelpTexts.php:27
-msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
-msgstr ""
-"Việc xác định CoR chính xác này phức tạp hơn, và dù sao thì sự khác biệt "
-"thường rất nhỏ. Do đó, chỉ CoR không được điều chỉnh mới được tính toán."
-
-#: HelpTexts.php:32
-msgid "Legacy algorithm for Relationship path names"
-msgstr "Thuật toán kế thừa cho tên đường dẫn mối quan hệ"
-
-#: HelpTexts.php:34
-msgid "You can disable this via the module preferences, it's mainly intended for debugging."
-msgstr ""
-"Bạn có thể tắt tính năng này thông qua tùy chọn mô-đun, nó chủ yếu dùng để "
-"gỡ lỗi."
-
-#: HelpTexts.php:35
-msgid "And hopefully it shows how much better the new algorithm works ..."
-msgstr "Và hy vọng nó cho thấy thuật toán mới hoạt động tốt hơn như thế nào ..."
-
-#. I18N: end-of line ancestor, 'Spitzenahn'
-#: resources/views/lists/individuals-table-with-patriarchs.phtml:245
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:31
-msgid "Patriarch"
-msgstr "Tổ phụ"
-
-#: resources/views/page.phtml:56
-#, php-format
-msgid "Options referring to overall connections established before %1$s."
-msgstr "Các tùy chọn đề cập đến các kết nối tổng thể được thiết lập trước %1$s."
+msgid "via legacy algorithm: %s"
+msgstr "thông qua thuật toán kế thừa: : %s"
 
 #. I18N: A button label.
 #: resources/views/page.phtml:70
 msgid "view"
 msgstr "xem"
-
-#. I18N: Reverse the order of two individuals
-#: resources/views/page.phtml:75
-msgid "Swap individuals"
-msgstr "Hoán đổi các cá nhân"
-
-#. I18N: Module Configuration
-#: resources/views/sync-complete.phtml:5
-msgid "Finished - all link dates are up-to-date."
-msgstr "Đã hoàn tất - tất cả các ngày liên kết đều được cập nhật."
-
-#: resources/views/sync.phtml:14
-msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
-msgstr ""
-"Quá trình này tính toán ngày tháng cho tất cả các liên kết INDI - FAM, để "
-"các mối quan hệ tại một thời điểm cụ thể có thể được tính toán một cách hiệu "
-"quả."
-
-#: resources/views/sync.phtml:17
-msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
-msgstr ""
-"Đối với những cây lớn, quá trình này ban đầu có thể mất vài phút. Bạn luôn "
-"có thể hủy bỏ an toàn và tiếp tục sau đó."
-
-#: resources/views/sync.phtml:20
-msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
-msgstr ""
-"Quá trình nên được lặp lại (nhưng sẽ kết thúc nhanh hơn nhiều) bất cứ khi "
-"nào cây được chỉnh sửa, nếu không, bạn có thể nhận được dữ liệu về mối quan "
-"hệ không nhất quán (các mối quan hệ được hiển thị luôn hợp lệ, nhưng chúng "
-"có thể không thực sự được thiết lập vào ngày nhất định, nếu thay đổi trong "
-"cây không được đồng bộ ở đây)."
-
-#: resources/views/sync.phtml:25
-msgid "Calculating…"
-msgstr "Đang tính toán…"

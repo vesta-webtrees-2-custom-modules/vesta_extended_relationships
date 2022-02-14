@@ -1,13 +1,38 @@
 <?php
 
+use Cissee\Webtrees\Module\ExtendedRelationships\AllAncestors;
+use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
 use Cissee\WebtreesExt\MoreI18N;
+use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Contracts\UserInterface;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\FamilyListModule;
 use Fisharebest\Webtrees\Module\IndividualListModule;
+use Fisharebest\Webtrees\Module\ModuleChartInterface;
+use Fisharebest\Webtrees\Module\ModuleInterface;
+use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\Services\ModuleService;
 use function GuzzleHttp\json_encode;
 
+$relationshipsChartModule = app(ModuleService::class)
+    ->findByComponent(ModuleChartInterface::class, $tree, Auth::user())
+    ->first(static function (ModuleInterface $module) {
+        return $module instanceof RelationshipsChartModule;
+    });
+    
+//cf BranchesListModule
+
+// Highlight direct-line ancestors of this individual.
+$xref = $tree->getUserPreference(Auth::user(), UserInterface::PREF_TREE_ACCOUNT_XREF);
+$self = Registry::individualFactory()->make($xref, $tree);
+
+if ($self instanceof Individual) {
+    $ancestors = AllAncestors::allAncestors($self);
+} else {
+    $ancestors = [];
+}
 ?>
 
 <table
@@ -29,7 +54,12 @@ use function GuzzleHttp\json_encode;
             <?php
               //[RC] added
             ?>
-            <th><?= /* I18N: end-of line ancestor, 'Spitzenahn' */ I18N::translate('Patriarch') ?></th>
+            <th>
+                <?= /* I18N: end-of line ancestor, 'Spitzenahn' */ I18N::translate('Patriarch') ?>
+                <?php
+                    echo $helpLink;
+                ?>
+            </th>
             <th>
                 <?php if ($families) :?>
                     <?= MoreI18N::xlate('Spouses') ?>
@@ -89,7 +119,26 @@ use function GuzzleHttp\json_encode;
                       $patriarch = Registry::individualFactory()->make($patriarchXref, $tree);                      
                     }
                     if (($patriarch != null) && $patriarch->canShow()) {
-                      ?><a href="<?= e($patriarch->url()) ?>"><?= $patriarch->fullName() ?></a><br /><?php
+                        //re-using code from branches list, i.e. BranchesListModule
+                        $individual = $patriarch;
+                        
+                        // Is this individual one of our ancestors?
+                        $sosa = array_search($individual, $ancestors, true);
+                        if (is_int($sosa) && $relationshipsChartModule instanceof RelationshipsChartModule) {
+                            $sosa_class = 'search_hit';
+                            $sosa_html  = ' <a class="small wt-chart-box-' . strtolower($individual->sex()) . '" href="' . e($relationshipsChartModule->chartUrl($individual, ['xref2' => $ancestors[1]->xref()])) . '" rel="nofollow" title="' . I18N::translate('Relationship') . '">' . I18N::number($sosa) . '</a>' . AllAncestors::sosaGeneration($sosa);
+                        } else {
+                            $sosa_class = '';
+                            $sosa_html  = '';
+                        }
+
+                        // Generate HTML for this individual, and all their descendants
+                        $indi_html = '<small>' . view('icons/sex', ['sex' => $individual->sex()]) . '</small><a class="' . $sosa_class . '" href="' . e($individual->url()) . '">' . $individual->fullName() . '</a> ' . $individual->lifespan() . $sosa_html;
+                        
+                        //rather than using standard representation of individual within list
+                        //'<a href="' . e($patriarch->url()) . '">' . $patriarch->fullName() . '</a><br />
+  
+                        echo $indi_html;
                     } else {
                       ?><br /><?php
                     }
@@ -120,3 +169,8 @@ use function GuzzleHttp\json_encode;
         <?php endforeach ?>
     </tbody>
 </table>
+
+<?php
+//for help link
+?>
+<?= view('modals/ajax') ?>

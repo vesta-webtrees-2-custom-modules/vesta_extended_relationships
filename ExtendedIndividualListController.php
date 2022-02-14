@@ -3,6 +3,7 @@
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
+use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
 use Exception;
 use Fisharebest\Localization\Locale\LocaleInterface;
 use Fisharebest\Webtrees\GedcomRecord;
@@ -18,10 +19,15 @@ class ExtendedIndividualListController extends IndividualListModule {
   
   /** @var LocalizationService */
   private $localization_service;
-    
-  public function __construct(LocalizationService $localization_service) {
+  private $module;
+  
+  public function __construct(
+          LocalizationService $localization_service,
+          ExtendedRelationshipModule $module) {
+      
     parent::__construct($localization_service);
     $this->localization_service = $localization_service;
+    $this->module = $module;
   }
   
   //originally returns array[][], we adjust this to be able to switch view in surnames-table-switch.phtml
@@ -79,7 +85,9 @@ class ExtendedIndividualListController extends IndividualListModule {
             $fam2indi);
     
     $wrapped = [];
-    $wrapped[] = new SurnamesWithPatriarchs($list);
+            
+    $helpLink = FunctionsPrintExtHelpLink::helpLink($this->module->name(), 'Patriarch');
+    $wrapped[] = new SurnamesWithPatriarchs($list, $helpLink);
     return $wrapped;
   }
   

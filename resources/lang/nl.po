@@ -7,11 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2021-04-13 09:05+0200\n"
+"POT-Creation-Date: 2022-02-14 21:41+0100\n"
 "PO-Revision-Date: 2021-10-24 07:37+0000\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/"
-"vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,12 +18,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.9-dev\n"
 
-#: ExtendedRelationshipModule.php:197
+#: ExtendedRelationshipModule.php:200
 msgid " (see below for details)."
 msgstr " (zie hieronder voor meer informatie)."
 
 #. I18N: (person 1) is (relative, e.g. father) of (person2)
-#: FunctionsPrintRels.php:119
+#: FunctionsPrintRels.php:111
 #, php-format
 msgid "%1$s is %2$s of %3$s."
 msgstr "%1$s is %2$s van %3$s."
@@ -34,17 +33,17 @@ msgstr "%1$s is %2$s van %3$s."
 msgid "(Number of relationships: %s)"
 msgstr "(Aantal verwantschappen: %s)"
 
-#: ExtendedRelationshipsChartController.php:75
+#: ExtendedRelationshipsChartController.php:73
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
 msgstr "(dat is over het algemeen bijna net zo dichtbij als: %1$s)"
 
-#: ExtendedRelationshipsChartController.php:73
+#: ExtendedRelationshipsChartController.php:71
 #, php-format
 msgid "(that's overall as close as: %1$s)"
 msgstr "(dat is over het algemeen net zo dichtbij als: %1$s)"
 
-#: ExtendedRelationshipsChartController.php:77
+#: ExtendedRelationshipsChartController.php:75
 #, php-format
 msgid "(that's overall closer than: %1$s)"
 msgstr "(dat is over het algemeen dichterbij dan: %1$s)"
@@ -80,9 +79,7 @@ msgstr "En hopelijk laat het zien hoeveel beter het nieuwe algoritme werkt ..."
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:298
 msgid "Associated facts and events are displayed when the respective toggle checkbox is selected on the tab."
-msgstr ""
-"Feiten en gebeurtenissen met gerelateerde personen worden getoond wanneer "
-"het desbetreffende schakelvakje is ingeschakeld op het tabblad."
+msgstr "Feiten en gebeurtenissen met gerelateerde personen worden getoond wanneer het desbetreffende schakelvakje is ingeschakeld op het tabblad."
 
 #: HelpTexts.php:20
 #, php-format
@@ -98,11 +95,11 @@ msgstr "Berekenen…"
 msgid "Chart Settings"
 msgstr "Instellingen voor diagrammen"
 
-#: FunctionsPrintRels.php:141
+#: FunctionsPrintRels.php:133
 msgid "Common ancestor: "
 msgstr "Gemeenschappelijke voorouder: "
 
-#: FunctionsPrintRels.php:168
+#: FunctionsPrintRels.php:160
 msgid "Common ancestors: "
 msgstr "Gemeenschappelijke voorouders: "
 
@@ -146,7 +143,7 @@ msgid "Families Tab Settings"
 msgstr "Instellingen voor tabblad Gezinnen"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:954 ExtendedRelationshipModuleTrait.php:77
+#: ExtendedRelationshipModule.php:948 ExtendedRelationshipModuleTrait.php:77
 #: ExtendedRelationshipModuleTrait.php:148
 #: ExtendedRelationshipModuleTrait.php:173
 #: ExtendedRelationshipModuleTrait.php:204
@@ -156,7 +153,7 @@ msgid "Find a closest relationship via common ancestors"
 msgstr "Zoek een dichtstbijzijnde verwantschap via gemeenschappelijke voorouders"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:972 ExtendedRelationshipModuleTrait.php:98
+#: ExtendedRelationshipModule.php:966 ExtendedRelationshipModuleTrait.php:98
 #: ExtendedRelationshipModuleTrait.php:152
 #: ExtendedRelationshipModuleTrait.php:183
 #: ExtendedRelationshipModuleTrait.php:214
@@ -166,12 +163,12 @@ msgstr "Zoek een dichtstbijzijnde verwantschap via gemeenschappelijke voorouders
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
 msgstr "Zoek een dichtstbijzijnde verwantschap via gemeenschappelijke voorouders, of anders dichtstbijzijnde relatie"
 
-#: ExtendedRelationshipModule.php:982
+#: ExtendedRelationshipModule.php:976
 msgid "Find all overall connections"
 msgstr "Zoek alle algemene relaties"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:962 ExtendedRelationshipModuleTrait.php:87
+#: ExtendedRelationshipModule.php:956 ExtendedRelationshipModuleTrait.php:87
 #: ExtendedRelationshipModuleTrait.php:150
 #: ExtendedRelationshipModuleTrait.php:176
 #: ExtendedRelationshipModuleTrait.php:207
@@ -181,7 +178,7 @@ msgid "Find all relationships via lowest common ancestors"
 msgstr "Zoek alle verwantschappen via dichtstbijzijnde gemeenschappelijke voorouders"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:958 ExtendedRelationshipModuleTrait.php:82
+#: ExtendedRelationshipModule.php:952 ExtendedRelationshipModuleTrait.php:82
 #: ExtendedRelationshipModuleTrait.php:149
 #: ExtendedRelationshipModuleTrait.php:174
 #: ExtendedRelationshipModuleTrait.php:205
@@ -190,7 +187,7 @@ msgstr "Zoek alle verwantschappen via dichtstbijzijnde gemeenschappelijke voorou
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr "Zoek alle dichtstbijzijnde gemeenschappelijke voorouders, toon een dichtstbijzijnde relatie voor elk"
 
-#: ExtendedRelationshipModule.php:984
+#: ExtendedRelationshipModule.php:978
 msgid "Find other overall connections"
 msgstr "Zoek andere algemene relaties"
 
@@ -206,7 +203,7 @@ msgid "Find other/all overall connections"
 msgstr "Zoek andere/alle algemene relaties"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:976 ExtendedRelationshipModuleTrait.php:103
+#: ExtendedRelationshipModule.php:970 ExtendedRelationshipModuleTrait.php:103
 #: ExtendedRelationshipModuleTrait.php:153
 #: ExtendedRelationshipModuleTrait.php:184
 #: ExtendedRelationshipModuleTrait.php:215
@@ -217,7 +214,7 @@ msgid "Find the closest overall connections"
 msgstr "Zoek de dichtstbijzijnde algemene relaties"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:968 ExtendedRelationshipModuleTrait.php:93
+#: ExtendedRelationshipModule.php:962 ExtendedRelationshipModuleTrait.php:93
 #: ExtendedRelationshipModuleTrait.php:151
 #: ExtendedRelationshipModuleTrait.php:182
 #: ExtendedRelationshipModuleTrait.php:213
@@ -262,16 +259,14 @@ msgstr "Hoe verwantschappen met echtgenoten te bepalen"
 msgid "How to determine relationships to the default individual"
 msgstr "Hoe verwantschappen met de startpersoon te bepalen"
 
-#: ExtendedRelationshipsChartController.php:279
+#: ExtendedRelationshipsChartController.php:277
 msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
 msgstr "Als dit onverwacht is en er recente wijzigingen zijn, moet u mogelijk deze koppeling volgen: "
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:299
 msgid "If this option is checked, relationships to the associated individuals are only shown for the following facts and events."
-msgstr ""
-"Als deze optie is ingeschakeld, worden verwantschappen met gerelateerde "
-"personen alleen getoond voor de volgende feiten en gebeurtenissen."
+msgstr "Als deze optie is ingeschakeld, worden verwantschappen met gerelateerde personen alleen getoond voor de volgende feiten en gebeurtenissen."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:332
@@ -305,7 +300,7 @@ msgid "In that case, you should also disallow persistent toggle, as it has no vi
 msgstr "In dat geval moet u ook permanente schakeling verbieden, omdat het geen zichtbaar effect heeft."
 
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
-#: ExtendedRelationshipModule.php:994
+#: ExtendedRelationshipModule.php:988
 msgid "Individuals with Patriarchs"
 msgstr "Personen met stamvaders"
 
@@ -322,7 +317,7 @@ msgstr "Het is ingewikkelder om deze exacte verwantschapscoëfficiënt bepalen, 
 msgid "Legacy algorithm for Relationship path names"
 msgstr "Verouderd algoritme voor verwantschapspadnamen"
 
-#: ExtendedRelationshipModule.php:250
+#: ExtendedRelationshipModule.php:245
 msgid "No relationship found"
 msgstr "Geen verwantschap gevonden"
 
@@ -347,32 +342,41 @@ msgid "Options to show in the chart"
 msgstr "Opties die in het diagram moeten worden getoond"
 
 #. I18N: end-of line ancestor, 'Spitzenahn'
+#: HelpTexts.php:40
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:245
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:31
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:58
 msgid "Patriarch"
 msgstr "Stamvader"
+
+#: HelpTexts.php:42
+msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
+msgstr ""
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
 msgstr "Geeft de voorkeur aan gedeeltelijke paden via gemeenschappelijke voorouders, zelfs als er geen directe gemeenschappelijke voorouder is."
 
-#: ExtendedRelationshipModule.php:593
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:129
+msgid "Relationship"
+msgstr ""
+
+#: ExtendedRelationshipModule.php:588
 msgid "Relationship to me"
 msgstr "Verwantschap met mij"
 
-#: ExtendedRelationshipsChartController.php:107
+#: ExtendedRelationshipsChartController.php:105
 #, php-format
 msgid "Relationship: %s"
 msgstr "Verwantschap: %s"
 
-#: ExtendedRelationshipModule.php:267 ExtendedRelationshipModule.php:601
-#: ExtendedRelationshipModule.php:741
+#: ExtendedRelationshipModule.php:262 ExtendedRelationshipModule.php:596
+#: ExtendedRelationshipModule.php:736
 msgid "Relationships"
 msgstr "Verwantschappen"
 
 #. I18N: %s are individual’s names
-#: ExtendedRelationshipModule.php:726
+#: ExtendedRelationshipModule.php:721
 #, php-format
 msgid "Relationships between %1$s and %2$s"
 msgstr "Verwantschappen tussen %1$s en %2$s"
@@ -421,25 +425,19 @@ msgstr "Toon verouderde verwantschapspadnamen"
 msgid "Swap individuals"
 msgstr "Verwissel personen"
 
-#: ExtendedRelationshipModule.php:190 ExtendedRelationshipModule.php:826
-#: ExtendedRelationshipModule.php:832
+#: ExtendedRelationshipModule.php:193 ExtendedRelationshipModule.php:821
+#: ExtendedRelationshipModule.php:827
 msgid "Synchronization"
 msgstr "Synchronisatie"
 
-#: ExtendedRelationshipModule.php:195
-#: ExtendedRelationshipsChartController.php:283
+#: ExtendedRelationshipModule.php:198
+#: ExtendedRelationshipsChartController.php:281
 msgid "Synchronize trees to obtain dated relationship links"
 msgstr "Stambomen synchroniseren om gedateerde verwantschapskoppelingen te verkrijgen"
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
-msgstr ""
-"De verwantschapscoëfficiënt is evenredig aan het aantal genen dat twee "
-"personen gemeen hebben als gevolg van hun genetische verwantschap. De "
-"berekening is gebaseerd op Sewall Wright's methode van padcoëfficiënten. De "
-"waarde ervan vertegenwoordigt het aandeel van de genen die gemeenschappelijk "
-"zijn voor twee verwante individuen boven die welke door de hele bevolking "
-"gemeenschappelijk zijn. Meer details hier: "
+msgstr "De verwantschapscoëfficiënt is evenredig aan het aantal genen dat twee personen gemeen hebben als gevolg van hun genetische verwantschap. De berekening is gebaseerd op Sewall Wright's methode van padcoëfficiënten. De waarde ervan vertegenwoordigt het aandeel van de genen die gemeenschappelijk zijn voor twee verwante individuen boven die welke door de hele bevolking gemeenschappelijk zijn. Meer details hier: "
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:146
@@ -459,6 +457,10 @@ msgstr "De volgende opties maken gebruik van gedateerde links, d.w.z. koppelinge
 msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
 msgstr "Het proces moet worden herhaald (maar zal veel sneller klaar zijn) wanneer een stamboom wordt bewerkt, anders kunt u inconsistente verwantschapsgegevens verkrijgen (weergegeven verwantschappen zijn altijd geldig, maar ze zijn mogelijk niet daadwerkelijk vastgesteld op de gegeven datum, als wijzigingen in de stamboom hier niet worden gesynchroniseerd)."
 
+#: HelpTexts.php:43
+msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
+msgstr ""
+
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:178
 #: ExtendedRelationshipModuleTrait.php:209
@@ -475,9 +477,11 @@ msgstr "Deze verwantschappen kunnen alleen efficiënt worden berekend door de st
 #: ExtendedRelationshipModuleTrait.php:179
 #: ExtendedRelationshipModuleTrait.php:210
 msgid "This allows you to present meaningful connections, such as 'widowed husband marries the sister of his dead wife'."
+msgstr "Zo kunt u betekenisvolle verbanden presenteren, zoals 'weduwnaar trouwt met de zus van zijn overleden vrouw'."
+
+#: HelpTexts.php:44
+msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
-"Zo kunt u betekenisvolle verbanden presenteren, zoals 'weduwnaar trouwt met "
-"de zus van zijn overleden vrouw'."
 
 #: resources/views/sync.phtml:14
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
@@ -503,9 +507,7 @@ msgstr "Onder normale omstandigheden is het percentage genen dat wordt overgedra
 
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
-msgstr ""
-"U kunt dit uitschakelen via de modulevoorkeuren, het is voornamelijk bedoeld "
-"voor foutopsporing."
+msgstr "U kunt dit uitschakelen via de modulevoorkeuren, het is voornamelijk bedoeld voor foutopsporing."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:327
@@ -513,7 +515,7 @@ msgstr ""
 msgid "You may also adjust the access level of this part of the module."
 msgstr "U kunt ook het toegangsniveau van dit deel van de module aanpassen."
 
-#: ExtendedRelationshipsChartController.php:215
+#: ExtendedRelationshipsChartController.php:213
 msgid "parents"
 msgstr "ouders"
 
@@ -522,7 +524,7 @@ msgstr "ouders"
 msgid "unlimited"
 msgstr "onbeperkt"
 
-#: ExtendedRelationshipsChartController.php:113
+#: ExtendedRelationshipsChartController.php:111
 #, php-format
 msgid "via legacy algorithm: %s"
 msgstr "via verouderd algoritme: %s"
