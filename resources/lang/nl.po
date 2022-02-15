@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-02-14 22:11+0100\n"
-"PO-Revision-Date: 2021-10-24 07:37+0000\n"
+"PO-Revision-Date: 2022-02-15 05:58+0000\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: ExtendedRelationshipModule.php:200
 msgid " (see below for details)."
@@ -351,6 +352,8 @@ msgstr "Stamvader"
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr ""
+"Patriarchen zijn de mannelijke voorouders aan het einde van de lijn "
+"('Spitzenahnen')."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
