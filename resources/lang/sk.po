@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-02-14 22:11+0100\n"
-"PO-Revision-Date: 2021-04-20 15:28+0000\n"
+"PO-Revision-Date: 2022-03-11 11:54+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
-"Language-Team: Slovak <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: ExtendedRelationshipModule.php:200
 msgid " (see below for details)."
@@ -350,7 +351,7 @@ msgstr "Patriarcha"
 
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
-msgstr ""
+msgstr "Patriarchovia sú mužskí predkovia na začiatku línie."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
@@ -456,6 +457,8 @@ msgstr "Proces by sa mal zopakovať (ale bude trvať výrazne kratšie) vždy, k
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
+"Rovnakú informáciu získate cez zoznam Vetvy, kde sú zobrazení ako hlavy "
+"vetiev."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:178
@@ -478,6 +481,9 @@ msgstr "Takto sa môžu zobraziť zmysluplné vzťahy, ako napr. „ovdovelý ma
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
+"Tento zoznam poskytuje prehľad podľa priezviska, a môže byť užitočný pri "
+"zisťovaní, či všetky osoby s rovnakým priezviskom sú potomkovia spoločného "
+"patriarchu."
 
 #: resources/views/sync.phtml:14
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
