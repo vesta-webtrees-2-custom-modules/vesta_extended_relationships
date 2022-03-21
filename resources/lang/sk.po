@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-02-14 22:11+0100\n"
-"PO-Revision-Date: 2022-03-11 11:54+0000\n"
+"PO-Revision-Date: 2022-03-21 13:57+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
@@ -505,7 +505,12 @@ msgstr "Nekorigovaný CoR (koeficient vzťahov): %s"
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
-msgstr "Ďalšie informácie (po anglicky) nájdete tu: "
+msgstr ""
+"Za normálnych okolností je podiel génov prenesených z predka na potomka "
+"&ndash; odhadnuté pomocou Σ(0.5)<sup>n</sup> &ndash; a podiel génov, ktoré "
+"majú spoločné (skutočný koeficient príbuznosti) rovnaký. Ak ale došlo k "
+"inbrídingu (príbuzenskému kríženiu), môže vzniknúť nezhoda, ako je "
+"vysvetlené (po anglicky) tu: "
 
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
