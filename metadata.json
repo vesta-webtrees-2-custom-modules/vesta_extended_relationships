@@ -107,5 +107,10 @@
 		"from": "2.0.12",
 		"to": "2.0.20",
 		"changelog": ["Extended data for patriarchs in the list 'Individuals with patriarchs'."]
+	},
+	{
+		"version": "2.0.22.0.0",
+		"from": "2.0.12",
+		"to": "2.0.23"
 	}
 ]
