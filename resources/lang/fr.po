@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-02-14 22:11+0100\n"
-"PO-Revision-Date: 2021-04-13 12:26+0000\n"
+"PO-Revision-Date: 2022-03-24 09:55+0000\n"
 "Last-Translator: Vincent DENIS <vincent.denis06@gmail.com>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/fr/>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: ExtendedRelationshipModule.php:200
 msgid " (see below for details)."
@@ -351,6 +352,8 @@ msgstr "Patriarche"
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr ""
+"Les patriarches sont les ancêtres masculins de fin de lignée "
+"('Spitzenahnen')."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:94
@@ -456,6 +459,8 @@ msgstr "Le processus doit être répété (mais se terminera beaucoup plus rapid
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
+"Les mêmes informations peuvent être obtenues via la liste des succursales, "
+"où ils apparaissent en tant que chefs de succursales."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:178
@@ -478,6 +483,9 @@ msgstr "Cela vous permet de présenter des liens significatifs, tels que «le ma
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
+"Cette liste fournit un aperçu par nom de famille et peut être utilisée pour "
+"déterminer si tous les individus portant un nom de famille spécifique "
+"descendent réellement d'un patriarche commun."
 
 #: resources/views/sync.phtml:14
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
