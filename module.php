@@ -49,4 +49,8 @@ if (!$ok) {
   return;
 }
 
-return app(ExtendedRelationshipModule::class);
+if (str_starts_with(Webtrees::VERSION, '2.1')) {
+    return app(ExtendedRelationshipModule::class);
+}
+
+return app(ExtendedRelationshipModule_20::class);

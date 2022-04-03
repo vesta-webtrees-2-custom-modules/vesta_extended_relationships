@@ -8,11 +8,15 @@ use Closure;
 use Exception;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
+use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
+use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Query\JoinClause;
 use ReflectionClass;
+use function app;
 
 class Descendant {
 
@@ -139,7 +143,15 @@ class ExtendedRelationshipController {
   protected $oldStyleRelationshipPathMethod;
 
   public function __construct() {
-    $this->oldStyleRelationshipPathProvider = new RelationshipsChartModule(app(TreeService::class));
+    if (str_starts_with(Webtrees::VERSION, '2.1')) {
+        $this->oldStyleRelationshipPathProvider = new RelationshipsChartModule(
+            app(ModuleService::class),    
+            app(RelationshipService::class),
+            app(TreeService::class));
+    }  else {
+        $this->oldStyleRelationshipPathProvider = new RelationshipsChartModule(
+                app(TreeService::class));        
+    }
 
     //grrr
     $class = new ReflectionClass($this->oldStyleRelationshipPathProvider);

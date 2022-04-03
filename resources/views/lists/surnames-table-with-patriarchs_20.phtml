@@ -1,0 +1,175 @@
+<?php
+
+use Cissee\Webtrees\Module\ExtendedRelationships\AllAncestors;
+use Cissee\WebtreesExt\MoreI18N;
+use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Contracts\UserInterface;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Module\FamilyListModule;
+use Fisharebest\Webtrees\Module\IndividualListModule;
+use Fisharebest\Webtrees\Module\ModuleChartInterface;
+use Fisharebest\Webtrees\Module\ModuleInterface;
+use Fisharebest\Webtrees\Module\RelationshipsChartModule;
+use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\Services\ModuleService;
+use function GuzzleHttp\json_encode;
+
+$relationshipsChartModule = app(ModuleService::class)
+    ->findByComponent(ModuleChartInterface::class, $tree, Auth::user())
+    ->first(static function (ModuleInterface $module) {
+        return $module instanceof RelationshipsChartModule;
+    });
+    
+//cf BranchesListModule
+
+// Highlight direct-line ancestors of this individual.
+$xref = $tree->getUserPreference(Auth::user(), UserInterface::PREF_TREE_ACCOUNT_XREF);
+$self = Registry::individualFactory()->make($xref, $tree);
+
+if ($self instanceof Individual) {
+    $ancestors = AllAncestors::allAncestors($self);
+} else {
+    $ancestors = [];
+}
+?>
+
+<table
+    class="table table-bordered table-sm wt-table-surname datatables d-none"
+    <?= view('lists/datatables-attributes') ?>
+    data-info="false"
+    data-paging="false"
+    data-searching="false"
+    data-order="<?= e(json_encode($order ?? [[2, 'desc']])) ?>"
+>
+    <caption class="sr-only">
+        <?= MoreI18N::xlate('Surnames') ?>
+    </caption>
+    <thead>
+        <tr>
+            <th>
+                <?= MoreI18N::xlate('Surname') ?>
+            </th>
+            <?php
+              //[RC] added
+            ?>
+            <th>
+                <?= /* I18N: end-of line ancestor, 'Spitzenahn' */ I18N::translate('Patriarch') ?>
+                <?php
+                    echo $helpLink;
+                ?>
+            </th>
+            <th>
+                <?php if ($families) :?>
+                    <?= MoreI18N::xlate('Spouses') ?>
+                <?php else : ?>
+                    <?= MoreI18N::xlate('Individuals') ?>
+                <?php endif ?>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php foreach ($surnames as $surn => $surns) : ?>
+            <tr>
+                <td data-sort="<?= e($surn) ?>">
+                    <!-- Multiple surname variants, e.g. von Groot, van Groot, van der Groot, etc. -->
+                    <?php foreach ($surns as $spfxsurn_ => $indis) : ?>
+                        <?php
+                          //[RC] adjusted
+                          $spfxsurn = $indis->getActualSurname();
+                        ?>
+                        <?php if ($module instanceof IndividualListModule || $module instanceof FamilyListModule) : ?>
+                            <?php if ($spfxsurn) : ?>
+                                <?php if ($surn !== '') : ?>
+                                    <a href="<?= $module->listUrl($tree, ['surname' => $surn]) ?>" dir="auto">
+                                        <?= e($spfxsurn) ?>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?= $module->listUrl($tree, ['alpha' => ',']) ?>" dir="auto">
+                                        <?= e($spfxsurn) ?>
+                                    </a>
+                                <?php endif ?>
+                            <?php else : ?>
+                                <!-- No surname, but a value from "2 SURN"? A common workaround for toponyms, etc. -->
+                                <a href="<?= $module->listUrl($tree, ['surname' => $surn]) ?>" dir="auto"><?= e($surn) ?></a>
+                            <?php endif ?>
+                        <?php else : ?>
+                            <?php if ($spfxsurn) : ?>
+                                <span dir="auto"><?= e($spfxsurn) ?></span>
+                            <?php else : ?>
+                                <!-- No surname, but a value from "2 SURN"? A common workaround for toponyms, etc. -->
+                                <span dir="auto"><?= e($surn) ?></span>
+                            <?php endif ?>    
+                        <?php endif ?>
+                        <br>
+                    <?php endforeach ?>
+                </td>
+                <?php
+                  //[RC] added
+                ?>
+                <td data-sort="<?= e($surn) ?>">
+                  <?php 
+                  foreach ($surns as $indis) {
+                    $patriarch = null;
+                    $patriarchXref = $indis->getPatriarchXref();
+                    if (!$indis->isSame()) {
+                      /** @var Individual */
+                      $patriarch = Registry::individualFactory()->make($patriarchXref, $tree);                      
+                    }
+                    if (($patriarch != null) && $patriarch->canShow()) {
+                        //re-using code from branches list, i.e. BranchesListModule
+                        $individual = $patriarch;
+                        
+                        // Is this individual one of our ancestors?
+                        $sosa = array_search($individual, $ancestors, true);
+                        if (is_int($sosa) && $relationshipsChartModule instanceof RelationshipsChartModule) {
+                            $sosa_class = 'search_hit';
+                            $sosa_html  = ' <a class="small wt-chart-box-' . strtolower($individual->sex()) . '" href="' . e($relationshipsChartModule->chartUrl($individual, ['xref2' => $ancestors[1]->xref()])) . '" rel="nofollow" title="' . MoreI18N::xlate('Relationship') . '">' . I18N::number($sosa) . '</a>' . AllAncestors::sosaGeneration($sosa);
+                        } else {
+                            $sosa_class = '';
+                            $sosa_html  = '';
+                        }
+
+                        // Generate HTML for this individual, and all their descendants
+                        $indi_html = '<small>' . view('icons/sex', ['sex' => $individual->sex()]) . '</small><a class="' . $sosa_class . '" href="' . e($individual->url()) . '">' . $individual->fullName() . '</a> ' . $individual->lifespan() . $sosa_html;
+                        
+                        //rather than using standard representation of individual within list
+                        //'<a href="' . e($patriarch->url()) . '">' . $patriarch->fullName() . '</a><br />
+  
+                        echo $indi_html;
+                    } else {
+                      ?><br /><?php
+                    }
+                  }
+                  ?>
+                </td>
+                <?php
+                  //[RC] adjusted
+                  $sum = 0;
+                  foreach ($surns as $indis) {
+                    $sum += $indis->getCount();
+                  }
+                ?>
+                <td class="text-center" data-sort="<?= $sum ?>">
+                    <?php foreach ($surns as $indis) : ?>
+                        <?php
+                           //[RC] adjusted
+                        ?>
+                        <?= I18N::number($indis->getCount()) ?>
+                        <br>
+                    <?php endforeach ?>
+
+                    <?php if (count($surns) > 1) : ?>
+                        <?= I18N::number($sum) ?>
+                    <?php endif ?>
+                </td>
+            </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>
+
+<?php
+//for help link
+?>
+<?= view('modals/ajax') ?>

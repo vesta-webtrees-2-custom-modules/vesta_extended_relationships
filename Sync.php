@@ -7,7 +7,7 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 use Cissee\WebtreesExt\Requests;
 use Exception;
 use Fisharebest\Webtrees\Family;
-use Fisharebest\Webtrees\Http\Controllers\AbstractBaseController;
+use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\TreeService;
@@ -20,15 +20,15 @@ use function app;
 use function route;
 
 //adapted from GedcomFileController
-class Sync extends AbstractBaseController {
+class Sync {
 
-  /** @var string */
-  protected $layout = 'layouts/ajax';
+  use ViewResponseTrait;
 
   protected $moduleName;
 
   public function __construct(string $moduleName) {
     $this->moduleName = $moduleName;
+    $this->layout = 'layouts/ajax';
   }
 
 

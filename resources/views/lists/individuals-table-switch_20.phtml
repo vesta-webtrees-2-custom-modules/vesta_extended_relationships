@@ -1,0 +1,34 @@
+<?php
+
+declare(strict_types=1);
+
+use Cissee\Webtrees\Module\ExtendedRelationships\IndividualsWithPatriarchs;
+use Fisharebest\Webtrees\Tree;
+
+/**
+ * @var Collection<Individual> $individuals (original usage, actually array, not collection)
+ * @var bool                   $sosa
+ * @var Tree                   $tree
+ */
+
+if (sizeof($individuals) > 0) {
+  if (current($individuals) instanceof IndividualsWithPatriarchs) {
+    /** @var IndividualsWithPatriarchs */
+    $wrapped = current($individuals);
+    
+    //adjusted view
+    echo view('lists/individuals-table-with-patriarchs', [
+      'individuals' => $wrapped->getOriginalCollection(),
+      'patriarchs' => $wrapped->getPatriarchs(),  
+      'sosa' => $sosa,
+      'tree' => $tree]);
+    
+    return;
+  }
+  
+  //original view
+  echo view('::lists/individuals-table', [
+    'individuals' => $individuals,
+    'sosa' => $sosa,
+    'tree' => $tree]);
+}

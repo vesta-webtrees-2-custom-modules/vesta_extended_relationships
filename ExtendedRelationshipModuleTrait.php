@@ -2,6 +2,7 @@
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
+use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\I18N;
 use Vesta\CommonI18N;
 use Vesta\ControlPanelUtils\Model\ControlPanelCheckbox;
@@ -292,7 +293,7 @@ trait ExtendedRelationshipModuleTrait {
                 '15')));
 
     $factsSub[] = new ControlPanelSubsection(
-            CommonI18N::associatedFactsAndEvents(),
+            MoreI18N::xlate('Associated events'),
             array(new ControlPanelCheckbox(
                 /* I18N: Module Configuration */I18N::translate('Only show relationships for specific facts and events'),
                 /* I18N: Module Configuration */I18N::translate('Associated facts and events are displayed when the respective toggle checkbox is selected on the tab.') . ' ' .

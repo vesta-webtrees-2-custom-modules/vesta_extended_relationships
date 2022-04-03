@@ -2,11 +2,12 @@
 
 use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
+use Fisharebest\Webtrees\Http\RequestHandlers\ModulesAllPage;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\View;
 ?>
 
-<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), route('modules') => MoreI18N::xlate('Modules'), $title]]) ?>
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), route(ModulesAllPage::class) => MoreI18N::xlate('Modules'), $title]]) ?>
 
 <h1><?= $title ?></h1>
 
