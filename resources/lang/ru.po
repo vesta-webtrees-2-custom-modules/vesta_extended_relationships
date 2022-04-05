@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-04-03 20:23+0200\n"
-"PO-Revision-Date: 2022-03-23 09:57+0000\n"
+"PO-Revision-Date: 2022-04-05 07:39+0000\n"
 "Last-Translator: Олег <uolega@yandex.ru>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/ru/>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.12-dev\n"
 
 #: ExtendedRelationshipModule.php:221
@@ -320,11 +322,11 @@ msgstr "Устаревший алгоритм для имен путей отн�
 #. I18N: Abbreviation for “Sosa-Stradonitz number”. This is an individual’s surname, so may need transliterating into non-latin alphabets.
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:279
 msgid "Married name"
-msgstr ""
+msgstr "Фамилия в браке"
 
 #: ExtendedRelationshipModule.php:266
 msgid "No relationship found"
-msgstr "Отношения не найдены"
+msgstr "Связь не найдена"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:302
