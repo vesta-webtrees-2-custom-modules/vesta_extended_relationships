@@ -12,6 +12,7 @@ use Cissee\WebtreesExt\Module\ModuleMetaInterface;
 use Cissee\WebtreesExt\Module\ModuleMetaTrait;
 use Cissee\WebtreesExt\Modules\RelationshipPath;
 use Cissee\WebtreesExt\Modules\RelationshipUtils;
+use Cissee\WebtreesExt\MoreI18N;
 use Cissee\WebtreesExt\Requests;
 use Fig\Http\Message\RequestMethodInterface;
 use Fisharebest\Localization\Translation;
@@ -263,7 +264,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
             }
         }
         if ($text === null) {
-            $text = I18N::translate('No relationship found');
+            $text = MoreI18N::xlate('No relationship found');
         }
 
         $parameters = [

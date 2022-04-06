@@ -242,7 +242,7 @@ class ExtendedRelationshipModule_20 extends RelationshipsChartModule implements
       }
     }
     if ($text === null) {
-      $text = I18N::translate('No relationship found');
+      $text = MoreI18N::xlate('No relationship found');
     }
 
     $parameters = [
