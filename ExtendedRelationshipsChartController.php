@@ -105,7 +105,7 @@ class ExtendedRelationshipsChartController {
             $relationshipPath = RelationshipPath::create($tree, $path);
             $rel = RelationshipUtils::getRelationshipName($relationshipPath);
 
-            echo '<h3>', I18N::translate('Relationship: %s', $rel), '</h3>';
+            echo '<h3>', MoreI18N::xlate('Relationship: %s', $rel), '</h3>';
 
             $debugWebtreesRel = boolval($this->module->getPreference('CHART_SHOW_LEGACY', '1'));
             if ($debugWebtreesRel) {

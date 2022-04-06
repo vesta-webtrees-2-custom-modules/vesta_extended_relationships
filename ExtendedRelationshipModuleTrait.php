@@ -118,7 +118,7 @@ trait ExtendedRelationshipModuleTrait {
             new ControlPanelRadioButton(I18N::number(2), null, 2),
             new ControlPanelRadioButton(I18N::number(3), null, 3),
             new ControlPanelRadioButton(/* I18N: Module Configuration */I18N::translate('unlimited'), null, self::UNLIMITED_RECURSION)),
-                /* I18N: Module Configuration */I18N::translate('Searching for all possible relationships can take a lot of time in complex trees.'),
+                /* I18N: Module Configuration */MoreI18N::xlate('Searching for all possible relationships can take a lot of time in complex trees.'),
                 'RELATIONSHIP_RECURSION',
                 self::DEFAULT_RECURSION)));
 

@@ -281,7 +281,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
             'tree' => $tree->name(),
             ] + $parameters + self::DEFAULT_PARAMETERS);
 
-        return '<a href="' . $url . '" title="' . I18N::translate('Relationships') . '">' . $text . '</a>';
+        return '<a href="' . $url . '" title="' . MoreI18N::xlate('Relationships') . '">' . $text . '</a>';
     }
 
     public function getRelationshipLinkForFactsTabFillViaAjax(
@@ -620,7 +620,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
         if ($gedcomid !== '' && $gedcomid !== $individual->xref()) {
             return new Menu(
-                $this->getChartTitle(I18N::translate('Relationship to me')),
+                $this->getChartTitle(MoreI18N::xlate('Relationship to me')),
                 $this->chartUrl($individual, ['xref2' => $gedcomid]),
                 $this->chartMenuClass(),
                 $this->chartUrlAttributes()
@@ -628,7 +628,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         }
 
         return new Menu(
-            $this->getChartTitle(I18N::translate('Relationships')),
+            $this->getChartTitle(MoreI18N::xlate('Relationships')),
             $this->chartUrl($individual),
             $this->chartMenuClass(),
             $this->chartUrlAttributes()
@@ -751,7 +751,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
             }
 
             /* I18N: %s are individual’s names */
-            $title = I18N::translate('Relationships between %1$s and %2$s', $individual1->fullName(), $individual2->fullName());
+            $title = MoreI18N::xlate('Relationships between %1$s and %2$s', $individual1->fullName(), $individual2->fullName());
 
             $parameters = [
                 'ajax' => true,
@@ -766,7 +766,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
             $ajax_url = $this->chartUrl($individual1, $parameters);
         } else {
-            $title = I18N::translate('Relationships');
+            $title = MoreI18N::xlate('Relationships');
             $ajax_url = '';
         }
 

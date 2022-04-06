@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2022-04-06 19:27+0200\n"
+"POT-Creation-Date: 2022-04-06 21:35+0200\n"
 "PO-Revision-Date: 2021-04-13 14:26+0000\n"
 "Last-Translator: Gunnar-GO <gunnar@go-designs.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.6-dev\n"
 
-#: ExtendedRelationshipModule.php:222 ExtendedRelationshipModule_20.php:200
+#: ExtendedRelationshipModule.php:222 ExtendedRelationshipModule_20.php:201
 msgid " (see below for details)."
 msgstr " (siehe unten für Einzelheiten)."
 
@@ -86,10 +86,6 @@ msgstr "Verknüpfte Tatsachen und Ereignisse werden angezeigt, wenn die entsprec
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
 msgstr " "
 
-#: resources/views/sync.phtml:26
-msgid "Calculating…"
-msgstr "Berechne…"
-
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:320
 msgid "Chart Settings"
@@ -149,7 +145,7 @@ msgstr "Einstellungen für den Reiter 'Familien'"
 #: ExtendedRelationshipModuleTrait.php:205
 #: ExtendedRelationshipModuleTrait.php:251
 #: ExtendedRelationshipModuleTrait.php:276
-#: ExtendedRelationshipModule_20.php:948
+#: ExtendedRelationshipModule_20.php:949
 msgid "Find a closest relationship via common ancestors"
 msgstr "Die engste verwandschaftliche Beziehung"
 
@@ -161,11 +157,11 @@ msgstr "Die engste verwandschaftliche Beziehung"
 #: ExtendedRelationshipModuleTrait.php:255
 #: ExtendedRelationshipModuleTrait.php:280
 #: ExtendedRelationshipModuleTrait.php:288
-#: ExtendedRelationshipModule_20.php:966
+#: ExtendedRelationshipModule_20.php:967
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
 msgstr "Die engste verwandschaftliche Beziehung, oder die engste Verbindung überhaupt"
 
-#: ExtendedRelationshipModule.php:1010 ExtendedRelationshipModule_20.php:976
+#: ExtendedRelationshipModule.php:1010 ExtendedRelationshipModule_20.php:977
 msgid "Find all overall connections"
 msgstr "Alle Verbindungen"
 
@@ -176,7 +172,7 @@ msgstr "Alle Verbindungen"
 #: ExtendedRelationshipModuleTrait.php:208
 #: ExtendedRelationshipModuleTrait.php:253
 #: ExtendedRelationshipModuleTrait.php:278
-#: ExtendedRelationshipModule_20.php:956
+#: ExtendedRelationshipModule_20.php:957
 msgid "Find all relationships via lowest common ancestors"
 msgstr "Alle verwandtschaftlichen Beziehungen"
 
@@ -187,11 +183,11 @@ msgstr "Alle verwandtschaftlichen Beziehungen"
 #: ExtendedRelationshipModuleTrait.php:206
 #: ExtendedRelationshipModuleTrait.php:252
 #: ExtendedRelationshipModuleTrait.php:277
-#: ExtendedRelationshipModule_20.php:952
+#: ExtendedRelationshipModule_20.php:953
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr "Alle kleinsten gemeinsamen Vorfahren, mit jeweils einer Beziehung"
 
-#: ExtendedRelationshipModule.php:1012 ExtendedRelationshipModule_20.php:978
+#: ExtendedRelationshipModule.php:1012 ExtendedRelationshipModule_20.php:979
 msgid "Find other overall connections"
 msgstr "Andere Verbindungen"
 
@@ -214,7 +210,7 @@ msgstr "Andere/alle Verbindungen"
 #: ExtendedRelationshipModuleTrait.php:256
 #: ExtendedRelationshipModuleTrait.php:281
 #: ExtendedRelationshipModuleTrait.php:289
-#: ExtendedRelationshipModule_20.php:970
+#: ExtendedRelationshipModule_20.php:971
 msgid "Find the closest overall connections"
 msgstr "Die engste Verbindung überhaupt"
 
@@ -226,7 +222,7 @@ msgstr "Die engste Verbindung überhaupt"
 #: ExtendedRelationshipModuleTrait.php:254
 #: ExtendedRelationshipModuleTrait.php:279
 #: ExtendedRelationshipModuleTrait.php:287
-#: ExtendedRelationshipModule_20.php:962
+#: ExtendedRelationshipModule_20.php:963
 msgid "Find the closest overall connections (preferably via common ancestors)"
 msgstr "Die engste Verbindung (Verwandtschaft bevorzugt)"
 
@@ -306,7 +302,7 @@ msgid "In that case, you should also disallow persistent toggle, as it has no vi
 msgstr "In diesem Fall solltest Du auch das dauerhafte Umschalten deaktivieren, da es keine sichtbare Wirkung hat."
 
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
-#: ExtendedRelationshipModule.php:1022 ExtendedRelationshipModule_20.php:988
+#: ExtendedRelationshipModule.php:1022 ExtendedRelationshipModule_20.php:989
 msgid "Individuals with Patriarchs"
 msgstr "Personen mit Patriarchen"
 
@@ -322,11 +318,6 @@ msgstr "Es ist komplizierter diesen genauen CoR zu bestimmen und die Unterschied
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
 msgstr "Alter Algorithmus für Namen der Beziehungspfade"
-
-#. I18N: Abbreviation for “Sosa-Stradonitz number”. This is an individual’s surname, so may need transliterating into non-latin alphabets.
-#: resources/views/lists/individuals-table-with-patriarchs.phtml:279
-msgid "Married name"
-msgstr ""
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:302
@@ -350,7 +341,7 @@ msgstr "Im Diagramm auswählbare Optionen"
 
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: HelpTexts.php:40
-#: resources/views/lists/individuals-table-with-patriarchs.phtml:244
+#: resources/views/lists/individuals-table-with-patriarchs.phtml:243
 #: resources/views/lists/individuals-table-with-patriarchs_20.phtml:245
 #: resources/views/lists/surnames-table-with-patriarchs.phtml:57
 #: resources/views/lists/surnames-table-with-patriarchs_20.phtml:57
@@ -366,27 +357,6 @@ msgstr ""
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
 msgstr "Berechnung eines Pfades bevorzugt über gemeinsame Vorfahren für alle Teile des Pfades."
 
-#: ExtendedRelationshipModule.php:623 ExtendedRelationshipModule_20.php:588
-msgid "Relationship to me"
-msgstr "Beziehung zu mir"
-
-#: ExtendedRelationshipsChartController.php:108
-#, php-format
-msgid "Relationship: %s"
-msgstr "Beziehung: %s"
-
-#: ExtendedRelationshipModule.php:284 ExtendedRelationshipModule.php:631
-#: ExtendedRelationshipModule.php:769 ExtendedRelationshipModule_20.php:262
-#: ExtendedRelationshipModule_20.php:596 ExtendedRelationshipModule_20.php:736
-msgid "Relationships"
-msgstr "Beziehungen"
-
-#. I18N: %s are individual’s names
-#: ExtendedRelationshipModule.php:754 ExtendedRelationshipModule_20.php:721
-#, php-format
-msgid "Relationships between %1$s and %2$s"
-msgstr "Beziehungen zwischen %1$s und %2$s"
-
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:110
 msgid "Same option as in the original relationship chart, further configurable via recursion level:"
@@ -396,11 +366,6 @@ msgstr "Die gleiche Option wie im ursprünglichen 'Beziehungen'-Diagramm. Wie do
 #: ExtendedRelationshipModuleTrait.php:105
 msgid "Same option as in the original relationship chart."
 msgstr "Die gleiche Option wie im ursprünglichen 'Beziehungen'-Diagramm."
-
-#. I18N: Module Configuration
-#: ExtendedRelationshipModuleTrait.php:121
-msgid "Searching for all possible relationships can take a lot of time in complex trees."
-msgstr "Die Suche nach allen möglichen Beziehungen kann in komplexen Stammbäumen eine lange Zeit benötigen."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:178
@@ -426,18 +391,13 @@ msgstr "Gemeinsame Vorfahren zu Beginn der Beziehungspfade anzeigen"
 msgid "Show legacy relationship path names"
 msgstr "Zeige alte Namen der Beziehungspfade"
 
-#. I18N: Reverse the order of two individuals
-#: resources/views/page.phtml:75 resources/views/page_20.phtml:75
-msgid "Swap individuals"
-msgstr "Personen tauschen"
-
 #: ExtendedRelationshipModule.php:215 ExtendedRelationshipModule.php:853
-#: ExtendedRelationshipModule.php:859 ExtendedRelationshipModule_20.php:193
-#: ExtendedRelationshipModule_20.php:821 ExtendedRelationshipModule_20.php:827
+#: ExtendedRelationshipModule.php:859 ExtendedRelationshipModule_20.php:194
+#: ExtendedRelationshipModule_20.php:822 ExtendedRelationshipModule_20.php:828
 msgid "Synchronization"
 msgstr "Synchronisierung"
 
-#: ExtendedRelationshipModule.php:220 ExtendedRelationshipModule_20.php:198
+#: ExtendedRelationshipModule.php:220 ExtendedRelationshipModule_20.php:199
 #: ExtendedRelationshipsChartController.php:289
 msgid "Synchronize trees to obtain dated relationship links"
 msgstr "Stammbäume synchronisieren, um datierte Verwandtschaftsbeziehungen zu erhalten"
@@ -536,10 +496,8 @@ msgstr "unbegrenzt"
 msgid "via legacy algorithm: %s"
 msgstr "über alten Algorithmus: %s"
 
-#. I18N: A button label.
-#: resources/views/page.phtml:70 resources/views/page_20.phtml:70
-msgid "view"
-msgstr "Ansicht"
+#~ msgid "Calculating…"
+#~ msgstr "Berechne…"
 
 #~ msgid "Control panel"
 #~ msgstr "Verwaltung"
@@ -555,3 +513,24 @@ msgstr "Ansicht"
 
 #~ msgid "No relationship found"
 #~ msgstr "Keine Beziehung gefunden"
+
+#~ msgid "Relationship to me"
+#~ msgstr "Beziehung zu mir"
+
+#~ msgid "Relationship: %s"
+#~ msgstr "Beziehung: %s"
+
+#~ msgid "Relationships"
+#~ msgstr "Beziehungen"
+
+#~ msgid "Relationships between %1$s and %2$s"
+#~ msgstr "Beziehungen zwischen %1$s und %2$s"
+
+#~ msgid "Searching for all possible relationships can take a lot of time in complex trees."
+#~ msgstr "Die Suche nach allen möglichen Beziehungen kann in komplexen Stammbäumen eine lange Zeit benötigen."
+
+#~ msgid "Swap individuals"
+#~ msgstr "Personen tauschen"
+
+#~ msgid "view"
+#~ msgstr "Ansicht"
