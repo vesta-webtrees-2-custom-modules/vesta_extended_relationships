@@ -32,7 +32,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 ### Download<a name="download"/>
 
-* Current version: 2.0.23+2.1.0-beta.2.0.1
+* Current version: 2.0.23+2.1.0-beta.2.1.0
 * Based on and tested with webtrees 2.0.23. Requires webtrees 2.0.12 or later. Should also work with webtrees 2.1.0-beta.2.
 * Requires the ⚶ Vesta Common module ('vesta_common').
 * Displays data via the ⚶ Vesta Families module ('vesta_relatives'). 

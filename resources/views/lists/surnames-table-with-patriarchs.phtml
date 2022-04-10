@@ -42,7 +42,7 @@ if ($self instanceof Individual) {
     data-searching="false"
     data-order="<?= e(json_encode($order ?? [[2, 'desc']])) ?>"
 >
-    <caption class="sr-only">
+    <caption class="visually-hidden">
         <?= MoreI18N::xlate('Surnames') ?>
     </caption>
     <thead>
