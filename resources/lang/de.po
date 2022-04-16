@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-04-06 21:35+0200\n"
-"PO-Revision-Date: 2022-04-15 19:07+0000\n"
+"PO-Revision-Date: 2022-04-16 12:09+0000\n"
 "Last-Translator: Bernd Schwendinger <b0ernie@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
@@ -436,6 +436,8 @@ msgstr "Der Vorgang sollte bei jeder Bearbeitung des Stammbaums wiederholt werde
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
+"Die gleichen Informationen können über die Liste der Familienzweige "
+"abgerufen werden, wo sie als Spitze des Familienzweigs angezeigt werden."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:179
@@ -458,6 +460,9 @@ msgstr "So kannst Du sinnvolle Zusammenhänge darstellen, wie z. B. 'verwitweter
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
+"Diese Liste bietet eine Übersicht nach Nachnamen und kann dazu verwendet "
+"werden, festzustellen, ob alle Personen mit einem bestimmten Nachnamen "
+"tatsächlich von einem gemeinsamen Patriarchen abstammen."
 
 #: resources/views/sync.phtml:15
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
