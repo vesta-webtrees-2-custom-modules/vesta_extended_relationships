@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-04-06 21:35+0200\n"
-"PO-Revision-Date: 2022-04-16 12:09+0000\n"
+"PO-Revision-Date: 2022-04-16 14:08+0000\n"
 "Last-Translator: Bernd Schwendinger <b0ernie@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
@@ -85,7 +85,13 @@ msgstr "Verknüpfte Tatsachen und Ereignisse werden angezeigt, wenn die entsprec
 #: HelpTexts.php:20
 #, php-format
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
-msgstr " "
+msgstr ""
+"Grundsätzlich trägt jeder Pfad (über gemeinsame Vorfahren) zwischen zwei "
+"Individuen zum CoR bei, und zwar umgekehrt proportional zu seiner Länge: "
+"Jeder Pfad der Länge 2 (z.B. zwischen Vollgeschwistern) trägt %1$s bei, "
+"jeder Pfad der Länge 4 (z.B. zwischen Cousins und Cousinen ersten Grades) "
+"trägt %2$s bei, im Allgemeinen trägt jeder Pfad der Länge n (0,5)<sup>n</"
+"sup> bei."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:320
