@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-04-06 21:35+0200\n"
-"PO-Revision-Date: 2021-04-13 14:26+0000\n"
-"Last-Translator: Gunnar-GO <gunnar@go-designs.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
+"PO-Revision-Date: 2022-04-15 19:07+0000\n"
+"Last-Translator: Bernd Schwendinger <b0ernie@gmx.net>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: ExtendedRelationshipModule.php:222 ExtendedRelationshipModule_20.php:201
 msgid " (see below for details)."
@@ -351,6 +352,7 @@ msgstr "Ältester männlicher Vorfahr"
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr ""
+"Patriarchen sind die männlichen Vorfahren am Ende der Linie ('Spitzenahnen')."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:95
@@ -404,7 +406,14 @@ msgstr "Stammbäume synchronisieren, um datierte Verwandtschaftsbeziehungen zu e
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
-msgstr "Details hier: "
+msgstr ""
+"Der CoR (Coefficient of Relationship) ist proportional zu der Anzahl der "
+"Gene, die zwei Individuen aufgrund ihrer genetischen Verwandtschaft "
+"gemeinsam haben. Seine Berechnung basiert auf der Methode der "
+"Pfadkoeffizienten von Sewall Wright. Sein Wert gibt den Anteil der Gene an, "
+"die zwei verwandte Individuen gemeinsam haben, und zwar im Vergleich zu den "
+"Genen, die die gesamte Population gemeinsam hat. Weitere Details sind hier "
+"zu finden: "
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:147
