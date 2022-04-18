@@ -20,6 +20,7 @@ use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\Family;
+use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Menu;
@@ -911,31 +912,43 @@ class ExtendedRelationshipModule_20 extends RelationshipsChartModule implements
   //IndividualFactsTabExtenderInterface
   //RelativesTabExtenderInterface
 
-  public function hFactsTabGetOutputAfterTab(Individual $person) {
+  public function hFactsTabGetOutputAfterTab(
+      GedcomRecord $record, bool $ajax): GenericViewElement {
+      
     $toggleableRels = boolval($this->getPreference('FTAB_TOGGLEABLE_RELS', '1'));
     return $this->getOutputAfterTab($toggleableRels, 'show-relationships-factstab');
   }
 
-  public function hRelativesTabGetOutputAfterTab(Individual $person) {
+  public function hRelativesTabGetOutputAfterTab(
+      Individual $person) {
+      
     $toggleableRels = boolval($this->getPreference('TAB_TOGGLEABLE_RELS', '1'));
     return $this->getOutputAfterTab($toggleableRels, 'show-relationships');
   }
 
-  public function hFactsTabGetOutputInDBox(Individual $person) {
+  public function hFactsTabGetOutputInDBox(
+      GedcomRecord $record): GenericViewElement {
+      
     $toggleableRels = boolval($this->getPreference('FTAB_TOGGLEABLE_RELS', '1'));
     return $this->getOutputInDescriptionBox($toggleableRels, 'show-relationships-factstab', 'toggleableRelsFactstab', 'Relationships');
   }
 
-  public function hRelativesTabGetOutputInDBox(Individual $person) {
+  public function hRelativesTabGetOutputInDBox(
+      Individual $person) {
+      
     $toggleableRels = boolval($this->getPreference('TAB_TOGGLEABLE_RELS', '1'));
     return $this->getOutputInDescriptionBox($toggleableRels, 'show-relationships', 'toggleableRels', 'Relationships');
   }
 
-  public function hFactsTabGetOutputAfterDBox(Individual $person) {
+  public function hFactsTabGetOutputAfterDBox(
+      Individual $person): GenericViewElement {
+      
     return $this->getOutputAfterDescriptionBox($person, 'F', 'mainRelsFactstab', 'toggleableRelsFactstab');
   }
 
-  public function hRelativesTabGetOutputAfterDBox(Individual $person) {
+  public function hRelativesTabGetOutputAfterDBox(
+      Individual $person) {
+      
     return $this->getOutputAfterDescriptionBox($person, '', 'mainRels', 'toggleableRels');
   }
     

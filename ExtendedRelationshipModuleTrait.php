@@ -329,6 +329,7 @@ trait ExtendedRelationshipModuleTrait {
             $familiesSub);
 
     $sections[] = new ControlPanelSection(
+            //TODO: also used on the family page!
             CommonI18N::factsAndEventsTabSettings(),
             /* I18N: Module Configuration */I18N::translate('If you do not want to change the functionality with respect to the original Facts and Events tab, select \'Do not show any relationship\' in the first block.') . ' ' .
             /* I18N: Module Configuration */I18N::translate('If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect.') . ' ' .

@@ -20,6 +20,7 @@ use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\Family;
+use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Menu;
@@ -333,7 +334,6 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
             $main = "<span class=\"toggleableRelsFactstab " . $rel . " collapse\"></span>";
         }
 
-
         ob_start();
 
         if (!$toggleableRels) {
@@ -371,8 +371,11 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     //Families Tab
 
-    protected function getOutputAfterTab($toggleableRels, $toggle) {
-        $post = "";
+    protected function getOutputAfterTab(
+        $toggleableRels, 
+        $toggle) {
+        
+        $post = '';
 
         if ($toggleableRels) {
             $post = $this->getScript($toggle);
@@ -381,7 +384,9 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         return new GenericViewElement('', $post);
     }
 
-    protected function getScript($toggle) {
+    protected function getScript(
+        string $toggle) {
+        
         ob_start();
         ?>
         <script>
@@ -401,7 +406,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         if ($toggleableRels) {
             ?>
             <label>
-                <input id="<?php echo $id; ?>" type="checkbox" data-bs-toggle="collapse" data-bs-target=".<?php echo $targetClass; ?>" data-wt-persist="<?php echo $id; ?>">
+                <input id="<?php echo $id; ?>" type="checkbox" data-bs-toggle="collapse" data-bs-target=".<?php echo $targetClass; ?>" data-wt-persist="<?php echo $id; ?>" autocomplete="off">
                 <?php echo I18N::translate($label); ?>
             </label>
             <?php
@@ -874,7 +879,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $relationship_suffix,
         $inverse) {
 
-        [, $tag] = explode(':', $event->tag());
+        $tag = explode(':', $event->tag())[1];
 
         if ($inverse) {
             $restricted = (boolean) $this->getPreference('TAB_REL_TO_ASSO_RESTRICTED', '0');
@@ -944,7 +949,15 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     //IndividualFactsTabExtenderInterface
     //RelativesTabExtenderInterface
 
-    public function hFactsTabGetOutputAfterTab(Individual $person) {
+    public function hFactsTabGetOutputAfterTab(
+        GedcomRecord $record,
+        bool $ajax): GenericViewElement {
+        
+        if (!$ajax) {
+            //nothing to do - in fact must not initialize twice!
+            return GenericViewElement::createEmpty();
+        }
+        
         $toggleableRels = boolval($this->getPreference('FTAB_TOGGLEABLE_RELS', '1'));
         return $this->getOutputAfterTab($toggleableRels, 'show-relationships-factstab');
     }
@@ -954,21 +967,29 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         return $this->getOutputAfterTab($toggleableRels, 'show-relationships');
     }
 
-    public function hFactsTabGetOutputInDBox(Individual $person) {
+    public function hFactsTabGetOutputInDBox(
+        GedcomRecord $record): GenericViewElement {
+        
         $toggleableRels = boolval($this->getPreference('FTAB_TOGGLEABLE_RELS', '1'));
         return $this->getOutputInDescriptionBox($toggleableRels, 'show-relationships-factstab', 'toggleableRelsFactstab', 'Relationships');
     }
 
-    public function hRelativesTabGetOutputInDBox(Individual $person) {
+    public function hRelativesTabGetOutputInDBox(
+        Individual $person) {
+        
         $toggleableRels = boolval($this->getPreference('TAB_TOGGLEABLE_RELS', '1'));
         return $this->getOutputInDescriptionBox($toggleableRels, 'show-relationships', 'toggleableRels', 'Relationships');
     }
 
-    public function hFactsTabGetOutputAfterDBox(Individual $person) {
+    public function hFactsTabGetOutputAfterDBox(
+        Individual $person): GenericViewElement {
+        
         return $this->getOutputAfterDescriptionBox($person, 'F', 'mainRelsFactstab', 'toggleableRelsFactstab');
     }
 
-    public function hRelativesTabGetOutputAfterDBox(Individual $person) {
+    public function hRelativesTabGetOutputAfterDBox(
+        Individual $person) {
+        
         return $this->getOutputAfterDescriptionBox($person, '', 'mainRels', 'toggleableRels');
     }
 
