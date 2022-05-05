@@ -46,6 +46,7 @@ use Fisharebest\Webtrees\Webtrees;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use ReflectionClass;
 use Vesta\Hook\HookInterfaces\EmptyIndividualFactsTabExtender;
 use Vesta\Hook\HookInterfaces\EmptyRelativesTabExtender;
 use Vesta\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
@@ -234,36 +235,52 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $xref2,
         $mode,
         $beforeJD = null) {
-
+        
         if ($text === null) {
-            $slcaController = new ExtendedRelationshipController;
+            //handle this case via special $path?
+            if ($xref1 === $xref2) {
+                if (str_starts_with(Webtrees::VERSION, '2.1')) {
+                    $rs = app(RelationshipService::class);
+                    
+                    $class = new ReflectionClass($rs);
+                    $reflexivePronounMethod = $class->getMethod('reflexivePronoun');
+                    $reflexivePronounMethod->setAccessible(true);
+        
+                    $indi = Registry::individualFactory()->make($xref1, $tree);
+                    $text = $reflexivePronounMethod->invoke($rs, $indi);
+                } //don't bother implementing this for 2.0
+            } else {
 
-            $paths = $slcaController->x_calculateRelationships_123456($tree, $xref1, $xref2, $mode, 1, $beforeJD);
+                $slcaController = new ExtendedRelationshipController;
 
-            foreach ($paths as $path) {
+                $paths = $slcaController->x_calculateRelationships_123456($tree, $xref1, $xref2, $mode, 1, $beforeJD);
 
-                $relationshipPath = RelationshipPath::create($tree, $path);
-                if ($relationshipPath === null) {
-                    // Cannot see one of the families/individuals, due to privacy;
-                    continue;
+                foreach ($paths as $path) {
+
+                    $relationshipPath = RelationshipPath::create($tree, $path);
+                    if ($relationshipPath === null) {
+                        // Cannot see one of the families/individuals, due to privacy;
+                        continue;
+                    }
+                    $text = RelationshipUtils::getRelationshipName($relationshipPath);
+                    if ($text === '') {
+                        $text = null;
+                        continue;
+                    }
+
+                    /*
+                      //TODO: 'getRelationshipName' requires a variant using $beforeJD,
+                      //because 'ex-husband' etc. is not correct at all dates!
+                      //also, 'husband' may not always be correct either, if the marriage e.g. occured after the birth of a child
+                      //once we use additional events to establish family (such as ENGA), it gets more complicated
+                      //should use 'fiancée' etc. at certain dates
+                     */
+
+                    break;
                 }
-                $text = RelationshipUtils::getRelationshipName($relationshipPath);
-                if ($text === '') {
-                    $text = null;
-                    continue;
-                }
-
-                /*
-                  //TODO: 'getRelationshipName' requires a variant using $beforeJD,
-                  //because 'ex-husband' etc. is not correct at all dates!
-                  //also, 'husband' may not always be correct either, if the marriage e.g. occured after the birth of a child
-                  //once we use additional events to establish family (such as ENGA), it gets more complicated
-                  //should use 'fiancée' etc. at certain dates
-                 */
-
-                break;
             }
         }
+        
         if ($text === null) {
             $text = MoreI18N::xlate('No relationship found');
         }
