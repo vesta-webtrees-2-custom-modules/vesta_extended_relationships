@@ -2,7 +2,6 @@
 
 namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
-use Aura\Router\RouterContainer;
 use Cissee\Webtrees\Module\ExtendedRelationships\AjaxRequests;
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipController;
 use Cissee\Webtrees\Module\ExtendedRelationships\ExtendedRelationshipModuleTrait;
@@ -47,6 +46,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use ReflectionClass;
+use Vesta\CommonI18N;
 use Vesta\Hook\HookInterfaces\EmptyIndividualFactsTabExtender;
 use Vesta\Hook\HookInterfaces\EmptyRelativesTabExtender;
 use Vesta\Hook\HookInterfaces\IndividualFactsTabExtenderInterface;
@@ -170,10 +170,15 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         //webtrees isn't interested in solving this properly, see
         //https://www.webtrees.net/index.php/en/forum/2-open-discussion/33687-pretty-urls-in-2-x
 
+        /*
         $router_container = app(RouterContainer::class);
         assert($router_container instanceof RouterContainer);
+        $router = $router_container->getMap();
+        */
 
-        $router_container->getMap()
+        $router = Registry::routeFactory()->routeMap();
+
+        $router
             ->get(static::class, static::ROUTE_URL, $this)
             ->allows(RequestMethodInterface::METHOD_POST)
             ->tokens([
@@ -181,7 +186,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
                 'generations' => '\d+',
         ]);
 
-        $router_container->getMap()
+        $router
             ->get(ExtendedIndividualListController::class, static::ROUTE_URL_LIST, $this->listController);
 
 
@@ -282,7 +287,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         }
         
         if ($text === null) {
-            $text = MoreI18N::xlate('No relationship found');
+            $text = CommonI18N::noRelationshipFound();
         }
 
         $parameters = [
