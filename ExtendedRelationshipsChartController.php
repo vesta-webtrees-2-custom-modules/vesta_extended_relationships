@@ -8,7 +8,6 @@ use Cissee\WebtreesExt\Modules\RelationshipPath;
 use Cissee\WebtreesExt\Modules\RelationshipUtils;
 use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\ModuleInterface;
@@ -16,7 +15,6 @@ use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Tree;
-use Fisharebest\Webtrees\Webtrees;
 use Psr\Http\Message\ResponseInterface;
 use function app;
 use function asset;
@@ -109,11 +107,7 @@ class ExtendedRelationshipsChartController {
 
             $debugWebtreesRel = boolval($this->module->getPreference('CHART_SHOW_LEGACY', '1'));
             if ($debugWebtreesRel) {
-                if (str_starts_with(Webtrees::VERSION, '2.1')) {
-                    $webtreesRel = app(RelationshipService::class)->legacyNameAlgorithm(implode('', $relationships), $individual1, $individual2);
-                } else {
-                    $webtreesRel = Functions::getRelationshipNameFromPath(implode('', $relationships), $individual1, $individual2);
-                }
+                $webtreesRel = app(RelationshipService::class)->legacyNameAlgorithm(implode('', $relationships), $individual1, $individual2);
 
                 if ($rel !== $webtreesRel) {
                     echo '<h4>', '(', I18N::translate('via legacy algorithm: %s', $webtreesRel), ')';

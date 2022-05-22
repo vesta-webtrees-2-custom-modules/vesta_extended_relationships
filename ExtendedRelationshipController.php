@@ -12,7 +12,6 @@ use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
-use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Query\JoinClause;
 use ReflectionClass;
@@ -143,15 +142,10 @@ class ExtendedRelationshipController {
     protected $oldStyleRelationshipPathMethod;
 
     public function __construct() {
-        if (str_starts_with(Webtrees::VERSION, '2.1')) {
-            $this->oldStyleRelationshipPathProvider = new RelationshipsChartModule(
-                app(ModuleService::class),
-                app(RelationshipService::class),
-                app(TreeService::class));
-        } else {
-            $this->oldStyleRelationshipPathProvider = new RelationshipsChartModule(
-                app(TreeService::class));
-        }
+        $this->oldStyleRelationshipPathProvider = new RelationshipsChartModule(
+            app(ModuleService::class),
+            app(RelationshipService::class),
+            app(TreeService::class));
 
         //grrr
         $class = new ReflectionClass($this->oldStyleRelationshipPathProvider);

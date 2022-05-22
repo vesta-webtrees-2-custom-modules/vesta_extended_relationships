@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Cissee\WebtreesExt\Modules;
 
 use Exception;
-use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Tree;
-use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use function app;
 
@@ -193,15 +191,8 @@ class RelationshipPath {
             return '';
         }
 
-        if (str_starts_with(Webtrees::VERSION, '2.1')) {
-            $rs = app(RelationshipService::class);
-            return $rs->legacyNameAlgorithm(
-                    $this->oldStylePath(),
-                    $this->from(),
-                    $last->to());
-        }
-
-        return Functions::getRelationshipNameFromPath(
+        $rs = app(RelationshipService::class);
+        return $rs->legacyNameAlgorithm(
                 $this->oldStylePath(),
                 $this->from(),
                 $last->to());

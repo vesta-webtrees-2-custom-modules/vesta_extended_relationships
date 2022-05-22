@@ -41,7 +41,6 @@ use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\User;
 use Fisharebest\Webtrees\View;
-use Fisharebest\Webtrees\Webtrees;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -190,25 +189,15 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
             ->get(ExtendedIndividualListController::class, static::ROUTE_URL_LIST, $this->listController);
 
 
-        if (str_starts_with(Webtrees::VERSION, '2.1')) {
-            // Replace an existing view with our own version.
-            // this is hacky, but easier than patching IndividualListModule.
-            // as usual, webtrees code isn't very extensible.
-            View::registerCustomView('::lists/individuals-table', $this->name() . '::lists/individuals-table-switch');
-            View::registerCustomView('::lists/individuals-table-with-patriarchs', $this->name() . '::lists/individuals-table-with-patriarchs');
+        // Replace an existing view with our own version.
+        // this is hacky, but easier than patching IndividualListModule.
+        // as usual, webtrees code isn't very extensible.
+        View::registerCustomView('::lists/individuals-table', $this->name() . '::lists/individuals-table-switch');
+        View::registerCustomView('::lists/individuals-table-with-patriarchs', $this->name() . '::lists/individuals-table-with-patriarchs');
 
-            //same here
-            View::registerCustomView('::lists/surnames-table', $this->name() . '::lists/surnames-table-switch');
-            View::registerCustomView('::lists/surnames-table-with-patriarchs', $this->name() . '::lists/surnames-table-with-patriarchs');
-        } else {
-            View::registerCustomView('::lists/individuals-table', $this->name() . '::lists/individuals-table-switch_20');
-            View::registerCustomView('::lists/individuals-table-with-patriarchs_20', $this->name() . '::lists/individuals-table-with-patriarchs_20');
-
-            //same here
-            View::registerCustomView('::lists/surnames-table', $this->name() . '::lists/surnames-table-switch');
-            View::registerCustomView('::lists/surnames-table-with-patriarchs', $this->name() . '::lists/surnames-table-with-patriarchs');
-        }
-
+        //same here
+        View::registerCustomView('::lists/surnames-table', $this->name() . '::lists/surnames-table-switch');
+        View::registerCustomView('::lists/surnames-table-with-patriarchs', $this->name() . '::lists/surnames-table-with-patriarchs');
 
         $this->flashWhatsNew('\Cissee\Webtrees\Module\ExtendedRelationships\WhatsNew', 2);
     }
@@ -244,16 +233,14 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         if ($text === null) {
             //handle this case via special $path?
             if ($xref1 === $xref2) {
-                if (str_starts_with(Webtrees::VERSION, '2.1')) {
-                    $rs = app(RelationshipService::class);
-                    
-                    $class = new ReflectionClass($rs);
-                    $reflexivePronounMethod = $class->getMethod('reflexivePronoun');
-                    $reflexivePronounMethod->setAccessible(true);
-        
-                    $indi = Registry::individualFactory()->make($xref1, $tree);
-                    $text = $reflexivePronounMethod->invoke($rs, $indi);
-                } //don't bother implementing this for 2.0
+                $rs = app(RelationshipService::class);
+
+                $class = new ReflectionClass($rs);
+                $reflexivePronounMethod = $class->getMethod('reflexivePronoun');
+                $reflexivePronounMethod->setAccessible(true);
+
+                $indi = Registry::individualFactory()->make($xref1, $tree);
+                $text = $reflexivePronounMethod->invoke($rs, $indi);
             } else {
 
                 $slcaController = new ExtendedRelationshipController;

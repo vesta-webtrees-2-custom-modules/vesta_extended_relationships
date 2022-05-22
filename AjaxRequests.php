@@ -7,7 +7,6 @@ use Cissee\WebtreesExt\Requests;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Tree;
-use Fisharebest\Webtrees\Webtrees;
 use Psr\Http\Message\ServerRequestInterface;
 
 class AjaxRequests {
@@ -51,18 +50,7 @@ class AjaxRequests {
     $mode = Requests::getInt($request, 'mode');
     $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
 
-    if (str_starts_with(Webtrees::VERSION, '2.1')) {
-        return ExtendedRelationshipModule::getRelationshipLink(
-            $moduleName, 
-            $tree, 
-            $text, 
-            $xref1, 
-            $xref2, 
-            $mode, 
-            $beforeJD);
-    }
-    
-    return ExtendedRelationshipModule_20::getRelationshipLink(
+    return ExtendedRelationshipModule::getRelationshipLink(
         $moduleName, 
         $tree, 
         $text, 

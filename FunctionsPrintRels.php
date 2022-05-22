@@ -11,7 +11,6 @@ use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Registry;
-use Fisharebest\Webtrees\Webtrees;
 
 class FunctionsPrintRels {
 
@@ -108,27 +107,14 @@ class FunctionsPrintRels {
                 continue;
             }
 
-            if (str_starts_with(Webtrees::VERSION, '2.1')) {
-                $link = ExtendedRelationshipModule::getRelationshipLink(
-                    $moduleName,
-                    $person1->tree(),
-                    $rel,
-                    $person1->xref(),
-                    $person2->xref(),
-                    $mode,
-                    $beforeJD);
-            } else {
-                $link = ExtendedRelationshipModule_20::getRelationshipLink(
-                    $moduleName,
-                    $person1->tree(),
-                    $rel,
-                    $person1->xref(),
-                    $person2->xref(),
-                    $mode,
-                    $beforeJD);
-            }
-            
-            
+            $link = ExtendedRelationshipModule::getRelationshipLink(
+                $moduleName,
+                $person1->tree(),
+                $rel,
+                $person1->xref(),
+                $person2->xref(),
+                $mode,
+                $beforeJD);
 
             $print = /* I18N: (person 1) is (relative, e.g. father) of (person2) */ I18N::translate('%1$s is %2$s of %3$s.',
                     $person2->fullName(),
