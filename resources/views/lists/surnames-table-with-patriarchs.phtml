@@ -18,11 +18,10 @@ use function GuzzleHttp\json_encode;
 $relationshipsChartModule = app(ModuleService::class)
     ->findByComponent(ModuleChartInterface::class, $tree, Auth::user())
     ->first(static function (ModuleInterface $module) {
-        return $module instanceof RelationshipsChartModule;
-    });
-    
-//cf BranchesListModule
+    return $module instanceof RelationshipsChartModule;
+});
 
+//cf BranchesListModule
 // Highlight direct-line ancestors of this individual.
 $xref = $tree->getUserPreference(Auth::user(), UserInterface::PREF_TREE_ACCOUNT_XREF);
 $self = Registry::individualFactory()->make($xref, $tree);
@@ -41,7 +40,7 @@ if ($self instanceof Individual) {
     data-paging="false"
     data-searching="false"
     data-order="<?= e(json_encode($order ?? [[2, 'desc']])) ?>"
->
+    >
     <caption class="visually-hidden">
         <?= MoreI18N::xlate('Surnames') ?>
     </caption>
@@ -51,16 +50,16 @@ if ($self instanceof Individual) {
                 <?= MoreI18N::xlate('Surname') ?>
             </th>
             <?php
-              //[RC] added
+            //[RC] added
             ?>
             <th>
                 <?= /* I18N: end-of line ancestor, 'Spitzenahn' */ I18N::translate('Patriarch') ?>
                 <?php
-                    echo $helpLink;
+                echo $helpLink;
                 ?>
             </th>
             <th>
-                <?php if ($families) :?>
+                <?php if ($families) : ?>
                     <?= MoreI18N::xlate('Spouses') ?>
                 <?php else : ?>
                     <?= MoreI18N::xlate('Individuals') ?>
@@ -76,8 +75,8 @@ if ($self instanceof Individual) {
                     <!-- Multiple surname variants, e.g. von Groot, van Groot, van der Groot, etc. -->
                     <?php foreach ($surns as $spfxsurn_ => $indis) : ?>
                         <?php
-                          //[RC] adjusted
-                          $spfxsurn = $indis->getActualSurname();
+                        //[RC] adjusted
+                        $spfxsurn = $indis->getActualSurname();
                         ?>
                         <?php if ($module instanceof IndividualListModule || $module instanceof FamilyListModule) : ?>
                             <?php if ($spfxsurn) : ?>
@@ -106,55 +105,54 @@ if ($self instanceof Individual) {
                     <?php endforeach ?>
                 </td>
                 <?php
-                  //[RC] added
+                //[RC] added
                 ?>
                 <td data-sort="<?= e($surn) ?>">
-                  <?php 
-                  foreach ($surns as $indis) {
-                    $patriarch = null;
-                    $patriarchXref = $indis->getPatriarchXref();
-                    if (!$indis->isSame()) {
-                      /** @var Individual */
-                      $patriarch = Registry::individualFactory()->make($patriarchXref, $tree);                      
-                    }
-                    if (($patriarch != null) && $patriarch->canShow()) {
-                        //re-using code from branches list, i.e. BranchesListModule
-                        $individual = $patriarch;
-                        
-                        // Is this individual one of our ancestors?
-                        $sosa = array_search($individual, $ancestors, true);
-                        if (is_int($sosa) && $relationshipsChartModule instanceof RelationshipsChartModule) {
-                            $sosa_class = 'search_hit';
-                            $sosa_html  = ' <a class="small wt-chart-box-' . strtolower($individual->sex()) . '" href="' . e($relationshipsChartModule->chartUrl($individual, ['xref2' => $ancestors[1]->xref()])) . '" rel="nofollow" title="' . MoreI18N::xlate('Relationship') . '">' . I18N::number($sosa) . '</a>' . AllAncestors::sosaGeneration($sosa);
-                        } else {
-                            $sosa_class = '';
-                            $sosa_html  = '';
+                    <?php foreach ($surns as $indis) : ?>
+                    <?php
+                        $patriarch = null;
+                        $patriarchXref = $indis->getPatriarchXref();
+                        if (!$indis->isSame()) {
+                            /** @var Individual */
+                            $patriarch = Registry::individualFactory()->make($patriarchXref, $tree);
                         }
+                        if (($patriarch != null) && $patriarch->canShow()) {
+                            //re-using code from branches list, i.e. BranchesListModule
+                            $individual = $patriarch;
 
-                        // Generate HTML for this individual, and all their descendants
-                        $indi_html = '<small>' . view('icons/sex', ['sex' => $individual->sex()]) . '</small><a class="' . $sosa_class . '" href="' . e($individual->url()) . '">' . $individual->fullName() . '</a> ' . $individual->lifespan() . $sosa_html;
-                        
-                        //rather than using standard representation of individual within list
-                        //'<a href="' . e($patriarch->url()) . '">' . $patriarch->fullName() . '</a><br />
-  
-                        echo $indi_html;
-                    } else {
-                      ?><br /><?php
-                    }
-                  }
-                  ?>
+                            // Is this individual one of our ancestors?
+                            $sosa = array_search($individual, $ancestors, true);
+                            if (is_int($sosa) && $relationshipsChartModule instanceof RelationshipsChartModule) {
+                                $sosa_class = 'search_hit';
+                                $sosa_html = ' <a class="small wt-chart-box-' . strtolower($individual->sex()) . '" href="' . e($relationshipsChartModule->chartUrl($individual, ['xref2' => $ancestors[1]->xref()])) . '" rel="nofollow" title="' . MoreI18N::xlate('Relationship') . '">' . I18N::number($sosa) . '</a>' . AllAncestors::sosaGeneration($sosa);
+                            } else {
+                                $sosa_class = '';
+                                $sosa_html = '';
+                            }
+
+                            // Generate HTML for this individual, and all their descendants
+                            $indi_html = '<small>' . view('icons/sex', ['sex' => $individual->sex()]) . '</small><a class="' . $sosa_class . '" href="' . e($individual->url()) . '">' . $individual->fullName() . '</a> ' . $individual->lifespan() . $sosa_html;
+
+                            //rather than using standard representation of individual within list
+                            //'<a href="' . e($patriarch->url()) . '">' . $patriarch->fullName() . '</a><br />
+
+                            echo $indi_html;
+                        }
+                    ?>   
+                    <br>
+                    <?php endforeach ?>
                 </td>
                 <?php
-                  //[RC] adjusted
-                  $sum = 0;
-                  foreach ($surns as $indis) {
+                //[RC] adjusted
+                $sum = 0;
+                foreach ($surns as $indis) {
                     $sum += $indis->getCount();
-                  }
+                }
                 ?>
                 <td class="text-center" data-sort="<?= $sum ?>">
                     <?php foreach ($surns as $indis) : ?>
                         <?php
-                           //[RC] adjusted
+                        //[RC] adjusted
                         ?>
                         <?= I18N::number($indis->getCount()) ?>
                         <br>
