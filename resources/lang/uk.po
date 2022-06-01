@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-04-06 21:35+0200\n"
-"PO-Revision-Date: 2022-05-28 12:18+0000\n"
+"PO-Revision-Date: 2022-05-30 23:16+0000\n"
 "Last-Translator: Artem <artem@molotov.work>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/uk/>\n"
@@ -429,6 +429,8 @@ msgstr "Процес слід повторювати (але закінчува�
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
+"Цю ж інформацію можна отримати через список філій, де вони відображаються як "
+"керівники філій."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:179
@@ -451,6 +453,9 @@ msgstr "Це дозволяє представити значущі зв’яз�
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
+"Цей список забезпечує огляд за прізвищами і його можна використовувати, щоб "
+"визначити, чи справді всі особи з певним прізвищем походять від спільного "
+"патріарха."
 
 #: resources/views/sync.phtml:15
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
