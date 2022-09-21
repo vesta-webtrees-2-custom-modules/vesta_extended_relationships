@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-04-06 21:35+0200\n"
-"PO-Revision-Date: 2021-04-17 00:26+0000\n"
-"Last-Translator: Hasse Häljeskog <hasse.haljeskog@gmail.com>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/sv/>\n"
+"PO-Revision-Date: 2022-09-21 17:17+0000\n"
+"Last-Translator: tygyh <jonis9898@hotmail.com>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: ExtendedRelationshipModule.php:222 ExtendedRelationshipModule_20.php:201
 msgid " (see below for details)."
@@ -350,7 +351,7 @@ msgstr "Patriark"
 
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
-msgstr ""
+msgstr "Patriarker är de manliga slutledande förfäderna ('Spitzenahnen')."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:95
@@ -427,6 +428,8 @@ msgstr "Denna process bör repeteras (men kommer avslutas mycket snabbare) när 
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
+"Samma information kan erhållas via grenlistan, där de dyker upp som "
+"grenhuvuden."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:179
@@ -449,6 +452,9 @@ msgstr "Detta tillåter dig att visa meningsfulla kopplingar, som t.ex. 'änkema
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
+"Den här listan ger en översikt per efternamn och kan användas för att avgöra "
+"om alla personer med ett visst efternamn faktiskt härstammar från en "
+"gemensam patriark."
 
 #: resources/views/sync.phtml:15
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
