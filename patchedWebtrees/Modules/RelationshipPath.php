@@ -261,8 +261,20 @@ class RelationshipPath {
 
         for ($i = 1, $count = count($path); $i < $count; $i += 2) {
             $family = Registry::familyFactory()->make($path[$i], $tree);
+            if ($family === null) {
+                //inconsistency, due to privacy?
+                return null;
+            }
             $prev = Registry::individualFactory()->make($path[$i - 1], $tree);
+            if ($prev === null) {
+                //inconsistency, due to privacy?
+                return null;
+            }
             $next = Registry::individualFactory()->make($path[$i + 1], $tree);
+            if ($next === null) {
+                //inconsistency, due to privacy?
+                return null;
+            }
             if (preg_match('/\n\d (HUSB|WIFE|CHIL) @' . $prev->xref() . '@/', $family->gedcom(), $match)) {
                 $rel1 = $match[1];
             } else {
