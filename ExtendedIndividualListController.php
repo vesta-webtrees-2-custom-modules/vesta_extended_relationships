@@ -9,7 +9,6 @@ use Fisharebest\Localization\Locale\LocaleInterface;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\IndividualListModule;
 use Fisharebest\Webtrees\Registry;
-use Fisharebest\Webtrees\Services\LocalizationService;
 use Fisharebest\Webtrees\Tree;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Query\Expression;
@@ -17,16 +16,11 @@ use Illuminate\Support\Collection;
 
 class ExtendedIndividualListController extends IndividualListModule {
   
-    /** @var LocalizationService */
-    private $localization_service;
     private $module;
   
     public function __construct(
-        LocalizationService $localization_service,
         ExtendedRelationshipModule $module) {
       
-        parent::__construct($localization_service);
-        $this->localization_service = $localization_service;
         $this->module = $module;
     }
   
@@ -100,13 +94,11 @@ class ExtendedIndividualListController extends IndividualListModule {
         LocaleInterface $locale,
         array $indi2fams, 
         array $fam2indi): array {
-    
-        $collation = $this->localization_service->collation($locale);
 
         $query = DB::table('name')
             ->where('n_file', '=', $tree->id())
             ->select([
-                new Expression('UPPER(n_surn /*! COLLATE ' . $collation . ' */) AS n_surn'),
+                new Expression('n_surn /*! COLLATE utf8_bin */ AS n_surn'),
                 new Expression('n_surname /*! COLLATE utf8_bin */ AS n_surname'),
                 //new Expression('COUNT(*) AS total'),
 

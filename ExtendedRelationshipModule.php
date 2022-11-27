@@ -115,10 +115,8 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         TreeService $tree_service) {
 
         parent::__construct($module_service, $relationship_service, $tree_service);
-        $localization_service = app(LocalizationService::class);
 
         $this->listController = new ExtendedIndividualListController(
-            $localization_service,
             $this);
     }
 

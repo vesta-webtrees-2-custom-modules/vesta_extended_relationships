@@ -71,7 +71,7 @@ if ($self instanceof Individual) {
     <tbody>
         <?php foreach ($surnames as $surn => $surns) : ?>
             <tr>
-                <td data-sort="<?= e($surn) ?>">
+                <td data-sort="<?= $n = 1 + ($n ?? 0) ?>">
                     <!-- Multiple surname variants, e.g. von Groot, van Groot, van der Groot, etc. -->
                     <?php foreach ($surns as $spfxsurn_ => $indis) : ?>
                         <?php
@@ -107,7 +107,7 @@ if ($self instanceof Individual) {
                 <?php
                 //[RC] added
                 ?>
-                <td data-sort="<?= e($surn) ?>">
+                <td class="text-center" data-sort="<?= array_sum($surns) ?>">
                     <?php foreach ($surns as $indis) : ?>
                     <?php
                         $patriarch = null;
