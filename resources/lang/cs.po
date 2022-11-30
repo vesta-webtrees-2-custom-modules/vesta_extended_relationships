@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-04-06 21:35+0200\n"
-"PO-Revision-Date: 2021-10-05 14:03+0000\n"
+"PO-Revision-Date: 2022-11-30 12:47+0000\n"
 "Last-Translator: Josef Prause <josef.prause@gmail.com>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/cs/>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: ExtendedRelationshipModule.php:222 ExtendedRelationshipModule_20.php:201
 msgid " (see below for details)."
@@ -350,7 +351,7 @@ msgstr "Patriarcha"
 
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
-msgstr ""
+msgstr "Patriarchové jsou mužští předci na konci linie."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:95
@@ -427,6 +428,8 @@ msgstr "Proces by se měl opakovat (a skončí mnohem rychleji) kdykoliv se stro
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
+"Stejnou informaci lze získat ze seznamu Větve, kde jsou zobrazeni jako hlavy "
+"větví."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:179
@@ -449,6 +452,9 @@ msgstr "Toto umožňuje prezentovat smysluplná spojení, jako třeba 'ovdověl�
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
+"Tento seznam poskytuje přehled podle příjmení a může sloužit ke zjištění, "
+"zda všechny osoby s určitým příjmením skutečně pocházejí od společného "
+"patriarchy."
 
 #: resources/views/sync.phtml:15
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
