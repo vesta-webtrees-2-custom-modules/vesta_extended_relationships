@@ -179,17 +179,18 @@ class ExtendedIndividualListController extends IndividualListModule {
             Registry::individualFactory()->make($row->xref, $tree, $row->gedcom);
         }
     }
-        
+  
     //originally returns Collection<Individual>, we adjust this to be able to switch view in individuals-table-switch.phtml
-    protected function individuals(
+    public function individuals(
         Tree $tree,
-        string $surname, 
-        array $surnames, 
-        string $galpha, 
+        string $surn,
+        string $salpha,
+        string $galpha,
         bool $marnm,
-        bool $fams): Collection {
+        bool $fams,
+        LocaleInterface $locale): Collection {
     
-        $originalCollection = parent::individuals($tree, $surname, $surnames, $galpha, $marnm, $fams);
+        $originalCollection = parent::individuals($tree, $surn, $salpha, $galpha, $marnm, $fams, $locale);
 
         $links = DB::table('link')
                 ->where('l_file', '=', $tree->id())
@@ -228,17 +229,11 @@ class ExtendedIndividualListController extends IndividualListModule {
         $wrapped[] = new IndividualsWithPatriarchs($originalCollection, $list);
         return new Collection($wrapped);
     }
-    
-    protected function families(
-        Tree $tree, 
-        string $surname, 
-        array $surnames, 
-        string $galpha, 
-        bool $marnm): Collection {
-        
+  
+    protected function families(Tree $tree, $surn, $salpha, $galpha, $marnm, LocaleInterface $locale): Collection {
         $families = new Collection();
     
-        foreach (parent::individuals($tree, $surname, $surnames, $galpha, $marnm, true) as $indi) {
+        foreach (parent::individuals($tree, $surn, $salpha, $galpha, $marnm, true, $locale) as $indi) {
             foreach ($indi->spouseFamilies() as $family) {
                 $families->push($family);
             }
