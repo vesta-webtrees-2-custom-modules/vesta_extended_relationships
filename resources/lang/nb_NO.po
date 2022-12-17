@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-04-06 21:35+0200\n"
-"PO-Revision-Date: 2022-12-16 19:44+0000\n"
+"PO-Revision-Date: 2022-12-17 14:09+0000\n"
 "Last-Translator: H R Nilsen <hogne@visitusinmaputo.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/nb_NO/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: ExtendedRelationshipModule.php:222 ExtendedRelationshipModule_20.php:201
 msgid " (see below for details)."
@@ -27,7 +27,7 @@ msgstr " (se nedenfor for mer informasjon)."
 #: FunctionsPrintRels.php:133
 #, php-format
 msgid "%1$s is %2$s of %3$s."
-msgstr "%1$s er %2$s av %3$s."
+msgstr "%1$s er %2$s til %3$s."
 
 #: ExtendedRelationshipsChartController.php:62
 #, php-format
@@ -51,7 +51,9 @@ msgstr "(totalt sett nærmere beslektet enn %1$s)"
 
 #: ExtendedRelationshipsChartController.php:66
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
-msgstr "(totalt sett ikke vesentlig nærmere beslektet enn gjennom det nærmeste forholdet via felles forfedre)"
+msgstr ""
+"(totalt sett ikke vesentlig nærmere enn det nærmeste forholdet via felles "
+"aner)"
 
 #: ExtendedRelationshipModuleTrait.php:23
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -60,7 +62,9 @@ msgstr "En modul for å bestemme relasjoner og slektskap. Inneholder et diagram 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:29
 msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
-msgstr "En modul som gir ulike algoritmer som brukes til å bestemme relasjoner. Inkluderer et utvidet «Slektskaps-diagram»."
+msgstr ""
+"En modul som tilbyr ulike algoritmer som brukes til å bestemme relasjoner. "
+"Inkluderer et utvidet «Slektskaps-diagram»."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:89
@@ -144,7 +148,7 @@ msgstr ""
 "Hver MLFA (minste laveste felles ane) representerer i hovedsak en del av "
 "treet som begge deler (som en del av sine aner). Mer teknisk sett er MLFA-"
 "settet med to personer et delsett av LFS-settet (unntatt alle LFSer som selv "
-"er forfedre til andre LFSer)."
+"er aner til andre LFSer)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:325
