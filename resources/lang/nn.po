@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-04-06 21:35+0200\n"
-"PO-Revision-Date: 2022-12-16 22:49+0000\n"
+"PO-Revision-Date: 2022-12-17 14:09+0000\n"
 "Last-Translator: H R Nilsen <hogne@visitusinmaputo.com>\n"
 "Language-Team: Norwegian Nynorsk <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/nn/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: ExtendedRelationshipModule.php:215 ExtendedRelationshipModule.php:853
 #: ExtendedRelationshipModule.php:859 ExtendedRelationshipModule_20.php:194
@@ -142,7 +142,7 @@ msgstr ""
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:32
 msgid "Intended as a replacement for the original 'Relationships' module."
-msgstr "Meint som erstatning for den originale modulen \"Slektskap\""
+msgstr "Meint som erstatning for den originale modulen \"Slektskap\"."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:60
@@ -411,100 +411,127 @@ msgstr "Du kan også justere tilgangsnivået for denne delen av modulen."
 #: ExtendedRelationshipModuleTrait.php:333
 msgid "If you do not want to change the functionality with respect to the original Facts and Events tab, select 'Do not show any relationship' in the first block."
 msgstr ""
+"Om du ikkje vil endre funksjonaliteten med omsyn til den originale fanen "
+"Fakta og hendelsar, vel \"Ikkje syn slektskap\" i den første blokka."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:334
 msgid "If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect."
 msgstr ""
+"Om du vel dette alternativet over det heile, bør du også velje bort fast "
+"val, då dette ikkje vil nokon synleg effekt."
 
 #: ExtendedRelationshipsChartController.php:60
 #, php-format
 msgid "Uncorrected CoR (Coefficient of Relationship): %s"
-msgstr ""
+msgstr "Ukorrigert Cor (Koeffisient av slektskap): %s"
 
 #: ExtendedRelationshipsChartController.php:62
 #, php-format
 msgid "(Number of relationships: %s)"
-msgstr ""
+msgstr "(Tal på relasjonar: %s)"
 
 #: ExtendedRelationshipsChartController.php:66
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
 msgstr ""
+"(totalt sett ikkje vesentleg nærare enn det næraste slektskap via felles "
+"anar)"
 
 #: ExtendedRelationshipsChartController.php:74
 #, php-format
 msgid "(that's overall as close as: %1$s)"
-msgstr ""
+msgstr "(totalt sett like nært beslekta som %1$s)"
 
 #: ExtendedRelationshipsChartController.php:76
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
-msgstr ""
+msgstr "(totalt sett nesten like nært beslekta som %1$s)"
 
 #: ExtendedRelationshipsChartController.php:78
 #, php-format
 msgid "(that's overall closer than: %1$s)"
-msgstr ""
+msgstr "(totalt sett nærare beslekta enn %1$s)"
 
 #: ExtendedRelationshipsChartController.php:119
 #, php-format
 msgid "via legacy algorithm: %s"
-msgstr ""
+msgstr "ved tradisjonell algoritme: %s"
 
 #: ExtendedRelationshipsChartController.php:221
 msgid "parents"
-msgstr ""
+msgstr "foreldre"
 
 #: ExtendedRelationshipsChartController.php:285
 msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
 msgstr ""
+"Om dette er uventa, og det er nylege endringar, må du kanskje følgje denne "
+"lenka: "
 
 #. I18N: (person 1) is (relative, e.g. father) of (person2)
 #: FunctionsPrintRels.php:133
 #, php-format
 msgid "%1$s is %2$s of %3$s."
-msgstr ""
+msgstr "%1$s er %2$s til %3$s."
 
 #: FunctionsPrintRels.php:155
 msgid "Common ancestor: "
-msgstr ""
+msgstr "Felles ane: "
 
 #: FunctionsPrintRels.php:182
 msgid "Common ancestors: "
-msgstr ""
+msgstr "Felles anar: "
 
 #: HelpTexts.php:15
 msgid "Uncorrected CoR (Coefficient of Relationship)"
-msgstr ""
+msgstr "Ukorrigert Cor (koeffisient av slektskap)"
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
 msgstr ""
+"CoR (Koeffisient av slektskap) er proporsjonal med mengde gen som to "
+"personar har til felles som følgje av deira genetiske forhold. Beregninga er "
+"basert på Sewall Wrights metode for banekoeffisientar. Verdien representerer "
+"mengda gen som bærast felles av to besleka individ utover dei som bærast til "
+"felles av heile befolkninga. Fleire detaljar her: "
 
 #: HelpTexts.php:20
 #, php-format
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
 msgstr ""
+"I utgangspunktet, kvar linje (via felles anar) mellom to individ bidreg til "
+"CoR, omvendt proporsjonalt med lengda: Kvar linje av lengde 2 (til dømes "
+"mellom heilsøsken) legg til %1$s, kvar linje av lengde 4 (til dømes mellom "
+"syskenborn) legg %2$s, generelt kvar linje av lengde n legg til "
+"(0,5)<sup>n</sup>."
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
 msgstr ""
+"Under normale omstende er mengda genmateriale som overførast frå ane til "
+"etterkomar &ndash; som estimert av Σ(0.5)<sup>n</sup> &ndash; og mengda "
+"genmateriale dei har til felles (den sanne koeffisienten i slektskapet) er "
+"den same. Om det har vore innavl, kan det likevel vere manglande samsvar, "
+"som forklart her: "
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
 msgstr ""
+"Det er meir komplisert å bestemme denne eksakte CoR, og forskjellene er "
+"normalt små uansett. Derfor bereknast berre ukorrigert CoR."
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
-msgstr ""
+msgstr "Tradisjonell algoritme for namn på slektskap"
 
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
 msgstr ""
+"Dette kan deaktiverast i modulinnstillingane; det nyttast hovudsakleg for "
+"feilsøking."
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
-msgstr ""
+msgstr "Og forhåpentleg syner det kor mykje betre den nye algoritmen fungerar …"
 
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: HelpTexts.php:40
@@ -513,38 +540,51 @@ msgstr ""
 #: resources/views/lists/surnames-table-with-patriarchs.phtml:57
 #: resources/views/lists/surnames-table-with-patriarchs_20.phtml:57
 msgid "Patriarch"
-msgstr ""
+msgstr "Tidlegaste mannlege ane"
 
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
-msgstr ""
+msgstr "Patriarkar er mannlege \"ende-anar\" (Stamfedre)."
 
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
+"Den same informasjonen kan finnast i lista over greiner, der dei vert synte "
+"som overhovud i greiner."
 
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
+"Denne lista byr på ei oversikt basert på etternamn, og kan nyttast til å "
+"avgjere om alle personar med eit gitt etternamn verkeleg nedstammar frå ein "
+"felles patriark."
 
 #: resources/views/page.phtml:56 resources/views/page_20.phtml:56
 #, php-format
 msgid "Options referring to overall connections established before %1$s."
-msgstr ""
+msgstr "Alternativ som refererar til generelle tilkoplingar etablert før %1$s."
 
 #. I18N: Module Configuration
 #: resources/views/sync-complete.phtml:5
 msgid "Finished - all link dates are up-to-date."
-msgstr ""
+msgstr "Ferdig - alle koplingsdatoar er oppdaterte."
 
 #: resources/views/sync.phtml:15
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
 msgstr ""
+"Denne prosessen bereknear datoar for alle INDI - FAM-koplingar, slik at "
+"relasjonar på eit bestemt tidspunkt kan bereknast effektivt."
 
 #: resources/views/sync.phtml:18
 msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
 msgstr ""
+"For store slektstre kan denne prosessen i utgangspunktet ta fleire minutt. "
+"Du kan alltid trygt avbryte og fortsette seinare."
 
 #: resources/views/sync.phtml:21
 msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
 msgstr ""
+"Prosessen bør gjentakast (men vil fullføre mykje raskare) alltid når eit tre "
+"redigerast, elles kan du få inkonsistente relasjonsdata (viste relasjoner er "
+"alltid gyldige, men dei kan kanskje ikkje ha blitt etablerte på den angitte "
+"datoen, dersom endringar i treet ikkje vert synkronisert her)."
