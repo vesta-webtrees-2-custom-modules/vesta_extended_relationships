@@ -5,7 +5,6 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
 use Exception;
-use Fisharebest\Localization\Locale\LocaleInterface;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\IndividualListModule;
 use Fisharebest\Webtrees\Registry;
@@ -25,14 +24,12 @@ class ExtendedIndividualListController extends IndividualListModule {
     }
   
     //originally returns array[][], we adjust this to be able to switch view in surnames-table-switch.phtml
-    protected function surnames(
-        Tree $tree,
-        string $surn,
-        string $salpha,
-        bool $marnm,
-        bool $fams,
-        LocaleInterface $locale): array {
+    protected function allSurnames(
+        Tree $tree, 
+        bool $marnm, 
+        bool $fams): array {
     
+        /*
         if ($surn !== '') {
             //use original function
             return parent::surnames($tree, $surn, $salpha, $marnm, $fams, $locale);
@@ -47,7 +44,8 @@ class ExtendedIndividualListController extends IndividualListModule {
             default:
                 break;
         }
-                    
+        */
+        
         $links = DB::table('link')
             ->where('l_file', '=', $tree->id())
             ->whereIn('l_type', ['FAMC', 'HUSB']) //patrilinear ascent only!
@@ -70,11 +68,8 @@ class ExtendedIndividualListController extends IndividualListModule {
 
         $list = $this->surnamesWithPatriarchs(
             $tree, 
-            $surn, 
-            $salpha, 
             $marnm, 
             $fams, 
-            $locale,
             $indi2fams, 
             $fam2indi);
     
@@ -87,11 +82,8 @@ class ExtendedIndividualListController extends IndividualListModule {
   
     protected function surnamesWithPatriarchs(
         Tree $tree,
-        string $surn,
-        string $salpha,
         bool $marnm,
         bool $fams,
-        LocaleInterface $locale,
         array $indi2fams, 
         array $fam2indi): array {
 
@@ -109,6 +101,7 @@ class ExtendedIndividualListController extends IndividualListModule {
         $this->whereFamily($fams, $query);
         $this->whereMarriedName($marnm, $query);
 
+        /*
         if ($surn !== '') {
             $query->where('n_surn', '=', $surn);
         } elseif ($salpha === ',') {
@@ -121,6 +114,11 @@ class ExtendedIndividualListController extends IndividualListModule {
             // All surnames
             $query->whereNotIn('n_surn', ['', Individual::NOMEN_NESCIO]);
         }
+        */
+        
+        // All surnames
+        $query->whereNotIn('n_surn', ['', Individual::NOMEN_NESCIO]);
+        
         $query
             //[RC] removed
             //->groupBy(['n_surn'])
@@ -179,18 +177,17 @@ class ExtendedIndividualListController extends IndividualListModule {
             Registry::individualFactory()->make($row->xref, $tree, $row->gedcom);
         }
     }
-  
+        
     //originally returns Collection<Individual>, we adjust this to be able to switch view in individuals-table-switch.phtml
-    public function individuals(
+    protected function individuals(
         Tree $tree,
-        string $surn,
-        string $salpha,
-        string $galpha,
+        string $surname, 
+        array $surnames, 
+        string $galpha, 
         bool $marnm,
-        bool $fams,
-        LocaleInterface $locale): Collection {
+        bool $fams): Collection {
     
-        $originalCollection = parent::individuals($tree, $surn, $salpha, $galpha, $marnm, $fams, $locale);
+        $originalCollection = parent::individuals($tree, $surname, $surnames, $galpha, $marnm, $fams);
 
         $links = DB::table('link')
                 ->where('l_file', '=', $tree->id())
@@ -229,11 +226,17 @@ class ExtendedIndividualListController extends IndividualListModule {
         $wrapped[] = new IndividualsWithPatriarchs($originalCollection, $list);
         return new Collection($wrapped);
     }
-  
-    protected function families(Tree $tree, $surn, $salpha, $galpha, $marnm, LocaleInterface $locale): Collection {
+    
+    protected function families(
+        Tree $tree, 
+        string $surname, 
+        array $surnames, 
+        string $galpha, 
+        bool $marnm): Collection {
+        
         $families = new Collection();
     
-        foreach (parent::individuals($tree, $surn, $salpha, $galpha, $marnm, true, $locale) as $indi) {
+        foreach (parent::individuals($tree, $surname, $surnames, $galpha, $marnm, true) as $indi) {
             foreach ($indi->spouseFamilies() as $family) {
                 $families->push($family);
             }

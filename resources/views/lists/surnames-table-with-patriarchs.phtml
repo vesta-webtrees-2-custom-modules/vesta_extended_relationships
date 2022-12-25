@@ -1,13 +1,13 @@
 <?php
 
 use Cissee\Webtrees\Module\ExtendedRelationships\AllAncestors;
+use Cissee\Webtrees\Module\ExtendedRelationships\IndividualListModuleLegacy;
 use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Contracts\UserInterface;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\FamilyListModule;
-use Fisharebest\Webtrees\Module\IndividualListModule;
 use Fisharebest\Webtrees\Module\ModuleChartInterface;
 use Fisharebest\Webtrees\Module\ModuleInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
@@ -78,7 +78,7 @@ if ($self instanceof Individual) {
                         //[RC] adjusted
                         $spfxsurn = $indis->getActualSurname();
                         ?>
-                        <?php if ($module instanceof IndividualListModule || $module instanceof FamilyListModule) : ?>
+                        <?php if ($module instanceof IndividualListModuleLegacy || $module instanceof FamilyListModule) : ?>
                             <?php if ($spfxsurn) : ?>
                                 <?php if ($surn !== '') : ?>
                                     <a href="<?= $module->listUrl($tree, ['surname' => $surn]) ?>" dir="auto">
