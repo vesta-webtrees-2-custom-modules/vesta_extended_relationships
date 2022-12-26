@@ -105,8 +105,8 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         'recursion' => self::DEFAULT_RECURSION,
     ];
 
-    /** @var ExtendedIndividualListController */
-    protected $listController;
+    /** @var ExtendedIndividualListRequestHandler */
+    protected $listRequestHandler;
 
     public function __construct(
         ModuleService $module_service,
@@ -115,7 +115,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
         parent::__construct($module_service, $relationship_service, $tree_service);
 
-        $this->listController = new ExtendedIndividualListController(
+        $this->listRequestHandler = new ExtendedIndividualListRequestHandler(
             $this);
     }
 
@@ -183,7 +183,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         ]);
 
         $router
-            ->get(ExtendedIndividualListController::class, static::ROUTE_URL_LIST, $this->listController);
+            ->get(ExtendedIndividualListRequestHandler::class, static::ROUTE_URL_LIST, $this->listRequestHandler);
 
 
         // Replace an existing view with our own version.
@@ -1054,7 +1054,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     }
 
     public function listUrl(Tree $tree, array $parameters = []): string {
-        return $this->listController->listUrl($tree, $parameters);
+        return $this->listRequestHandler->listUrl($tree, $parameters);
     }
 
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Cissee\Webtrees\Module\ExtendedRelationships\SurnamesWithPatriarchs;
+use Cissee\Webtrees\Module\ExtendedRelationships\SurnameWithPatriarch;
 use Fisharebest\Webtrees\Tree;
 
 /**
@@ -12,29 +12,30 @@ use Fisharebest\Webtrees\Tree;
  * @var array<string,array<string,string>> $surnames
  * @var Tree                               $tree
  */
-
 if (sizeof($surnames) > 0) {
-  if (current($surnames) instanceof SurnamesWithPatriarchs) {
-    /** @var SurnamesWithPatriarchs */
-    $wrapped = current($surnames);
-    
-    //adjusted view
-    echo view('lists/surnames-table-with-patriarchs', [
-      'helpLink' => $wrapped->getHelpLink(),
-      'families' => $families,  
-      'module'   => $module,
-      'order'    => $order,
-      'surnames' => $wrapped->getArray(),
-      'tree'     => $tree]);
-    
-    return;
-  }
-  
-  //original view
-  echo view('::lists/surnames-table', [
+    $inner = current($surnames);
+    if (sizeof($inner) > 0) {
+        $leaf = current($inner);
+        if ($leaf instanceof SurnameWithPatriarch) {
+            //adjusted view
+            echo view('lists/surnames-table-with-patriarchs', [
+                'helpLink' => $leaf->getHelpLink(),
+                'surnames' => $surnames,
+                'families' => $families,
+                'module' => $module,
+                'order' => $order,
+                'tree' => $tree]);
+
+            return;
+        }
+    }
+}    
+
+//original view
+echo view('::lists/surnames-table', [
     'surnames' => $surnames,
-    'families' => $families,  
-    'module'   => $module,
-    'order'    => $order,
-    'tree'     => $tree]);
-}
+    'families' => $families,
+    'module' => $module,
+    'order' => $order,
+    'tree' => $tree]);
+    
