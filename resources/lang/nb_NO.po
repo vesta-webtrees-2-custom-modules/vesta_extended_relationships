@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2022-04-06 21:35+0200\n"
-"PO-Revision-Date: 2022-12-17 16:01+0000\n"
+"PO-Revision-Date: 2023-01-02 19:08+0000\n"
 "Last-Translator: H R Nilsen <hogne@visitusinmaputo.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/nb_NO/>\n"
@@ -235,7 +235,7 @@ msgstr "Finn alle relasjoner"
 #: ExtendedRelationshipModuleTrait.php:289
 #: ExtendedRelationshipModule_20.php:971
 msgid "Find the closest overall connections"
-msgstr "Finn nærmeste generelle relasjon"
+msgstr "Finn nærmeste relasjon"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:996 ExtendedRelationshipModuleTrait.php:94
