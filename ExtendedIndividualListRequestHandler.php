@@ -4,7 +4,6 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
 use Exception;
-use Fisharebest\Localization\Locale\LocaleInterface;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\IndividualListModule;
@@ -211,15 +210,21 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule {
      * @return void
      */
     public static function load(Tree $tree, array $xrefs): void {
-        $rows = DB::table('individuals')
-            ->where('i_file', '=', $tree->id())
-            ->whereIn('i_id', array_unique($xrefs))
-            ->select(['i_id AS xref', 'i_gedcom AS gedcom'])
-            ->get();
+        
+        ///handle #91 'Prepared statement contains too many placeholders'
+        $coll = new Collection($xrefs);
+        
+        foreach ($coll->chunk(256) as $chunk) {
+            $rows = DB::table('individuals')
+                ->where('i_file', '=', $tree->id())
+                ->whereIn('i_id', array_unique($chunk->all()))
+                ->select(['i_id AS xref', 'i_gedcom AS gedcom'])
+                ->get();
 
-        foreach ($rows as $row) {
-            Registry::individualFactory()->make($row->xref, $tree, $row->gedcom);
-        }
+            foreach ($rows as $row) {
+                Registry::individualFactory()->make($row->xref, $tree, $row->gedcom);
+            }
+        }        
     }
 
     /**
