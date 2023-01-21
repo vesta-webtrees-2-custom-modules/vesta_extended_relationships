@@ -20,13 +20,19 @@ trait ExtendedRelationshipModuleTrait {
   }
 
   public function getShortDescription() {
-    return I18N::translate('A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original \'Relationships\' module.');
+    $originalBlock = MoreI18N::xlate('Who is online');
+    return 
+      I18N::translate('A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original \'Relationships\' module.') . ' ' .
+      I18N::translate('Also includes an extended \'%1$s\' block.', $originalBlock);
   }
 
   protected function getFullDescription() {
+    $originalBlock = MoreI18N::xlate('Who is online');
+      
     $description = array();
     $description[] = 
             /* I18N: Module Configuration */I18N::translate('A module providing various algorithms used to determine relationships. Includes an extended \'Relationships\' chart.') . ' ' .
+            /* I18N: Module Configuration */I18N::translate('Also includes an extended \'%1$s\' block.', $originalBlock) . ' ' .
             /* I18N: Module Configuration */I18N::translate('Displays additional relationship information via the extended \'Families\' tab, and the extended \'Facts and Events\' tab.');
     $description[] = 
             /* I18N: Module Configuration */I18N::translate('Intended as a replacement for the original \'Relationships\' module.');
@@ -53,6 +59,11 @@ trait ExtendedRelationshipModuleTrait {
                     CommonI18N::vestaSymbolInListTitle(),
                     null,
                     'VESTA_LIST',
+                    '1'),
+                new ControlPanelCheckbox(
+                    CommonI18N::vestaSymbolInBlockTitle(),
+                    null,
+                    'VESTA_BLOCK',
                     '1')));
 
     $chartSub = array();

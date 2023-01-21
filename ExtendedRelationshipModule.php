@@ -23,6 +23,8 @@ use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Menu;
+use Fisharebest\Webtrees\Module\ModuleBlockInterface;
+use Fisharebest\Webtrees\Module\ModuleBlockTrait;
 use Fisharebest\Webtrees\Module\ModuleChartInterface;
 use Fisharebest\Webtrees\Module\ModuleChartTrait;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
@@ -40,6 +42,7 @@ use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\User;
 use Fisharebest\Webtrees\View;
+use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -66,6 +69,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     ModuleConfigInterface, 
     ModuleChartInterface, 
     ModuleListInterface, 
+    ModuleBlockInterface,
     RequestHandlerInterface, 
     IndividualFactsTabExtenderInterface, 
     RelativesTabExtenderInterface {
@@ -75,6 +79,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         ModuleConfigTrait,
         ModuleChartTrait,
         ModuleListTrait,
+        ModuleBlockTrait,
         VestaModuleTrait {
         VestaModuleTrait::customTranslations insteadof ModuleCustomTrait;
         VestaModuleTrait::getAssetAction insteadof ModuleCustomTrait;
@@ -1057,4 +1062,38 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         return $this->listRequestHandler->listUrl($tree, $parameters);
     }
 
+    //////////////////////////////////////////////////////////////////////////////
+    //extension of LoggedInUserModule functionality
+    
+    public function getBlock(
+        Tree $tree, 
+        int $block_id, 
+        string $context, 
+        array $config = []): string {
+
+        $ur = app(UserRepositoryExt::class);
+        $content = $ur->usersLoggedInQuery('list', $this->name());
+
+        $title = $this->getBlockTitle(MoreI18N::xlate('Who is online'));
+         
+        if ($context !== self::CONTEXT_EMBED) {
+            return view('modules/block-template', [
+                'block'      => Str::kebab($this->name()),
+                'id'         => $block_id,
+                'config_url' => '',
+                'title'      => $title,
+                'content'    => $content,
+            ]);
+        }
+
+        return $content;
+    }
+    
+    public function isUserBlock(): bool {
+        return true;
+    }
+
+    public function isTreeBlock(): bool {
+        return true;
+    }
 }
