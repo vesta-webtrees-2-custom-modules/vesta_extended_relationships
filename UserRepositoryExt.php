@@ -8,10 +8,15 @@ use Fisharebest\Webtrees\Contracts\UserInterface;
 use Fisharebest\Webtrees\Http\RequestHandlers\MessagePage;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Module\ModuleChartInterface;
+use Fisharebest\Webtrees\Module\ModuleInterface;
+use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\MessageService;
+use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Services\UserService;
 use Fisharebest\Webtrees\Tree;
+use function app;
 use function route;
 use function view;
 
@@ -76,6 +81,12 @@ class UserRepositoryExt {
             $userSelf = Auth::user();
             $individualSelf = Registry::individualFactory()->make($this->tree->getUserPreference($userSelf, UserInterface::PREF_TREE_ACCOUNT_XREF), $this->tree);
             
+            $relationshipsChartModule = app(ModuleService::class)
+                ->findByComponent(ModuleChartInterface::class, $this->tree, Auth::user())
+                ->first(static function (ModuleInterface $module) {
+                return $module instanceof RelationshipsChartModule;
+            });
+            
             foreach ($logged_in as $user) {
                 if ($type === 'list') {
                     $content .= '<li>';
@@ -89,15 +100,18 @@ class UserRepositoryExt {
                     $content .= e($user->realName());
                 }
 
-                //[RC] adjusted: use proper typography while we're at it
-                $content .= ' &mdash; ' . e($user->userName());
+                //[RC] adjusted: use proper typography while we're at it,
+                //also add css class for optional styling
+                $content .= '<span class="vesta-relationship-chart-link">&mdash; ' . e($user->userName()) . '</span>';
 
                 if ($user->getPreference(UserInterface::PREF_CONTACT_METHOD) !== MessageService::CONTACT_METHOD_NONE && Auth::id() !== $user->id()) {
                     $content .= '<a href="' . e(route(MessagePage::class, ['to' => $user->userName(), 'tree' => $this->tree->name()])) . '" class="btn btn-link" title="' . MoreI18N::xlate('Send a message') . '">' . view('icons/email') . '</a>';
                 }
 
                 //[RC] adjusted
-                if ($individualSelf instanceof Individual && $individualSelf->canShow() && ($individualSelf !== $individual)) {
+                if ($individualSelf instanceof Individual && $individualSelf->canShow() && ($individualSelf !== $individual) && $relationshipsChartModule instanceof RelationshipsChartModule) {
+                    //no need to restrict this to vesta chart
+                    /*
                     $link = ExtendedRelationshipModule::getRelationshipLink(
                         $moduleName,
                         $this->tree,
@@ -105,9 +119,13 @@ class UserRepositoryExt {
                         $individual->xref(),
                         $individualSelf->xref(),
                         7); //TODO make configurable?
-                    $content .= ' &mdash; ' . $link;
+                    */
+                    
+                    $link = '<a class="vesta-relationship-chart-link" href="' . e($relationshipsChartModule->chartUrl($individualSelf, ['xref2' => $individual->xref()])) . '" rel="nofollow" title="' . MoreI18N::xlate('Relationship to me') . '">' . MoreI18N::xlate('Relationship to me') . '</a>';
+                    
+                    $content .= '&mdash; ' . $link;
                 }
-
+                    
                 if ($type === 'list') {
                     $content .= '</li>';
                 }

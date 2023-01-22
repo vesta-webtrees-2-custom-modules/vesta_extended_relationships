@@ -104,11 +104,15 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     /** By default new trees allow unlimited recursion */
     public const DEFAULT_RECURSION = '99';
+    
+    //not as constant: depends on module configuration
+    /*
     public const DEFAULT_ANCESTORS = '1'; //should we use '1' here even if in case this option isn't configured?
     public const DEFAULT_PARAMETERS = [
         'ancestors' => self::DEFAULT_ANCESTORS,
         'recursion' => self::DEFAULT_RECURSION,
     ];
+    */    
 
     /** @var ExtendedIndividualListRequestHandler */
     protected $listRequestHandler;
@@ -123,7 +127,42 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $this->listRequestHandler = new ExtendedIndividualListRequestHandler(
             $this);
     }
-
+    
+    protected function defaultParameters(): array {
+        $chart1 = boolval($this->getPreference('CHART_1', '1'));
+        $chart2 = boolval($this->getPreference('CHART_2', '0'));
+        $chart3 = boolval($this->getPreference('CHART_3', '1'));
+        $chart4 = boolval($this->getPreference('CHART_4', '1'));
+        $chart5 = boolval($this->getPreference('CHART_5', '1'));
+        $chart6 = boolval($this->getPreference('CHART_6', '0'));
+        $chart7 = boolval($this->getPreference('CHART_7', '0'));
+        
+        //fixed priority (we don't want to make this configurable as well)
+        if ($chart7) {
+            $defaultMode = 7;
+        } else if ($chart4) {
+            $defaultMode = 4;
+        } else if ($chart1) {
+            $defaultMode = 1;
+        } else if ($chart2) {
+            $defaultMode = 2;
+        } else if ($chart3) {
+            $defaultMode = 3;
+        } else if ($chart5) {
+            $defaultMode = 5;
+        } else if ($chart6) {
+            $defaultMode = 6;
+        } else {
+            //nothing selected!
+            $defaultMode = 1;
+        }
+        
+        return [
+            'ancestors' => $defaultMode,
+            'recursion' => self::DEFAULT_RECURSION,
+        ];
+    }
+    
     public function customModuleAuthorName(): string {
         return 'Richard Cissée';
     }
@@ -291,7 +330,9 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
             'xref' => $xref1,
             'xref2' => $xref2,
             'tree' => $tree->name(),
-            ] + $parameters + self::DEFAULT_PARAMETERS);
+            ] + $parameters + [
+                'recursion' => self::DEFAULT_RECURSION,
+            ]);
 
         return '<a href="' . $url . '" title="' . MoreI18N::xlate('Relationships') . '">' . $text . '</a>';
     }
@@ -619,7 +660,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         return route(static::class, [
             'xref' => $individual->xref(),
             'tree' => $individual->tree()->name(),
-            ] + $parameters + self::DEFAULT_PARAMETERS);
+            ] + $parameters + $this->defaultParameters());
     }
 
     public function chartBoxMenu(Individual $individual): ?Menu {
