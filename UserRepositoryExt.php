@@ -109,7 +109,7 @@ class UserRepositoryExt {
                 }
 
                 //[RC] adjusted
-                if ($individualSelf instanceof Individual && $individualSelf->canShow() && ($individualSelf !== $individual) && $relationshipsChartModule instanceof RelationshipsChartModule) {
+                if ($individual instanceof Individual && $individual->canShow() && $individualSelf instanceof Individual && $individualSelf->canShow() && ($individualSelf !== $individual) && $relationshipsChartModule instanceof RelationshipsChartModule) {
                     //no need to restrict this to vesta chart
                     /*
                     $link = ExtendedRelationshipModule::getRelationshipLink(
