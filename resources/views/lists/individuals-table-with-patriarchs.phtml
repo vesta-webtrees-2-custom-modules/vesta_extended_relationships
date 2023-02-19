@@ -104,68 +104,6 @@ $("#<?= e($table_id) ?>")
     });
 </script>
 <?php View::endpush() ?>
-    
-<?php
-$max_age = (int) $tree->getPreference('MAX_ALIVE_AGE');
-
-// Initialise chart data
-$deat_by_age = [];
-for ($age = 0; $age <= $max_age; $age++) {
-    $deat_by_age[$age]['M'] = 0;
-    $deat_by_age[$age]['F'] = 0;
-    $deat_by_age[$age]['U'] = 0;
-}
-$birt_by_decade = [];
-$deat_by_decade = [];
-for ($year = 1400; $year < 2050; $year += 10) {
-    $birt_by_decade[$year]['M'] = 0;
-    $birt_by_decade[$year]['F'] = 0;
-    $birt_by_decade[$year]['U'] = 0;
-    $deat_by_decade[$year]['M'] = 0;
-    $deat_by_decade[$year]['F'] = 0;
-    $deat_by_decade[$year]['U'] = 0;
-}
-
-$birthData = [
-    [
-        [
-            'label' => MoreI18N::xlate('Century'),
-            'type'  => 'date',
-        ], [
-            'label' => MoreI18N::xlate('Males'),
-            'type'  => 'number',
-        ], [
-            'label' => MoreI18N::xlate('Females'),
-            'type'  => 'number',
-        ],
-    ]
-];
-
-$deathData = [
-    [
-        [
-            'label' => MoreI18N::xlate('Century'),
-            'type'  => 'date',
-        ], [
-            'label' => MoreI18N::xlate('Males'),
-            'type'  => 'number',
-        ], [
-            'label' => MoreI18N::xlate('Females'),
-            'type'  => 'number',
-        ],
-    ]
-];
-
-$deathAgeData = [
-    [
-        MoreI18N::xlate('Age'),
-        MoreI18N::xlate('Males'),
-        MoreI18N::xlate('Females'),
-        MoreI18N::xlate('Average age'),
-    ]
-];
-
-?>
 
 <div id="<?= e($table_id) ?>">
     <table class="table table-bordered table-sm wt-table-individual"
@@ -177,56 +115,56 @@ $deathAgeData = [
                     <div class="btn-toolbar d-flex justify-content-between mb-2" role="toolbar">
                         <div class="btn-group btn-group-toggle btn-group-sm" data-bs-toggle="buttons">
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show only males.') ?>">
-                                <input type="checkbox" data-filter-column="12" data-filter-value="M" autocomplete="off">
+                                <input type="checkbox" data-filter-column="13" data-filter-value="M" autocomplete="off">
                                 <?= view('icons/sex', ['sex' => 'M']) ?>
                             </label>
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show only females.') ?>">
-                                <input type="checkbox" data-filter-column="12" data-filter-value="F" autocomplete="off">
+                                <input type="checkbox" data-filter-column="13" data-filter-value="F" autocomplete="off">
                                 <?= view('icons/sex', ['sex' => 'F']) ?>
                             </label>
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show only individuals for whom the gender is not known.') ?>">
-                                <input type="checkbox" data-filter-column="12" data-filter-value="U" autocomplete="off">
+                                <input type="checkbox" data-filter-column="13" data-filter-value="U" autocomplete="off">
                                 <?= view('icons/sex', ['sex' => 'U']) ?>
                             </label>
                         </div>
 
                         <div class="btn-group btn-group-toggle btn-group-sm" data-bs-toggle="buttons">
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals who are alive or couples where both partners are alive.') ?>">
-                                <input type="checkbox" data-filter-column="14" data-filter-value="N" autocomplete="off">
+                                <input type="checkbox" data-filter-column="15" data-filter-value="N" autocomplete="off">
                                 <?= MoreI18N::xlate('Alive') ?>
                             </label>
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals who are dead or couples where both partners are dead.') ?>">
-                                <input type="checkbox" data-filter-column="14" data-filter-value="Y" autocomplete="off">
+                                <input type="checkbox" data-filter-column="15" data-filter-value="Y" autocomplete="off">
                                 <?= MoreI18N::xlate('Dead') ?>
                             </label>
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals who died more than 100 years ago.') ?>">
-                                <input type="checkbox" data-filter-column="14" data-filter-value="YES" autocomplete="off">
+                                <input type="checkbox" data-filter-column="15" data-filter-value="YES" autocomplete="off">
                                 <?= MoreI18N::xlate('Death') ?>&gt;100
                             </label>
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals who died within the last 100 years.') ?>">
-                                <input type="checkbox" data-filter-column="14" data-filter-value="Y100" autocomplete="off">
+                                <input type="checkbox" data-filter-column="15" data-filter-value="Y100" autocomplete="off">
                                 <?= MoreI18N::xlate('Death') ?>&lt;=100
                             </label>
                         </div>
 
                         <div class="btn-group btn-group-toggle btn-group-sm" data-bs-toggle="buttons">
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals born more than 100 years ago.') ?>">
-                                <input type="checkbox" data-filter-column="13" data-filter-value="YES" autocomplete="off">
+                                <input type="checkbox" data-filter-column="14" data-filter-value="YES" autocomplete="off">
                                 <?= MoreI18N::xlate('Birth') ?>&gt;100
                             </label>
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show individuals born within the last 100 years.') ?>">
-                                <input type="checkbox" data-filter-column="13" data-filter-value="Y100" autocomplete="off">
+                                <input type="checkbox" data-filter-column="14" data-filter-value="Y100" autocomplete="off">
                                 <?= MoreI18N::xlate('Birth') ?>&lt;=100
                             </label>
                         </div>
 
                         <div class="btn-group btn-group-toggle btn-group-sm" data-bs-toggle="buttons">
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show “roots” couples or individuals. These individuals may also be called “patriarchs”. They are individuals who have no parents recorded in the database.') ?>">
-                                <input type="checkbox" data-filter-column="15" data-filter-value="R" autocomplete="off">
+                                <input type="checkbox" data-filter-column="16" data-filter-value="R" autocomplete="off">
                                 <?= MoreI18N::xlate('Roots') ?>
                             </label>
                             <label class="btn btn-outline-secondary" title="<?= MoreI18N::xlate('Show “leaves” couples or individuals. These are individuals who are alive but have no children recorded in the database.') ?>">
-                                <input type="checkbox" data-filter-column="15" data-filter-value="L" autocomplete="off">
+                                <input type="checkbox" data-filter-column="16" data-filter-value="L" autocomplete="off">
                                 <?= MoreI18N::xlate('Leaves') ?>
                             </label>
                         </div>
@@ -341,11 +279,6 @@ $deathAgeData = [
                 </td>
 
                 <!-- Birth anniversary -->
-                <?php if (isset($birth_dates[0]) && $birth_dates[0]->gregorianYear() >= 1550 && $birth_dates[0]->gregorianYear() < 2030 && !isset($unique_indis[$individual->xref()])) : ?>
-                    <?php
-                    ++$birt_by_decade[(int) ($birth_dates[0]->gregorianYear() / 10) * 10][$individual->sex()];
-                    ?>
-                <?php endif ?>
                 <td class="text-center" data-sort="<?= - $estimated_birth_date->julianDay() ?>">
                     <?= (new Age($birth_dates[0] ?? new Date(''), $today))->ageYearsString() ?>
                 </td>
@@ -377,20 +310,12 @@ $deathAgeData = [
                 </td>
 
                 <!-- Death anniversary -->
-                <?php if (isset($death_dates[0]) && $death_dates[0]->gregorianYear() >= 1550 && $death_dates[0]->gregorianYear() < 2030 && !isset($unique_indis[$individual->xref()])) : ?>
-                    <?php
-                    ++$deat_by_decade[(int) ($death_dates[0]->gregorianYear() / 10) * 10][$individual->sex()];
-                    ?>
-                <?php endif ?>
                 <td class="text-center" data-sort="<?= - $individual->getEstimatedDeathDate()->julianDay() ?>">
                     <?= (new Age($death_dates[0] ?? new Date(''), $today))->ageYearsString() ?>
                 </td>
 
                 <!-- Age at death -->
                 <?php $age = new Age($birth_dates[0] ?? new Date(''), $death_dates[0] ?? new Date('')) ?>
-                <?php if (!isset($unique_indis[$individual->xref()]) && $age->ageYears() >= 0 && $age->ageYears() <= $max_age) : ?>
-                    <?php ++$deat_by_age[$age->ageYears()][$individual->sex()] ?>
-                <?php endif ?>
                 <td class="text-center" data-sort="<?= $age->ageDays() ?>">
                     <?= $age->ageYearsString() ?>
                 </td>

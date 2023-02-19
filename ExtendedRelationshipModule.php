@@ -286,10 +286,15 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
                 $slcaController = new ExtendedRelationshipController;
 
-                $paths = $slcaController->x_calculateRelationships_123456($tree, $xref1, $xref2, $mode, 1, $beforeJD);
+                $paths = $slcaController->x_calculateRelationships_123456(
+                    $tree, 
+                    $xref1, 
+                    $xref2, 
+                    $mode, 
+                    1, 
+                    $beforeJD);
 
                 foreach ($paths as $path) {
-
                     $relationshipPath = RelationshipPath::create($tree, $path);
                     if ($relationshipPath === null) {
                         // Cannot see one of the families/individuals, due to privacy;

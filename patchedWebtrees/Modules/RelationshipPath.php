@@ -73,7 +73,7 @@ class RelationshipPath {
         ?Individual $from,
         Collection $elements) {
 
-        if (!preg_match('/^[MFU]$/', $sex)) {
+        if (!preg_match('/^[MFUX]$/', $sex)) {
             throw new Exception();
         }
 
@@ -235,21 +235,25 @@ class RelationshipPath {
             'M' => 'hus',
             'F' => 'wif',
             'U' => 'spo',
+            'X' => 'spo',
         ];
         $parent_codes = [
             'M' => 'fat',
             'F' => 'mot',
             'U' => 'par',
+            'X' => 'par',
         ];
         $child_codes = [
             'M' => 'son',
             'F' => 'dau',
             'U' => 'chi',
+            'X' => 'chi',
         ];
         $sibling_codes = [
             'M' => 'bro',
             'F' => 'sis',
             'U' => 'sib',
+            'X' => 'sib',
         ];
 
         if (count($path) < 1) {

@@ -51,7 +51,6 @@ class RelDefs {
     if ($path->size() === 2) {
       return $this->doGetMatchedPath($this->defsForPathSize2, $path);
     }
-    
     return $this->doGetMatchedPath($this->allDefs, $path);
   }
   

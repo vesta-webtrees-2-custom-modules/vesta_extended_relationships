@@ -92,6 +92,15 @@ class RelationshipPathElement {
     $this->family = $family;
     $this->to = $to;
     
-    $this->key = ($to === null)?$rel:$to->xref();
+    //issue #98: we have to use rel as part of key (always)
+    //otherwise different paths to the same INDI get mixed up
+    //while we're at it, semms safer to include FAM as well
+    $this->key = $rel;
+    if ($to !== null) {
+        $this->key .= '>'.$to->xref();
+    }
+    if ($family !== null) {
+        $this->key .= '>'.$family->xref();
+    }
   }
 }

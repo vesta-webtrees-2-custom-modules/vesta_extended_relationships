@@ -22,7 +22,7 @@ class PathSexRelationshipPathMatcher implements RelationshipPathMatcher {
   public function __construct(
           string $sex) {
     
-    if (!preg_match('/^[MFU]$/', $sex)) {
+    if (!preg_match('/^[MFUX]$/', $sex)) {
       throw new Exception();
     }
     

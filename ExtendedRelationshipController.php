@@ -16,6 +16,46 @@ use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Query\JoinClause;
 use ReflectionClass;
 use function app;
+    
+class SomeTiebreaker implements DijkstraTiebreakerFunction {
+    
+    private int $total;
+    private int $ongoing;
+
+    public function __construct(
+        int $total,
+        int $ongoing) {
+        
+        $this->total = $total;
+        $this->ongoing = $ongoing;
+    }
+    
+    public static function create(): SomeTiebreaker {
+        return new SomeTiebreaker(0, 0);
+    }
+    
+    public function next(int $weight): void {
+        //error_log("next".$weight);
+        if ($weight === 1000) {
+            //larger runs via common ancestors are considered to be better
+            $this->total += $this->ongoing * $this->ongoing;
+            
+            //start next block
+            $this->ongoing = 0;            
+        } else {
+            $this->ongoing += $weight;
+        }
+    }
+    
+    public function conclude(): int {
+        $this->total += $this->ongoing * $this->ongoing;
+        
+        //smaller = better!
+        $this->total *= -1;
+        
+        return $this->total;
+    }
+}
 
 class Descendant {
 
@@ -67,6 +107,8 @@ class CommonAncestorAndPath {
 
     private $ca; //xref
     private $path; //string[]
+    private int $size;
+    private int $shortestLeg;
 
     public function getCommonAncestor(): ?string {
         return $this->ca;
@@ -77,12 +119,31 @@ class CommonAncestorAndPath {
     }
 
     public function getSize() {
-        return count($this->path);
+        return $this->size;
     }
 
+    public function getShortestLeg() {
+        return $this->shortestLeg;
+    }
+    
     public function __construct($ca, $path) {
         $this->ca = ($ca === null) ? null : (string) $ca;
         $this->path = array_map(ExtendedRelationshipController::stringMapper(), $path);
+        $this->size = count($this->path);
+        
+        if ($this->ca === null) {
+            $this->shortestLeg = PHP_INT_MAX;
+        } else {
+            $key = array_search($this->ca, $this->path);
+            if ($key === false) {
+               $this->shortestLeg = PHP_INT_MAX; 
+            } else {
+               $index = array_search($key, array_keys($this->path)); 
+               $this->shortestLeg = min($index, $this->size - ($index + 1));
+            }
+        }
+        
+        //error_log(print_r($this, true));
     }
 
     /**
@@ -288,11 +349,29 @@ class ExtendedRelationshipController {
         return new CorPlus($cor, $actuallyBetterThan, $shortenedRelationships);
     }
 
-    public function calculateRelationships_123456(Individual $individual1, Individual $individual2, $mode, $recursion, $beforeJD = null) {
-        return $this->x_calculateRelationships_123456($individual1->tree(), $individual1->xref(), $individual2->xref(), $mode, $recursion, $beforeJD);
+    public function calculateRelationships_123456(
+        Individual $individual1, 
+        Individual $individual2, 
+        $mode, 
+        $recursion, 
+        $beforeJD = null) {
+        
+        return $this->x_calculateRelationships_123456(
+            $individual1->tree(), 
+            $individual1->xref(), 
+            $individual2->xref(), 
+            $mode, 
+            $recursion, 
+            $beforeJD);
     }
 
-    public function x_calculateRelationships_123456($tree, $xref1, $xref2, $mode, $recursion, $beforeJD = null) {
+    public function x_calculateRelationships_123456(
+        $tree, 
+        $xref1, 
+        $xref2, 
+        $mode, 
+        $recursion, 
+        $beforeJD = null) {
 
         if ($mode === 1) {
             //single slca
@@ -326,7 +405,7 @@ class ExtendedRelationshipController {
 
         if ($mode === 4) {
             //adjusted original algorithm + dated links
-            $ret = $this->x_calculateRelationships_withWeights($tree, $xref1, $xref2, 0, $beforeJD);
+            $ret = $this->x_calculateRelationships_withWeights($tree, $xref1, $xref2, $beforeJD);
             if (empty($ret) && $beforeJD) {
                 //beforeJD and nothing found - check if we can at least provide results via common ancestors
                 //(dated links may not have found anything due to insufficient dates)
@@ -398,7 +477,7 @@ class ExtendedRelationshipController {
 
         if ($mode === 4) {
             //adjusted original algorithm + dated links
-            $paths = $this->x_calculateRelationships_withWeights($tree, $xref1, $xref2, 0, $beforeJD);
+            $paths = $this->x_calculateRelationships_withWeights($tree, $xref1, $xref2, $beforeJD);
             if (empty($paths) && $beforeJD) {
                 //beforeJD and nothing found - check if we can at least provide results via common ancestors
                 //(dated links may not have found anything due to insufficient dates)
@@ -461,11 +540,18 @@ class ExtendedRelationshipController {
         throw new Exception("unexpected mode!");
     }
 
-    public static function compareCommonAncestorAndPath(CommonAncestorAndPath $a, CommonAncestorAndPath $b) {
-        if ($a == $b) {
-            return 0;
+    public static function compareCommonAncestorAndPath(
+        CommonAncestorAndPath $a, 
+        CommonAncestorAndPath $b) {
+        
+        $cmp = $a->getSize() <=> $b->getSize();
+        
+        if ($cmp !== 0) {
+            return $cmp;
         }
-        return ($a->getSize() < $b->getSize()) ? -1 : 1;
+        
+        //tiebreaker: prefer $ca closed to either end of path (grandmother before aunt etc)
+        return $a->getShortestLeg() <=> $b->getShortestLeg();
     }
 
     public function calculateRelationships_slca(Individual $individual1, Individual $individual2, $mode) {
@@ -614,7 +700,7 @@ class ExtendedRelationshipController {
             }
         }
 
-        //sort by length (couold additional sort, in case of same length, by sth like distance to ca)
+        //sort by length, then by shortest leg
         usort($paths, array($this, 'compareCommonAncestorAndPath'));
 
         if ($mode != 1) {
@@ -745,10 +831,6 @@ class ExtendedRelationshipController {
         return $paths;
     }
 
-    public function calculateRelationships_withWeights(Individual $individual1, Individual $individual2, $all, $beforeJD = null) {
-        return $this->x_calculateRelationships_withWeights($individual1->tree(), $individual1->xref(), $individual2->xref(), $all, $beforeJD);
-    }
-
     /**
      * Calculate the shortest paths - or all paths - between two individuals.
      * blood relationships preferred!
@@ -756,11 +838,15 @@ class ExtendedRelationshipController {
      *
      * @param String $xref1
      * @param String $xref2
-     * @param bool   $all
      *
      * @return string[][]
      */
-    public function x_calculateRelationships_withWeights(Tree $tree, $xref1, $xref2, $all, $beforeJD = null) {
+    public function x_calculateRelationships_withWeights(
+        Tree $tree, 
+        string $xref1, 
+        string $xref2, 
+        $beforeJD = null) {
+        
         $graph = array();
 
         //make sure the tables exist.
@@ -854,65 +940,55 @@ class ExtendedRelationshipController {
         $dijkstra = new OptimizedDijkstra($graph);
 
         $paths = $dijkstra->shortestPaths("A_" . $xref1, "D_" . $xref2);
-        $paths = ExtendedRelationshipController::adjustPaths($paths);
 
-        if ($all) {
-            // Only process each exclusion list once;
-            $excluded = array();
-
-            $queue = array();
-            foreach ($paths as $path) {
-                // Insert the paths into the queue, with an exclusion list.
-                $queue[] = array('path' => $path, 'exclude' => array());
-                // While there are un-extended paths
-                while (list(, $next) = each($queue)) {
-                    // For each family on the path
-                    for ($n = count($next['path']) - 2; $n >= 1; $n -= 2) {
-                        $exclude = $next['exclude'];
-                        $exclude[] = $next['path'][$n];
-                        sort($exclude);
-                        $tmp = implode('-', $exclude);
-                        if (in_array($tmp, $excluded)) {
-                            continue;
-                        } else {
-                            $excluded[] = $tmp;
-                        }
-                        // Add any new path to the queue
-                        $new_paths = $dijkstra->shortestPaths($xref1, $xref2, $exclude);
-                        $new_paths = ExtendedRelationshipController::adjustPaths($new_paths);
-                        foreach ($new_paths as $new_path) {
-                            $queue[] = array('path' => $new_path, 'exclude' => $exclude);
-                        }
-                    }
-                }
-            }
-            // Extract the paths from the queue, removing duplicates.
-            $paths = array();
-            foreach ($queue as $next) {
-                $paths[implode('-', $next['path'])] = $next['path'];
-            }
-        }
-
-        //1. would be nice to have additional tiebreakers for multiple paths with same length and same weight,
+        //1. use additional tiebreakers for multiple paths with same length (and same weight),
+        //
         //in order to obtain consistent ordering;
         //2. seems reasonable to use symmetric ordering (order should be the same when swapping source and target individual),
         //otherwise potentially confusing;
-        //due to 2., we cannot use "shortest name" reliably, nor sth like positions of weights within the path
-        //we could use 'established on date', but that's too inefficient to determine
         //
-        //remaining options (resulting order is semantically rather irrelevant):
-        //compare via participating individuals, use smallest alphanumeric id(s) as tiebreaker
-
+        //due to 2., we cannot use "shortest name" reliably.
+        //
+        //instead, we prefer 'longer runs' via common ancestors
+        //(i.e. second cousin's wife is better than first cousin's wife's uncle)
+        if (count($paths) > 1) {
+            $weightedPaths = [];
+            foreach ($paths as $path) {
+                $f = SomeTiebreaker::create();
+                $tiebreakerWeight = $dijkstra->calculateTiebreaker($path, $f);
+                //error_log(print_r($path, true));
+                //error_log("weight:".$tiebreakerWeight);
+                $weightedPaths []= array('path' => $path, 'weight' => $tiebreakerWeight);
+            }
+            
+            usort($weightedPaths, static fn (array $x, array $y): int => ($x['weight'] <=> $y['weight']));
+            
+            $paths = array_map(static fn (array $x): array => $x['path'], $weightedPaths);
+        }
+        
+        $paths = ExtendedRelationshipController::adjustPaths($paths);
+        
         return $paths;
     }
-
-    public function calculateRelationships_optimized(Individual $individual1, Individual $individual2, $recursion, $beforeJD = null) {
+    
+    public function calculateRelationships_optimized(
+        Individual $individual1, 
+        Individual $individual2, 
+        int $recursion, 
+        $beforeJD = null) {
+        
         return $this->x_calculateRelationships_optimized($individual1->tree(), $individual1->xref(), $individual2->xref(), $recursion, $beforeJD);
     }
 
     //adjustment from original: OptimizedDijkstra
     //extension: only links established before given julian day
-    public function x_calculateRelationships_optimized($tree, $xref1, $xref2, $recursion, $beforeJD = null) {
+    public function x_calculateRelationships_optimized(
+        $tree, 
+        $xref1, 
+        $xref2, 
+        int $recursion, 
+        $beforeJD = null) {
+        
         $graph = array();
 
         if ($beforeJD === null) {
@@ -967,6 +1043,9 @@ class ExtendedRelationshipController {
 
         $dijkstra = new OptimizedDijkstra($graph);
         $paths = $dijkstra->shortestPaths($xref1, $xref2);
+
+        //[RC] logic is dubious: completely excluding a node means
+        //we won't get any other paths through that node? a-b-c excludes a-x-b-c?
 
         // Only process each exclusion list once;
         $excluded = array();
