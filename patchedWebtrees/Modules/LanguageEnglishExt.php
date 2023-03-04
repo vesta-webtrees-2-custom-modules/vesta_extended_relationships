@@ -257,7 +257,7 @@ class LanguageEnglishExt extends AbstractModule implements ModuleLanguageExtInte
     ////////
 
     $defs []= RelDefBuilder::def()->parent($ref)->sibling()->child($ref)->child()->is('%s cousin once removed descending');
-    $defs []= RelDefBuilder::def()->parent($ref)->sibling()->child($ref)->child(Times::fixed(2))->is('%s cousin twice removed ascending');
+    $defs []= RelDefBuilder::def()->parent($ref)->sibling()->child($ref)->child(Times::fixed(2))->is('%s cousin twice removed descending');
     $defs []= RelDefBuilder::def()->parent($ref)->sibling()->child($ref)->child(Times::min(3))->is('%1$s cousin %2$s times removed descending');
     
     ////////
