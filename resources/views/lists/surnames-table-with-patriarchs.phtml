@@ -31,6 +31,9 @@ if ($self instanceof Individual) {
 } else {
     $ancestors = [];
 }
+
+$spfxsurn = null;
+    
 ?>
 
 <table
@@ -76,10 +79,14 @@ if ($self instanceof Individual) {
                     <?php foreach ($surns as $spfxsurn_ => $indis) : ?>
                         <?php
                         //[RC] adjusted
+                        $previousSpfxsurn = $spfxsurn;
                         $spfxsurn = $indis->getActualSurname();
                         ?>
                         <?php if ($module instanceof IndividualListModule || $module instanceof FamilyListModule) : ?>
-                            <?php if ($spfxsurn) : ?>
+                            <?php
+                            //[RC] adjusted
+                            ?>                    
+                            <?php if ($spfxsurn !== $previousSpfxsurn) : ?>
                                 <?php if ($surn !== '') : ?>
                                     <a href="<?= $module->listUrl($tree, ['surname' => $surn]) ?>" dir="auto">
                                         <?= e($spfxsurn) ?>
@@ -90,8 +97,7 @@ if ($self instanceof Individual) {
                                     </a>
                                 <?php endif ?>
                             <?php else : ?>
-                                <!-- No surname, but a value from "2 SURN"? A common workaround for toponyms, etc. -->
-                                <a href="<?= $module->listUrl($tree, ['surname' => $surn]) ?>" dir="auto"><?= e($surn) ?></a>
+                                <!-- repeated surname, skip (issue #102) -->                                
                             <?php endif ?>
                         <?php else : ?>
                             <?php if ($spfxsurn) : ?>
