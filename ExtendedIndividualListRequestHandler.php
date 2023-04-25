@@ -185,9 +185,12 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule {
                 //
                 //if there is a match, all $surname from $list[$surn][$surname] are displayed as variants in the list header
                 //(otherwise, header falls back to $surname)
-                //we do not want to display these variants, which we actually use to transport the patriarchs, therefore:
-                //we adjust the 'surname parameter' (in overriden handle())
-                //to something that displays properly but doesn't match anything from the array.                
+                //we do not want to display these variants, which we actually use to transport the patriarchs(*), therefore:
+                //we adjust the 'surname parameter' (in overridden handle())
+                //to something that displays properly but doesn't match anything from the array.
+                //
+                //(*) obviously the original variants info gets lost this way. Would be better to have both!
+                //but that would require an extended re-implementation of the original list code
                 $surn = $row->n_surn;
                 
                 //originally the surname variant, re-purposed for patriarch
@@ -316,8 +319,14 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule {
 
         //'repair' adjusted $surname (cf handle())
         $surname = mb_substr($surname, 0, -1);
+        
         //NOW normalize, apparently this is (sometimes?) required for correct query in parent::individuals
-        $surname = I18N::strtoupper(I18N::language()->normalize($surname));
+        //Issue #103
+        //no - don't do this: leads to missing results when used with name with umlaut and language German:
+        //normalization shoud only be done for display, not for querying -
+        //don't really understand how this works in webtrees when $siurnames is empty
+        //$surname = I18N::strtoupper(I18N::language()->normalize($surname));
+        $surname = I18N::strtoupper($surname);
         
         $originalCollection = parent::individuals($tree, $surname, $surnames, $galpha, $marnm, $fams);
 
