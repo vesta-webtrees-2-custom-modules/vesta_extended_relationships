@@ -1,0 +1,85 @@
+<?php
+
+declare(strict_types=1);
+
+use Cissee\WebtreesExt\MoreI18N;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Tree;
+use Fisharebest\Webtrees\View;
+
+/**
+ * @var string               $ajax_url
+ * @var Individual|null      $individual1
+ * @var Individual|null      $individual2
+ * @var string               $style
+ * @var array<string,string> $styles
+ * @var string               $title
+ * @var Tree                 $tree
+ */
+
+?>
+
+<h2 class="wt-page-title">
+    <?= $title ?>
+</h2>
+
+<form method="post" class="wt-page-options wt-page-options-relationships-chart d-print-none">
+    <div class="row">
+        <label class="col-sm-3 col-form-label wt-page-options-label" for="xref">
+            <?= MoreI18N::xlate('Individual 1') ?>
+        </label>
+        <div class="col-sm-9 wt-page-options-value">
+            <?= view('components/select-individual', ['name' => 'xref', 'individual' => $individual1, 'tree' => $tree, 'required' => true]) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-3 col-form-label wt-page-options-label" for="xref2">
+            <?= MoreI18N::xlate('Individual 2') ?>
+        </label>
+        <div class="col-sm-9 wt-page-options-value">
+            <?= view('components/select-individual', ['name' => 'xref2', 'individual' => $individual2, 'tree' => $tree, 'required' => true]) ?>
+        </div>
+    </div>
+    
+    <div class="row">
+        <label class="col-sm-3 col-form-label wt-page-options-label" for="style">
+            <?= MoreI18N::xlate('Layout') ?>
+        </label>
+        <div class="col-sm-9 wt-page-options-value">
+            <?= view('components/radios-inline', ['name' => 'style', 'options' => $styles, 'selected' => $style]) ?>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-form-label col-sm-3 wt-page-options-label"></div>
+        <div class="col-sm-9 wt-page-options-value">
+            <button class="btn btn-primary" type="submit">
+                <?= /* I18N: A button label. */ I18N::translate('view') ?>
+            </button>
+
+            <button class="btn btn-link" id="btn-swap-individuals" type="button">
+                <?= /* I18N: Reverse the order of two individuals */
+                MoreI18N::xlate('Swap individuals') ?>
+            </button>
+        </div>
+    </div>
+
+    <?= csrf_field() ?>
+</form>
+
+<?php if ($individual1 !== null && $individual2 !== null) : ?>
+    <div class="wt-ajax-load wt-page-content wt-chart wt-chart-relationships" data-wt-ajax-url="<?= e($ajax_url) ?>"></div>
+<?php endif ?>
+
+<?php View::push('javascript') ?>
+<script>
+  $('#btn-swap-individuals').click(function () {
+      // Swap the name attributes
+      document.getElementById("xref").name = "xref2";
+      document.getElementById("xref2").name = "xref";
+      document.querySelector(".wt-page-options-relationships-chart").submit();
+  });
+</script>
+<?php View::endpush() ?>

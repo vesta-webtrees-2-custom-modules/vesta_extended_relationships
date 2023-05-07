@@ -324,7 +324,7 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule {
         //Issue #103
         //no - don't do this: leads to missing results when used with name with umlaut and language German:
         //normalization shoud only be done for display, not for querying -
-        //don't really understand how this works in webtrees when $siurnames is empty
+        //don't really understand how this works in webtrees when $surnames is empty
         //$surname = I18N::strtoupper(I18N::language()->normalize($surname));
         $surname = I18N::strtoupper($surname);
         

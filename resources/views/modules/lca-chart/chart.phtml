@@ -1,0 +1,34 @@
+<?php
+
+declare(strict_types=1);
+
+use Cissee\WebtreesExt\Services\TreeNode;
+use Fisharebest\Webtrees\I18N;
+
+/**
+ * @var Collection<TreeNode>   $nodes
+ * @var string                 $style
+ */
+            
+if ($nodes->contains(function (TreeNode|null $value) {
+    return ($value === null);
+})) {
+    echo '<p>' . I18N::translate('There are no recorded common ancestors.') . '</p>';
+    return;
+}
+
+?>
+
+<div class="⚶-chart ⚶-chart-pedigree-lca ⚶-chart-style-<?= e($style) ?>">
+    <ol class="⚶-root">    
+        <?php foreach ($nodes as $node) : ?>
+            <li class="⚶-root">
+                <div class="⚶-root">
+                    <?= view('modules/vesta-lca-chart/chart-x', [
+                        'node' => $node, 
+                        ]) ?>
+                </div>
+            </li>
+        <?php endforeach ?>
+    </ol>
+</div>

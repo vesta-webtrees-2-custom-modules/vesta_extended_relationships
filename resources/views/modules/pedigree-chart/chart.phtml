@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+use Cissee\WebtreesExt\Services\TreeNode;
+use Fisharebest\Webtrees\I18N;
+
+/**
+ * @var TreeNode               $start
+ * @var int|null               $generations
+ * @var string                 $kind
+ * @var string                 $style
+ */
+            
+if ($start === null) {
+    if ($generations === null) {
+        echo '<p>' . I18N::translate('There is no recorded pedigree collapse.') . '</p>';
+    } else {
+        echo '<p>' . I18N::translate('There is no recorded pedigree collapse within %1$s generations.', $generations) . '</p>';
+    }    
+    return;
+}
+
+?>
+
+<div class="⚶-chart ⚶-chart-pedigree-<?= e($kind) ?> ⚶-chart-style-<?= e($style) ?>">
+    <?= view('modules/vesta-pedigree-chart/chart-x', [
+        'node' => $start, 
+        ]) ?>
+</div>

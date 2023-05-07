@@ -1,0 +1,68 @@
+<?php
+
+declare(strict_types=1);
+
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Tree;
+
+/**
+ * @var string               $ajax_url
+ * @var int                  $generations
+ * @var Individual           $individual
+ * @var array                $options
+ * @var string               $style
+ * @var string               $kind
+ * @var array<string,string> $styles
+ * @var string               $title
+ * @var Tree                 $tree
+ */
+
+?>
+
+<h2 class="wt-page-title">
+    <?= $title ?>
+</h2>
+
+<form method="post" class="wt-page-options wt-page-options-pedigree-chart d-print-none">
+    <input type="hidden" name="kind" value="<?= $kind ?>">
+    
+    <div class="row">
+        <label class="col-sm-3 col-form-label wt-page-options-label" for="xref">
+            <?= I18N::translate('Individual') ?>
+        </label>
+        <div class="col-sm-9 wt-page-options-value">
+            <?= view('components/select-individual', ['name' => 'xref', 'individual' => $individual, 'tree' => $tree]) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-3 col-form-label wt-page-options-label" for="generations">
+            <?= I18N::translate('Generations') ?>
+        </label>
+        <div class="col-sm-9 wt-page-options-value">
+            <?= view('components/select', ['name' => 'generations', 'selected' => $generations, 'options' => $options]) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-3 col-form-label wt-page-options-label" for="style">
+            <?= I18N::translate('Layout') ?>
+        </label>
+        <div class="col-sm-9 wt-page-options-value">
+            <?= view('components/radios-inline', ['name' => 'style', 'options' => $styles, 'selected' => $style]) ?>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-3 wt-page-options-label"></div>
+        <div class="col-sm-9 wt-page-options-value">
+            <input class="btn btn-primary" type="submit" value="<?= /* I18N: A button label. */
+            I18N::translate('view') ?>">
+        </div>
+    </div>
+
+    <?= csrf_field() ?>
+</form>
+
+<div class="wt-ajax-load wt-page-content wt-chart wt-chart-pedigree" data-wt-ajax-url="<?= e($ajax_url) ?>"></div>

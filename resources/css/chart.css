@@ -1,0 +1,622 @@
+@charset "UTF-8";
+
+/* reset */
+.⚶-chart ol {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0; /* browser default is non-0 */
+}
+
+/* reset */
+.⚶-chart li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0; /* browser default is non-0 */
+}
+
+div.⚶-chart {
+    /* add some margin for absolute positioned markup */
+    margin: 1rem;
+}
+
+.⚶-chart div.⚶-famc {
+    /* so that we can position markup and data absolutely */
+    position:relative;
+}
+
+.⚶-chart div.⚶-markup {
+    position:absolute;
+    width: 2rem;
+    height: 2rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 0.25rem 0 0 0;
+}
+
+.⚶-chart div.⚶-markup.⚶-markup-type-first_repeated {
+    background-image: linear-gradient(var(--sex-x-bg), var(--sex-x-bg));
+    background-size: 100%;
+}
+
+.⚶-chart div.⚶-markup.⚶-markup-type-other_repeated {
+    background-image: linear-gradient(#e0e0e0, #e0e0e0);
+    background-size: 100%;
+}
+
+.⚶-chart div.⚶-markup.⚶-markup-type-first_lca {
+    background-image: linear-gradient(#81a9cb, #81a9cb);
+    background-size: 100%;
+}
+
+.⚶-chart div.⚶-markup.⚶-markup-type-other_lca {
+    background-image: linear-gradient(#e0e0e0, #e0e0e0);
+    background-size: 100%;
+}
+
+.⚶-chart div.⚶-data {
+    position:absolute;
+    font-weight: 700;
+    text-align: center;
+    padding: 0 0.5rem 0 0.5rem;
+    background-image: linear-gradient(#e0e0e0, #e0e0e0);
+    background-size: 100%;
+}
+
+/* ************************************************************************** */
+    
+/* 
+    it may seem more straightforward to use flex, 
+    which indeed (accidentally?) works for 'up' and 'down', using 'width: 50%' etc. for connectors,
+    but that doesn't work not for 'left' and 'right' (and apparently cannot be expected to for dynamic dimensions), 
+    so we use grid with dummy columns (rows) for 'percentaged' widths (heights)
+*/
+
+
+.⚶-chart-style-up ol.⚶-famc {
+    display: inline-flex; /* inline-flex required in order to grow with content https://stackoverflow.com/a/46650650 */
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.⚶-chart-style-up ol.⚶-fam {
+    display: inline-flex;
+    flex-direction: row;
+    /* cannot center in case of sub trees of unequal depth */
+}
+
+/* stack to save space */
+.⚶-chart-style-up ol.⚶-fam.⚶-fam-leaves {
+    display: inline-flex;
+    flex-direction: column; /* first parent always on top */
+    align-items: center;
+}
+
+/* required for the connectors */
+.⚶-chart-style-up li.⚶-famc {
+    display: inline-flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+/* required to avoid gap */
+.⚶-chart-style-up div.⚶-famc {
+    display: inline-flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+/* required for the connectors */
+.⚶-chart-style-up li.⚶-fam {
+    display: inline-flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+/* connector 'from' part */
+.⚶-chart-style-up li.⚶-famc:not(:only-child):last-child::before {
+    content: "";
+    width: 1px;
+    height: 15px;
+    background-color: black;
+}
+
+/* connector 'to' part ('left') */
+.⚶-chart-style-up li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):first-child::before {
+    content: "";
+    align-self: flex-end;
+    width: calc(50% + 1.5px);
+    height: 15px;
+    border-width: 1.5px;
+    border-bottom-left-radius: 10px;
+    border-left-color: black;
+    border-left-style: solid;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    background-color: transparent;
+}
+
+/* connector 'to' part ('right') */
+.⚶-chart-style-up li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):last-child::before {
+    content: "";
+    align-self: flex-start;
+    width: calc(50% + 1.5px);
+    height: 15px;
+    border-width: 1.5px;
+    border-bottom-right-radius: 10px;
+    border-right-color: black;
+    border-right-style: solid;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    background-color: transparent;
+}
+
+/* stack to save space */
+/* connector 'to' part ('leaves') */
+.⚶-chart-style-up li.⚶-fam.⚶-fam-leaves:not(:only-child):last-child::before {
+    content: "";
+    align-self: center;
+    width: calc(20%);
+    height: 15px;
+    border-width: 1.5px;
+    border-left-color: black;
+    border-left-style: solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    border-bottom-right-radius: 10px;
+    border-right-color: black;
+    border-right-style: solid;
+    background-color: transparent;
+}
+
+/* connector 'to' part ('only') */
+.⚶-chart-style-up li.⚶-fam:only-child::before {
+    content: "";
+    align-self: center;
+    width: 1px;
+    height: 15px;
+    background-color: black;
+}
+
+.⚶-chart-style-up .wt-chart-box {
+    height: 8rem;
+    width: 10rem;
+    /* add some margin for absolute positioned markup */
+    margin: 0 1.5rem 0 1.5rem;
+}
+
+.⚶-chart-style-up div.⚶-markup {
+    left: -0.5rem;
+    top: 0.5rem;
+}
+
+.⚶-chart-style-up div.⚶-data {
+    left: 11.5rem;
+    top: 5.5rem;
+}
+
+/* ************************************************************************** */
+
+.⚶-chart-style-down ol.⚶-famc {
+    display: inline-flex; /* inline-flex required in order to grow with content https://stackoverflow.com/a/46650650 */
+    flex-direction: column;
+    align-items: center;
+}
+
+.⚶-chart-style-down ol.⚶-fam {
+    display: inline-flex;
+    flex-direction: row;
+    /* cannot center in case of sub trees of unequal depth */
+}
+
+/* stack to save space */
+.⚶-chart-style-down ol.⚶-fam.⚶-fam-leaves {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* required for the connectors */
+.⚶-chart-style-down li.⚶-famc {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* required to avoid gap */
+.⚶-chart-style-down div.⚶-famc {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+/* required for the connectors */
+.⚶-chart-style-down li.⚶-fam {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* connector 'from' part */
+.⚶-chart-style-down li.⚶-famc:not(:only-child):last-child::before {
+    content: "";
+    width: 1px;
+    height: 15px;
+    background-color: black;
+}
+
+/* connector 'to' part ('left') */
+.⚶-chart-style-down li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):first-child::before {
+    content: "";
+    align-self: flex-end;
+    width: calc(50% + 1.5px);
+    height: 15px;
+    border-width: 1.5px;
+    border-top-left-radius: 10px;
+    border-left-color: black;
+    border-left-style: solid;
+    border-top-color: black;
+    border-top-style: solid;
+    background-color: transparent;
+}
+
+/* connector 'to' part ('right') */
+.⚶-chart-style-down li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):last-child::before {
+    content: "";
+    align-self: flex-start;
+    width: calc(50% + 1.5px);
+    height: 15px;
+    border-width: 1.5px;
+    border-top-right-radius: 10px;
+    border-right-color: black;
+    border-right-style: solid;
+    border-top-color: black;
+    border-top-style: solid;
+    background-color: transparent;
+}
+
+/* stack to save space */
+/* connector 'to' part ('leaves') */
+.⚶-chart-style-down li.⚶-fam.⚶-fam-leaves:not(:only-child):first-child::before {
+    content: "";
+    align-self: center;
+    width: calc(20%);
+    height: 15px;
+    border-width: 1.5px;
+    border-left-color: black;
+    border-left-style: solid;
+    border-top-left-radius: 10px;
+    border-top-color: black;
+    border-top-style: solid;
+    border-top-right-radius: 10px;
+    border-right-color: black;
+    border-right-style: solid;
+    background-color: transparent;
+}
+
+/* connector 'to' part ('only') */
+.⚶-chart-style-down li.⚶-fam:only-child::before {
+    content: "";
+    align-self: center;
+    width: 1px;
+    height: 15px;
+    background-color: black;
+}
+
+.⚶-chart-style-down .wt-chart-box {
+    height: 8rem;
+    width: 10rem;
+    /* add some margin for absolute positioned markup */
+    margin: 0 1.5rem 0 1.5rem;
+}
+
+.⚶-chart-style-down div.⚶-markup {
+    left: -0.5rem;
+    top: 0.5rem;
+}
+
+.⚶-chart-style-down div.⚶-data {
+    left: 11.5rem;
+    top: 5.5rem;
+}
+
+/* ************************************************************************** */
+
+.⚶-chart-style-right ol.⚶-root {
+    display: inline-grid;
+    grid-auto-flow: row; /* i.e. single column */
+}
+
+.⚶-chart-style-right li.⚶-root {
+    display: inline-grid;
+    grid-auto-flow: row;
+}
+
+.⚶-chart-style-right ol.⚶-famc {
+    display: inline-grid;
+    grid-auto-flow: column; /* i.e. single row */
+}
+
+/* required for the connectors */
+.⚶-chart-style-right li.⚶-famc {
+    display: inline-grid;
+    align-content: center; /* for indi */
+    grid-auto-flow: column;
+}
+
+.⚶-chart-style-right ol.⚶-fam {
+    display: inline-grid;
+    grid-auto-flow: row;
+}
+
+/* stack to save space */
+.⚶-chart-style-right ol.⚶-fam.⚶-fam-leaves {
+    display: inline-grid;
+    grid-auto-flow: column;
+}
+
+/* required for the connectors */
+.⚶-chart-style-right li.⚶-fam {
+    display: inline-grid;
+    grid-template-rows: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */ 
+    grid-template-columns: max-content auto; /* pseudo-element, actual element */
+}
+
+/* connector 'from' part */
+.⚶-chart-style-right li.⚶-famc:not(:only-child):last-child::before {
+    content: "";
+    align-self: center; /* not sure why this is required */
+    width: 15px;
+    height: 1px;
+    background-color: black;
+}
+
+/* connector 'to' part ('left') */
+.⚶-chart-style-right li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):first-child::before {
+    content: "";
+    grid-row: 3 / span 2; /* 'left 50%' */
+    width: 15px;    
+    border-width: 1.5px;
+    border-top-left-radius: 10px;
+    border-left-color: black;
+    border-left-style: solid;
+    border-top-color: black;
+    border-top-style: solid;
+    background-color: transparent;
+}
+
+/* connector 'to' part ('right') */
+.⚶-chart-style-right li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):last-child::before {
+    content: "";
+    grid-row: 1 / span 2; /* 'right 50%' */
+    width: 15px;
+    border-width: 1.5px;
+    border-bottom-left-radius: 10px;
+    border-left-color: black;
+    border-left-style: solid;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    background-color: transparent;
+}
+
+/* stack to save space */
+/* connector 'to' part ('leaves') */
+.⚶-chart-style-right li.⚶-fam.⚶-fam-leaves:not(:only-child):first-child::before {
+    content: "";
+    grid-row: 2 / span 2; /* 'center 20%' */
+    width: 15px;
+    border-width: 1.5px;
+    border-top-left-radius: 10px;
+    border-left-color: black;
+    border-left-style: solid;
+    border-top-color: black;
+    border-top-style: solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    background-color: transparent;
+}
+
+/* connector 'to' part ('only') */
+.⚶-chart-style-right li.⚶-fam:only-child::before {
+    content: "";
+    grid-row: span 4; /* '100%' */
+    align-self: center;
+    width: 15px;
+    height: 1px;
+    background-color: black;
+}
+
+.⚶-chart-style-right div.⚶-fam {
+    grid-row: span 4; /* '100%' */
+}
+
+.⚶-chart-style-right .wt-chart-box {
+    height: 5rem;
+    width: 15rem;
+}
+
+.⚶-chart-pedigree-compact.⚶-chart-style-right .wt-chart-box {
+    /* add some margin for absolute positioned markup */
+    margin: 1.25rem 0 1.25rem 0;
+}
+
+.⚶-chart-pedigree-collapse.⚶-chart-style-right .wt-chart-box {
+    /* add some margin for absolute positioned markup */
+    margin: 1.25rem 0 1.25rem 0;
+}
+
+.⚶-chart-pedigree-lca.⚶-chart-style-right .wt-chart-box {
+    /* add some margin for absolute positioned markup */
+    margin: 1.25rem 0 1.25rem 0;
+}
+
+.⚶-chart-style-right div.⚶-markup {
+    left: 0.5rem;
+    top: -0.75rem;
+}
+
+.⚶-chart-style-right div.⚶-data {
+    left: 9rem;
+    top: 6.25rem;
+}
+
+/* ************************************************************************** */
+
+.⚶-chart-style-left ol.⚶-root {
+    display: inline-grid;
+    grid-auto-flow: row; /* i.e. single column */
+}
+
+.⚶-chart-style-left li.⚶-root {
+    display: inline-grid;
+    grid-auto-flow: row;
+}
+
+.⚶-chart-style-left ol.⚶-famc {
+    display: inline-grid;
+    grid-auto-flow: column; /* i.e. single row */
+}
+
+.⚶-chart-style-left li.⚶-famc:first-child {
+    /* flip order */
+    grid-column: 2;
+}
+
+.⚶-chart-style-left li.⚶-famc:last-child {
+    /* flip order */
+    grid-column: 1;
+}
+
+/* required for the connectors */
+.⚶-chart-style-left li.⚶-famc {
+    display: inline-grid;
+    align-content: center; /* for indi */
+    grid-auto-flow: column;
+}
+
+.⚶-chart-style-left ol.⚶-fam {
+    display: inline-grid;
+    grid-auto-flow: row;
+}
+
+/* stack to save space */
+.⚶-chart-style-left ol.⚶-fam.⚶-fam-leaves {
+    display: inline-grid;
+    grid-auto-flow: column;
+}
+
+/* required for the connectors */
+.⚶-chart-style-left li.⚶-fam {
+    display: inline-grid;
+    grid-template-rows: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */ 
+    grid-template-columns: auto max-content; /* actual element, pseudo-element */
+    justify-items: end; /* for subtrees of unequal depth */
+}
+
+/* connector 'from' part */
+.⚶-chart-style-left li.⚶-famc:not(:only-child):last-child::after {
+    content: "";
+    align-self: center; /* not sure why this is required */
+    width: 15px;
+    height: 1px;
+    background-color: black;
+}
+
+/* connector 'to' part ('left') */
+.⚶-chart-style-left li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):first-child::before {
+    content: "";
+    grid-row: 3 / span 2; /* 'left 50%' */
+    /* flip order */
+    grid-column: 2; /* using ::after insteaf of ::before has no effect at all - weirdly(?) */
+    width: 15px;    
+    border-width: 1.5px;
+    border-top-right-radius: 10px;
+    border-right-color: black;
+    border-right-style: solid;
+    border-top-color: black;
+    border-top-style: solid;
+    background-color: transparent;
+}
+
+/* connector 'to' part ('right') */
+.⚶-chart-style-left li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):last-child::before {
+    content: "";
+    grid-row: 1 / span 2; /* 'right 50%' */
+    /* flip order */
+    grid-column: 2;
+    width: 15px;
+    border-width: 1.5px;
+    border-bottom-right-radius: 10px;
+    border-right-color: black;
+    border-right-style: solid;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    background-color: transparent;
+}
+
+/* stack to save space */
+/* connector 'to' part ('leaves') */
+/* last-child */
+.⚶-chart-style-left li.⚶-fam.⚶-fam-leaves:not(:only-child):last-child::before {
+    content: "";
+    grid-row: 2 / span 2; /* 'center 20%' */
+    /* flip order */
+    grid-column: 2;
+    width: 15px;
+    border-width: 1.5px;
+    border-top-right-radius: 10px;
+    border-right-color: black;
+    border-right-style: solid;
+    border-top-color: black;
+    border-top-style: solid;
+    border-bottom-right-radius: 10px;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    background-color: transparent;
+}
+
+/* connector 'to' part ('only') */
+/* ::after =  flip order */
+.⚶-chart-style-left li.⚶-fam:only-child::after {
+    content: "";
+    grid-row: span 4; /* '100%' */
+    align-self: center;
+    width: 15px;
+    height: 1px;
+    background-color: black;
+}
+
+.⚶-chart-style-left div.⚶-fam {
+    grid-row: span 4; /* '100%' */
+}
+
+.⚶-chart-style-left .wt-chart-box {
+    height: 5rem;
+    width: 15rem;
+}
+
+.⚶-chart-pedigree-compact.⚶-chart-style-left .wt-chart-box {
+    /* add some margin for absolute positioned markup */
+    margin: 1.25rem 0 1.25rem 0;
+}
+
+.⚶-chart-pedigree-collapse.⚶-chart-style-left .wt-chart-box {
+    /* add some margin for absolute positioned markup */
+    margin: 1.25rem 0 1.25rem 0;
+}
+
+.⚶-chart-pedigree-lca.⚶-chart-style-left .wt-chart-box {
+    /* add some margin for absolute positioned markup */
+    margin: 1.25rem 0 1.25rem 0;
+}
+
+.⚶-chart-style-left div.⚶-markup {
+    left: 0.5rem;
+    top: -0.75rem;
+}
+
+.⚶-chart-style-left div.⚶-data {
+    left: 9rem;
+    top: 6.25rem;
+}
+
+/* ************************************************************************** */

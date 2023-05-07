@@ -4,18 +4,13 @@ namespace Cissee\Webtrees\Module\ExtendedRelationships;
 
 use Cissee\Webtrees\Module\ExtendedRelationships\OptimizedDijkstra;
 use Cissee\Webtrees\Module\ExtendedRelationships\Sync;
+use Cissee\WebtreesExt\Modules\RelationshipPath;
 use Closure;
 use Exception;
 use Fisharebest\Webtrees\Individual;
-use Fisharebest\Webtrees\Module\RelationshipsChartModule;
-use Fisharebest\Webtrees\Services\ModuleService;
-use Fisharebest\Webtrees\Services\RelationshipService;
-use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Query\JoinClause;
-use ReflectionClass;
-use function app;
     
 class SomeTiebreaker implements DijkstraTiebreakerFunction {
     
@@ -199,25 +194,6 @@ class CorPlus {
  */
 class ExtendedRelationshipController {
 
-    protected $oldStyleRelationshipPathProvider;
-    protected $oldStyleRelationshipPathMethod;
-
-    public function __construct() {
-        $this->oldStyleRelationshipPathProvider = new RelationshipsChartModule(
-            app(ModuleService::class),
-            app(RelationshipService::class),
-            app(TreeService::class));
-
-        //grrr
-        $class = new ReflectionClass($this->oldStyleRelationshipPathProvider);
-        $this->oldStyleRelationshipPathMethod = $class->getMethod('oldStyleRelationshipPath');
-        $this->oldStyleRelationshipPathMethod->setAccessible(true);
-    }
-
-    public function oldStyleRelationshipPath(Tree $tree, array $path) {
-        return $this->oldStyleRelationshipPathMethod->invoke($this->oldStyleRelationshipPathProvider, $tree, $path);
-    }
-
     public function getCorFromPaths($paths) {
         $cor = 0.0;
         foreach ($paths as $path) {
@@ -284,11 +260,12 @@ class ExtendedRelationshipController {
         //create an equivalent relationship that's similar 'in character'
         //to the relationship established via the closest ca
 
-        $relationships = $this->oldStyleRelationshipPath($tree, $bestPath);
+        $relationships = RelationshipPath::create($tree, $bestPath)->elements();
         $up = array();
         $right = array();
         $dn = array();
-        foreach ($relationships as $rel) {
+        foreach ($relationships as $relationship) {
+            $rel = $relationship->rel();
             if (("mot" === $rel) || ("fat" === $rel)) {
                 $up[] = $rel;
             } else if (("bro" === $rel) || ("sis" === $rel)) {

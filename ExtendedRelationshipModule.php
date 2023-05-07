@@ -31,8 +31,12 @@ use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
+use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
+use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleListInterface;
 use Fisharebest\Webtrees\Module\ModuleListTrait;
+use Fisharebest\Webtrees\Module\ModuleMenuInterface;
+use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
@@ -41,7 +45,9 @@ use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\User;
+use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\View;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -67,9 +73,12 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     ModuleCustomInterface, 
     ModuleMetaInterface, 
     ModuleConfigInterface, 
+    ModuleGlobalInterface, 
     ModuleChartInterface, 
     ModuleListInterface, 
     ModuleBlockInterface,
+    //ModuleContainerInterface,
+    ModuleMenuInterface, //more charts
     RequestHandlerInterface, 
     IndividualFactsTabExtenderInterface, 
     RelativesTabExtenderInterface {
@@ -77,9 +86,12 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     use ModuleCustomTrait,
         ModuleMetaTrait,
         ModuleConfigTrait,
+        ModuleGlobalTrait, 
         ModuleChartTrait,
         ModuleListTrait,
         ModuleBlockTrait,
+        //ModuleContainerTrait,
+        ModuleMenuTrait,
         VestaModuleTrait {
         VestaModuleTrait::customTranslations insteadof ModuleCustomTrait;
         VestaModuleTrait::getAssetAction insteadof ModuleCustomTrait;
@@ -118,14 +130,22 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     protected $listRequestHandler;
 
     public function __construct(
-        ModuleService $module_service,
+        ModuleService $module_service, //COMMENT OUT for 2.1.x
         RelationshipService $relationship_service,
         TreeService $tree_service) {
 
-        parent::__construct($module_service, $relationship_service, $tree_service);
+        parent::__construct(
+            $module_service, //COMMENT OUT for 2.1.x
+            $relationship_service, 
+            $tree_service);
 
         $this->listRequestHandler = new ExtendedIndividualListRequestHandler(
             $this);
+    }
+    
+    //test only!
+    public function containedModules(): Collection {        
+        return new Collection([new ExtendedRelationshipModuleSub1()]);
     }
     
     protected function defaultParameters(): array {
@@ -240,6 +260,19 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         View::registerCustomView('::lists/surnames-table', $this->name() . '::lists/surnames-table-switch');
         View::registerCustomView('::lists/surnames-table-with-patriarchs', $this->name() . '::lists/surnames-table-with-patriarchs');
 
+        View::registerCustomView('::vesta-chart-box', $this->name() . '::chart-box');
+
+        $submenus = new Collection();
+        $submenus->put(1, new ExtendedPedigreeChartModule($this, 'PLACEHOLDER'));
+        $submenus->put(2, new LCAChartModule($this));
+        
+        //only need to boot once per class
+        //$submenus->put(2, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_COLLAPSE));
+        
+        foreach ($submenus as $submenu) {
+            $submenu->boot();
+        }
+        
         $this->flashWhatsNew('\Cissee\Webtrees\Module\ExtendedRelationships\WhatsNew', 2);
     }
 
@@ -1141,5 +1174,56 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     public function isTreeBlock(): bool {
         return true;
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    
+    /**
+     * A menu, to be added to the main application menu.
+     *
+     * @param Tree $tree
+     *
+     * @return Menu|null
+     */
+    public function getMenu(Tree $tree): ?Menu {
+        //return null;
+        
+        //experimental:
+        $request = app(ServerRequestInterface::class);
+        assert($request instanceof ServerRequestInterface);
+
+        $xref       = Validator::attributes($request)->isXref()->string('xref', '');
+        $individual = $tree->significantIndividual(Auth::user(), $xref);
+        
+        $submenus = new Collection();
+        //impl: remember to boot() any additions
+        $submenus->put(1, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_FULL));
+        $submenus->put(2, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_COMPACT));
+        $submenus->put(3, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_COLLAPSE));
+        $submenus->put(4, new LCAChartModule($this));
+        
+        $submenus = $submenus
+            ->map(static function (ModuleChartInterface $module) use ($individual): Menu {
+                return $module->chartMenu($individual);
+            })
+            ->sort(static function (Menu $x, Menu $y): int {
+                return $x->getLabel() <=> $y->getLabel();
+            });
+
+        if ($submenus->isEmpty()) {
+            return null;
+        }
+
+        return new Menu(
+            I18N::translate('More Charts'), 
+            '#', 
+            'menu-chart', 
+            ['rel' => 'nofollow'], 
+            $submenus->all());
+    }
+    
+    public function headContent(): string {
+        $pre = '<link href="' . $this->assetUrl('css/chart.css') . '" type="text/css" rel="stylesheet" />';
+        return $pre;
     }
 }

@@ -14,7 +14,6 @@ use Fisharebest\Webtrees\Module\ModuleInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\RelationshipService;
-use Fisharebest\Webtrees\Tree;
 use Psr\Http\Message\ResponseInterface;
 use function app;
 use function asset;
@@ -93,21 +92,21 @@ class ExtendedRelationshipsChartController {
         foreach ($caAndPaths as $caAndPath) {
             $path = $caAndPath->getPath();
 
-            // Extract the relationship names between pairs of individuals
-            $relationships = $this->oldStyleRelationshipPath($tree, $path);
-            if (empty($relationships)) {
+            $relationshipPath = RelationshipPath::create($tree, $path);
+            if ($relationshipPath === null) {
                 // Cannot see one of the families/individuals, due to privacy;
                 continue;
             }
-
-            $relationshipPath = RelationshipPath::create($tree, $path);
             $rel = RelationshipUtils::getRelationshipName($relationshipPath);
+
+            // Extract the relationship names between pairs of individuals
+            $relationships = $relationshipPath->oldStylePath();
 
             echo '<h3>', MoreI18N::xlate('Relationship: %s', $rel), '</h3>';
 
             $debugWebtreesRel = boolval($this->module->getPreference('CHART_SHOW_LEGACY', '1'));
             if ($debugWebtreesRel) {
-                $webtreesRel = app(RelationshipService::class)->legacyNameAlgorithm(implode('', $relationships), $individual1, $individual2);
+                $webtreesRel = app(RelationshipService::class)->legacyNameAlgorithm($relationships, $individual1, $individual2);
 
                 if ($rel !== $webtreesRel) {
                     echo '<h4>', '(', I18N::translate('via legacy algorithm: %s', $webtreesRel), ')';
@@ -145,10 +144,11 @@ class ExtendedRelationshipsChartController {
             // For each node in the path.
             foreach ($path as $n => $xref) {
                 if ($n % 2 === 1) {
+                    $relPos = intdiv($n, 2);
                     $relName = RelationshipUtils::getRelationshipName(
-                            $relationshipPath->sliceBefore(intdiv($n, 2), 1));
+                            $relationshipPath->sliceBefore($relPos, 1));
 
-                    switch ($relationships[$n]) {
+                    switch ($relationshipPath->getRel($relPos)) {
                         case 'hus':
                         case 'wif':
                         case 'spo':
@@ -157,18 +157,18 @@ class ExtendedRelationshipsChartController {
                         case 'sib':
                             //[RC] adjusted
                             //only draw this in certain cases!
-                            if ((!$fam) || (count($fam->spouses()) === 0)) {
+                            if (($fam === null) || (count($fam->spouses()) === 0)) {
                                 $table[$x + 1][$y] = '<div style="background:url(' . e(asset('css/images/hline.png')) . ') repeat-x center;  width: 94px; text-align: center"><div class="hline-text" style="height: 32px;">' . $relName . '</div><div style="height: 32px;">' . view('icons/arrow-right') . '</div></div>';
                             } else {
                                 //keep the relationship for later
-                                $skippedRelationship = $relationships[$n];
+                                $skippedRelationship = $relationshipPath->getRel($relPos);
                             }
                             $x += 2;
                             break;
                         case 'son':
                         case 'dau':
                         case 'chi':
-                            if ($n > 2 && preg_match('/fat|mot|par/', $relationships[$n - 2])) {
+                            if ($n > 2 && preg_match('/fat|mot|par/', $relationshipPath->getRel($relPos-1))) {
                                 $table[$x + 1][$y - 1] = '<div style="background:url(' . $diagonal2 . '); width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: end;">' . $relName . '</div><div style="height: 32px; text-align: start;">' . view('icons/arrow-down') . '</div></div>';
                                 $x += 2;
                             } else {
@@ -179,7 +179,7 @@ class ExtendedRelationshipsChartController {
                         case 'fat':
                         case 'mot':
                         case 'par':
-                            if ($n > 2 && preg_match('/son|dau|chi/', $relationships[$n - 2])) {
+                            if ($n > 2 && preg_match('/son|dau|chi/', $relationshipPath->getRel($relPos-1))) {
                                 $table[$x + 1][$y + 1] = '<div style="background:url(' . $diagonal1 . '); background-position: top right; width: 64px; height: 64px; text-align: center;"><div style="height: 32px; text-align: start;">' . $relName . '</div><div style="height: 32px; text-align: end;">' . view('icons/arrow-down') . '</div></div>';
                                 $x += 2;
                             } else {
@@ -198,7 +198,7 @@ class ExtendedRelationshipsChartController {
             }
 
             //[RC] added TODO: layout properly!
-            if ($fam) {
+            if ($fam !== null) {
                 $size = count($fam->spouses());
 
                 if ($size > 0) { //there may be families with siblings only (we still have a ca in that case)
@@ -294,67 +294,4 @@ class ExtendedRelationshipsChartController {
 
         return response($html);
     }
-
-    /**
-     * Convert a path (list of XREFs) to an "old-style" string of relationships.
-     *
-     * Return an empty array, if privacy rules prevent us viewing any node.
-     *
-     * @param Tree     $tree
-     * @param string[] $path Alternately Individual / Family
-     *
-     * @return string[]
-     */
-    //TODO refactor to align with ExtendedRelationshipController.oldStyleRelationshipPath
-    private function oldStyleRelationshipPath(Tree $tree, array $path): array {
-        $spouse_codes = [
-            'M' => 'hus',
-            'F' => 'wif',
-            'U' => 'spo',
-        ];
-        $parent_codes = [
-            'M' => 'fat',
-            'F' => 'mot',
-            'U' => 'par',
-        ];
-        $child_codes = [
-            'M' => 'son',
-            'F' => 'dau',
-            'U' => 'chi',
-        ];
-        $sibling_codes = [
-            'M' => 'bro',
-            'F' => 'sis',
-            'U' => 'sib',
-        ];
-        $relationships = [];
-
-        for ($i = 1, $count = count($path); $i < $count; $i += 2) {
-            $family = Registry::familyFactory()->make($path[$i], $tree);
-            $prev = Registry::individualFactory()->make($path[$i - 1], $tree);
-            $next = Registry::individualFactory()->make($path[$i + 1], $tree);
-            if (preg_match('/\n\d (HUSB|WIFE|CHIL) @' . $prev->xref() . '@/', $family->gedcom(), $match)) {
-                $rel1 = $match[1];
-            } else {
-                return [];
-            }
-            if (preg_match('/\n\d (HUSB|WIFE|CHIL) @' . $next->xref() . '@/', $family->gedcom(), $match)) {
-                $rel2 = $match[1];
-            } else {
-                return [];
-            }
-            if (($rel1 === 'HUSB' || $rel1 === 'WIFE') && ($rel2 === 'HUSB' || $rel2 === 'WIFE')) {
-                $relationships[$i] = $spouse_codes[$next->sex()];
-            } elseif (($rel1 === 'HUSB' || $rel1 === 'WIFE') && $rel2 === 'CHIL') {
-                $relationships[$i] = $child_codes[$next->sex()];
-            } elseif ($rel1 === 'CHIL' && ($rel2 === 'HUSB' || $rel2 === 'WIFE')) {
-                $relationships[$i] = $parent_codes[$next->sex()];
-            } elseif ($rel1 === 'CHIL' && $rel2 === 'CHIL') {
-                $relationships[$i] = $sibling_codes[$next->sex()];
-            }
-        }
-
-        return $relationships;
-    }
-
 }

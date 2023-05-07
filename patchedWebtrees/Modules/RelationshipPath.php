@@ -35,7 +35,11 @@ class RelationshipPath {
     public function size(): int {
         return $this->elements->count();
     }
-
+    
+    public function elements(): Collection {
+        return $this->elements;
+    }
+    
     public function first(): ?RelationshipPathElement {
         return $this->elements->first();
     }
@@ -44,6 +48,13 @@ class RelationshipPath {
         return $this->elements->last();
     }
 
+    public function getRel($index): ?string {
+        if (!$this->elements->has($index)) {
+            throw new \Exception("index out of bounds: " . $index . " vs " . $this->size());
+        }
+        return $this->elements->get($index)->rel();
+    }
+    
     /**
      * 
      * @return string unique key suitable e.g. for caching
@@ -82,7 +93,7 @@ class RelationshipPath {
         $this->elements = $elements;
     }
 
-    protected function oldStylePath() {
+    public function oldStylePath() {
         if ($this->oldStylePath === null) {
             $this->oldStylePath = implode('', $this->elements
                     ->map(static function (RelationshipPathElement $element): string {
@@ -225,11 +236,10 @@ class RelationshipPath {
      *
      * @return RelationshipPath|null null if privacy rules prevent us viewing any node.
      */
+    //adapted from RelationshipChartModule.oldStyleRelationshipPath
     public static function create(
         Tree $tree, 
         array $path): ?RelationshipPath {
-
-        //adapted from 'oldStyleRelationshipPath'
 
         $spouse_codes = [
             'M' => 'hus',
