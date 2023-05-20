@@ -4,6 +4,8 @@ namespace Cissee\WebtreesExt\Services;
 
 interface TreeNodeVisitor {
         
-    //return whether to abort processing next
-    public function visit(TreeNode $node): bool;
+    //return true to abort processsing
+    public function visitPreOrder(TreeNode $node): bool;
+    
+    public function visitPostOrder(TreeNode $node): void;
 }

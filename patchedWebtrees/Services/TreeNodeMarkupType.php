@@ -8,8 +8,10 @@ class TreeNodeMarkupType {
     protected const CIRCULARITY = 'CIRCULARITY';
     protected const FIRST_REPEATED = 'FIRST_REPEATED';
     protected const OTHER_REPEATED = 'OTHER_REPEATED';
-    protected const FIRST_LCA = 'FIRST_LCA';
-    protected const OTHER_LCA = 'OTHER_LCA';
+    //protected const FIRST_LCA = 'FIRST_LCA';
+    //protected const OTHER_LCA = 'OTHER_LCA';
+    protected const FIRST_PATH_TO_LCA = 'FIRST_PATH_TO_LCA';
+    protected const OTHER_PATH_TO_LCA = 'OTHER_PATH_TO_LCA';
     
     protected string $type;
     
@@ -35,6 +37,7 @@ class TreeNodeMarkupType {
         return new TreeNodeMarkupType(TreeNodeMarkupType::OTHER_REPEATED);
     }
 
+    /*
     public static function firstLca(): TreeNodeMarkupType {
         return new TreeNodeMarkupType(TreeNodeMarkupType::FIRST_LCA);
     }
@@ -42,4 +45,14 @@ class TreeNodeMarkupType {
     public static function otherLca(): TreeNodeMarkupType {
         return new TreeNodeMarkupType(TreeNodeMarkupType::OTHER_LCA);
     }
+    */
+    
+    public static function firstPathToLca(): TreeNodeMarkupType {
+        return new TreeNodeMarkupType(TreeNodeMarkupType::FIRST_PATH_TO_LCA);
+    }
+    
+    public static function otherPathToLca(): TreeNodeMarkupType {
+        return new TreeNodeMarkupType(TreeNodeMarkupType::OTHER_PATH_TO_LCA);
+    }
+
 }

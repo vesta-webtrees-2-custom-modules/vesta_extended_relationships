@@ -17,7 +17,7 @@ if ($record instanceof Family) {
   throw new Exception();  
 }
 
-$indiMarkup = $node->markup();
+$indiMarkup = $node->markups()->first();
 $indiData = $node->data();
     
 $next = $node->next();

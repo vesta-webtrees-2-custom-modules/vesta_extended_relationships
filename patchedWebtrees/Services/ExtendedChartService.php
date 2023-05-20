@@ -83,7 +83,7 @@ class ExtendedChartService {
                     public static $xrefs;
                     public static $repeated;
 
-                    public function visit(TreeNode $node): bool {
+                    public function visitPreOrder(TreeNode $node): bool {
                         $xref = $node->record()->xref();
 
                         //#treeHasIndiOnly
@@ -96,11 +96,13 @@ class ExtendedChartService {
                         self::$xrefs [$xref]= $xref;
                         return false;
                     }
+                    
+                    public function visitPostOrder(TreeNode $node): void {}
                 };
 
                 $collector::$xrefs = [];
                 $collector::$repeated = [];
-                $fullTree->processPreOrder($collector);
+                $fullTree->process($collector);
 
                 $xrefs = $collector::$xrefs;            
 
@@ -119,7 +121,7 @@ class ExtendedChartService {
                         public static $xrefs;
                         public static $repeated;
 
-                        public function visit(TreeNode $node): bool {
+                        public function visitPreOrder(TreeNode $node): bool {
                             $xref = $node->record()->xref();
 
                             //#treeHasIndiOnly
@@ -131,11 +133,13 @@ class ExtendedChartService {
 
                             return false;
                         }
+                        
+                        public function visitPostOrder(TreeNode $node): void {}
                     };
 
                     $collector::$xrefs = $xrefs;
                     $collector::$repeated = [];
-                    $fullTree->processPreOrder($collector);
+                    $fullTree->process($collector);
 
                     if ($partialLcas === null) {
                         $partialLcas = $collector::$repeated;
@@ -160,6 +164,9 @@ class ExtendedChartService {
             //(P1) keep only paths leading to lcas
             //(P2) in general prune behind lcas (unless there are further lcas behind)
             
+            //this was for labelling lcas globally,
+            //we now label the paths instead
+            /*
             //labels are global
             $lcasMarkups = [];
             
@@ -231,6 +238,63 @@ class ExtendedChartService {
                 
                 $prunedTrees->add($prunedTree);
             }
+            */
+            
+            $prunedTrees = new Collection();
+            foreach ($fullTrees as $xref => $fullTree) {
+                $transformer = new class implements TreeNodeTransformer {
+
+                    public static $lcas;
+                    public static $counter;
+
+                    public function transformPreOrder(
+                        TreeNode $node): TreeNode|null {
+
+                        //preliminarily markup lcas (this is only for later reference:
+                        //it allows us to easily replace with final markup (or prune) without having to identify lca via full path)
+                        $xref = $node->record()->xref();
+                        if (array_key_exists($xref, self::$lcas)) {
+
+                            $label = self::$counter++;
+                                
+                            $node = $node->withMarkup(new TreeNodeMarkup(
+                                TreeNodeMarkupType::firstPathToLca(),
+                                $label));
+                        }
+
+                        return $node;
+                    }
+
+                    public function transformPostOrder(
+                        TreeNode $node): TreeNode|null {
+
+                        //(P1)
+
+                        $xref = $node->record()->xref();
+                        if (array_key_exists($xref, self::$lcas)) {
+
+                            //keep
+                            return $node;
+                        }
+                        
+                        //(P2)
+                        if ($node->next()->isEmpty()) {
+                            //prune leaf
+                            return null;
+                        }
+
+                        //keep if on path to lca
+                        return $node;
+                    }
+                };
+
+                $transformer::$lcas = $lcas;
+                $transformer::$counter = 1;
+
+                $prunedTree = $fullTree->transform($transformer);
+                
+                $prunedTrees->put($xref, $prunedTree);
+            }
             
             $fullTrees = $prunedTrees;
         }
@@ -239,6 +303,239 @@ class ExtendedChartService {
         
         foreach ($fullTrees as $xref => $fullTree) {
             $finalTrees->put($xref, $this->processTree($fullTree, $type));
+        }
+                
+        //IIIb. determine paths to lcas, re-markup lcas, also cor
+        //(algorithm is similar to III.)
+        
+        if (PedigreeTreeType::commonAncestors() == $type) {
+            $finalTreesWithFinalMarkup = new Collection();
+            
+            //A. collect all paths (by xref and label)
+            $pathsToLcasByXrefByTree = [];
+            $pathsToLcasByLabelByTree = [];
+            
+            foreach ($finalTrees as $xref => $finalTree) {                
+                
+                $collector = new class implements TreeNodeVisitor {
+
+                    public static $lcas;
+                    public static $currentPath;
+                    public static $pathsToLcasByXref;
+                    public static $pathsToLcasByLabel;
+
+                    public function visitPreOrder(TreeNode $node): bool {
+                        $xref = $node->record()->xref();
+                        self::$currentPath->push($node);
+                        
+                        
+                        
+                        if (in_array($xref, self::$lcas)) {
+                            if (!array_key_exists($xref, self::$pathsToLcasByXref)) {
+                                self::$pathsToLcasByXref[$xref] = new Collection();
+                            }
+                            
+                            self::$pathsToLcasByXref[$xref]->push(
+                                new PathToLca(self::$currentPath));
+                            
+                            $label = $node->markups()->first()->label();
+                            
+                            self::$pathsToLcasByLabel[$label] = 
+                                new PathToLca(self::$currentPath);
+                            
+                        }
+
+                        return false;
+                    }
+
+                    public function visitPostOrder(TreeNode $node): void {
+                        $xref = $node->record()->xref();
+                        self::$currentPath->pop();
+                    }
+                };
+
+                $collector::$lcas = $lcas;
+                $collector::$currentPath = new Collection();
+                $collector::$pathsToLcasByXref = [];
+                $collector::$pathsToLcasByLabel = [];
+                $finalTree->process($collector);
+                
+                $pathsToLcasByXref = $collector::$pathsToLcasByXref;
+                $pathsToLcasByXrefByTree[$xref] = $pathsToLcasByXref;
+                
+                $pathsToLcasByLabel = $collector::$pathsToLcasByLabel;
+                $pathsToLcasByLabelByTree[$xref] = $pathsToLcasByLabel;
+            }
+            
+            //B. compare paths between trees (skipping common lower lcas), re-enumerate globally
+            
+            //this doesn't make much sense otherwise:
+            if (sizeof($individuals) !== 2) {
+                throw new \Exception("commonAncestors only supported for exactly 2 individuals.");
+            }
+            
+            $xrefFirst = null;
+            $xrefSecond = null;
+            foreach ($individuals as $individual) {
+                if ($xrefFirst === null) {
+                    $xrefFirst = $individual->xref();
+                } else {
+                    $xrefSecond = $individual->xref();
+                }
+            }
+            
+            //by label to keep 'running' i.e. ordered numbers
+            $pathsToLcasByLabelFirst = $pathsToLcasByLabelByTree[$xrefFirst];
+            $pathsToLcasByXrefSecond = $pathsToLcasByXrefByTree[$xrefSecond];
+            
+            $counter = 1;
+            
+            $finalMarkupFirst = [];
+            $finalMarkupSecond = [];
+            
+            foreach ($pathsToLcasByLabelFirst as $label => $pathFirst) {
+                $xref = $pathFirst->lca();
+                $pathsSecond = $pathsToLcasByXrefSecond[$xref];
+                
+                foreach ($pathsSecond as $pathSecond) {
+                    //keep unless they intersect on lower lca
+                    $fp = $pathFirst->getFullPathIfValid($pathSecond);
+                    if ($fp !== null) {
+                        $c = $counter++;
+
+                        //use preliminary markup
+                        $prelimFirst = $pathFirst->lcaNode()->markups()->first()->label();
+
+                        if (!array_key_exists($prelimFirst, $finalMarkupFirst)) {
+                            $finalMarkupFirst[$prelimFirst] = new Collection();
+                        }
+
+                        $finalMarkupFirst[$prelimFirst]->push(
+                            new TreeNodeMarkup(TreeNodeMarkupType::firstPathToLca(), "".$c));
+
+                        $prelimSecond = $pathSecond->lcaNode()->markups()->first()->label();
+
+                        if (!array_key_exists($prelimSecond, $finalMarkupSecond)) {
+                            $finalMarkupSecond[$prelimSecond] = new Collection();
+                        }
+
+                        $finalMarkupSecond[$prelimSecond]->push(
+                            new TreeNodeMarkup(TreeNodeMarkupType::otherPathToLca(), "".$c));                            
+
+                        //error_log("first: " . $prelimFirst . " rewrite " . $c);
+                        //error_log("second: " . $prelimSecond . " rewrite " . $c);
+                    }
+                }                                
+            }
+            
+            //functionally ok but numbers are unordered
+            /*
+            $pathsToLcasByXrefFirst = $pathsToLcasByXrefByTree[$xrefFirst];
+            $pathsToLcasByXrefSecond = $pathsToLcasByXrefByTree[$xrefSecond];
+            
+            $counter = 1;
+            
+            $finalMarkupFirst = [];
+            $finalMarkupSecond = [];
+            
+            foreach ($pathsToLcasByXrefFirst as $xref => $pathsFirst) {
+                $pathsSecond = $pathsToLcasByXrefSecond[$xref];
+                
+                foreach ($pathsFirst as $pathFirst) {
+                    
+                    foreach ($pathsSecond as $pathSecond) {
+                        //keep unless they intersect on lower lca
+                        $fp = $pathFirst->getFullPathIfValid($pathSecond);
+                        if ($fp !== null) {
+                            $c = $counter++;
+                            
+                            //use preliminary markup
+                            $prelimFirst = $pathFirst->lcaNode()->markups()->first()->label();
+                            
+                            if (!array_key_exists($prelimFirst, $finalMarkupFirst)) {
+                                $finalMarkupFirst[$prelimFirst] = new Collection();
+                            }
+                            
+                            $finalMarkupFirst[$prelimFirst]->push(
+                                new TreeNodeMarkup(TreeNodeMarkupType::firstPathToLca(), "".$c));
+                            
+                            $prelimSecond = $pathSecond->lcaNode()->markups()->first()->label();
+                            
+                            if (!array_key_exists($prelimSecond, $finalMarkupSecond)) {
+                                $finalMarkupSecond[$prelimSecond] = new Collection();
+                            }
+                            
+                            $finalMarkupSecond[$prelimSecond]->push(
+                                new TreeNodeMarkup(TreeNodeMarkupType::otherPathToLca(), "".$c));                            
+                            
+                            //error_log("first: " . $prelimFirst . " rewrite " . $c);
+                            //error_log("second: " . $prelimSecond . " rewrite " . $c);
+                        }
+                    }
+                }                
+            }
+            */
+                
+            //C. replace preliminary markups with final markups
+            foreach ($finalTrees as $xref => $finalTree) {
+                
+                $finalMarkup = ($xref === $xrefFirst)?
+                    $finalMarkupFirst:
+                    $finalMarkupSecond;
+                
+                $transformer = new class implements TreeNodeTransformer {
+
+                    public static $finalMarkup;
+
+                    public function transformPreOrder(
+                        TreeNode $node): TreeNode|null {
+                        
+                        return $node;
+                    }
+                    
+                    public function transformPostOrder(
+                        TreeNode $node): TreeNode|null {
+
+                        $isRelevantLca = false;
+                            
+                        $markup = $node->markups()->first();
+                        if ($markup !== null) {
+                            if (array_key_exists($markup->label(), self::$finalMarkup)) {
+                                $m = self::$finalMarkup[$markup->label()];                            
+                                $node = $node->replaceMarkups($m);
+                                $isRelevantLca = true;
+                            } else {
+                                //this is not a relevant lca (on this path)
+                                //i.e. path is through lower relevant lca (on 'both sides')
+                                //remove preliminary markup
+                                $node = $node->replaceMarkups(new Collection());
+                            }
+                            
+                        }
+
+                        if ($isRelevantLca) {
+                            //keep
+                            return $node;
+                        }
+                        
+                        if ($node->next()->isEmpty()) {
+                            //prune leaf
+                            return null;
+                        }
+
+                        //keep if on path to relevant lca
+                        return $node;
+                    }
+                };
+
+                $transformer::$finalMarkup = $finalMarkup;
+
+                $finalTreeWithFinalMarkup = $finalTree->transform($transformer);
+                
+                $finalTreesWithFinalMarkup->put($xref, $finalTreeWithFinalMarkup);
+            }
+            
+            $finalTrees = $finalTreesWithFinalMarkup;
         }
         
         return $finalTrees;
@@ -259,7 +556,7 @@ class ExtendedChartService {
             public static $xrefs;
             public static $repeated;
 
-            public function visit(TreeNode $node): bool {
+            public function visitPreOrder(TreeNode $node): bool {
                 $xref = $node->record()->xref();
 
                 //#treeHasIndiOnly
@@ -272,181 +569,195 @@ class ExtendedChartService {
                 self::$xrefs [$xref]= $xref;
                 return false;
             }
+            
+            public function visitPostOrder(TreeNode $node): void {}
         };
 
         $collector::$xrefs = [];
         $collector::$repeated = [];
-        $fullTree->processPreOrder($collector);
-
+        $fullTree->process($collector);
+        
+        //don't do this for commonAncestors(): we want to enumerate the paths
+        $markupAndPruneBehindRepeateds = false;
+        if (PedigreeTreeType::skipRepeated() == $type) {
+            $markupAndPruneBehindRepeateds = true;
+        }
+        if (PedigreeTreeType::skipRepeatedAndNonCollapsed() == $type) {
+            $markupAndPruneBehindRepeateds = true;
+        }
+        
         //II. prune: 
         //(P1) if skipNonCollapsed, keep only paths leading to non-collapsed
-        //(P2) in general prune behind repeateds (unless first occurrence)
+        //(P2) if pruneBehindRepeateds, do it (unless first occurrence)
                 
         $skipNonCollapsed = false;
         if (PedigreeTreeType::skipRepeatedAndNonCollapsed() == $type) {
             $skipNonCollapsed = true;
         }
-        
-        //error_log("rep".print_r($collector::$repeated, true));
 
-        $transformer = new class implements TreeNodeTransformer {
+        $prunedTree = $fullTree;
+        if ($markupAndPruneBehindRepeateds) {
+            
+            $transformer = new class implements TreeNodeTransformer {
 
-            public static $skipNonCollapsed;
-            public static $repeated;
-            public static $repeatedMarkups;
-            public static $counter;
+                public static $skipNonCollapsed;
+                public static $repeated;
+                public static $repeatedMarkups;
+                public static $counter;
 
-            public function transformPreOrder(
-                TreeNode $node): TreeNode|null {
+                public function transformPreOrder(
+                    TreeNode $node): TreeNode|null {
 
-                //1. markup repeated (unless already marked up (i.e. as lca))
-                if ($node->markup() === null) {                        
+                    //1. markup repeated (unless already marked up (i.e. as lca))
+                    if ($node->markups()->isEmpty()) {                        
+                        $xref = $node->record()->xref();
+                        if (array_key_exists($xref, self::$repeated)) {
+
+                            if (array_key_exists($xref, self::$repeatedMarkups)) {
+                                $node = $node->withMarkup(new TreeNodeMarkup(
+                                    TreeNodeMarkupType::otherRepeated(),
+                                    self::$repeatedMarkups[$xref]));
+                            } else {
+                                $label = self::$counter++;
+                                self::$repeatedMarkups[$xref] = $label;
+                                $node = $node->withMarkup(new TreeNodeMarkup(
+                                    TreeNodeMarkupType::firstRepeated(),
+                                    self::$repeatedMarkups[$xref]));
+                            }
+                        }
+
+                        //2. cutoff if otherRepeated for (P2)
+
+                        if (($node->markups()->isNotEmpty()) && $node->markups()->first()->type() == TreeNodeMarkupType::otherRepeated()) {                        
+                            return $node->withNext(new Collection());
+                        }
+                    }                
+
+                    return $node;
+                }
+
+                public function transformPostOrder(
+                    TreeNode $node): TreeNode|null {
+
+                    if (!self::$skipNonCollapsed) {
+                        return $node;
+                    }
+
+                    //(P1)
+
                     $xref = $node->record()->xref();
                     if (array_key_exists($xref, self::$repeated)) {
 
-                        if (array_key_exists($xref, self::$repeatedMarkups)) {
-                            $node = $node->withMarkup(new TreeNodeMarkup(
-                                TreeNodeMarkupType::otherRepeated(),
-                                self::$repeatedMarkups[$xref]));
-                        } else {
-                            $label = self::$counter++;
-                            self::$repeatedMarkups[$xref] = $label;
-                            $node = $node->withMarkup(new TreeNodeMarkup(
-                                TreeNodeMarkupType::firstRepeated(),
-                                self::$repeatedMarkups[$xref]));
-                        }
+                        //keep
+                        return $node;
                     }
 
-                    //2. cutoff if otherRepeated for (P2)
-
-                    if (($node->markup() !== null) && $node->markup()->type() == TreeNodeMarkupType::otherRepeated()) {                        
-                        return $node->withNext(new Collection());
+                    if ($node->next()->isEmpty()) {
+                        //prune leaf
+                        return null;
                     }
-                }                
 
-                return $node;
-            }
-
-            public function transformPostOrder(
-                TreeNode $node): TreeNode|null {
-
-                if (!self::$skipNonCollapsed) {
+                    //keep if on path to firstRepeated
                     return $node;
                 }
-                
-                //(P1)
-                
-                $xref = $node->record()->xref();
-                if (array_key_exists($xref, self::$repeated)) {
+            };
 
-                    //keep
-                    return $node;
-                }
+            $transformer::$skipNonCollapsed = $skipNonCollapsed;
+            $transformer::$repeated = $collector::$repeated;
+            $transformer::$repeatedMarkups = [];
+            $transformer::$counter = 1;
 
-                if ($node->next()->isEmpty()) {
-                    //prune leaf
-                    return null;
-                }
-
-                //keep if on path to firstRepeated
-                return $node;
-            }
-        };
-
-        $transformer::$skipNonCollapsed = $skipNonCollapsed;
-        $transformer::$repeated = $collector::$repeated;
-        $transformer::$repeatedMarkups = [];
-        $transformer::$counter = 1;
-
-        $prunedTree = $fullTree->transform($transformer);
+            $prunedTree = $fullTree->transform($transformer);
+        }
 
         //error_log("rep2".print_r($transformer::$repeatedMarkups, true));
 
         //III. determine and markup coi
-        
-        $transformer2 = new class implements TreeNodeTransformer {
-
-            public static $repeated;
-            public static $pathSets;
-
-            public function transformPreOrder(
-                TreeNode $node): TreeNode|null {
-
-                return $node;
-            }
-
-            public function transformPostOrder(
-                TreeNode $node): TreeNode|null {
-
-                $next = $node->next();
-
-                $self = $node->record()->xref();
-
-                //0, 1, or 2
-                $left = null;
-                $right = null;
-                foreach ($next as $parent) {
-                    if ($left === null) {
-                        $left = $parent->record()->xref();
-                    } else if ($right === null) {
-                        $right = $parent->record()->xref();
-                    } else {
-                        throw new \Exception("more than 2 parents in family!");
-                    }
-                }
-
-                //get stored PathSet for $self, or build
-                $pathSetSelf = null;
-
-                if (array_key_exists($self, self::$pathSets)) {    
-                    $pathSetSelf = self::$pathSets[$self];
-                } else {
-                    $selfIsRepeated = array_key_exists($self, self::$repeated);                        
-
-                    if ($left === null) {
-                        //leaf: initialize
-                        //(self must be a repeated node, we don't keep any other leaves)
-                        if (!$selfIsRepeated) {
-                            throw new \Exception();
-                        }
-
-                        $pathSetSelf = PathSet::leaf($self);
-
-                    } else {                            
-                        $pathSetLeft = self::$pathSets[$left];
-                        $pathSetRight = null;
-
-                        if ($right !== null) {
-                            $pathSetRight = self::$pathSets[$right];
-                        }
-
-                        $pathSetSelf = $pathSetLeft->expand(
-                                $pathSetRight, 
-                                $selfIsRepeated?$self:null);
-                    }
-
-                    self::$pathSets[$self] = $pathSetSelf;
-                }                    
-
-                //set coi
-                $coi = $pathSetSelf->coi();
-                //error_log("coi for " . $self . " is " . $coi);
-
-                if ($coi !== 0.0) {
-                    $node = $node->withData(new TreeNodeCOI($coi));
-                }
-
-                return $node;
-            }
-        };
 
         $finalTree = $prunedTree;
         if ($skipNonCollapsed && ($prunedTree !== null)) {
+                    
+            $transformer2 = new class implements TreeNodeTransformer {
+
+                public static $repeated;
+                public static $pathSets;
+
+                public function transformPreOrder(
+                    TreeNode $node): TreeNode|null {
+
+                    return $node;
+                }
+
+                public function transformPostOrder(
+                    TreeNode $node): TreeNode|null {
+
+                    $next = $node->next();
+
+                    $self = $node->record()->xref();
+
+                    //0, 1, or 2
+                    $left = null;
+                    $right = null;
+                    foreach ($next as $parent) {
+                        if ($left === null) {
+                            $left = $parent->record()->xref();
+                        } else if ($right === null) {
+                            $right = $parent->record()->xref();
+                        } else {
+                            throw new \Exception("more than 2 parents in family!");
+                        }
+                    }
+
+                    //get stored PathSet for $self, or build
+                    $pathSetSelf = null;
+
+                    if (array_key_exists($self, self::$pathSets)) {    
+                        $pathSetSelf = self::$pathSets[$self];
+                    } else {
+                        $selfIsRepeated = array_key_exists($self, self::$repeated);                        
+
+                        if ($left === null) {
+                            //leaf: initialize
+                            //(self must be a repeated node, we don't keep any other leaves)
+                            if (!$selfIsRepeated) {
+                                throw new \Exception();
+                            }
+
+                            $pathSetSelf = PathSet::leaf($self);
+
+                        } else {                            
+                            $pathSetLeft = self::$pathSets[$left];
+                            $pathSetRight = null;
+
+                            if ($right !== null) {
+                                $pathSetRight = self::$pathSets[$right];
+                            }
+
+                            $pathSetSelf = $pathSetLeft->expand(
+                                    $pathSetRight, 
+                                    $selfIsRepeated?$self:null);
+                        }
+
+                        self::$pathSets[$self] = $pathSetSelf;
+                    }                    
+
+                    //set coi
+                    $coi = $pathSetSelf->coi();
+                    //error_log("coi for " . $self . " is " . $coi);
+
+                    if ($coi !== 0.0) {
+                        $node = $node->withData(new TreeNodeCOI($coi));
+                    }
+
+                    return $node;
+                }
+            };
+            
             $transformer2::$repeated = $transformer::$repeated;
             $transformer2::$pathSets = [];
             $finalTree = $prunedTree->transform($transformer2);
-        }
-
+        }        
+        
         return $finalTree;
     }
     
@@ -466,7 +777,7 @@ class ExtendedChartService {
                 $individual,
                 $generation,
                 new Collection([]),
-                new TreeNodeMarkup(TreeNodeMarkupType::circularity()),
+                new Collection([new TreeNodeMarkup(TreeNodeMarkupType::circularity())]),
                 null);
         }
         
@@ -497,7 +808,7 @@ class ExtendedChartService {
                         $family,
                         $generation,
                         new Collection([]),
-                        new TreeNodeMarkup(TreeNodeMarkupType::circularity()),
+                        new Collection([new TreeNodeMarkup(TreeNodeMarkupType::circularity())]),
                         null);
                 } else {
                     $parents = [];
@@ -540,7 +851,7 @@ class ExtendedChartService {
                         $family,
                         $generation,
                         new Collection($nextInFamily),
-                        null,
+                        new Collection(),
                         null); 
                 }
             }
@@ -550,7 +861,7 @@ class ExtendedChartService {
             $individual,
             $generation,
             new Collection($next),
-            null,
+            new Collection(),
             null);
     }
     

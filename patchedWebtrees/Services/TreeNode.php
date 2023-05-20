@@ -11,7 +11,7 @@ class TreeNode {
     protected Individual|Family $record;
     protected int $generation;
     protected Collection $next;
-    protected TreeNodeMarkup|null $markup;
+    protected Collection $markups;
     protected TreeNodeCOI|null $data;
       
     public function record(): Individual|Family {
@@ -26,8 +26,8 @@ class TreeNode {
         return $this->next;
     }
     
-    public function markup(): TreeNodeMarkup|null {
-        return $this->markup;
+    public function markups(): Collection {
+        return $this->markups;
     }
     
     public function data(): TreeNodeCOI|null {
@@ -38,13 +38,13 @@ class TreeNode {
         Individual|Family $record, 
         int $generation,
         Collection $next,
-        TreeNodeMarkup|null $markup,
+        Collection $markups,
         TreeNodeCOI|null $data) {
         
         $this->record = $record;
         $this->generation = $generation;
         $this->next = $next;
-        $this->markup = $markup;
+        $this->markups = $markups;
         $this->data = $data;
     }
     
@@ -55,7 +55,7 @@ class TreeNode {
             $this->record(),
             $this->generation(),
             $next,
-            $this->markup(),
+            $this->markups(),
             $this->data());
     }
     
@@ -66,7 +66,18 @@ class TreeNode {
             $this->record(),
             $this->generation(),
             $this->next(),
-            $markup,
+            $this->markups()->merge(new Collection([$markup])),
+            $this->data());
+    }
+    
+    public function replaceMarkups(
+        Collection $markups): TreeNode {
+        
+        return new TreeNode(
+            $this->record(),
+            $this->generation(),
+            $this->next(),
+            $markups,
             $this->data());
     }
     
@@ -77,21 +88,23 @@ class TreeNode {
             $this->record(),
             $this->generation(),
             $this->next(),
-            $this->markup(),
+            $this->markups(),
             $data);
     }
     
-    public function processPreOrder(
+    public function process(
         TreeNodeVisitor $visitor): void {
         
-        $abort = $visitor->visit($this);
+        $abort = $visitor->visitPreOrder($this);
         if ($abort) {
             return;
         }
             
         foreach ($this->next as $nextNode) {
-            $nextNode->processPreOrder($visitor);
+            $nextNode->process($visitor);
         }
+        
+        $visitor->visitPostOrder($this);
     }
     
     public function transform(

@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 use Cissee\WebtreesExt\Services\TreeNode;
+use Cissee\WebtreesExt\Services\TreeNodeMarkup;
 use Cissee\WebtreesExt\Services\TreeNodeMarkupType;
 use Fisharebest\Webtrees\Family;
-use Fisharebest\Webtrees\I18N;
+use Illuminate\Support\Collection;
 
 /**
  * @var TreeNode $node
@@ -17,7 +18,7 @@ if ($record instanceof Family) {
   throw new Exception();  
 }
 
-$indiMarkup = $node->markup();
+$indiMarkups = $node->markups();
 $indiData = $node->data();
     
 $next = $node->next();
@@ -36,35 +37,49 @@ if ($leavesOnly) {
     $leaves = " ⚶-fam-leaves";
 }
 
+$indiMarkups = $indiMarkups->filter(function (TreeNodeMarkup $markup): bool {
+        return 
+            ($markup->type() == TreeNodeMarkupType::firstPathToLca()) || 
+            ($markup->type() == TreeNodeMarkupType::otherPathToLca());
+    });
+    
+//TODO: this is problematic for hrefs!
+if ($indiMarkups->count() > 3) {
+    $mainMarkups = $indiMarkups->slice(0, 2);
+    $otherMarkups = $indiMarkups->slice(2);
+} else {
+    $mainMarkups = $indiMarkups;
+    $otherMarkups = new Collection();
+}
+    
+
 ?>
 
 <ol class="⚶-famc">
     <li class="⚶-famc">
         <div class="⚶-famc">
-            <?php if ($indiMarkup !== null) : ?>
-                <?php if ($indiMarkup->type() == TreeNodeMarkupType::firstRepeated()) : ?>
-                    <div id="⚶-markup-<?= $indiMarkup->label(); ?>" class="⚶-markup ⚶-markup-type-<?= $indiMarkup->type()->typeClass() ?>">
-                        <?= $indiMarkup->label(); ?>
+            <?php foreach ($mainMarkups as $mainMarkup) : ?>
+                <?php if ($mainMarkup->type() == TreeNodeMarkupType::firstPathToLca()) : ?>
+                    <div id="⚶-markup-<?= $mainMarkup->label(); ?>" class="⚶-markup ⚶-markup-type-<?= $mainMarkup->type()->typeClass() ?>">
+                        <?= $mainMarkup->label(); ?>
                     </div>
-                <?php elseif ($indiMarkup->type() == TreeNodeMarkupType::otherRepeated()) : ?>
-                    <div class="⚶-markup ⚶-markup-type-<?= $indiMarkup->type()->typeClass() ?>">
-                        <a href="#⚶-markup-<?= $indiMarkup->label(); ?>"><?= $indiMarkup->label(); ?></a>
+                <?php elseif ($mainMarkup->type() == TreeNodeMarkupType::otherPathToLca()) : ?>
+                    <div class="⚶-markup ⚶-markup-type-<?= $mainMarkup->type()->typeClass() ?>">
+                        <a href="#⚶-markup-<?= $mainMarkup->label(); ?>"><?= $mainMarkup->label(); ?></a>
                     </div>
-                <?php elseif ($indiMarkup->type() == TreeNodeMarkupType::firstLca()) : ?>
-                    <div id="⚶-markup-<?= $indiMarkup->label(); ?>" class="⚶-markup ⚶-markup-type-<?= $indiMarkup->type()->typeClass() ?>">
-                        <?= $indiMarkup->label(); ?>
+                <?php endif ?>
+            <?php endforeach ?>
+            <?php if ($otherMarkups->isNotEmpty()) : ?>
+                <?php if ($otherMarkups->first()->type() == TreeNodeMarkupType::firstPathToLca()) : ?>
+                    <div id="⚶-markup-<?= $otherMarkups->first()->label(); ?>" class="⚶-markup ⚶-markup-type-<?= $otherMarkups->first()->type()->typeClass() ?>">
+                        <?= '&hellip;' ?>
                     </div>
-                <?php elseif ($indiMarkup->type() == TreeNodeMarkupType::otherLca()) : ?>
-                    <div class="⚶-markup ⚶-markup-type-<?= $indiMarkup->type()->typeClass() ?>">
-                        <a href="#⚶-markup-<?= $indiMarkup->label(); ?>"><?= $indiMarkup->label(); ?></a>
+                <?php elseif ($otherMarkups->first()->type() == TreeNodeMarkupType::otherPathToLca()) : ?>
+                    <div class="⚶-markup ⚶-markup-type-<?= $otherMarkups->first()->type()->typeClass() ?>">
+                        <a href="#⚶-markup-<?= $otherMarkups->first()->label(); ?>"><?= '&hellip;' ?></a>
                     </div>
-                <?php endif ?>                
-            <?php endif ?>
-            <?php if ($indiData !== null) : ?>
-                <div class="⚶-data" title="<?= I18N::translate("CoI; Coefficient of Inbreeding"); ?>">
-                    <?= I18N::percentage($indiData->coi(), 2); ?>
-                </div>  
-            <?php endif ?>
+                <?php endif ?>
+            <?php endif ?>            
             <?= view('vesta-chart-box', [
                 'individual' => $record, 
                 ]) ?>
