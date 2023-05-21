@@ -51,7 +51,6 @@ if ($indiMarkups->count() > 3) {
     $mainMarkups = $indiMarkups;
     $otherMarkups = new Collection();
 }
-    
 
 ?>
 
@@ -60,11 +59,11 @@ if ($indiMarkups->count() > 3) {
         <div class="⚶-famc">
             <?php foreach ($mainMarkups as $mainMarkup) : ?>
                 <?php if ($mainMarkup->type() == TreeNodeMarkupType::firstPathToLca()) : ?>
-                    <div id="⚶-markup-<?= $mainMarkup->label(); ?>" class="⚶-markup ⚶-markup-type-<?= $mainMarkup->type()->typeClass() ?>">
+                    <div<?= ($mainMarkup->tooltip() !== null)?' title="'.$mainMarkup->tooltip().'"':''; ?> id="⚶-markup-<?= $mainMarkup->label(); ?>" class="⚶-markup ⚶-markup-type-<?= $mainMarkup->type()->typeClass() ?>">
                         <?= $mainMarkup->label(); ?>
                     </div>
                 <?php elseif ($mainMarkup->type() == TreeNodeMarkupType::otherPathToLca()) : ?>
-                    <div class="⚶-markup ⚶-markup-type-<?= $mainMarkup->type()->typeClass() ?>">
+                    <div<?= ($mainMarkup->tooltip() !== null)?' title="'.$mainMarkup->tooltip().'"':''; ?> class="⚶-markup ⚶-markup-type-<?= $mainMarkup->type()->typeClass() ?>">
                         <a href="#⚶-markup-<?= $mainMarkup->label(); ?>"><?= $mainMarkup->label(); ?></a>
                     </div>
                 <?php endif ?>

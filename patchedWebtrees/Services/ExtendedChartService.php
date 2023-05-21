@@ -40,6 +40,9 @@ class ExtendedChartService {
         
         $fullTrees = new Collection();
         
+        $skipFamNodes = (PedigreeTreeType::commonAncestors() != $type);
+        //also get rid of nextIndisVia in TreeNode
+        
         foreach ($individuals as $individual) {
             $path = new Collection();
             if ($generations === null) {
@@ -56,7 +59,7 @@ class ExtendedChartService {
                 1,
                 $generations,
                 $type,
-                true,
+                $skipFamNodes,
                 $path);
             
             $fullTrees->put($individual->xref(), $fullTree);
@@ -64,8 +67,7 @@ class ExtendedChartService {
         
         if (PedigreeTreeType::full() == $type) {
             return $fullTrees;
-        }
-        
+        }        
    
         if (PedigreeTreeType::commonAncestors() == $type) {
             
@@ -159,88 +161,9 @@ class ExtendedChartService {
                 });
             }
             
-            //we have lcas: prune all trees so that they only contain lca leaves, and markup those
-            //prune: 
-            //(P1) keep only paths leading to lcas
-            //(P2) in general prune behind lcas (unless there are further lcas behind)
+            //we have lcas: preliminarily markup the respective nodes
             
-            //this was for labelling lcas globally,
-            //we now label the paths instead
-            /*
-            //labels are global
-            $lcasMarkups = [];
-            
-            $prunedTrees = new Collection();
-            foreach ($fullTrees as $fullTree) {
-                $transformer = new class implements TreeNodeTransformer {
-
-                    public static $lcas;
-                    public static $lcasMarkups;
-                    public static $counter;
-
-                    public function transformPreOrder(
-                        TreeNode $node): TreeNode|null {
-
-                        //markup lcas                    
-                        $xref = $node->record()->xref();
-                        if (array_key_exists($xref, self::$lcas)) {
-
-                            if (array_key_exists($xref, self::$lcasMarkups)) {
-                                $node = $node->withMarkup(new TreeNodeMarkup(
-                                    TreeNodeMarkupType::otherLca(),
-                                    self::$lcasMarkups[$xref]));
-                            } else {
-                                //labels are global
-                                $label = "X".self::$counter++;
-                                
-                                self::$lcasMarkups[$xref] = $label;
-                                $node = $node->withMarkup(new TreeNodeMarkup(
-                                    TreeNodeMarkupType::firstLca(),
-                                    self::$lcasMarkups[$xref]));
-                            }
-                        }
-
-                        return $node;
-                    }
-
-                    public function transformPostOrder(
-                        TreeNode $node): TreeNode|null {
-
-                        //(P1)
-
-                        $xref = $node->record()->xref();
-                        if (array_key_exists($xref, self::$lcas)) {
-
-                            //keep
-                            return $node;
-                        }
-                        
-                        //(P2)
-                        if ($node->next()->isEmpty()) {
-                            //prune leaf
-                            return null;
-                        }
-
-                        //keep if on path to lca
-                        return $node;
-                    }
-                };
-
-                $transformer::$lcas = $lcas;
-                //labels are global
-                $transformer::$lcasMarkups = $lcasMarkups;
-                $transformer::$counter = 1;
-
-                $prunedTree = $fullTree->transform($transformer);
-                
-                //labels are global
-                $lcasMarkups = $transformer::$lcasMarkups;
-                
-                $prunedTrees->add($prunedTree);
-            }
-            */
-            
-            $prunedTrees = new Collection();
+            $prelimTrees = new Collection();
             foreach ($fullTrees as $xref => $fullTree) {
                 $transformer = new class implements TreeNodeTransformer {
 
@@ -268,22 +191,6 @@ class ExtendedChartService {
                     public function transformPostOrder(
                         TreeNode $node): TreeNode|null {
 
-                        //(P1)
-
-                        $xref = $node->record()->xref();
-                        if (array_key_exists($xref, self::$lcas)) {
-
-                            //keep
-                            return $node;
-                        }
-                        
-                        //(P2)
-                        if ($node->next()->isEmpty()) {
-                            //prune leaf
-                            return null;
-                        }
-
-                        //keep if on path to lca
                         return $node;
                     }
                 };
@@ -291,21 +198,21 @@ class ExtendedChartService {
                 $transformer::$lcas = $lcas;
                 $transformer::$counter = 1;
 
-                $prunedTree = $fullTree->transform($transformer);
+                $prelimTree = $fullTree->transform($transformer);
                 
-                $prunedTrees->put($xref, $prunedTree);
+                $prelimTrees->put($xref, $prelimTree);
             }
             
-            $fullTrees = $prunedTrees;
+            $fullTrees = $prelimTrees;
         }
         
         $finalTrees = new Collection();
-        
         foreach ($fullTrees as $xref => $fullTree) {
             $finalTrees->put($xref, $this->processTree($fullTree, $type));
-        }
+        }    
                 
-        //IIIb. determine paths to lcas, re-markup lcas, also cor
+        //IIIb. determine paths to lcas, re-markup lcas (also 'INDI behind FAM lca'), also cor
+        //prune trees behind 'lca paths' (except for those 'INDI behind FAM lca')
         //(algorithm is similar to III.)
         
         if (PedigreeTreeType::commonAncestors() == $type) {
@@ -327,8 +234,6 @@ class ExtendedChartService {
                     public function visitPreOrder(TreeNode $node): bool {
                         $xref = $node->record()->xref();
                         self::$currentPath->push($node);
-                        
-                        
                         
                         if (in_array($xref, self::$lcas)) {
                             if (!array_key_exists($xref, self::$pathsToLcasByXref)) {
@@ -399,8 +304,17 @@ class ExtendedChartService {
                 
                 foreach ($pathsSecond as $pathSecond) {
                     //keep unless they intersect on lower lca
-                    $fp = $pathFirst->getFullPathIfValid($pathSecond);
-                    if ($fp !== null) {
+                    $rd = $pathFirst->getRelationshipDataIfValid($pathSecond);
+                    
+                    /*
+                    if ($rd !== null) {
+                        error_log("keep!");    
+                    } else {
+                        error_log("drop---");    
+                    }
+                    */
+                    
+                    if ($rd !== null) {
                         $c = $counter++;
 
                         //use preliminary markup
@@ -411,7 +325,10 @@ class ExtendedChartService {
                         }
 
                         $finalMarkupFirst[$prelimFirst]->push(
-                            new TreeNodeMarkup(TreeNodeMarkupType::firstPathToLca(), "".$c));
+                            new TreeNodeMarkup(
+                                TreeNodeMarkupType::firstPathToLca(), 
+                                "".$c,
+                                $rd->description()));
 
                         $prelimSecond = $pathSecond->lcaNode()->markups()->first()->label();
 
@@ -420,10 +337,15 @@ class ExtendedChartService {
                         }
 
                         $finalMarkupSecond[$prelimSecond]->push(
-                            new TreeNodeMarkup(TreeNodeMarkupType::otherPathToLca(), "".$c));                            
+                            new TreeNodeMarkup(
+                                TreeNodeMarkupType::otherPathToLca(), 
+                                "".$c,
+                                $rd->descriptionInverse()));                            
 
-                        //error_log("first: " . $prelimFirst . " rewrite " . $c);
-                        //error_log("second: " . $prelimSecond . " rewrite " . $c);
+                        /*
+                        error_log("first: " . $prelimFirst . " rewrite " . $c);
+                        error_log("second: " . $prelimSecond . " rewrite " . $c);
+                        */
                     }
                 }                                
             }
@@ -476,7 +398,8 @@ class ExtendedChartService {
             }
             */
                 
-            //C. replace preliminary markups with final markups
+            //C. replace preliminary markups with final markups (moving FAM markup to INDI behind)
+            //and prune the trees
             foreach ($finalTrees as $xref => $finalTree) {
                 
                 $finalMarkup = ($xref === $xrefFirst)?
@@ -486,34 +409,65 @@ class ExtendedChartService {
                 $transformer = new class implements TreeNodeTransformer {
 
                     public static $finalMarkup;
+                    public static $stackOfConferredMarkups;
 
+                    protected static function getMarkups(
+                        TreeNode $node): Collection {
+                        
+                        $markup = $node->markups()->first();
+                        if ($markup !== null) {
+                            if (array_key_exists($markup->label(), self::$finalMarkup)) {
+                                $markups = self::$finalMarkup[$markup->label()];
+                                return $markups;
+                            } else {
+                                //this is not a relevant lca (on this path)
+                                //i.e. path is through lower relevant lca (on 'both sides')
+                            }                            
+                        }
+                        
+                        return new Collection();
+                    }
+                        
                     public function transformPreOrder(
                         TreeNode $node): TreeNode|null {
                         
+                        if ($node->record() instanceof Family) {
+                            throw new \Exception();
+                        }
+                        
+                        $famMarkups = new Collection();
+                        
+                        //max one expected here
+                        $nextFam = $node->next()->first();
+                        
+                        if ($nextFam !== null) {
+                            //strip FAM node
+                            $node = $node->withNext($nextFam->next());
+                            
+                            //but rescue its markups
+                            $famMarkups = self::getMarkups($nextFam);
+                        }
+                        
+                        //handle conferred FAM and own markups
+                        $mergedMarkups = self::$stackOfConferredMarkups->last()
+                            ->merge(self::getMarkups($node));
+                            
+                        //set final markups (if any), removing preliminary markup (if any)
+                        $node = $node = $node->replaceMarkups($mergedMarkups);
+                                                
+                        //stash FAM markups (unconditionally for easier consistency)
+                        self::$stackOfConferredMarkups->push($famMarkups);                            
+
                         return $node;
                     }
                     
                     public function transformPostOrder(
                         TreeNode $node): TreeNode|null {
 
-                        $isRelevantLca = false;
-                            
-                        $markup = $node->markups()->first();
-                        if ($markup !== null) {
-                            if (array_key_exists($markup->label(), self::$finalMarkup)) {
-                                $m = self::$finalMarkup[$markup->label()];                            
-                                $node = $node->replaceMarkups($m);
-                                $isRelevantLca = true;
-                            } else {
-                                //this is not a relevant lca (on this path)
-                                //i.e. path is through lower relevant lca (on 'both sides')
-                                //remove preliminary markup
-                                $node = $node->replaceMarkups(new Collection());
-                            }
-                            
-                        }
-
-                        if ($isRelevantLca) {
+                        //cleanup markups
+                        self::$stackOfConferredMarkups->pop();
+                        
+                        if ($node->markups()->isNotEmpty()) {
                             //keep
                             return $node;
                         }
@@ -523,12 +477,15 @@ class ExtendedChartService {
                             return null;
                         }
 
-                        //keep if on path to relevant lca
+                        //keep if on path to marked-up node
                         return $node;
                     }
                 };
 
                 $transformer::$finalMarkup = $finalMarkup;
+                
+                //init with empty markups for root node
+                $transformer::$stackOfConferredMarkups = new Collection([new Collection()]);
 
                 $finalTreeWithFinalMarkup = $finalTree->transform($transformer);
                 
@@ -545,6 +502,11 @@ class ExtendedChartService {
         TreeNode $fullTree, 
         PedigreeTreeType $type): TreeNode|null {
 
+        //don't do any of this for commonAncestors(): we want to enumerate the paths
+        if (PedigreeTreeType::commonAncestors() == $type) {
+            return $fullTree;
+        }
+        
         //I. collect 'lowest' repeated
 
         //#treeHasIndiOnly
@@ -577,7 +539,6 @@ class ExtendedChartService {
         $collector::$repeated = [];
         $fullTree->process($collector);
         
-        //don't do this for commonAncestors(): we want to enumerate the paths
         $markupAndPruneBehindRepeateds = false;
         if (PedigreeTreeType::skipRepeated() == $type) {
             $markupAndPruneBehindRepeateds = true;

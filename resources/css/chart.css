@@ -81,48 +81,51 @@ div.⚶-chart {
 }
 
 .⚶-chart-style-up ol.⚶-famc {
-    display: inline-flex; /* inline-flex required in order to grow with content https://stackoverflow.com/a/46650650 */
-    flex-direction: column-reverse;
-    align-items: center;
+    display: inline-grid;
+    grid-auto-flow: row; /* i.e. single column */
 }
 
-.⚶-chart-style-up ol.⚶-fam {
-    display: inline-flex;
-    flex-direction: row;
-    /* cannot center in case of sub trees of unequal depth */
+.⚶-chart-style-up li.⚶-famc:first-child {
+    /* flip order */
+    grid-row: 2;
 }
 
-/* stack to save space */
-.⚶-chart-style-up ol.⚶-fam.⚶-fam-leaves {
-    display: inline-flex;
-    flex-direction: column; /* first parent always on top */
-    align-items: center;
+.⚶-chart-style-up li.⚶-famc:last-child {
+    /* flip order */
+    grid-row: 1;
 }
 
 /* required for the connectors */
 .⚶-chart-style-up li.⚶-famc {
-    display: inline-flex;
-    flex-direction: column-reverse;
-    align-items: center;
+    display: inline-grid;
+    justify-content: center; /* for indi */
+    grid-auto-flow: row;
 }
 
-/* required to avoid gap */
-.⚶-chart-style-up div.⚶-famc {
-    display: inline-flex;
-    flex-direction: column-reverse;
-    align-items: center;
+.⚶-chart-style-up ol.⚶-fam {
+    display: inline-grid;
+    grid-auto-flow: column;
+}
+
+/* stack to save space */
+.⚶-chart-style-up ol.⚶-fam.⚶-fam-leaves {
+    display: inline-grid;
+    grid-auto-flow: row;
 }
 
 /* required for the connectors */
 .⚶-chart-style-up li.⚶-fam {
-    display: inline-flex;
-    flex-direction: column-reverse;
-    align-items: center;
+    display: inline-grid;
+    grid-template-rows: auto max-content; /* actual element, pseudo-element */
+    grid-template-columns: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */ 
+    align-items: end; /* for subtrees of unequal depth */
+    width: max-content; /* grow with content */
 }
 
 /* connector 'from' part */
-.⚶-chart-style-up li.⚶-famc:not(:only-child):last-child::before {
+.⚶-chart-style-up li.⚶-famc:not(:only-child):last-child::after {
     content: "";
+    justify-self: center; /* not sure why this is required */
     width: 1px;
     height: 15px;
     background-color: black;
@@ -131,8 +134,9 @@ div.⚶-chart {
 /* connector 'to' part ('left') */
 .⚶-chart-style-up li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):first-child::before {
     content: "";
-    align-self: flex-end;
-    width: calc(50% + 1.5px);
+    /* flip order */
+    grid-row: 2; /* using ::after instead of ::before has no effect at all - weirdly(?) */
+    grid-column: 3 / span 2; /* 'left 50%' */
     height: 15px;
     border-width: 1.5px;
     border-bottom-left-radius: 10px;
@@ -146,8 +150,9 @@ div.⚶-chart {
 /* connector 'to' part ('right') */
 .⚶-chart-style-up li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):last-child::before {
     content: "";
-    align-self: flex-start;
-    width: calc(50% + 1.5px);
+    /* flip order */
+    grid-row: 2;
+    grid-column: 1 / span 2; /* 'right 50%' */
     height: 15px;
     border-width: 1.5px;
     border-bottom-right-radius: 10px;
@@ -162,8 +167,9 @@ div.⚶-chart {
 /* connector 'to' part ('leaves') */
 .⚶-chart-style-up li.⚶-fam.⚶-fam-leaves:not(:only-child):last-child::before {
     content: "";
-    align-self: center;
-    width: calc(20%);
+    /* flip order */
+    grid-row: 2;
+    grid-column : 2 / span 2; /* 'center 20%' */
     height: 15px;
     border-width: 1.5px;
     border-left-color: black;
@@ -178,17 +184,35 @@ div.⚶-chart {
 }
 
 /* connector 'to' part ('only') */
-.⚶-chart-style-up li.⚶-fam:only-child::before {
+.⚶-chart-style-up li.⚶-fam:only-child::after {
     content: "";
-    align-self: center;
+    grid-column: span 4; /* '100%' */
+    justify-self: center;
     width: 1px;
     height: 15px;
     background-color: black;
 }
 
+.⚶-chart-style-up div.⚶-fam {
+    grid-column: span 4; /* '100%' */
+}
+
 .⚶-chart-style-up .wt-chart-box {
     height: 8rem;
     width: 10rem;
+}
+
+.⚶-chart-pedigree-compact.⚶-chart-style-up .wt-chart-box {
+    /* add some margin for absolute positioned markup */
+    margin: 0 1.5rem 0 1.5rem;
+}
+
+.⚶-chart-pedigree-collapse.⚶-chart-style-up .wt-chart-box {
+    /* add some margin for absolute positioned markup */
+    margin: 0 1.5rem 0 1.5rem;
+}
+
+.⚶-chart-pedigree-lca.⚶-chart-style-up .wt-chart-box {
     /* add some margin for absolute positioned markup */
     margin: 0 1.5rem 0 1.5rem;
 }
@@ -223,51 +247,52 @@ div.⚶-chart {
 .⚶-chart-style-down li.⚶-root {
     display: inline-grid;
     grid-auto-flow: row;
+    align-items: start; /* for subtrees of unequal depth */
 }
 
 .⚶-chart-style-down ol.⚶-famc {
-    display: inline-flex; /* inline-flex required in order to grow with content https://stackoverflow.com/a/46650650 */
+    display: inline-grid;
+    grid-auto-flow: row; /* i.e. single column */
+}
+
+/* required for the connectors */
+.⚶-chart-style-down li.⚶-famc {
+    display: inline-grid;
+    justify-content: center; /* for indi */
+    grid-auto-flow: row;
+}
+
+/* required to avoid gap (not an issue in *-up, weirdly) */
+.⚶-chart-style-down div.⚶-famc {
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
 }
 
 .⚶-chart-style-down ol.⚶-fam {
-    display: inline-flex;
-    flex-direction: row;
-    /* cannot center in case of sub trees of unequal depth */
+    display: inline-grid;
+    grid-auto-flow: column;
 }
 
 /* stack to save space */
 .⚶-chart-style-down ol.⚶-fam.⚶-fam-leaves {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* required for the connectors */
-.⚶-chart-style-down li.⚶-famc {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* required to avoid gap */
-.⚶-chart-style-down div.⚶-famc {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;    
+    display: inline-grid;
+    grid-auto-flow: row;
 }
 
 /* required for the connectors */
 .⚶-chart-style-down li.⚶-fam {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
+    display: inline-grid;
+    grid-template-rows: max-content auto; /* pseudo-element, actual element */
+    grid-template-columns: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */ 
+    align-items: start; /* for subtrees of unequal depth */
+    width: max-content; /* grow with content */
 }
 
 /* connector 'from' part */
 .⚶-chart-style-down li.⚶-famc:not(:only-child):last-child::before {
     content: "";
+    justify-self: center; /* not sure why this is required */
     width: 1px;
     height: 15px;
     background-color: black;
@@ -276,8 +301,7 @@ div.⚶-chart {
 /* connector 'to' part ('left') */
 .⚶-chart-style-down li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):first-child::before {
     content: "";
-    align-self: flex-end;
-    width: calc(50% + 1.5px);
+    grid-column: 3 / span 2; /* 'left 50%' */
     height: 15px;
     border-width: 1.5px;
     border-top-left-radius: 10px;
@@ -291,8 +315,7 @@ div.⚶-chart {
 /* connector 'to' part ('right') */
 .⚶-chart-style-down li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):last-child::before {
     content: "";
-    align-self: flex-start;
-    width: calc(50% + 1.5px);
+    grid-column: 1 / span 2; /* 'right 50%' */
     height: 15px;
     border-width: 1.5px;
     border-top-right-radius: 10px;
@@ -307,8 +330,7 @@ div.⚶-chart {
 /* connector 'to' part ('leaves') */
 .⚶-chart-style-down li.⚶-fam.⚶-fam-leaves:not(:only-child):first-child::before {
     content: "";
-    align-self: center;
-    width: calc(20%);
+    grid-column : 2 / span 2; /* 'center 20%' */
     height: 15px;
     border-width: 1.5px;
     border-left-color: black;
@@ -325,10 +347,15 @@ div.⚶-chart {
 /* connector 'to' part ('only') */
 .⚶-chart-style-down li.⚶-fam:only-child::before {
     content: "";
-    align-self: center;
+    grid-column: span 4; /* '100%' */
+    justify-self: center;
     width: 1px;
     height: 15px;
     background-color: black;
+}
+
+.⚶-chart-style-down div.⚶-fam {
+    grid-column: span 4; /* '100%' */
 }
 
 .⚶-chart-style-down .wt-chart-box {
@@ -577,7 +604,7 @@ div.⚶-chart {
     content: "";
     grid-row: 3 / span 2; /* 'left 50%' */
     /* flip order */
-    grid-column: 2; /* using ::after insteaf of ::before has no effect at all - weirdly(?) */
+    grid-column: 2; /* using ::after instead of ::before has no effect at all - weirdly(?) */
     width: 15px;    
     border-width: 1.5px;
     border-top-right-radius: 10px;
