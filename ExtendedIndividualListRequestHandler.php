@@ -410,4 +410,24 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule {
 
         return $ret;
     }
+    
+    public function listUrl(
+        Tree $tree, 
+        array $parameters = []): string {
+        
+        //adjustment for 'surname': repair special character
+        if (array_key_exists('surname', $parameters)) {
+            $surname = $parameters['surname'];
+            
+            $unicodeChar = "\u{FEFF}"; //ZERO WIDTH NO-BREAK SPACE
+            if (str_ends_with($surname, $unicodeChar)) {
+                //'repair' adjusted $surname (cf handle())
+                $surname = mb_substr($surname, 0, -1);
+                $parameters['surname'] = $surname;
+            }
+        }       
+
+        //otherwise same as parent
+        return parent::listUrl($tree, $parameters);
+    }
 }
