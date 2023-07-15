@@ -55,14 +55,6 @@ class PathToLca {
             return null;
         }
         
-        /*
-        return new RelationshipData(
-            "JUP",
-            "PUJ",            
-            //TODO
-            0.0);
-        */
-        
         //build the relationship paths, alternating indi/fam
         $tree = $this->lcaNode()->record()->tree();
         $path = [];
@@ -78,22 +70,8 @@ class PathToLca {
             }       
         }
         
-        $relationshipPath = RelationshipPath::create($tree, $path);
-        if ($relationshipPath === null) {
-            throw new Exception("unexpected null path");
-        }
-        $description = RelationshipUtils::getRelationshipName($relationshipPath);
-        
-        $relationshipPathInverse = RelationshipPath::create($tree, array_reverse($path));
-        if ($relationshipPathInverse === null) {
-            throw new Exception("unexpected null path");
-        }
-        $descriptionInverse = RelationshipUtils::getRelationshipName($relationshipPathInverse);
-        
-        return new RelationshipData(
-            $description,
-            $descriptionInverse,            
-            //TODO
-            0.0);
+        return RelationshipData::create(
+            $tree, 
+            $path);
     }
 }

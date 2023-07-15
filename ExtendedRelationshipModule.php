@@ -130,12 +130,12 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     protected $listRequestHandler;
 
     public function __construct(
-        ModuleService $module_service, //COMMENT OUT for 2.1.x
+        //ModuleService $module_service, //COMMENT OUT for 2.1.x
         RelationshipService $relationship_service,
         TreeService $tree_service) {
 
         parent::__construct(
-            $module_service, //COMMENT OUT for 2.1.x
+            //$module_service, //COMMENT OUT for 2.1.x
             $relationship_service, 
             $tree_service);
 

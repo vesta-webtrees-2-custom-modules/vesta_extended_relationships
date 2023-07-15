@@ -12,7 +12,8 @@ class TreeNode {
     protected int $generation;
     protected Collection $next;
     protected Collection $markups;
-    protected TreeNodeCOI|null $data;
+    protected TreeNodeCOI|null $coi;
+    protected TreeNodeCOR|null $cor;
       
     public function record(): Individual|Family {
         return $this->record;
@@ -30,8 +31,12 @@ class TreeNode {
         return $this->markups;
     }
     
-    public function data(): TreeNodeCOI|null {
-        return $this->data;
+    public function coi(): TreeNodeCOI|null {
+        return $this->coi;
+    }
+    
+    public function cor(): TreeNodeCOR|null {
+        return $this->cor;
     }
     
     public function __construct(
@@ -39,13 +44,15 @@ class TreeNode {
         int $generation,
         Collection $next,
         Collection $markups,
-        TreeNodeCOI|null $data) {
+        TreeNodeCOI|null $coi,
+        TreeNodeCOR|null $cor) {
         
         $this->record = $record;
         $this->generation = $generation;
         $this->next = $next;
         $this->markups = $markups;
-        $this->data = $data;
+        $this->coi = $coi;
+        $this->cor = $cor;
     }
     
     public function withNext(
@@ -56,7 +63,8 @@ class TreeNode {
             $this->generation(),
             $next,
             $this->markups(),
-            $this->data());
+            $this->coi(),
+            $this->cor());
     }
     
     public function withMarkup(
@@ -67,7 +75,8 @@ class TreeNode {
             $this->generation(),
             $this->next(),
             $this->markups()->merge(new Collection([$markup])),
-            $this->data());
+            $this->coi(),
+            $this->cor());
     }
     
     public function replaceMarkups(
@@ -78,18 +87,32 @@ class TreeNode {
             $this->generation(),
             $this->next(),
             $markups,
-            $this->data());
+            $this->coi(),
+            $this->cor());
     }
     
-    public function withData(
-        TreeNodeCOI|null $data): TreeNode {
+    public function withCoi(
+        TreeNodeCOI|null $coi): TreeNode {
         
         return new TreeNode(
             $this->record(),
             $this->generation(),
             $this->next(),
             $this->markups(),
-            $data);
+            $coi,
+            $this->cor());
+    }
+    
+    public function withCor(
+        TreeNodeCOR|null $cor): TreeNode {
+        
+        return new TreeNode(
+            $this->record(),
+            $this->generation(),
+            $this->next(),
+            $this->markups(),
+            $this->coi(),
+            $cor);
     }
     
     public function process(

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2023-01-21 16:06+0100\n"
+"POT-Creation-Date: 2023-05-27 20:41+0200\n"
 "PO-Revision-Date: 2022-04-04 22:07+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 4.12-dev\n"
 
-#: ExtendedRelationshipModule.php:220
+#: ExtendedRelationshipModule.php:292
 msgid " (see below for details)."
 msgstr " (detaily pozri nižšie)."
 
@@ -28,29 +28,38 @@ msgstr " (detaily pozri nižšie)."
 msgid "%1$s is %2$s of %3$s."
 msgstr "%1$s je %2$s osoby %3$s."
 
-#: ExtendedRelationshipsChartController.php:60
+#: ExtendedRelationshipsChartController.php:59
+#: resources/views/modules/lca-chart/chart.phtml:27
 #, php-format
 msgid "(Number of relationships: %s)"
 msgstr "(Počet vzťahov: %s)"
 
-#: ExtendedRelationshipsChartController.php:74
+#: ExtendedRelationshipsChartController.php:73
+#: patchedWebtrees/Services/TreeNodeCOR.php:144
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
 msgstr "(celkovo je to skoro tak blízky vzťah ako: %1$s)"
 
-#: ExtendedRelationshipsChartController.php:72
+#: ExtendedRelationshipsChartController.php:71
+#: patchedWebtrees/Services/TreeNodeCOR.php:142
 #, php-format
 msgid "(that's overall as close as: %1$s)"
 msgstr "(celkovo je to tak blízky vzťah ako: %1$s)"
 
-#: ExtendedRelationshipsChartController.php:76
+#: ExtendedRelationshipsChartController.php:75
+#: patchedWebtrees/Services/TreeNodeCOR.php:146
 #, php-format
 msgid "(that's overall closer than: %1$s)"
 msgstr "(celkovo je to bližší vzťah ako: %1$s)"
 
-#: ExtendedRelationshipsChartController.php:64
+#: ExtendedRelationshipsChartController.php:63
+#: patchedWebtrees/Services/TreeNodeCOR.php:68
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
 msgstr "(celkovo to nie je významne bližšie ako najbližší vzťah cez spoločných predkov)"
+
+#: ExtendedPedigreeChartModule.php:110
+msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
+msgstr ""
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -98,9 +107,28 @@ msgstr "V zásade, každý vzťah (cez spoločných predkov) medzi dvomi osobami
 msgid "Chart Settings"
 msgstr "Nastavenie schémy"
 
+#: resources/views/modules/lca-chart/chart.phtml:24
+#, php-format
+msgid "Closest Relationship: %s"
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/chart-x.phtml:56
+msgid "CoI; Coefficient of Inbreeding"
+msgstr ""
+
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
 msgstr "Spoločný predok: "
+
+#: LCAChartModule.php:80 LCAChartModule.php:160
+msgid "Common ancestors"
+msgstr ""
+
+#. I18N: %s are individual’s names
+#: LCAChartModule.php:152
+#, php-format
+msgid "Common ancestors of %1$s and %2$s"
+msgstr ""
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
@@ -146,7 +174,7 @@ msgid "Families Tab Settings"
 msgstr "Nastavenie záložky Rodiny"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1014 ExtendedRelationshipModuleTrait.php:89
+#: ExtendedRelationshipModule.php:1093 ExtendedRelationshipModuleTrait.php:89
 #: ExtendedRelationshipModuleTrait.php:160
 #: ExtendedRelationshipModuleTrait.php:185
 #: ExtendedRelationshipModuleTrait.php:216
@@ -156,7 +184,7 @@ msgid "Find a closest relationship via common ancestors"
 msgstr "Nájsť najbližší vzťah cez spoločných predkov"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1032 ExtendedRelationshipModuleTrait.php:110
+#: ExtendedRelationshipModule.php:1111 ExtendedRelationshipModuleTrait.php:110
 #: ExtendedRelationshipModuleTrait.php:164
 #: ExtendedRelationshipModuleTrait.php:195
 #: ExtendedRelationshipModuleTrait.php:226
@@ -166,12 +194,12 @@ msgstr "Nájsť najbližší vzťah cez spoločných predkov"
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
 msgstr "Nájsť najbližší vzťah cez spoločných predkov, alebo, ak sa nedá, tak najbližší ľubovoľný vzťah"
 
-#: ExtendedRelationshipModule.php:1042
+#: ExtendedRelationshipModule.php:1121
 msgid "Find all overall connections"
 msgstr "Nájsť všetky vzťahy"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1022 ExtendedRelationshipModuleTrait.php:99
+#: ExtendedRelationshipModule.php:1101 ExtendedRelationshipModuleTrait.php:99
 #: ExtendedRelationshipModuleTrait.php:162
 #: ExtendedRelationshipModuleTrait.php:188
 #: ExtendedRelationshipModuleTrait.php:219
@@ -181,7 +209,7 @@ msgid "Find all relationships via lowest common ancestors"
 msgstr "Nájsť všetky vzťahy cez najbližších spoločných predkov"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1018 ExtendedRelationshipModuleTrait.php:94
+#: ExtendedRelationshipModule.php:1097 ExtendedRelationshipModuleTrait.php:94
 #: ExtendedRelationshipModuleTrait.php:161
 #: ExtendedRelationshipModuleTrait.php:186
 #: ExtendedRelationshipModuleTrait.php:217
@@ -190,7 +218,7 @@ msgstr "Nájsť všetky vzťahy cez najbližších spoločných predkov"
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr "Nájsť všetkých najbližších spoločných predkov, každého s najbližším vzťahom"
 
-#: ExtendedRelationshipModule.php:1044
+#: ExtendedRelationshipModule.php:1123
 msgid "Find other overall connections"
 msgstr "Nájsť iné vzťahy"
 
@@ -206,7 +234,7 @@ msgid "Find other/all overall connections"
 msgstr "Nájsť iné/všetky vzťahy"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1036 ExtendedRelationshipModuleTrait.php:115
+#: ExtendedRelationshipModule.php:1115 ExtendedRelationshipModuleTrait.php:115
 #: ExtendedRelationshipModuleTrait.php:165
 #: ExtendedRelationshipModuleTrait.php:196
 #: ExtendedRelationshipModuleTrait.php:227
@@ -217,7 +245,7 @@ msgid "Find the closest overall connections"
 msgstr "Nájsť najbližší vzťah"
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1028 ExtendedRelationshipModuleTrait.php:105
+#: ExtendedRelationshipModule.php:1107 ExtendedRelationshipModuleTrait.php:105
 #: ExtendedRelationshipModuleTrait.php:163
 #: ExtendedRelationshipModuleTrait.php:194
 #: ExtendedRelationshipModuleTrait.php:225
@@ -303,7 +331,7 @@ msgid "In that case, you should also disallow persistent toggle, as it has no vi
 msgstr "V takomto prípade by ste mali zrušiť aj zobrazenie checkboxov, keďže nemajú žiaden viditeľný efekt."
 
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
-#: ExtendedRelationshipModule.php:1054
+#: ExtendedRelationshipModule.php:1133
 msgid "Individuals with Patriarchs"
 msgstr "Osoby s patriarchami"
 
@@ -319,6 +347,10 @@ msgstr "Zistiť presný CoR je omnoho zložitejšie, okrem toho rozdiely sú vä
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
 msgstr "Pôvodný algoritmus pre názvy rodinných vzťahov"
+
+#: ExtendedRelationshipModule.php:1218
+msgid "More Charts"
+msgstr ""
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:313
@@ -342,14 +374,23 @@ msgstr "Možnosti, ktoré sa môžu zvoliť v schéme"
 
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: HelpTexts.php:40
-#: resources/views/lists/individuals-table-with-patriarchs.phtml:243
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:56
+#: resources/views/lists/individuals-table-with-patriarchs.phtml:181
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:59
 msgid "Patriarch"
 msgstr "Patriarcha"
 
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr "Patriarchovia sú mužskí predkovia na začiatku línie."
+
+#: ExtendedPedigreeChartModule.php:100
+msgid "Pedigree collapse"
+msgstr ""
+
+#: ExtendedPedigreeChartModule.php:128
+#, php-format
+msgid "Pedigree collapse tree of %s"
+msgstr ""
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:106
@@ -390,12 +431,12 @@ msgstr "Zobraziť spoločných predkov hore na cestách vzťahov"
 msgid "Show legacy relationship path names"
 msgstr "Zobraziť názvy rodinných vzťahov podľa pôvodného algoritmu"
 
-#: ExtendedRelationshipModule.php:213 ExtendedRelationshipModule.php:869
-#: ExtendedRelationshipModule.php:875
+#: ExtendedRelationshipModule.php:285 ExtendedRelationshipModule.php:948
+#: ExtendedRelationshipModule.php:954
 msgid "Synchronization"
 msgstr "Synchronizácia"
 
-#: ExtendedRelationshipModule.php:218
+#: ExtendedRelationshipModule.php:290
 #: ExtendedRelationshipsChartController.php:283
 msgid "Synchronize trees to obtain dated relationship links"
 msgstr "Synchronizovať rodokmene, aby sa získali vzťahy s dátumom"
@@ -425,6 +466,19 @@ msgstr "Proces by sa mal zopakovať (ale bude trvať výrazne kratšie) vždy, k
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr "Rovnakú informáciu získate cez zoznam Vetvy, kde sú zobrazení ako hlavy vetiev."
+
+#: resources/views/modules/lca-chart/chart.phtml:18
+msgid "There are no recorded common ancestors."
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/chart.phtml:19
+#, php-format
+msgid "There is no recorded pedigree collapse within %1$s generations."
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/chart.phtml:17
+msgid "There is no recorded pedigree collapse."
+msgstr ""
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:190
@@ -461,7 +515,8 @@ msgstr "To sa zdá byť užitočné vo väčšine prípadov (napr. zistiť vzťa
 msgid "Uncorrected CoR (Coefficient of Relationship)"
 msgstr "Nekorigovaný CoR (koeficient vzťahov)"
 
-#: ExtendedRelationshipsChartController.php:58
+#: ExtendedRelationshipsChartController.php:57
+#: resources/views/modules/lca-chart/chart.phtml:25
 #, php-format
 msgid "Uncorrected CoR (Coefficient of Relationship): %s"
 msgstr "Nekorigovaný CoR (koeficient vzťahov): %s"
@@ -489,7 +544,7 @@ msgstr "rodičia"
 msgid "unlimited"
 msgstr "neobmedzene"
 
-#: ExtendedRelationshipsChartController.php:113
+#: ExtendedRelationshipsChartController.php:112
 #, php-format
 msgid "via legacy algorithm: %s"
 msgstr "v pôvodnom algoritme: %s"

@@ -216,7 +216,6 @@ class ExtendedChartService {
         //(algorithm is similar to III.)
         
         if (PedigreeTreeType::commonAncestors() == $type) {
-            $finalTreesWithFinalMarkup = new Collection();
             
             //A. collect all paths (by xref and label)
             $pathsToLcasByXrefByTree = [];
@@ -293,7 +292,11 @@ class ExtendedChartService {
             $pathsToLcasByLabelFirst = $pathsToLcasByLabelByTree[$xrefFirst];
             $pathsToLcasByXrefSecond = $pathsToLcasByXrefByTree[$xrefSecond];
             
-            $counter = 1;
+            $counter = 0;
+            $singleMaxCor = 0.0;
+            $overallCor = 0.0;
+            $overallClosestRel = null;
+            $overallBestPath = [];
             
             $finalMarkupFirst = [];
             $finalMarkupSecond = [];
@@ -315,7 +318,13 @@ class ExtendedChartService {
                     */
                     
                     if ($rd !== null) {
-                        $c = $counter++;
+                        $c = ++$counter;
+                        $overallCor += $rd->cor();
+                        if ($singleMaxCor < $rd->cor()) {
+                            $singleMaxCor = $rd->cor();
+                            $overallClosestRel = $rd->description();
+                            $overallBestPath = $rd->path();
+                        }
 
                         //use preliminary markup
                         $prelimFirst = $pathFirst->lcaNode()->markups()->first()->label();
@@ -349,6 +358,23 @@ class ExtendedChartService {
                     }
                 }                                
             }
+            
+            //add cor data to root
+            $cor = TreeNodeCor::create(
+                $overallCor, 
+                $counter, 
+                $overallClosestRel,
+                $finalTrees->first()->record()->tree(),
+                $finalTrees->first()->record()->sex(),
+                $overallBestPath);
+            
+            $finalTreesWithCor = new Collection();
+            
+            foreach ($finalTrees as $xref => $finalTree) {
+                $finalTreesWithCor->put($xref, $finalTree->withCor($cor));
+            }
+            
+            $finalTrees = $finalTreesWithCor;
             
             //functionally ok but numbers are unordered
             /*
@@ -400,6 +426,8 @@ class ExtendedChartService {
                 
             //C. replace preliminary markups with final markups (moving FAM markup to INDI behind)
             //and prune the trees
+            $finalTreesWithFinalMarkup = new Collection();
+            
             foreach ($finalTrees as $xref => $finalTree) {
                 
                 $finalMarkup = ($xref === $xrefFirst)?
@@ -707,7 +735,7 @@ class ExtendedChartService {
                     //error_log("coi for " . $self . " is " . $coi);
 
                     if ($coi !== 0.0) {
-                        $node = $node->withData(new TreeNodeCOI($coi));
+                        $node = $node->withCoi(new TreeNodeCOI($coi));
                     }
 
                     return $node;
@@ -739,6 +767,7 @@ class ExtendedChartService {
                 $generation,
                 new Collection([]),
                 new Collection([new TreeNodeMarkup(TreeNodeMarkupType::circularity())]),
+                null,
                 null);
         }
         
@@ -770,6 +799,7 @@ class ExtendedChartService {
                         $generation,
                         new Collection([]),
                         new Collection([new TreeNodeMarkup(TreeNodeMarkupType::circularity())]),
+                        null,
                         null);
                 } else {
                     $parents = [];
@@ -813,6 +843,7 @@ class ExtendedChartService {
                         $generation,
                         new Collection($nextInFamily),
                         new Collection(),
+                        null,
                         null); 
                 }
             }
@@ -823,6 +854,7 @@ class ExtendedChartService {
             $generation,
             new Collection($next),
             new Collection(),
+            null,
             null);
     }
     

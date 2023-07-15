@@ -57,7 +57,10 @@ class UserRepositoryExt {
         }
 
         if ($anonymous > 0) {
-            $content .= '<b>' . MoreI18N::plural('%s anonymous signed-in user', '%s anonymous signed-in users', $anonymous, I18N::number($anonymous)) . '</b>';
+            //can't get these excluded otherwise grrr
+            $a = '%s anonymous signed-in user';
+            $b = '%s anonymous signed-in users';
+            $content .= '<b>' . MoreI18N::plural($a, $b, $anonymous, I18N::number($anonymous)) . '</b>';
         }
 
         if ($count_logged_in > 0) {
@@ -68,7 +71,10 @@ class UserRepositoryExt {
                     $content .= ' ' . MoreI18N::xlate('and') . ' ';
                 }
             }
-            $content .= '<b>' . MoreI18N::plural('%s signed-in user', '%s signed-in users', $count_logged_in, I18N::number($count_logged_in)) . '</b>';
+            //can't get these excluded otherwise grrr
+            $a = '%s signed-in user';
+            $b = '%s signed-in users';
+            $content .= '<b>' . MoreI18N::plural($a, $b, $count_logged_in, I18N::number($count_logged_in)) . '</b>';
             if ($type === 'list') {
                 $content .= '<ul>';
             } else {

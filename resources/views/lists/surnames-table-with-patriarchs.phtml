@@ -1,13 +1,13 @@
 <?php
 
 use Cissee\Webtrees\Module\ExtendedRelationships\AllAncestors;
+use Cissee\Webtrees\Module\ExtendedRelationships\IndividualListModule_2_1_16;
 use Cissee\WebtreesExt\MoreI18N;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Contracts\UserInterface;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Module\FamilyListModule;
-use Fisharebest\Webtrees\Module\IndividualListModule;
 use Fisharebest\Webtrees\Module\ModuleChartInterface;
 use Fisharebest\Webtrees\Module\ModuleInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
@@ -82,7 +82,10 @@ $spfxsurn = null;
                         $previousSpfxsurn = $spfxsurn;
                         $spfxsurn = $indis->getActualSurname();
                         ?>
-                        <?php if ($module instanceof IndividualListModule || $module instanceof FamilyListModule) : ?>
+                        <?php
+                        //[RC] adjusted - HACK
+                        ?>
+                        <?php if ($module instanceof IndividualListModule_2_1_16 || $module instanceof FamilyListModule) : ?>
                             <?php
                             //[RC] adjusted
                             ?>                    

@@ -140,8 +140,9 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
                     PedigreeTreeType::commonAncestors());
 
                 $ret = $this->viewResponse('modules/vesta-lca-chart/chart', [
-                    'nodes' => $nodes,   
-                    'style' => $style,
+                    'nodes'          => $nodes,   
+                    'style'          => $style,
+                    'mainModuleName' => $this->main_module->name(),
                 ]);
 
                 return $ret;
@@ -183,18 +184,18 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
         // On right-to-left pages, the CSS will mirror the chart, so we need to mirror the label.
         if ($direction === 'rtl') {
             return [
-                self::STYLE_RIGHT => view('icons/pedigree-left') . I18N::translate('left'),
-                self::STYLE_LEFT  => view('icons/pedigree-right') . I18N::translate('right'),
-                self::STYLE_UP    => view('icons/pedigree-up') . I18N::translate('up'),
-                self::STYLE_DOWN  => view('icons/pedigree-down') . I18N::translate('down'),
+                self::STYLE_RIGHT => view('icons/pedigree-left') . MoreI18N::xlate('left'),
+                self::STYLE_LEFT  => view('icons/pedigree-right') . MoreI18N::xlate('right'),
+                self::STYLE_UP    => view('icons/pedigree-up') . MoreI18N::xlate('up'),
+                self::STYLE_DOWN  => view('icons/pedigree-down') . MoreI18N::xlate('down'),
             ];
         }
 
         return [
-            self::STYLE_LEFT  => view('icons/pedigree-left') . I18N::translate('left'),
-            self::STYLE_RIGHT => view('icons/pedigree-right') . I18N::translate('right'),
-            self::STYLE_UP    => view('icons/pedigree-up') . I18N::translate('up'),
-            self::STYLE_DOWN  => view('icons/pedigree-down') . I18N::translate('down'),
+            self::STYLE_LEFT  => view('icons/pedigree-left') . MoreI18N::xlate('left'),
+            self::STYLE_RIGHT => view('icons/pedigree-right') . MoreI18N::xlate('right'),
+            self::STYLE_UP    => view('icons/pedigree-up') . MoreI18N::xlate('up'),
+            self::STYLE_DOWN  => view('icons/pedigree-down') . MoreI18N::xlate('down'),
         ];
     }
 }

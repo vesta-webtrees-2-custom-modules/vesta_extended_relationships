@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webtrees 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2023-01-21 16:06+0100\n"
+"POT-Creation-Date: 2023-05-27 20:41+0200\n"
 "PO-Revision-Date: 2018-09-22 14:28+0200\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <http://translate.webtrees.net/projects/webtrees/webtrees/de/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#: ExtendedRelationshipModule.php:220
+#: ExtendedRelationshipModule.php:292
 msgid " (see below for details)."
 msgstr ""
 
@@ -23,28 +23,37 @@ msgstr ""
 msgid "%1$s is %2$s of %3$s."
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:60
+#: ExtendedRelationshipsChartController.php:59
+#: resources/views/modules/lca-chart/chart.phtml:27
 #, php-format
 msgid "(Number of relationships: %s)"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:74
+#: ExtendedRelationshipsChartController.php:73
+#: patchedWebtrees/Services/TreeNodeCOR.php:144
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:72
+#: ExtendedRelationshipsChartController.php:71
+#: patchedWebtrees/Services/TreeNodeCOR.php:142
 #, php-format
 msgid "(that's overall as close as: %1$s)"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:76
+#: ExtendedRelationshipsChartController.php:75
+#: patchedWebtrees/Services/TreeNodeCOR.php:146
 #, php-format
 msgid "(that's overall closer than: %1$s)"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:64
+#: ExtendedRelationshipsChartController.php:63
+#: patchedWebtrees/Services/TreeNodeCOR.php:68
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
+msgstr ""
+
+#: ExtendedPedigreeChartModule.php:110
+msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
 msgstr ""
 
 #: ExtendedRelationshipModuleTrait.php:25
@@ -93,8 +102,27 @@ msgstr ""
 msgid "Chart Settings"
 msgstr ""
 
+#: resources/views/modules/lca-chart/chart.phtml:24
+#, php-format
+msgid "Closest Relationship: %s"
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/chart-x.phtml:56
+msgid "CoI; Coefficient of Inbreeding"
+msgstr ""
+
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
+msgstr ""
+
+#: LCAChartModule.php:80 LCAChartModule.php:160
+msgid "Common ancestors"
+msgstr ""
+
+#. I18N: %s are individual’s names
+#: LCAChartModule.php:152
+#, php-format
+msgid "Common ancestors of %1$s and %2$s"
 msgstr ""
 
 #: FunctionsPrintRels.php:168
@@ -141,7 +169,7 @@ msgid "Families Tab Settings"
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1014 ExtendedRelationshipModuleTrait.php:89
+#: ExtendedRelationshipModule.php:1093 ExtendedRelationshipModuleTrait.php:89
 #: ExtendedRelationshipModuleTrait.php:160
 #: ExtendedRelationshipModuleTrait.php:185
 #: ExtendedRelationshipModuleTrait.php:216
@@ -151,7 +179,7 @@ msgid "Find a closest relationship via common ancestors"
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1032 ExtendedRelationshipModuleTrait.php:110
+#: ExtendedRelationshipModule.php:1111 ExtendedRelationshipModuleTrait.php:110
 #: ExtendedRelationshipModuleTrait.php:164
 #: ExtendedRelationshipModuleTrait.php:195
 #: ExtendedRelationshipModuleTrait.php:226
@@ -161,12 +189,12 @@ msgstr ""
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:1042
+#: ExtendedRelationshipModule.php:1121
 msgid "Find all overall connections"
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1022 ExtendedRelationshipModuleTrait.php:99
+#: ExtendedRelationshipModule.php:1101 ExtendedRelationshipModuleTrait.php:99
 #: ExtendedRelationshipModuleTrait.php:162
 #: ExtendedRelationshipModuleTrait.php:188
 #: ExtendedRelationshipModuleTrait.php:219
@@ -176,7 +204,7 @@ msgid "Find all relationships via lowest common ancestors"
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1018 ExtendedRelationshipModuleTrait.php:94
+#: ExtendedRelationshipModule.php:1097 ExtendedRelationshipModuleTrait.php:94
 #: ExtendedRelationshipModuleTrait.php:161
 #: ExtendedRelationshipModuleTrait.php:186
 #: ExtendedRelationshipModuleTrait.php:217
@@ -185,7 +213,7 @@ msgstr ""
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:1044
+#: ExtendedRelationshipModule.php:1123
 msgid "Find other overall connections"
 msgstr ""
 
@@ -201,7 +229,7 @@ msgid "Find other/all overall connections"
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1036 ExtendedRelationshipModuleTrait.php:115
+#: ExtendedRelationshipModule.php:1115 ExtendedRelationshipModuleTrait.php:115
 #: ExtendedRelationshipModuleTrait.php:165
 #: ExtendedRelationshipModuleTrait.php:196
 #: ExtendedRelationshipModuleTrait.php:227
@@ -212,7 +240,7 @@ msgid "Find the closest overall connections"
 msgstr ""
 
 #. I18N: Module Configuration
-#: ExtendedRelationshipModule.php:1028 ExtendedRelationshipModuleTrait.php:105
+#: ExtendedRelationshipModule.php:1107 ExtendedRelationshipModuleTrait.php:105
 #: ExtendedRelationshipModuleTrait.php:163
 #: ExtendedRelationshipModuleTrait.php:194
 #: ExtendedRelationshipModuleTrait.php:225
@@ -298,7 +326,7 @@ msgid "In that case, you should also disallow persistent toggle, as it has no vi
 msgstr ""
 
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
-#: ExtendedRelationshipModule.php:1054
+#: ExtendedRelationshipModule.php:1133
 msgid "Individuals with Patriarchs"
 msgstr ""
 
@@ -313,6 +341,10 @@ msgstr ""
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
+msgstr ""
+
+#: ExtendedRelationshipModule.php:1218
+msgid "More Charts"
 msgstr ""
 
 #. I18N: Module Configuration
@@ -337,13 +369,22 @@ msgstr ""
 
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: HelpTexts.php:40
-#: resources/views/lists/individuals-table-with-patriarchs.phtml:243
-#: resources/views/lists/surnames-table-with-patriarchs.phtml:56
+#: resources/views/lists/individuals-table-with-patriarchs.phtml:181
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:59
 msgid "Patriarch"
 msgstr ""
 
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
+msgstr ""
+
+#: ExtendedPedigreeChartModule.php:100
+msgid "Pedigree collapse"
+msgstr ""
+
+#: ExtendedPedigreeChartModule.php:128
+#, php-format
+msgid "Pedigree collapse tree of %s"
 msgstr ""
 
 #. I18N: Module Configuration
@@ -385,12 +426,12 @@ msgstr ""
 msgid "Show legacy relationship path names"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:213 ExtendedRelationshipModule.php:869
-#: ExtendedRelationshipModule.php:875
+#: ExtendedRelationshipModule.php:285 ExtendedRelationshipModule.php:948
+#: ExtendedRelationshipModule.php:954
 msgid "Synchronization"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:218
+#: ExtendedRelationshipModule.php:290
 #: ExtendedRelationshipsChartController.php:283
 msgid "Synchronize trees to obtain dated relationship links"
 msgstr ""
@@ -419,6 +460,19 @@ msgstr ""
 
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
+msgstr ""
+
+#: resources/views/modules/lca-chart/chart.phtml:18
+msgid "There are no recorded common ancestors."
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/chart.phtml:19
+#, php-format
+msgid "There is no recorded pedigree collapse within %1$s generations."
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/chart.phtml:17
+msgid "There is no recorded pedigree collapse."
 msgstr ""
 
 #. I18N: Module Configuration
@@ -456,7 +510,8 @@ msgstr ""
 msgid "Uncorrected CoR (Coefficient of Relationship)"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:58
+#: ExtendedRelationshipsChartController.php:57
+#: resources/views/modules/lca-chart/chart.phtml:25
 #, php-format
 msgid "Uncorrected CoR (Coefficient of Relationship): %s"
 msgstr ""
@@ -484,7 +539,7 @@ msgstr "Eltern"
 msgid "unlimited"
 msgstr ""
 
-#: ExtendedRelationshipsChartController.php:113
+#: ExtendedRelationshipsChartController.php:112
 #, php-format
 msgid "via legacy algorithm: %s"
 msgstr ""

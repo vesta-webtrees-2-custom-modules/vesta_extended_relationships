@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
+use Cissee\WebtreesExt\Functions\FunctionsPrintExtHelpLink;
 use Cissee\WebtreesExt\Services\TreeNode;
 use Fisharebest\Webtrees\I18N;
 
 /**
  * @var Collection<TreeNode>   $nodes
  * @var string                 $style
+ * @var string                 $mainModuleName
  */
             
 if ($nodes->contains(function (TreeNode|null $value) {
@@ -15,6 +17,16 @@ if ($nodes->contains(function (TreeNode|null $value) {
 })) {
     echo '<p>' . I18N::translate('There are no recorded common ancestors.') . '</p>';
     return;
+}
+
+$cor = $nodes->first()->cor();
+
+echo '<h3>', I18N::translate('Closest Relationship: %s', $cor->description()), '</h3>';
+echo '<h3>', I18N::translate('Uncorrected CoR (Coefficient of Relationship): %s', I18n::percentage($cor->cor(), 2));
+echo FunctionsPrintExtHelpLink::helpLink($mainModuleName, 'Uncorrected CoR');
+echo I18N::translate('(Number of relationships: %s)', $cor->numberOfRelationships()), '</h3>';
+if ($cor->numberOfRelationships() > 1) {
+    echo $cor->virtualDescription();
 }
 
 ?>

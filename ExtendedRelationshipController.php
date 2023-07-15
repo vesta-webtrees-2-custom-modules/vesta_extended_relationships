@@ -256,7 +256,7 @@ class ExtendedRelationshipController {
         if ($equivalentPathLength == $bestPathLength) {
             return new CorPlus($cor, $actuallyBetterThan, null);
         }
-
+        
         //create an equivalent relationship that's similar 'in character'
         //to the relationship established via the closest ca
 

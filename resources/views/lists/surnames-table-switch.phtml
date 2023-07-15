@@ -6,11 +6,12 @@ use Cissee\Webtrees\Module\ExtendedRelationships\SurnameWithPatriarch;
 use Fisharebest\Webtrees\Tree;
 
 /**
- * @var bool                               $families
- * @var IndividualListModule|null          $module
- * @var array<array<int,string>>           $order
- * @var array<string,array<string,string>> $surnames
- * @var Tree                               $tree
+ * @var bool                      $families
+ * @var IndividualListModule|null $module
+ * @var array<array<int,string>>  $order
+ * @var array<string,string>      $params
+ * @var array<array<int>>         $surnames
+ * @var Tree                      $tree
  */
 if (sizeof($surnames) > 0) {
     $inner = current($surnames);
@@ -37,5 +38,6 @@ echo view('::lists/surnames-table', [
     'families' => $families,
     'module' => $module,
     'order' => $order,
+    'params' => $params,
     'tree' => $tree]);
     
