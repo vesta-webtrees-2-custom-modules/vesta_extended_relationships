@@ -279,5 +279,10 @@
 		"from": "2.1.17",
 		"to": "2.1.18",
 		"changelog": ["Experimental: Additional charts, for now under a separate menu because webtrees doesn't properly support multi-chart custom modules."]
+	},
+	{
+		"version": "2.1.17.0.1",
+		"from": "2.1.17",
+		"to": "2.1.18"
 	}
 ]
