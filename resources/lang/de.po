@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-05-27 20:41+0200\n"
-"PO-Revision-Date: 2023-02-03 19:39+0000\n"
+"PO-Revision-Date: 2023-07-15 12:49+0000\n"
 "Last-Translator: Markus Hemprich <hemprich@gmx.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: ExtendedRelationshipModule.php:292
 msgid " (see below for details)."
@@ -122,13 +123,13 @@ msgstr "Gemeinsamer Vorfahr: "
 
 #: LCAChartModule.php:80 LCAChartModule.php:160
 msgid "Common ancestors"
-msgstr ""
+msgstr "Gemeinsame Vorfahren"
 
 #. I18N: %s are individual’s names
 #: LCAChartModule.php:152
 #, php-format
 msgid "Common ancestors of %1$s and %2$s"
-msgstr ""
+msgstr "Gemeinsame Vorfahren von %1$s und %2$s"
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
@@ -350,7 +351,7 @@ msgstr "Alter Algorithmus für Namen der Beziehungspfade"
 
 #: ExtendedRelationshipModule.php:1218
 msgid "More Charts"
-msgstr ""
+msgstr "Weitere Diagramme"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:313
@@ -469,7 +470,7 @@ msgstr "Die gleichen Informationen können über die Liste der Familienzweige ab
 
 #: resources/views/modules/lca-chart/chart.phtml:18
 msgid "There are no recorded common ancestors."
-msgstr ""
+msgstr "Es sind keine gemeinsamen Vorfahren verzeichnet."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
