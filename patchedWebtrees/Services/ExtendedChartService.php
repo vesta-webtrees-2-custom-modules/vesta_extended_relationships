@@ -360,7 +360,7 @@ class ExtendedChartService {
             }
             
             //add cor data to root
-            $cor = TreeNodeCor::create(
+            $cor = TreeNodeCOR::create(
                 $overallCor, 
                 $counter, 
                 $overallClosestRel,
