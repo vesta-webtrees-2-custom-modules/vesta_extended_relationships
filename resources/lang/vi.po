@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2023-05-27 20:41+0200\n"
+"POT-Creation-Date: 2023-07-15 15:46+0200\n"
 "PO-Revision-Date: 2021-08-07 05:34+0000\n"
 "Last-Translator: ngohuuthuanfc9865b89dde4baf <ngohuuthuan@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/vi/>\n"
@@ -133,6 +133,15 @@ msgstr ""
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
 msgstr "Các Tổ tiên chung: "
+
+#: ExtendedPedigreeChartModule.php:97
+msgid "Compact pedigree"
+msgstr ""
+
+#: ExtendedPedigreeChartModule.php:125
+#, php-format
+msgid "Compact pedigree tree of %s"
+msgstr ""
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79

@@ -94,7 +94,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     
     public function title(): string {
         if (self::KIND_COMPACT == $this->kind) {
-            return $this->getVestaSymbol() . ' ' . MoreI18N::xlate('Compact pedigree');
+            return $this->getVestaSymbol() . ' ' . I18N::translate('Compact pedigree');
         }
         if (self::KIND_COLLAPSE == $this->kind) {
             return $this->getVestaSymbol() . ' ' . I18N::translate('Pedigree collapse');
@@ -122,7 +122,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
 
     public function chartTitle(Individual $individual): string {
         if (self::KIND_COMPACT == $this->kind) {
-            return MoreI18N::xlate('Compact pedigree tree of %s', $individual->fullName());
+            return I18N::translate('Compact pedigree tree of %s', $individual->fullName());
         }
         if (self::KIND_COLLAPSE == $this->kind) {
             return I18N::translate('Pedigree collapse tree of %s', $individual->fullName());

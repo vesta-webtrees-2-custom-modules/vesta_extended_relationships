@@ -7,11 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2023-05-27 20:41+0200\n"
+"POT-Creation-Date: 2023-07-15 15:46+0200\n"
 "PO-Revision-Date: 2023-07-15 12:49+0000\n"
 "Last-Translator: Markus Hemprich <hemprich@gmx.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/"
-"vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,6 +133,15 @@ msgstr "Gemeinsame Vorfahren von %1$s und %2$s"
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
 msgstr "Gemeinsame Vorfahren: "
+
+#: ExtendedPedigreeChartModule.php:97
+msgid "Compact pedigree"
+msgstr ""
+
+#: ExtendedPedigreeChartModule.php:125
+#, php-format
+msgid "Compact pedigree tree of %s"
+msgstr ""
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webtrees 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2023-05-27 20:41+0200\n"
+"POT-Creation-Date: 2023-07-15 15:46+0200\n"
 "PO-Revision-Date: 2018-09-22 14:28+0200\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <http://translate.webtrees.net/projects/webtrees/webtrees/de/>\n"
@@ -127,6 +127,15 @@ msgstr ""
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
+msgstr ""
+
+#: ExtendedPedigreeChartModule.php:97
+msgid "Compact pedigree"
+msgstr ""
+
+#: ExtendedPedigreeChartModule.php:125
+#, php-format
+msgid "Compact pedigree tree of %s"
 msgstr ""
 
 #. I18N: Module Configuration
