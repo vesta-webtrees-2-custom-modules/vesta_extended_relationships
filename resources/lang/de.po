@@ -8,9 +8,10 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-15 15:46+0200\n"
-"PO-Revision-Date: 2023-07-15 12:49+0000\n"
+"PO-Revision-Date: 2023-07-16 07:00+0000\n"
 "Last-Translator: Markus Hemprich <hemprich@gmx.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,6 +61,8 @@ msgstr "(insgesamt nicht signifikant enger verwandt als über die engste Beziehu
 #: ExtendedPedigreeChartModule.php:110
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
 msgstr ""
+"Eine Darstellung von mehrfach auftretenden Vorfahren einer Person, "
+"formatiert als Vorfahrentafel."
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -110,11 +113,11 @@ msgstr "Einstellungen für das Diagramm"
 #: resources/views/modules/lca-chart/chart.phtml:24
 #, php-format
 msgid "Closest Relationship: %s"
-msgstr ""
+msgstr "Engste verwandtschaftliche Beziehung: %s"
 
 #: resources/views/modules/pedigree-chart/chart-x.phtml:56
 msgid "CoI; Coefficient of Inbreeding"
-msgstr ""
+msgstr "IK; Inzuchtkoeffizient"
 
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
@@ -136,12 +139,12 @@ msgstr "Gemeinsame Vorfahren: "
 
 #: ExtendedPedigreeChartModule.php:97
 msgid "Compact pedigree"
-msgstr ""
+msgstr "Vorfahrentafel, kompakt"
 
 #: ExtendedPedigreeChartModule.php:125
 #, php-format
 msgid "Compact pedigree tree of %s"
-msgstr ""
+msgstr "Kompakte Vorfahrentafel von %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79
@@ -394,12 +397,12 @@ msgstr "Patriarchen sind die männlichen Vorfahren am Ende der Linie ('Spitzenah
 
 #: ExtendedPedigreeChartModule.php:100
 msgid "Pedigree collapse"
-msgstr ""
+msgstr "Ahnenschwund-Tafel"
 
 #: ExtendedPedigreeChartModule.php:128
 #, php-format
 msgid "Pedigree collapse tree of %s"
-msgstr ""
+msgstr "Ahnenschwund-Tafel von %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:106
@@ -483,11 +486,11 @@ msgstr "Es sind keine gemeinsamen Vorfahren verzeichnet."
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
 msgid "There is no recorded pedigree collapse within %1$s generations."
-msgstr ""
+msgstr "Es ist kein Ahnenschwund innerhalb von %1$s Generationen verzeichnet."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:17
 msgid "There is no recorded pedigree collapse."
-msgstr ""
+msgstr "Es ist kein Ahnenschwund verzeichnet."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:190
