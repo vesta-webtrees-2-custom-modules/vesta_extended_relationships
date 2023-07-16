@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-15 15:46+0200\n"
-"PO-Revision-Date: 2023-07-16 07:00+0000\n"
+"PO-Revision-Date: 2023-07-16 10:01+0000\n"
 "Last-Translator: Markus Hemprich <hemprich@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
@@ -139,12 +139,12 @@ msgstr "Gemeinsame Vorfahren: "
 
 #: ExtendedPedigreeChartModule.php:97
 msgid "Compact pedigree"
-msgstr "Vorfahrentafel, kompakt"
+msgstr "Vorfahrentafel incl. Ahnenschwund"
 
 #: ExtendedPedigreeChartModule.php:125
 #, php-format
 msgid "Compact pedigree tree of %s"
-msgstr "Kompakte Vorfahrentafel von %s"
+msgstr "Vorfahrentafel mit integriertem Ahnenschwund von %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79
