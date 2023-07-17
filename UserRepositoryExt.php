@@ -60,7 +60,7 @@ class UserRepositoryExt {
             //can't get these excluded otherwise grrr
             $a = '%s anonymous signed-in user';
             $b = '%s anonymous signed-in users';
-            $content .= '<b>' . MoreI18N::plural($a, $b, $anonymous, I18N::number($anonymous)) . '</b>';
+            $content .= '<b>' . I18N::plural($a, $b, $anonymous, I18N::number($anonymous)) . '</b>';
         }
 
         if ($count_logged_in > 0) {

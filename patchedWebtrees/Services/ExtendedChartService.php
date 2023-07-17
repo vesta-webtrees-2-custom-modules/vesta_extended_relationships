@@ -2,6 +2,7 @@
 
 namespace Cissee\WebtreesExt\Services;
 
+use Exception;
 use Fisharebest\Webtrees\Elements\PedigreeLinkageType;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\Family;
@@ -275,7 +276,7 @@ class ExtendedChartService {
             
             //this doesn't make much sense otherwise:
             if (sizeof($individuals) !== 2) {
-                throw new \Exception("commonAncestors only supported for exactly 2 individuals.");
+                throw new Exception("commonAncestors only supported for exactly 2 individuals.");
             }
             
             $xrefFirst = null;
@@ -460,7 +461,7 @@ class ExtendedChartService {
                         TreeNode $node): TreeNode|null {
                         
                         if ($node->record() instanceof Family) {
-                            throw new \Exception();
+                            throw new Exception();
                         }
                         
                         $famMarkups = new Collection();
@@ -693,7 +694,7 @@ class ExtendedChartService {
                         } else if ($right === null) {
                             $right = $parent->record()->xref();
                         } else {
-                            throw new \Exception("more than 2 parents in family!");
+                            throw new Exception("more than 2 parents in family!");
                         }
                     }
 
@@ -709,7 +710,7 @@ class ExtendedChartService {
                             //leaf: initialize
                             //(self must be a repeated node, we don't keep any other leaves)
                             if (!$selfIsRepeated) {
-                                throw new \Exception();
+                                throw new Exception();
                             }
 
                             $pathSetSelf = PathSet::leaf($self);
