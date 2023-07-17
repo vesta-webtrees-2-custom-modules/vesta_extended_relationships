@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-15 15:46+0200\n"
-"PO-Revision-Date: 2023-01-22 07:04+0000\n"
+"PO-Revision-Date: 2023-07-16 21:01+0000\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: ExtendedRelationshipModule.php:292
 msgid " (see below for details)."
@@ -60,6 +61,8 @@ msgstr "(dat is over het algemeen niet significant dichterbij dan de dichtstbijz
 #: ExtendedPedigreeChartModule.php:110
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
 msgstr ""
+"Een diagram van de herhaalde voorouders van een persoon, opgemaakt als een "
+"boom."
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -110,11 +113,11 @@ msgstr "Instellingen voor diagrammen"
 #: resources/views/modules/lca-chart/chart.phtml:24
 #, php-format
 msgid "Closest Relationship: %s"
-msgstr ""
+msgstr "Naaste verwantschap: %s"
 
 #: resources/views/modules/pedigree-chart/chart-x.phtml:56
 msgid "CoI; Coefficient of Inbreeding"
-msgstr ""
+msgstr "CoI; inteeltcoëfficiënt"
 
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
@@ -122,13 +125,13 @@ msgstr "Gemeenschappelijke voorouder: "
 
 #: LCAChartModule.php:80 LCAChartModule.php:160
 msgid "Common ancestors"
-msgstr ""
+msgstr "Gemeenschappelijke voorouders"
 
 #. I18N: %s are individual’s names
 #: LCAChartModule.php:152
 #, php-format
 msgid "Common ancestors of %1$s and %2$s"
-msgstr ""
+msgstr "Gemeenschappelijke voorouders van %1$s en %2$s"
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
@@ -136,12 +139,12 @@ msgstr "Gemeenschappelijke voorouders: "
 
 #: ExtendedPedigreeChartModule.php:97
 msgid "Compact pedigree"
-msgstr ""
+msgstr "Compacte kwartierstaat"
 
 #: ExtendedPedigreeChartModule.php:125
 #, php-format
 msgid "Compact pedigree tree of %s"
-msgstr ""
+msgstr "Compacte kwartierstaat van %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79
@@ -359,7 +362,7 @@ msgstr "Verouderd algoritme voor verwantschapspadnamen"
 
 #: ExtendedRelationshipModule.php:1218
 msgid "More Charts"
-msgstr ""
+msgstr "Meer diagrammen"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:313
@@ -394,12 +397,12 @@ msgstr "Patriarchen zijn de mannelijke voorouders aan het einde van de lijn ('Sp
 
 #: ExtendedPedigreeChartModule.php:100
 msgid "Pedigree collapse"
-msgstr ""
+msgstr "Samengevouwen kwartierstaat"
 
 #: ExtendedPedigreeChartModule.php:128
 #, php-format
 msgid "Pedigree collapse tree of %s"
-msgstr ""
+msgstr "Samengevouwen kwartierstaat van %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:106
@@ -478,16 +481,17 @@ msgstr "Dezelfde informatie kan worden verkregen via de lijst met takken, waar z
 
 #: resources/views/modules/lca-chart/chart.phtml:18
 msgid "There are no recorded common ancestors."
-msgstr ""
+msgstr "Er zijn geen geregistreerde gemeenschappelijke voorouders."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
 msgid "There is no recorded pedigree collapse within %1$s generations."
 msgstr ""
+"Er is geen geregistreerde samengevouwen kwartierstaat binnen %1$s generaties."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:17
 msgid "There is no recorded pedigree collapse."
-msgstr ""
+msgstr "Er is geen geregistreerde samengevouwen kwartierstaat."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:190
