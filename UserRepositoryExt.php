@@ -74,7 +74,7 @@ class UserRepositoryExt {
             //can't get these excluded otherwise grrr
             $a = '%s signed-in user';
             $b = '%s signed-in users';
-            $content .= '<b>' . MoreI18N::plural($a, $b, $count_logged_in, I18N::number($count_logged_in)) . '</b>';
+            $content .= '<b>' . I18N::plural($a, $b, $count_logged_in, I18N::number($count_logged_in)) . '</b>';
             if ($type === 'list') {
                 $content .= '<ul>';
             } else {
