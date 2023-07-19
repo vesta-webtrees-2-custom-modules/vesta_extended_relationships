@@ -45,12 +45,18 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     public const UNLIMITED_GENERATIONS = 99;
 
     // Defaults
-    public const DEFAULT_GENERATIONS = self::UNLIMITED_GENERATIONS;
-    public const DEFAULT_KIND        = self::KIND_COLLAPSE;
-    public const DEFAULT_STYLE       = self::STYLE_RIGHT;
+    public const DEFAULT_GENERATIONS = 8/*self::UNLIMITED_GENERATIONS*/;
+    public const DEFAULT_GENERATIONS_COLLAPSE = self::UNLIMITED_GENERATIONS;
+    public const DEFAULT_KIND = self::KIND_COLLAPSE;
+    public const DEFAULT_STYLE = self::STYLE_RIGHT;
     
-    protected const DEFAULT_PARAMETERS  = [
+    protected const DEFAULT_PARAMETERS = [
         'generations' => self::DEFAULT_GENERATIONS,
+        'style'       => self::DEFAULT_STYLE,
+    ];
+
+    protected const DEFAULT_PARAMETERS_COLLAPSE = [
+        'generations' => self::DEFAULT_GENERATIONS_COLLAPSE,
         'style'       => self::DEFAULT_STYLE,
     ];
 
@@ -93,9 +99,11 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     }
     
     public function title(): string {
+        /*
         if (self::KIND_COMPACT == $this->kind) {
             return $this->getVestaSymbol() . ' ' . I18N::translate('Compact pedigree');
         }
+        */
         if (self::KIND_COLLAPSE == $this->kind) {
             return $this->getVestaSymbol() . ' ' . I18N::translate('Pedigree collapse');
         }
@@ -103,9 +111,11 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     }
 
     public function description(): string {
+        /*
         if (self::KIND_COMPACT == $this->kind) {
-            return MoreI18N::xlate('A compact chart of an individual’s ancestors, formatted as a tree.');
+            return I18N::translate('A compact chart of an individual’s ancestors, formatted as a tree.');
         }
+        */
         if (self::KIND_COLLAPSE == $this->kind) {
             return I18N::translate('A chart of an individual’s repeated ancestors, formatted as a tree.');
         }
@@ -121,9 +131,11 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     }
 
     public function chartTitle(Individual $individual): string {
+        /*
         if (self::KIND_COMPACT == $this->kind) {
             return I18N::translate('Compact pedigree tree of %s', $individual->fullName());
         }
+        */
         if (self::KIND_COLLAPSE == $this->kind) {
             return I18N::translate('Pedigree collapse tree of %s', $individual->fullName());
         }
@@ -131,11 +143,16 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     }
 
     public function chartUrl(Individual $individual, array $parameters = []): string {
+        $defaults = static::DEFAULT_PARAMETERS;
+        if (self::KIND_COLLAPSE == $this->kind) {
+            $defaults = static::DEFAULT_PARAMETERS_COLLAPSE;
+        }
+        
         return route(static::class, [
                 'xref' => $individual->xref(),
                 'tree' => $individual->tree()->name(),
                 'kind' => $this->kind,
-            ] + $parameters + static::DEFAULT_PARAMETERS);
+            ] + $parameters + $defaults);
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface {

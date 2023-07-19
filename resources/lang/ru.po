@@ -7,17 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2023-07-15 15:46+0200\n"
+"POT-Creation-Date: 2023-07-19 20:53+0200\n"
 "PO-Revision-Date: 2023-07-18 10:04+0000\n"
 "Last-Translator: Олег <uolega@yandex.ru>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/"
-"vesta-webtrees-custom-modules/vesta-extended-relationships/ru/>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.0-dev\n"
 
 #: ExtendedRelationshipModule.php:292
@@ -59,7 +57,7 @@ msgstr "(это в целом ближе, чем: %1$s)"
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
 msgstr "(это в целом ненамного ближе, чем самые близкие отношения через общих предков)"
 
-#: ExtendedPedigreeChartModule.php:110
+#: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
 msgstr "Диаграмма повторных предков человека, отформатированная в виде дерева."
 
@@ -135,15 +133,6 @@ msgstr "Общие предки %1$s и %2$s"
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
 msgstr "Общие предки: "
-
-#: ExtendedPedigreeChartModule.php:97
-msgid "Compact pedigree"
-msgstr "Компактная родословная"
-
-#: ExtendedPedigreeChartModule.php:125
-#, php-format
-msgid "Compact pedigree tree of %s"
-msgstr "Компактное родословное дерево %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79
@@ -359,7 +348,7 @@ msgstr "Этот точный CoR определить сложнее, и в л�
 msgid "Legacy algorithm for Relationship path names"
 msgstr "Устаревший алгоритм для имен путей отношений"
 
-#: ExtendedRelationshipModule.php:1218
+#: ExtendedRelationshipModule.php:1217
 msgid "More Charts"
 msgstr "Больше диаграмм"
 
@@ -394,11 +383,12 @@ msgstr "Патриарх"
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr "Патриархи - это предки по мужской линии ('Spitzenahnen')."
 
-#: ExtendedPedigreeChartModule.php:100
+#: ExtendedPedigreeChartModule.php:108
+#: resources/views/modules/pedigree-chart/page.phtml:54
 msgid "Pedigree collapse"
 msgstr "Крах родословной"
 
-#: ExtendedPedigreeChartModule.php:128
+#: ExtendedPedigreeChartModule.php:140
 #, php-format
 msgid "Pedigree collapse tree of %s"
 msgstr "Свернуть родословное дерево %s"
@@ -485,9 +475,7 @@ msgstr "Нет зарегистрированных общих предков."
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
 msgid "There is no recorded pedigree collapse within %1$s generations."
-msgstr ""
-"В течение %1$s поколений не зафиксировано ни одного случая прекращения "
-"родословной."
+msgstr "В течение %1$s поколений не зафиксировано ни одного случая прекращения родословной."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:17
 msgid "There is no recorded pedigree collapse."
@@ -552,6 +540,14 @@ msgstr "Вы также можете настроить уровень дост�
 msgid "parents"
 msgstr "родители"
 
+#: resources/views/modules/pedigree-chart/page.phtml:59
+msgid "show full pedigree"
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/page.phtml:58
+msgid "show repeated ancestors once"
+msgstr ""
+
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
 msgid "unlimited"
@@ -564,6 +560,12 @@ msgstr "с помощью устаревшего алгоритма: %s"
 
 #~ msgid "Calculating…"
 #~ msgstr "Расчет…"
+
+#~ msgid "Compact pedigree"
+#~ msgstr "Компактная родословная"
+
+#~ msgid "Compact pedigree tree of %s"
+#~ msgstr "Компактное родословное дерево %s"
 
 #~ msgid "Married name"
 #~ msgstr "Фамилия в браке"

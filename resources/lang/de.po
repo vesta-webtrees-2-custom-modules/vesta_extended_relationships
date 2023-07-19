@@ -7,11 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2023-07-15 15:46+0200\n"
+"POT-Creation-Date: 2023-07-19 20:53+0200\n"
 "PO-Revision-Date: 2023-07-16 10:01+0000\n"
 "Last-Translator: Markus Hemprich <hemprich@gmx.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/"
-"vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,11 +57,9 @@ msgstr "(entspricht insgesamt einem Verwandtschaftsgrad etwas enger als: %1$s)"
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
 msgstr "(insgesamt nicht signifikant enger verwandt als über die engste Beziehung)"
 
-#: ExtendedPedigreeChartModule.php:110
+#: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
-msgstr ""
-"Eine Darstellung von mehrfach auftretenden Vorfahren einer Person, "
-"formatiert als Vorfahrentafel."
+msgstr "Eine Darstellung von mehrfach auftretenden Vorfahren einer Person, formatiert als Vorfahrentafel."
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -136,15 +133,6 @@ msgstr "Gemeinsame Vorfahren von %1$s und %2$s"
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
 msgstr "Gemeinsame Vorfahren: "
-
-#: ExtendedPedigreeChartModule.php:97
-msgid "Compact pedigree"
-msgstr "Vorfahrentafel incl. Ahnenschwund"
-
-#: ExtendedPedigreeChartModule.php:125
-#, php-format
-msgid "Compact pedigree tree of %s"
-msgstr "Vorfahrentafel mit integriertem Ahnenschwund von %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79
@@ -360,7 +348,7 @@ msgstr "Es ist komplizierter diesen genauen CoR zu bestimmen und die Unterschied
 msgid "Legacy algorithm for Relationship path names"
 msgstr "Alter Algorithmus für Namen der Beziehungspfade"
 
-#: ExtendedRelationshipModule.php:1218
+#: ExtendedRelationshipModule.php:1217
 msgid "More Charts"
 msgstr "Weitere Diagramme"
 
@@ -395,11 +383,12 @@ msgstr "Ältester männlicher Vorfahr"
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr "Patriarchen sind die männlichen Vorfahren am Ende der Linie ('Spitzenahnen')."
 
-#: ExtendedPedigreeChartModule.php:100
+#: ExtendedPedigreeChartModule.php:108
+#: resources/views/modules/pedigree-chart/page.phtml:54
 msgid "Pedigree collapse"
 msgstr "Ahnenschwund-Tafel"
 
-#: ExtendedPedigreeChartModule.php:128
+#: ExtendedPedigreeChartModule.php:140
 #, php-format
 msgid "Pedigree collapse tree of %s"
 msgstr "Ahnenschwund-Tafel von %s"
@@ -551,6 +540,14 @@ msgstr "Du kannst auch die Zugriffsebene für diesen Teil des Moduls anpassen."
 msgid "parents"
 msgstr "Eltern"
 
+#: resources/views/modules/pedigree-chart/page.phtml:59
+msgid "show full pedigree"
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/page.phtml:58
+msgid "show repeated ancestors once"
+msgstr ""
+
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
 msgid "unlimited"
@@ -563,6 +560,12 @@ msgstr "über alten Algorithmus: %s"
 
 #~ msgid "Calculating…"
 #~ msgstr "Berechne…"
+
+#~ msgid "Compact pedigree"
+#~ msgstr "Vorfahrentafel incl. Ahnenschwund"
+
+#~ msgid "Compact pedigree tree of %s"
+#~ msgstr "Vorfahrentafel mit integriertem Ahnenschwund von %s"
 
 #~ msgid "Control panel"
 #~ msgstr "Verwaltung"

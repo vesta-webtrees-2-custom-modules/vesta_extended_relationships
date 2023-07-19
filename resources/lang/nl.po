@@ -7,11 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2023-07-15 15:46+0200\n"
+"POT-Creation-Date: 2023-07-19 20:53+0200\n"
 "PO-Revision-Date: 2023-07-16 21:01+0000\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/"
-"vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,11 +57,9 @@ msgstr "(dat is over het algemeen dichterbij dan: %1$s)"
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
 msgstr "(dat is over het algemeen niet significant dichterbij dan de dichtstbijzijnde verwantschap via gemeenschappelijke voorouders)"
 
-#: ExtendedPedigreeChartModule.php:110
+#: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
-msgstr ""
-"Een diagram van de herhaalde voorouders van een persoon, opgemaakt als een "
-"boom."
+msgstr "Een diagram van de herhaalde voorouders van een persoon, opgemaakt als een boom."
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -136,15 +133,6 @@ msgstr "Gemeenschappelijke voorouders van %1$s en %2$s"
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
 msgstr "Gemeenschappelijke voorouders: "
-
-#: ExtendedPedigreeChartModule.php:97
-msgid "Compact pedigree"
-msgstr "Compacte kwartierstaat"
-
-#: ExtendedPedigreeChartModule.php:125
-#, php-format
-msgid "Compact pedigree tree of %s"
-msgstr "Compacte kwartierstaat van %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79
@@ -360,7 +348,7 @@ msgstr "Het is ingewikkelder om deze exacte verwantschapscoëfficiënt bepalen, 
 msgid "Legacy algorithm for Relationship path names"
 msgstr "Verouderd algoritme voor verwantschapspadnamen"
 
-#: ExtendedRelationshipModule.php:1218
+#: ExtendedRelationshipModule.php:1217
 msgid "More Charts"
 msgstr "Meer diagrammen"
 
@@ -395,11 +383,12 @@ msgstr "Stamvader"
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr "Patriarchen zijn de mannelijke voorouders aan het einde van de lijn ('Spitzenahnen')."
 
-#: ExtendedPedigreeChartModule.php:100
+#: ExtendedPedigreeChartModule.php:108
+#: resources/views/modules/pedigree-chart/page.phtml:54
 msgid "Pedigree collapse"
 msgstr "Samengevouwen kwartierstaat"
 
-#: ExtendedPedigreeChartModule.php:128
+#: ExtendedPedigreeChartModule.php:140
 #, php-format
 msgid "Pedigree collapse tree of %s"
 msgstr "Samengevouwen kwartierstaat van %s"
@@ -486,8 +475,7 @@ msgstr "Er zijn geen geregistreerde gemeenschappelijke voorouders."
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
 msgid "There is no recorded pedigree collapse within %1$s generations."
-msgstr ""
-"Er is geen geregistreerde samengevouwen kwartierstaat binnen %1$s generaties."
+msgstr "Er is geen geregistreerde samengevouwen kwartierstaat binnen %1$s generaties."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:17
 msgid "There is no recorded pedigree collapse."
@@ -552,6 +540,14 @@ msgstr "U kunt ook het toegangsniveau van dit deel van de module aanpassen."
 msgid "parents"
 msgstr "ouders"
 
+#: resources/views/modules/pedigree-chart/page.phtml:59
+msgid "show full pedigree"
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/page.phtml:58
+msgid "show repeated ancestors once"
+msgstr ""
+
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
 msgid "unlimited"
@@ -567,6 +563,12 @@ msgstr "via verouderd algoritme: %s"
 
 #~ msgid "Calculating…"
 #~ msgstr "Berekenen…"
+
+#~ msgid "Compact pedigree"
+#~ msgstr "Compacte kwartierstaat"
+
+#~ msgid "Compact pedigree tree of %s"
+#~ msgstr "Compacte kwartierstaat van %s"
 
 #~ msgid "Control panel"
 #~ msgstr "Configuratiescherm"

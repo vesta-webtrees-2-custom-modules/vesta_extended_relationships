@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2023-07-15 15:46+0200\n"
+"POT-Creation-Date: 2023-07-19 20:53+0200\n"
 "PO-Revision-Date: 2022-09-21 17:17+0000\n"
 "Last-Translator: tygyh <jonis9898@hotmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/sv/>\n"
@@ -57,7 +57,7 @@ msgstr "(detta är övergripande närmare än %1$s)"
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
 msgstr "(detta är övergripande icke signifikant närmare än den närmaste relationen via gemensamma anor)"
 
-#: ExtendedPedigreeChartModule.php:110
+#: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
 msgstr ""
 
@@ -133,15 +133,6 @@ msgstr ""
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
 msgstr "Gemensamma anor: "
-
-#: ExtendedPedigreeChartModule.php:97
-msgid "Compact pedigree"
-msgstr ""
-
-#: ExtendedPedigreeChartModule.php:125
-#, php-format
-msgid "Compact pedigree tree of %s"
-msgstr ""
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79
@@ -357,7 +348,7 @@ msgstr "Det är mer komplicerat att bestämma det exakta CoR, och skillnaderna �
 msgid "Legacy algorithm for Relationship path names"
 msgstr "Traditionell algoritm för Relationssökvägar"
 
-#: ExtendedRelationshipModule.php:1218
+#: ExtendedRelationshipModule.php:1217
 msgid "More Charts"
 msgstr ""
 
@@ -392,11 +383,12 @@ msgstr "Patriark"
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr "Patriarker är de manliga slutledande förfäderna ('Spitzenahnen')."
 
-#: ExtendedPedigreeChartModule.php:100
+#: ExtendedPedigreeChartModule.php:108
+#: resources/views/modules/pedigree-chart/page.phtml:54
 msgid "Pedigree collapse"
 msgstr ""
 
-#: ExtendedPedigreeChartModule.php:128
+#: ExtendedPedigreeChartModule.php:140
 #, php-format
 msgid "Pedigree collapse tree of %s"
 msgstr ""
@@ -547,6 +539,14 @@ msgstr "Du kan också justera åtkomstnivån för denna del av modulen."
 #: ExtendedRelationshipsChartController.php:215
 msgid "parents"
 msgstr "föräldrar"
+
+#: resources/views/modules/pedigree-chart/page.phtml:59
+msgid "show full pedigree"
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/page.phtml:58
+msgid "show repeated ancestors once"
+msgstr ""
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131

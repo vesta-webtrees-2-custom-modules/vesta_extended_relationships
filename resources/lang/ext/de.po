@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webtrees 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
-"POT-Creation-Date: 2023-07-15 15:46+0200\n"
+"POT-Creation-Date: 2023-07-19 20:53+0200\n"
 "PO-Revision-Date: 2018-09-22 14:28+0200\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <http://translate.webtrees.net/projects/webtrees/webtrees/de/>\n"
@@ -52,7 +52,7 @@ msgstr ""
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
 msgstr ""
 
-#: ExtendedPedigreeChartModule.php:110
+#: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
 msgstr ""
 
@@ -127,15 +127,6 @@ msgstr ""
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
-msgstr ""
-
-#: ExtendedPedigreeChartModule.php:97
-msgid "Compact pedigree"
-msgstr ""
-
-#: ExtendedPedigreeChartModule.php:125
-#, php-format
-msgid "Compact pedigree tree of %s"
 msgstr ""
 
 #. I18N: Module Configuration
@@ -352,7 +343,7 @@ msgstr ""
 msgid "Legacy algorithm for Relationship path names"
 msgstr ""
 
-#: ExtendedRelationshipModule.php:1218
+#: ExtendedRelationshipModule.php:1217
 msgid "More Charts"
 msgstr ""
 
@@ -387,11 +378,12 @@ msgstr ""
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr ""
 
-#: ExtendedPedigreeChartModule.php:100
+#: ExtendedPedigreeChartModule.php:108
+#: resources/views/modules/pedigree-chart/page.phtml:54
 msgid "Pedigree collapse"
 msgstr ""
 
-#: ExtendedPedigreeChartModule.php:128
+#: ExtendedPedigreeChartModule.php:140
 #, php-format
 msgid "Pedigree collapse tree of %s"
 msgstr ""
@@ -542,6 +534,14 @@ msgstr ""
 #: ExtendedRelationshipsChartController.php:215
 msgid "parents"
 msgstr "Eltern"
+
+#: resources/views/modules/pedigree-chart/page.phtml:59
+msgid "show full pedigree"
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/page.phtml:58
+msgid "show repeated ancestors once"
+msgstr ""
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131

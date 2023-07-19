@@ -1197,10 +1197,9 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         
         $submenus = new Collection();
         //impl: remember to boot() any additions
-        $submenus->put(1, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_FULL));
-        $submenus->put(2, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_COMPACT));
-        $submenus->put(3, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_COLLAPSE));
-        $submenus->put(4, new LCAChartModule($this));
+        $submenus->put(1, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_COMPACT));
+        $submenus->put(2, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_COLLAPSE));
+        $submenus->put(3, new LCAChartModule($this));
         
         $submenus = $submenus
             ->map(static function (ModuleChartInterface $module) use ($individual): Menu {
