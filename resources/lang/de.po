@@ -8,9 +8,10 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-19 20:53+0200\n"
-"PO-Revision-Date: 2023-07-16 10:01+0000\n"
+"PO-Revision-Date: 2023-07-20 05:06+0000\n"
 "Last-Translator: Markus Hemprich <hemprich@gmx.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -444,7 +445,14 @@ msgstr "Stammbäume synchronisieren, um datierte Verwandtschaftsbeziehungen zu e
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
-msgstr "Der CoR (Coefficient of Relationship) ist proportional zu der Anzahl der Gene, die zwei Individuen aufgrund ihrer genetischen Verwandtschaft gemeinsam haben. Seine Berechnung basiert auf der Methode der Pfadkoeffizienten von Sewall Wright. Sein Wert gibt den Anteil der Gene an, die zwei verwandte Individuen gemeinsam haben, und zwar im Vergleich zu den Genen, die die gesamte Population gemeinsam hat. Weitere Details sind hier zu finden: "
+msgstr ""
+"Der CoR (Coefficient of Relationship) ist proportional zu der Anzahl der "
+"Gene, die zwei Individuen aufgrund ihrer genetischen Verwandtschaft "
+"gemeinsam haben. Seine Berechnung basiert auf der Methode der "
+"Pfadkoeffizienten von Sewall Wright. Sein Wert gibt den Anteil der Gene an, "
+"die zwei verwandte Individuen gemeinsam haben, und zwar im Vergleich zu den "
+"Genen, welche die gesamte Population gemeinsam hat. Weitere Details sind "
+"hier zu finden: "
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:158
@@ -542,11 +550,11 @@ msgstr "Eltern"
 
 #: resources/views/modules/pedigree-chart/page.phtml:59
 msgid "show full pedigree"
-msgstr ""
+msgstr "Zeige vollständige Vorfahrentafel"
 
 #: resources/views/modules/pedigree-chart/page.phtml:58
 msgid "show repeated ancestors once"
-msgstr ""
+msgstr "Zeige mehrfach auftretenden Vorfahren nur einmal"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
