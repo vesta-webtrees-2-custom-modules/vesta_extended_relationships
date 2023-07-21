@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-19 20:53+0200\n"
-"PO-Revision-Date: 2023-07-19 21:06+0000\n"
-"Last-Translator: Richard Cissée <ric@richard-cissee.de>\n"
+"PO-Revision-Date: 2023-07-21 17:07+0000\n"
+"Last-Translator: Vincent DENIS <vincent.denis06@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/fr/>\n"
 "Language: fr\n"
@@ -60,7 +60,7 @@ msgstr "(coeffcient qui équivaut au lien de parenté par les ancêtres communs 
 
 #: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
-msgstr ""
+msgstr "Un tableau des ancêtres répétés d'un individu, sous forme d'arbre."
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -111,11 +111,11 @@ msgstr "Préférences pour les diagrammes"
 #: resources/views/modules/lca-chart/chart.phtml:24
 #, php-format
 msgid "Closest Relationship: %s"
-msgstr ""
+msgstr "Relation la plus proche : %s"
 
 #: resources/views/modules/pedigree-chart/chart-x.phtml:56
 msgid "CoI; Coefficient of Inbreeding"
-msgstr ""
+msgstr "CoI ; Coefficient de consanguinité"
 
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
@@ -351,7 +351,7 @@ msgstr "Ancien algorithme pour les noms de chemin de relation"
 
 #: ExtendedRelationshipModule.php:1217
 msgid "More Charts"
-msgstr ""
+msgstr "Plus de graphiques"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:313
@@ -387,12 +387,12 @@ msgstr "Les patriarches sont les ancêtres masculins de fin de lignée ('Spitzen
 #: ExtendedPedigreeChartModule.php:108
 #: resources/views/modules/pedigree-chart/page.phtml:54
 msgid "Pedigree collapse"
-msgstr ""
+msgstr "Effondrement du pedigree"
 
 #: ExtendedPedigreeChartModule.php:140
 #, php-format
 msgid "Pedigree collapse tree of %s"
-msgstr ""
+msgstr "Arbre généalogique d'effondrement de %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:106
@@ -471,16 +471,17 @@ msgstr "Les mêmes informations peuvent être obtenues via la liste des succursa
 
 #: resources/views/modules/lca-chart/chart.phtml:18
 msgid "There are no recorded common ancestors."
-msgstr ""
+msgstr "Il n'y a pas d'ancêtres communs enregistrés."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
 msgid "There is no recorded pedigree collapse within %1$s generations."
 msgstr ""
+"Il n'y a pas d'effondrement de pedigree enregistré dans les générations %1$s."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:17
 msgid "There is no recorded pedigree collapse."
-msgstr ""
+msgstr "Il n'y a pas d'effondrement de pedigree enregistré."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:190
@@ -543,11 +544,11 @@ msgstr "parents"
 
 #: resources/views/modules/pedigree-chart/page.phtml:59
 msgid "show full pedigree"
-msgstr ""
+msgstr "montrer le pedigree complet"
 
 #: resources/views/modules/pedigree-chart/page.phtml:58
 msgid "show repeated ancestors once"
-msgstr ""
+msgstr "afficher les ancêtres répétés une fois"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
