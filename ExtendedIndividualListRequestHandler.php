@@ -67,10 +67,16 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
         //set dummy preferences at $tree
         //so that actual preferences aren't loaded
         //so that switch in 'switch ($tree->getPreference('SURNAME_LIST_STYLE'))' ends up in default case
+        //
+        //Issue #120
+        //but make sure to keep privacy-relevant tree preferences!
+        
         $reflection = new \ReflectionClass(get_class($tree));
         $preferences = $reflection->getProperty('preferences');
         $preferences->setAccessible(true);
-        $preferences->setValue($tree, ['placeholder'=>'placeholder']);
+        $prefs = $preferences->getValue($tree);
+        $prefs['SURNAME_LIST_STYLE'] = 'style2';
+        $preferences->setValue($tree, $prefs);
       
         return $this->createResponse($tree, $user, $params, false);
     }
