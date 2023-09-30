@@ -304,5 +304,11 @@
 		"version": "2.1.17.0.5",
 		"from": "2.1.17",
 		"to": "2.1.18"
+	},
+	{
+		"version": "2.1.17.0.6",
+		"from": "2.1.17",
+		"to": "2.1.18",
+		"changelog": ["Fix for privacy-critical bug (#120) in 'Individuals with Patriarchs' list. Update as soon as possible if you show this list to visitors and restricted users."]
 	}
 ]
