@@ -250,14 +250,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
             ->get(ExtendedIndividualListRequestHandler::class, static::ROUTE_URL_LIST, $this->listRequestHandler);
 
 
-        // Replace an existing view with our own version.
-        // this is hacky, but easier than patching IndividualListModule.
-        // as usual, webtrees code isn't very extensible.
-        View::registerCustomView('::lists/individuals-table', $this->name() . '::lists/individuals-table-switch');
         View::registerCustomView('::lists/individuals-table-with-patriarchs', $this->name() . '::lists/individuals-table-with-patriarchs');
-
-        //same here
-        View::registerCustomView('::lists/surnames-table', $this->name() . '::lists/surnames-table-switch');
         View::registerCustomView('::lists/surnames-table-with-patriarchs', $this->name() . '::lists/surnames-table-with-patriarchs');
 
         View::registerCustomView('::vesta-chart-box', $this->name() . '::chart-box');

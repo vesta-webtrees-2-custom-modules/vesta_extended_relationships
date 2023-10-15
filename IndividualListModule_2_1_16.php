@@ -371,14 +371,19 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                     // Show the surname list
                     switch ($tree->getPreference('SURNAME_LIST_STYLE')) {
                         case 'style1':
+                            //[RC] adjusted
+                            /*
                             echo view('lists/surnames-column-list', [
                                 'module'   => $this,
                                 'surnames' => $surns,
                                 'totals'   => true,
                                 'tree'     => $tree,
                             ]);
+                            */
                             break;
                         case 'style3':
+                            //[RC] adjusted
+                            /*
                             echo view('lists/surnames-tag-cloud', [
                                 'module'   => $this,
                                 'surnames' => $surns,
@@ -386,9 +391,15 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                                 'tree'     => $tree,
                             ]);
                             break;
+                            */
                         case 'style2':
                         default:
-                            echo view('lists/surnames-table', [
+                            //[RC] adjusted
+                            $inner = current($surns);
+                            $leaf = current($inner);
+                            echo view('lists/surnames-table-with-patriarchs', [
+                                'helpLink' => $leaf->getHelpLink(),
+                                
                                 'families' => $families,
                                 'module'   => $this,
                                 'order'    => [[0, 'asc']],
@@ -447,8 +458,15 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                                 'tree'     => $tree,
                             ]);
                         } else {
-                            echo view('lists/individuals-table', [
-                                'individuals' => $this->individuals($tree, $surname, array_keys($all_surnames[$surname] ?? []), $falpha, $show_marnm === 'yes', false),
+                            //[RC] adjusted
+                            /** @var IndividualsWithPatriarchs */
+                            $individuals = $this->individuals($tree, $surname, array_keys($all_surnames[$surname] ?? []), $falpha, $show_marnm === 'yes', false);
+                            $wrapped = $individuals->first();
+                            
+                            echo view('lists/individuals-table-with-patriarchs', [
+                                'individuals' => $wrapped->getOriginalCollection(),
+                                'patriarchs' => $wrapped->getPatriarchs(),
+                                
                                 'sosa'        => false,
                                 'tree'        => $tree,
                             ]);

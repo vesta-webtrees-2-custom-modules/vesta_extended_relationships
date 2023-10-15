@@ -63,6 +63,9 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
         }
         */
 
+        //Issue #121
+        //all this handled directly now in IndividualListModule_2_1_16
+        /*
         //Issue #101
         //set dummy preferences at $tree
         //so that actual preferences aren't loaded
@@ -77,6 +80,7 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
         $prefs = $preferences->getValue($tree);
         $prefs['SURNAME_LIST_STYLE'] = 'style2';
         $preferences->setValue($tree, $prefs);
+        */
       
         return $this->createResponse($tree, $user, $params, false);
     }
