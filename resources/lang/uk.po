@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-19 20:53+0200\n"
-"PO-Revision-Date: 2022-06-30 08:17+0000\n"
-"Last-Translator: Artem <artem@molotov.work>\n"
-"Language-Team: Ukrainian <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/uk/>\n"
+"PO-Revision-Date: 2023-10-17 10:13+0000\n"
+"Last-Translator: z-yurets <zaharchenko.yurij@gmail.com>\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.1\n"
 
 #: ExtendedRelationshipModule.php:292
 msgid " (see below for details)."
@@ -59,7 +61,7 @@ msgstr "(це загалом незначно ближче, ніж найтіс�
 
 #: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
-msgstr ""
+msgstr "Діаграма повторюваних предків особи у форматі дерева."
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -86,7 +88,7 @@ msgstr "Дозволити постійне перемикання (корист
 #: ExtendedRelationshipModuleTrait.php:35
 #, php-format
 msgid "Also includes an extended '%1$s' block."
-msgstr ""
+msgstr "Також містить розширений блок '%1$s'."
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
@@ -110,11 +112,11 @@ msgstr "Налаштування діаграми"
 #: resources/views/modules/lca-chart/chart.phtml:24
 #, php-format
 msgid "Closest Relationship: %s"
-msgstr ""
+msgstr "Найближчі стосунки: %s"
 
 #: resources/views/modules/pedigree-chart/chart-x.phtml:56
 msgid "CoI; Coefficient of Inbreeding"
-msgstr ""
+msgstr "CoI; Коефіцієнт внутрішньородинного схрещування"
 
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
@@ -122,13 +124,13 @@ msgstr "Спільний предок: "
 
 #: LCAChartModule.php:80 LCAChartModule.php:160
 msgid "Common ancestors"
-msgstr ""
+msgstr "Спільні предки"
 
 #. I18N: %s are individual’s names
 #: LCAChartModule.php:152
 #, php-format
 msgid "Common ancestors of %1$s and %2$s"
-msgstr ""
+msgstr "Спільні предки для %1$s та %2$s"
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
@@ -350,7 +352,7 @@ msgstr "Спадковий алгоритм імен шляхів стосунк
 
 #: ExtendedRelationshipModule.php:1217
 msgid "More Charts"
-msgstr ""
+msgstr "Більше діаграм"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:313
@@ -386,12 +388,12 @@ msgstr "Патріархи - це предки по чоловічій ліні�
 #: ExtendedPedigreeChartModule.php:108
 #: resources/views/modules/pedigree-chart/page.phtml:54
 msgid "Pedigree collapse"
-msgstr ""
+msgstr "Занепад родоводу"
 
 #: ExtendedPedigreeChartModule.php:140
 #, php-format
 msgid "Pedigree collapse tree of %s"
-msgstr ""
+msgstr "Дерево занепаду родоводу для %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:106
@@ -470,16 +472,16 @@ msgstr "Цю ж інформацію можна отримати через сп
 
 #: resources/views/modules/lca-chart/chart.phtml:18
 msgid "There are no recorded common ancestors."
-msgstr ""
+msgstr "Немає зареєстрованих спільних предків."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
 msgid "There is no recorded pedigree collapse within %1$s generations."
-msgstr ""
+msgstr "Немає зареєстрованих занепадів родоводу протягом %1$s поколінь."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:17
 msgid "There is no recorded pedigree collapse."
-msgstr ""
+msgstr "Немає зареєстрованих занепадів родоводу."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:190
@@ -542,11 +544,11 @@ msgstr "батьки"
 
 #: resources/views/modules/pedigree-chart/page.phtml:59
 msgid "show full pedigree"
-msgstr ""
+msgstr "показати повний родовід"
 
 #: resources/views/modules/pedigree-chart/page.phtml:58
 msgid "show repeated ancestors once"
-msgstr ""
+msgstr "показувати повторюваних предків один раз"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
