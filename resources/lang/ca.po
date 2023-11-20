@@ -1,0 +1,557 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the vesta package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: vesta 1.0\n"
+"Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
+"POT-Creation-Date: 2023-07-19 20:53+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ExtendedPedigreeChartModule.php:108
+#: resources/views/modules/pedigree-chart/page.phtml:54
+msgid "Pedigree collapse"
+msgstr ""
+
+#: ExtendedPedigreeChartModule.php:120
+msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
+msgstr ""
+
+#: ExtendedPedigreeChartModule.php:140
+#, php-format
+msgid "Pedigree collapse tree of %s"
+msgstr ""
+
+#: ExtendedRelationshipModule.php:285 ExtendedRelationshipModule.php:948
+#: ExtendedRelationshipModule.php:954
+msgid "Synchronization"
+msgstr ""
+
+#: ExtendedRelationshipModule.php:290
+#: ExtendedRelationshipsChartController.php:283
+msgid "Synchronize trees to obtain dated relationship links"
+msgstr ""
+
+#: ExtendedRelationshipModule.php:292
+msgid " (see below for details)."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1093 ExtendedRelationshipModuleTrait.php:89
+#: ExtendedRelationshipModuleTrait.php:160
+#: ExtendedRelationshipModuleTrait.php:185
+#: ExtendedRelationshipModuleTrait.php:216
+#: ExtendedRelationshipModuleTrait.php:262
+#: ExtendedRelationshipModuleTrait.php:287
+msgid "Find a closest relationship via common ancestors"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1097 ExtendedRelationshipModuleTrait.php:94
+#: ExtendedRelationshipModuleTrait.php:161
+#: ExtendedRelationshipModuleTrait.php:186
+#: ExtendedRelationshipModuleTrait.php:217
+#: ExtendedRelationshipModuleTrait.php:263
+#: ExtendedRelationshipModuleTrait.php:288
+msgid "Find all smallest lowest common ancestors, show a closest connection for each"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1101 ExtendedRelationshipModuleTrait.php:99
+#: ExtendedRelationshipModuleTrait.php:162
+#: ExtendedRelationshipModuleTrait.php:188
+#: ExtendedRelationshipModuleTrait.php:219
+#: ExtendedRelationshipModuleTrait.php:264
+#: ExtendedRelationshipModuleTrait.php:289
+msgid "Find all relationships via lowest common ancestors"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1107 ExtendedRelationshipModuleTrait.php:105
+#: ExtendedRelationshipModuleTrait.php:163
+#: ExtendedRelationshipModuleTrait.php:194
+#: ExtendedRelationshipModuleTrait.php:225
+#: ExtendedRelationshipModuleTrait.php:265
+#: ExtendedRelationshipModuleTrait.php:290
+#: ExtendedRelationshipModuleTrait.php:298
+msgid "Find the closest overall connections (preferably via common ancestors)"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1111 ExtendedRelationshipModuleTrait.php:110
+#: ExtendedRelationshipModuleTrait.php:164
+#: ExtendedRelationshipModuleTrait.php:195
+#: ExtendedRelationshipModuleTrait.php:226
+#: ExtendedRelationshipModuleTrait.php:266
+#: ExtendedRelationshipModuleTrait.php:291
+#: ExtendedRelationshipModuleTrait.php:299
+msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1115 ExtendedRelationshipModuleTrait.php:115
+#: ExtendedRelationshipModuleTrait.php:165
+#: ExtendedRelationshipModuleTrait.php:196
+#: ExtendedRelationshipModuleTrait.php:227
+#: ExtendedRelationshipModuleTrait.php:267
+#: ExtendedRelationshipModuleTrait.php:292
+#: ExtendedRelationshipModuleTrait.php:300
+msgid "Find the closest overall connections"
+msgstr ""
+
+#: ExtendedRelationshipModule.php:1121
+msgid "Find all overall connections"
+msgstr ""
+
+#: ExtendedRelationshipModule.php:1123
+msgid "Find other overall connections"
+msgstr ""
+
+#. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
+#: ExtendedRelationshipModule.php:1133
+msgid "Individuals with Patriarchs"
+msgstr ""
+
+#: ExtendedRelationshipModule.php:1217
+msgid "More Charts"
+msgstr ""
+
+#: ExtendedRelationshipModuleTrait.php:25
+msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:26
+#: ExtendedRelationshipModuleTrait.php:35
+#, php-format
+msgid "Also includes an extended '%1$s' block."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:34
+msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:36
+msgid "Displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:38
+msgid "Intended as a replacement for the original 'Relationships' module."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:71
+msgid "Display"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:73
+msgid "Show common ancestors on top of relationship paths"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:79
+msgid "Debugging"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:81
+msgid "Show legacy relationship path names"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:87
+msgid "Options to show in the chart"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:90
+msgid "Determines the shortest path between two individuals via a LCA (lowest common ancestor), i.e. a common ancestor who only appears on the path once."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:95
+msgid "Each SLCA (smallest lowest common ancestor) essentially represents a part of the tree which both individuals share (as part of their ancestors). More technically, the SLCA set of two individuals is a subset of the LCA set (excluding all LCAs that are themselves ancestors of other LCAs)."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:100
+msgid "All paths between the two individuals that contribute to the CoR (Coefficient of Relationship), as defined here:"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:106
+msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:111
+msgid "For close relationships similar to the previous option, but faster. Internally just a combination of two other methods."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:116
+msgid "Same option as in the original relationship chart."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:120
+#: ExtendedRelationshipModuleTrait.php:166
+#: ExtendedRelationshipModuleTrait.php:197
+#: ExtendedRelationshipModuleTrait.php:228
+#: ExtendedRelationshipModuleTrait.php:268
+#: ExtendedRelationshipModuleTrait.php:294
+#: ExtendedRelationshipModuleTrait.php:301
+msgid "Find other/all overall connections"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:121
+msgid "Same option as in the original relationship chart, further configurable via recursion level:"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:131
+msgid "unlimited"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:140
+#: ExtendedRelationshipModuleTrait.php:242
+msgid "Allow persistent toggle (user may show/hide relationships)"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:152
+#: ExtendedRelationshipModuleTrait.php:254
+msgid "How to determine relationships to the default individual"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:157
+#: ExtendedRelationshipModuleTrait.php:182
+#: ExtendedRelationshipModuleTrait.php:213
+#: ExtendedRelationshipModuleTrait.php:259
+#: ExtendedRelationshipModuleTrait.php:284
+msgid "Do not show any relationship"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:158
+#: ExtendedRelationshipModuleTrait.php:183
+#: ExtendedRelationshipModuleTrait.php:214
+#: ExtendedRelationshipModuleTrait.php:260
+#: ExtendedRelationshipModuleTrait.php:285
+msgid "The following options refer to the same algorithms as used in the extended relationships chart:"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:171
+#: ExtendedRelationshipModuleTrait.php:202
+#: ExtendedRelationshipModuleTrait.php:233
+#: ExtendedRelationshipModuleTrait.php:273
+msgid "Show common ancestors"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:177
+msgid "How to determine relationships between parents"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:189
+#: ExtendedRelationshipModuleTrait.php:220
+msgid "Searching for regular overall connections would be pointless here because there is always a trivial HUSB - WIFE connection."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:190
+#: ExtendedRelationshipModuleTrait.php:221
+msgid "Therefore, if one of the following options is selected, overall connections are determined via dated links, i.e. links that have been established before the date of the respective event."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:191
+#: ExtendedRelationshipModuleTrait.php:222
+msgid "This allows you to present meaningful connections, such as 'widowed husband marries the sister of his dead wife'."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:192
+#: ExtendedRelationshipModuleTrait.php:223
+msgid "These relationships may only be calculated efficiently by preprocessing the tree data, via the synchronization link at the top of this page."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:208
+msgid "How to determine relationships to spouses"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:279
+msgid "How to determine relationships to associated persons"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:295
+msgid "The following options use dated links, i.e. links that have been established before the date of the respective event."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:296
+msgid "This seems more useful in most cases (e.g. to determine the relationship to a godparent at the time of the baptism)."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:309
+msgid "Only show relationships for specific facts and events"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:310
+msgid "Associated facts and events are displayed when the respective toggle checkbox is selected on the tab."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:311
+msgid "If this option is checked, relationships to the associated individuals are only shown for the following facts and events."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:312
+msgid "In particular if both lists are empty, relationships will never be shown for these facts and events."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:313
+msgid "Note that the facts and events to be displayed at all may be filtered via the preferences of the tab."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:331
+msgid "Chart Settings"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:332
+#, php-format
+msgid "If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name)."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:336
+msgid "Families Tab Settings"
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:337
+msgid "If you do not want to change the functionality with respect to the original Families tab, select 'Do not show any relationship' everywhere."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:338
+msgid "In that case, you should also disallow persistent toggle, as it has no visible effect."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:339
+#: ExtendedRelationshipModuleTrait.php:347
+msgid "You may also adjust the access level of this part of the module."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:345
+msgid "If you do not want to change the functionality with respect to the original Facts and Events tab, select 'Do not show any relationship' in the first block."
+msgstr ""
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:346
+msgid "If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect."
+msgstr ""
+
+#: ExtendedRelationshipsChartController.php:57
+#: resources/views/modules/lca-chart/chart.phtml:25
+#, php-format
+msgid "Uncorrected CoR (Coefficient of Relationship): %s"
+msgstr ""
+
+#: ExtendedRelationshipsChartController.php:59
+#: resources/views/modules/lca-chart/chart.phtml:27
+#, php-format
+msgid "(Number of relationships: %s)"
+msgstr ""
+
+#: ExtendedRelationshipsChartController.php:63
+#: patchedWebtrees/Services/TreeNodeCOR.php:68
+msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
+msgstr ""
+
+#: ExtendedRelationshipsChartController.php:71
+#: patchedWebtrees/Services/TreeNodeCOR.php:142
+#, php-format
+msgid "(that's overall as close as: %1$s)"
+msgstr ""
+
+#: ExtendedRelationshipsChartController.php:73
+#: patchedWebtrees/Services/TreeNodeCOR.php:144
+#, php-format
+msgid "(that's overall almost as close as: %1$s)"
+msgstr ""
+
+#: ExtendedRelationshipsChartController.php:75
+#: patchedWebtrees/Services/TreeNodeCOR.php:146
+#, php-format
+msgid "(that's overall closer than: %1$s)"
+msgstr ""
+
+#: ExtendedRelationshipsChartController.php:112
+#, php-format
+msgid "via legacy algorithm: %s"
+msgstr ""
+
+#: ExtendedRelationshipsChartController.php:215
+msgid "parents"
+msgstr ""
+
+#: ExtendedRelationshipsChartController.php:279
+msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
+msgstr ""
+
+#. I18N: (person 1) is (relative, e.g. father) of (person2)
+#: FunctionsPrintRels.php:119
+#, php-format
+msgid "%1$s is %2$s of %3$s."
+msgstr ""
+
+#: FunctionsPrintRels.php:141
+msgid "Common ancestor: "
+msgstr ""
+
+#: FunctionsPrintRels.php:168
+msgid "Common ancestors: "
+msgstr ""
+
+#: HelpTexts.php:15
+msgid "Uncorrected CoR (Coefficient of Relationship)"
+msgstr ""
+
+#: HelpTexts.php:17
+msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
+msgstr ""
+
+#: HelpTexts.php:20
+#, php-format
+msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
+msgstr ""
+
+#: HelpTexts.php:24
+msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
+msgstr ""
+
+#: HelpTexts.php:27
+msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
+msgstr ""
+
+#: HelpTexts.php:32
+msgid "Legacy algorithm for Relationship path names"
+msgstr ""
+
+#: HelpTexts.php:34
+msgid "You can disable this via the module preferences, it's mainly intended for debugging."
+msgstr ""
+
+#: HelpTexts.php:35
+msgid "And hopefully it shows how much better the new algorithm works ..."
+msgstr ""
+
+#. I18N: end-of line ancestor, 'Spitzenahn'
+#: HelpTexts.php:40
+#: resources/views/lists/individuals-table-with-patriarchs.phtml:181
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:59
+msgid "Patriarch"
+msgstr ""
+
+#: HelpTexts.php:42
+msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
+msgstr ""
+
+#: HelpTexts.php:43
+msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
+msgstr ""
+
+#: HelpTexts.php:44
+msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
+msgstr ""
+
+#: LCAChartModule.php:80 LCAChartModule.php:160
+msgid "Common ancestors"
+msgstr ""
+
+#. I18N: %s are individual’s names
+#: LCAChartModule.php:152
+#, php-format
+msgid "Common ancestors of %1$s and %2$s"
+msgstr ""
+
+#: resources/views/modules/lca-chart/chart.phtml:18
+msgid "There are no recorded common ancestors."
+msgstr ""
+
+#: resources/views/modules/lca-chart/chart.phtml:24
+#, php-format
+msgid "Closest Relationship: %s"
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/chart-x.phtml:56
+msgid "CoI; Coefficient of Inbreeding"
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/chart.phtml:17
+msgid "There is no recorded pedigree collapse."
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/chart.phtml:19
+#, php-format
+msgid "There is no recorded pedigree collapse within %1$s generations."
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/page.phtml:58
+msgid "show repeated ancestors once"
+msgstr ""
+
+#: resources/views/modules/pedigree-chart/page.phtml:59
+msgid "show full pedigree"
+msgstr ""
+
+#: resources/views/page.phtml:55
+#, php-format
+msgid "Options referring to overall connections established before %1$s."
+msgstr ""
+
+#. I18N: Module Configuration
+#: resources/views/sync-complete.phtml:5
+msgid "Finished - all link dates are up-to-date."
+msgstr ""
+
+#: resources/views/sync.phtml:15
+msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
+msgstr ""
+
+#: resources/views/sync.phtml:18
+msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
+msgstr ""
+
+#: resources/views/sync.phtml:21
+msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
+msgstr ""
