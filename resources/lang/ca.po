@@ -1,0 +1,671 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the vesta package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: vesta 1.0\n"
+"Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
+"POT-Creation-Date: 2023-07-19 20:53+0200\n"
+"PO-Revision-Date: 2023-11-21 17:40+0000\n"
+"Last-Translator: Richard Cissée <ric@richard-cissee.de>\n"
+"Language-Team: Catalan <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/ca/>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.2\n"
+
+#: ExtendedPedigreeChartModule.php:108
+#: resources/views/modules/pedigree-chart/page.phtml:54
+msgid "Pedigree collapse"
+msgstr "Col·lapse del pedigrí"
+
+#: ExtendedPedigreeChartModule.php:120
+msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
+msgstr ""
+"Un gràfic dels avantpassats repetits d'un individu, formatat com un arbre."
+
+#: ExtendedPedigreeChartModule.php:140
+#, php-format
+msgid "Pedigree collapse tree of %s"
+msgstr "Arbre genealògic col·lapsat de %s"
+
+#: ExtendedRelationshipModule.php:285 ExtendedRelationshipModule.php:948
+#: ExtendedRelationshipModule.php:954
+msgid "Synchronization"
+msgstr "Sincronització"
+
+#: ExtendedRelationshipModule.php:290
+#: ExtendedRelationshipsChartController.php:283
+msgid "Synchronize trees to obtain dated relationship links"
+msgstr "Sincronitzar arbres per obtenir enllaços de relació datats"
+
+#: ExtendedRelationshipModule.php:292
+msgid " (see below for details)."
+msgstr " (vegeu més avall per obtenir més informació)."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1093 ExtendedRelationshipModuleTrait.php:89
+#: ExtendedRelationshipModuleTrait.php:160
+#: ExtendedRelationshipModuleTrait.php:185
+#: ExtendedRelationshipModuleTrait.php:216
+#: ExtendedRelationshipModuleTrait.php:262
+#: ExtendedRelationshipModuleTrait.php:287
+msgid "Find a closest relationship via common ancestors"
+msgstr "Trobar una relació més propera a través d'avantpassats comuns"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1097 ExtendedRelationshipModuleTrait.php:94
+#: ExtendedRelationshipModuleTrait.php:161
+#: ExtendedRelationshipModuleTrait.php:186
+#: ExtendedRelationshipModuleTrait.php:217
+#: ExtendedRelationshipModuleTrait.php:263
+#: ExtendedRelationshipModuleTrait.php:288
+msgid "Find all smallest lowest common ancestors, show a closest connection for each"
+msgstr ""
+"Trobeu tots els avantpassats comuns més propers, mostreu una connexió més "
+"propera per a cadascun"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1101 ExtendedRelationshipModuleTrait.php:99
+#: ExtendedRelationshipModuleTrait.php:162
+#: ExtendedRelationshipModuleTrait.php:188
+#: ExtendedRelationshipModuleTrait.php:219
+#: ExtendedRelationshipModuleTrait.php:264
+#: ExtendedRelationshipModuleTrait.php:289
+msgid "Find all relationships via lowest common ancestors"
+msgstr ""
+"Trobeu totes les relacions a través dels avantpassats comuns més propers"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1107 ExtendedRelationshipModuleTrait.php:105
+#: ExtendedRelationshipModuleTrait.php:163
+#: ExtendedRelationshipModuleTrait.php:194
+#: ExtendedRelationshipModuleTrait.php:225
+#: ExtendedRelationshipModuleTrait.php:265
+#: ExtendedRelationshipModuleTrait.php:290
+#: ExtendedRelationshipModuleTrait.php:298
+msgid "Find the closest overall connections (preferably via common ancestors)"
+msgstr ""
+"Trobeu les connexions globals més properes (preferiblement a través "
+"d'avantpassats comuns)"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1111 ExtendedRelationshipModuleTrait.php:110
+#: ExtendedRelationshipModuleTrait.php:164
+#: ExtendedRelationshipModuleTrait.php:195
+#: ExtendedRelationshipModuleTrait.php:226
+#: ExtendedRelationshipModuleTrait.php:266
+#: ExtendedRelationshipModuleTrait.php:291
+#: ExtendedRelationshipModuleTrait.php:299
+msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
+msgstr ""
+"Trobeu una relació més propera mitjançant avantpassats comuns o una "
+"alternativa a la connexió general més propera"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModule.php:1115 ExtendedRelationshipModuleTrait.php:115
+#: ExtendedRelationshipModuleTrait.php:165
+#: ExtendedRelationshipModuleTrait.php:196
+#: ExtendedRelationshipModuleTrait.php:227
+#: ExtendedRelationshipModuleTrait.php:267
+#: ExtendedRelationshipModuleTrait.php:292
+#: ExtendedRelationshipModuleTrait.php:300
+msgid "Find the closest overall connections"
+msgstr "Trobeu les connexions generals més properes"
+
+#: ExtendedRelationshipModule.php:1121
+msgid "Find all overall connections"
+msgstr "Troba totes les connexions generals"
+
+#: ExtendedRelationshipModule.php:1123
+msgid "Find other overall connections"
+msgstr "Trobeu altres connexions generals"
+
+#. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
+#: ExtendedRelationshipModule.php:1133
+msgid "Individuals with Patriarchs"
+msgstr "Individus amb patriarques"
+
+#: ExtendedRelationshipModule.php:1217
+msgid "More Charts"
+msgstr "Més gràfics"
+
+#: ExtendedRelationshipModuleTrait.php:25
+msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
+msgstr ""
+"Un mòdul que proporciona diversos algorismes utilitzats per determinar "
+"relacions. Inclou un gràfic que mostra les relacions entre dos individus, "
+"com a substitut del mòdul original de \"Relacions\"."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:26
+#: ExtendedRelationshipModuleTrait.php:35
+#, php-format
+msgid "Also includes an extended '%1$s' block."
+msgstr "També inclou un bloc ampliat '%1$s'."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:34
+msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
+msgstr ""
+"Un mòdul que proporciona diversos algorismes utilitzats per determinar "
+"relacions. Inclou un gràfic ampliat de \"Relacions\"."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:36
+msgid "Displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab."
+msgstr ""
+"Mostra informació addicional sobre les relacions a través de la pestanya "
+"“Famílies” ampliada i la pestanya “Fets i esdeveniments” ampliada."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:38
+msgid "Intended as a replacement for the original 'Relationships' module."
+msgstr "Pensat com a substitut del mòdul original de \"Relacions\"."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:71
+msgid "Display"
+msgstr "Mostrar"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:73
+msgid "Show common ancestors on top of relationship paths"
+msgstr ""
+"Mostra els avantpassats comuns a la part superior de les trajectòries de "
+"relació"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:79
+msgid "Debugging"
+msgstr "Depuració"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:81
+msgid "Show legacy relationship path names"
+msgstr "Mostrar els noms dels camins de relació heretats"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:87
+msgid "Options to show in the chart"
+msgstr "Opcions que es mostren al gràfic"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:90
+msgid "Determines the shortest path between two individuals via a LCA (lowest common ancestor), i.e. a common ancestor who only appears on the path once."
+msgstr ""
+"Determina el camí més curt entre dos individus a través d'un ACV ("
+"avantpassat comú més proper), és a dir, un avantpassat comú que només "
+"apareix en el camí una vegada."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:95
+msgid "Each SLCA (smallest lowest common ancestor) essentially represents a part of the tree which both individuals share (as part of their ancestors). More technically, the SLCA set of two individuals is a subset of the LCA set (excluding all LCAs that are themselves ancestors of other LCAs)."
+msgstr ""
+"Cada SLCA (avantpassat comú més proper i més baix) representa essencialment "
+"una part de l'arbre que tots dos individus comparteixen (com a part dels "
+"seus avantpassats). Més tècnicament, el conjunt SLCA de dos individus és un "
+"subconjunt del conjunt ACV (excloent tots els ACV que són al seu torn "
+"avantpassats d'altres ACV)."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:100
+msgid "All paths between the two individuals that contribute to the CoR (Coefficient of Relationship), as defined here:"
+msgstr ""
+"Tots els camins entre els dos individus que contribueixen al CoR (Coeficient "
+"de Relació), tal com es defineixen aquí:"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:106
+msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
+msgstr ""
+"Prefereix camins parcials a través d'avantpassats comuns, encara que no hi "
+"hagi un avantpassat comú directe."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:111
+msgid "For close relationships similar to the previous option, but faster. Internally just a combination of two other methods."
+msgstr ""
+"Per a relacions estretes similars a l'opció anterior, però més ràpides. "
+"Internament només una combinació d'altres dos mètodes."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:116
+msgid "Same option as in the original relationship chart."
+msgstr "La mateixa opció que al quadre de relacions original."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:120
+#: ExtendedRelationshipModuleTrait.php:166
+#: ExtendedRelationshipModuleTrait.php:197
+#: ExtendedRelationshipModuleTrait.php:228
+#: ExtendedRelationshipModuleTrait.php:268
+#: ExtendedRelationshipModuleTrait.php:294
+#: ExtendedRelationshipModuleTrait.php:301
+msgid "Find other/all overall connections"
+msgstr "Trobeu altres connexions generals"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:121
+msgid "Same option as in the original relationship chart, further configurable via recursion level:"
+msgstr ""
+"La mateixa opció que en el diagrama de relacions original, configurable a "
+"més mitjançant el nivell de recursivitat:"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:131
+msgid "unlimited"
+msgstr "il·limitat"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:140
+#: ExtendedRelationshipModuleTrait.php:242
+msgid "Allow persistent toggle (user may show/hide relationships)"
+msgstr "Permet el commutador persistent (l'usuari pot mostrar/amagar relacions)"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:152
+#: ExtendedRelationshipModuleTrait.php:254
+msgid "How to determine relationships to the default individual"
+msgstr "Com determinar les relacions amb l'individu per defecte"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:157
+#: ExtendedRelationshipModuleTrait.php:182
+#: ExtendedRelationshipModuleTrait.php:213
+#: ExtendedRelationshipModuleTrait.php:259
+#: ExtendedRelationshipModuleTrait.php:284
+msgid "Do not show any relationship"
+msgstr "No mostrar cap relació"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:158
+#: ExtendedRelationshipModuleTrait.php:183
+#: ExtendedRelationshipModuleTrait.php:214
+#: ExtendedRelationshipModuleTrait.php:260
+#: ExtendedRelationshipModuleTrait.php:285
+msgid "The following options refer to the same algorithms as used in the extended relationships chart:"
+msgstr ""
+"Les opcions següents fan referència als mateixos algorismes que s'utilitzen "
+"al gràfic de relacions ampliades:"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:171
+#: ExtendedRelationshipModuleTrait.php:202
+#: ExtendedRelationshipModuleTrait.php:233
+#: ExtendedRelationshipModuleTrait.php:273
+msgid "Show common ancestors"
+msgstr "Mostra els avantpassats comuns"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:177
+msgid "How to determine relationships between parents"
+msgstr "Com determinar les relacions entre pares"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:189
+#: ExtendedRelationshipModuleTrait.php:220
+msgid "Searching for regular overall connections would be pointless here because there is always a trivial HUSB - WIFE connection."
+msgstr ""
+"La recerca de connexions generals regulars no tindria sentit aquí perquè "
+"sempre hi ha una connexió trivial HUSB - WIFE (Marit - Muller)."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:190
+#: ExtendedRelationshipModuleTrait.php:221
+msgid "Therefore, if one of the following options is selected, overall connections are determined via dated links, i.e. links that have been established before the date of the respective event."
+msgstr ""
+"Per tant, si se selecciona una de les opcions següents, les connexions "
+"globals es determinen mitjançant enllaços datats, és a dir, enllaços que "
+"s'han establert abans de la data de l'esdeveniment respectiu."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:191
+#: ExtendedRelationshipModuleTrait.php:222
+msgid "This allows you to present meaningful connections, such as 'widowed husband marries the sister of his dead wife'."
+msgstr ""
+"Això us permet presentar connexions significatives, com ara \"el marit vidu "
+"es casa amb la germana de la seva dona morta\"."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:192
+#: ExtendedRelationshipModuleTrait.php:223
+msgid "These relationships may only be calculated efficiently by preprocessing the tree data, via the synchronization link at the top of this page."
+msgstr ""
+"Aquestes relacions només es poden calcular de manera eficient mitjançant el "
+"processament previ de les dades de l'arbre, a través de l'enllaç de "
+"sincronització a la part superior d'aquesta pàgina."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:208
+msgid "How to determine relationships to spouses"
+msgstr "Com determinar les relacions amb els cònjuges"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:279
+msgid "How to determine relationships to associated persons"
+msgstr "Com determinar les relacions amb les persones associades"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:295
+msgid "The following options use dated links, i.e. links that have been established before the date of the respective event."
+msgstr ""
+"Les opcions següents utilitzen enllaços datats, és a dir, enllaços que s'han "
+"establert amb anterioritat a la data de l'esdeveniment respectiu."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:296
+msgid "This seems more useful in most cases (e.g. to determine the relationship to a godparent at the time of the baptism)."
+msgstr ""
+"Això sembla més útil en la majoria dels casos (per exemple, per determinar "
+"la relació amb un padrí en el moment del baptisme)."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:309
+msgid "Only show relationships for specific facts and events"
+msgstr "Mostrar relacions només per a fets i esdeveniments específics"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:310
+msgid "Associated facts and events are displayed when the respective toggle checkbox is selected on the tab."
+msgstr ""
+"Els fets i els esdeveniments associats es mostren quan la casella de "
+"commutació corresponent està seleccionada a la pestanya."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:311
+msgid "If this option is checked, relationships to the associated individuals are only shown for the following facts and events."
+msgstr ""
+"Si aquesta opció està marcada, les relacions amb les persones associades "
+"només es mostren per als fets i esdeveniments següents."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:312
+msgid "In particular if both lists are empty, relationships will never be shown for these facts and events."
+msgstr ""
+"En particular, si ambdues llistes estan buides, mai no es mostraran "
+"relacions per aquests fets i esdeveniments."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:313
+msgid "Note that the facts and events to be displayed at all may be filtered via the preferences of the tab."
+msgstr ""
+"Tingueu en compte que els fets i esdeveniments que es mostraran es poden "
+"filtrar a través de les preferències de la pestanya."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:331
+msgid "Chart Settings"
+msgstr "Configuració del gràfic"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:332
+#, php-format
+msgid "If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name)."
+msgstr ""
+"Si no voleu utilitzar la funcionalitat del gràfic, amagueu aquest gràfic "
+"mitjançant el Tauler de control > els gràfics > %1$s Vesta Extended "
+"Relations (tingueu en compte que el gràfic apareix sota el nom del mòdul)."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:336
+msgid "Families Tab Settings"
+msgstr "Configuració de la pestanya Famílies"
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:337
+msgid "If you do not want to change the functionality with respect to the original Families tab, select 'Do not show any relationship' everywhere."
+msgstr ""
+"Si no voleu canviar la funcionalitat respecte a la pestanya Famílies "
+"original, seleccioneu \"No mostris cap relació\" a tot arreu."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:338
+msgid "In that case, you should also disallow persistent toggle, as it has no visible effect."
+msgstr ""
+"En aquest cas, també hauríeu de desautoritzar el commutador persistent, ja "
+"que no té cap efecte visible."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:339
+#: ExtendedRelationshipModuleTrait.php:347
+msgid "You may also adjust the access level of this part of the module."
+msgstr "També podeu ajustar el nivell d'accés d'aquesta part del mòdul."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:345
+msgid "If you do not want to change the functionality with respect to the original Facts and Events tab, select 'Do not show any relationship' in the first block."
+msgstr ""
+"Si no voleu canviar la funcionalitat respecte a la pestanya Fets i "
+"esdeveniments originals, seleccioneu \"No mostris cap relació\" al primer "
+"bloc."
+
+#. I18N: Module Configuration
+#: ExtendedRelationshipModuleTrait.php:346
+msgid "If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect."
+msgstr ""
+"Si seleccioneu aquesta opció a tot arreu, també hauríeu de desactivar el "
+"commutador persistent, ja que no té cap efecte visible."
+
+#: ExtendedRelationshipsChartController.php:57
+#: resources/views/modules/lca-chart/chart.phtml:25
+#, php-format
+msgid "Uncorrected CoR (Coefficient of Relationship): %s"
+msgstr "CoR no corregit (coeficient de relació): %s"
+
+#: ExtendedRelationshipsChartController.php:59
+#: resources/views/modules/lca-chart/chart.phtml:27
+#, php-format
+msgid "(Number of relationships: %s)"
+msgstr "(Nombre de relacions: %s"
+
+#: ExtendedRelationshipsChartController.php:63
+#: patchedWebtrees/Services/TreeNodeCOR.php:68
+msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
+msgstr ""
+"(que en general no és significativament més propera que la relació més "
+"propera a través dels avantpassats comuns)"
+
+#: ExtendedRelationshipsChartController.php:71
+#: patchedWebtrees/Services/TreeNodeCOR.php:142
+#, php-format
+msgid "(that's overall as close as: %1$s)"
+msgstr "(Això és en general tan proper com: %1$s"
+
+#: ExtendedRelationshipsChartController.php:73
+#: patchedWebtrees/Services/TreeNodeCOR.php:144
+#, php-format
+msgid "(that's overall almost as close as: %1$s)"
+msgstr "(Això és en general gairebé tan proper com: %1$s"
+
+#: ExtendedRelationshipsChartController.php:75
+#: patchedWebtrees/Services/TreeNodeCOR.php:146
+#, php-format
+msgid "(that's overall closer than: %1$s)"
+msgstr "(Això és en general més a prop que: %1$s"
+
+#: ExtendedRelationshipsChartController.php:112
+#, php-format
+msgid "via legacy algorithm: %s"
+msgstr "Mitjançant l'algorisme heretat: %s"
+
+#: ExtendedRelationshipsChartController.php:215
+msgid "parents"
+msgstr "pares"
+
+#: ExtendedRelationshipsChartController.php:279
+msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
+msgstr ""
+"Si això és inesperat, i hi ha canvis recents, és possible que hagis de "
+"seguir aquest enllaç: "
+
+#. I18N: (person 1) is (relative, e.g. father) of (person2)
+#: FunctionsPrintRels.php:119
+#, php-format
+msgid "%1$s is %2$s of %3$s."
+msgstr "%1$s és %2$s de %3$s."
+
+#: FunctionsPrintRels.php:141
+msgid "Common ancestor: "
+msgstr "Ancestre comú: "
+
+#: FunctionsPrintRels.php:168
+msgid "Common ancestors: "
+msgstr "Avantpassats comuns: "
+
+#: HelpTexts.php:15
+msgid "Uncorrected CoR (Coefficient of Relationship)"
+msgstr "CoR no corregit (coeficient de relació)"
+
+#: HelpTexts.php:17
+msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
+msgstr ""
+"El CoR (Coefficient of Relationship) és proporcional al nombre de gens que "
+"dos individus tenen en comú com a resultat de la seva relació genètica. El "
+"seu càlcul es basa en el mètode de Sewall Wright de coeficients de "
+"trajectòria. El seu valor representa la proporció de gens que tenen en comú "
+"dos individus emparentats per sobre els quals té en comú tota la població. "
+"Més detalls aquí: "
+
+#: HelpTexts.php:20
+#, php-format
+msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
+msgstr ""
+"Bàsicament, cada camí (a través d'avantpassats comuns) entre dos individus "
+"contribueix al CdR, inversament proporcional a la seva longitud: Cada camí "
+"de longitud 2 (per exemple, entre germans complets) suma %1$s, cada camí de "
+"longitud 4 (per exemple, entre cosins primers) suma %2$s, en general cada "
+"camí de longitud n suma (0,5)<sup>n</sup>."
+
+#: HelpTexts.php:24
+msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
+msgstr ""
+"En circumstàncies normals, la proporció de gens transmesos d'avantpassat a "
+"descendent &ndash; segons estimació de Σ(0,5)<sup>n</sup> &ndash;  i la "
+"proporció de gens que tenen en comú (el veritable coeficient de relació) és "
+"la mateixa. No obstant això, si hi ha hagut alguna endogàmia, pot haver-hi "
+"una lleugera discrepància, com s'explica aquí: "
+
+#: HelpTexts.php:27
+msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
+msgstr ""
+"És més complicat determinar aquest CoR exacte, i les diferències solen ser "
+"petites de totes maneres. Per tant, només es calcula el CoR no corregit."
+
+#: HelpTexts.php:32
+msgid "Legacy algorithm for Relationship path names"
+msgstr "Algorisme heretat per als noms dels camins de relació"
+
+#: HelpTexts.php:34
+msgid "You can disable this via the module preferences, it's mainly intended for debugging."
+msgstr ""
+"Podeu desactivar-ho mitjançant les preferències del mòdul, està pensat "
+"principalment per a la depuració."
+
+#: HelpTexts.php:35
+msgid "And hopefully it shows how much better the new algorithm works ..."
+msgstr "I esperem que mostre quant millor funciona el nou algorisme ..."
+
+#. I18N: end-of line ancestor, 'Spitzenahn'
+#: HelpTexts.php:40
+#: resources/views/lists/individuals-table-with-patriarchs.phtml:181
+#: resources/views/lists/surnames-table-with-patriarchs.phtml:59
+msgid "Patriarch"
+msgstr "Patriarca"
+
+#: HelpTexts.php:42
+msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
+msgstr ""
+"Els patriarques són els avantpassats masculins de final de línia "
+"('Spitzenahnen')."
+
+#: HelpTexts.php:43
+msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
+msgstr ""
+"La mateixa informació es pot obtenir a través de la llista d'oficines, on "
+"apareixen com a caps de sucursals."
+
+#: HelpTexts.php:44
+msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
+msgstr ""
+"Aquesta llista proporciona una visió general per cognom, i es pot utilitzar "
+"per determinar si tots els individus amb un cognom específic són realment "
+"descendents d'un patriarca comú."
+
+#: LCAChartModule.php:80 LCAChartModule.php:160
+msgid "Common ancestors"
+msgstr "Avantpassats comuns"
+
+#. I18N: %s are individual’s names
+#: LCAChartModule.php:152
+#, php-format
+msgid "Common ancestors of %1$s and %2$s"
+msgstr "Avantpassats comuns de %1$s i %2$s"
+
+#: resources/views/modules/lca-chart/chart.phtml:18
+msgid "There are no recorded common ancestors."
+msgstr "No hi ha avantpassats comuns registrats."
+
+#: resources/views/modules/lca-chart/chart.phtml:24
+#, php-format
+msgid "Closest Relationship: %s"
+msgstr "Relació més propera: %s"
+
+#: resources/views/modules/pedigree-chart/chart-x.phtml:56
+msgid "CoI; Coefficient of Inbreeding"
+msgstr "CoI; Coeficient d'endogàmia"
+
+#: resources/views/modules/pedigree-chart/chart.phtml:17
+msgid "There is no recorded pedigree collapse."
+msgstr "No hi ha constància d'un col·lapse de pedigrí."
+
+#: resources/views/modules/pedigree-chart/chart.phtml:19
+#, php-format
+msgid "There is no recorded pedigree collapse within %1$s generations."
+msgstr ""
+"No hi ha cap col·lapse de pedigrí registrat a l'interior %1$s Generacions."
+
+#: resources/views/modules/pedigree-chart/page.phtml:58
+msgid "show repeated ancestors once"
+msgstr "Mostra els avantpassats repetits una vegada"
+
+#: resources/views/modules/pedigree-chart/page.phtml:59
+msgid "show full pedigree"
+msgstr "Mostra el pedigrí complet"
+
+#: resources/views/page.phtml:55
+#, php-format
+msgid "Options referring to overall connections established before %1$s."
+msgstr "Opcions referides a connexions globals establertes anteriorment %1$s."
+
+#. I18N: Module Configuration
+#: resources/views/sync-complete.phtml:5
+msgid "Finished - all link dates are up-to-date."
+msgstr "Finalitzat: totes les dates de l'enllaç estan actualitzades."
+
+#: resources/views/sync.phtml:15
+msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
+msgstr ""
+"Aquest procés calcula les dates de tots els enllaços INDI - FAM, de manera "
+"que les relacions en un moment determinat es poden calcular de manera "
+"eficient."
+
+#: resources/views/sync.phtml:18
+msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
+msgstr ""
+"Per als arbres grans, aquest procés pot trigar inicialment diversos minuts. "
+"Sempre podeu avortar amb seguretat i continuar més tard."
+
+#: resources/views/sync.phtml:21
+msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
+msgstr ""
+"El procés s'ha de repetir (però acabarà molt més ràpid) cada vegada que "
+"s'edita un arbre, en cas contrari es poden obtenir dades de relació "
+"inconsistents (les relacions mostrades sempre són vàlides, però és possible "
+"que no s'hagin establert realment en la data donada, si els canvis en "
+"l'arbre no se sincronitzen aquí)."
