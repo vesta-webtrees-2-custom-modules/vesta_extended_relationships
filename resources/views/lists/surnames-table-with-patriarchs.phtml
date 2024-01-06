@@ -54,8 +54,9 @@ $spfxsurn = null;
             </th>
             <?php
             //[RC] added
+            //non-orderable, cf below
             ?>
-            <th>
+            <th data-orderable="false">
                 <?= /* I18N: end-of line ancestor, 'Spitzenahn' */ I18N::translate('Patriarch') ?>
                 <?php
                 echo $helpLink;
@@ -115,8 +116,12 @@ $spfxsurn = null;
                 </td>
                 <?php
                 //[RC] added
+                
+                //Issue 124:
+                //was: data-sort via array_sum($surns), which doesn't work in php 8.3 and anyway had no effect
+                //just disable the ordering altogether for now
                 ?>
-                <td class="text-center" data-sort="<?= array_sum($surns) ?>">
+                <td class="text-center">
                     <?php foreach ($surns as $indis) : ?>
                     <?php
                         $patriarch = null;
