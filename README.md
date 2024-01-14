@@ -32,7 +32,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 ### Download<a name="download"/>
 
-* Current version: 2.1.18.1.0
+* Current version: 2.1.18.2.0
 * Based on and tested with webtrees 2.1.18. Requires webtrees 2.1.17 or later.
 * Requires the ⚶ Vesta Common module ('vesta_common').
 * Displays data via the ⚶ Vesta Families module ('vesta_relatives'). 
@@ -54,7 +54,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 ### License<a name="license"/>
 
 * **vesta_extended_relationships: a webtrees custom module**
-* Copyright (C) 2019 – 2023 Richard Cissée
+* Copyright (C) 2019 – 2024 Richard Cissée
 * Derived from **webtrees** - Copyright 2022 webtrees development team.
 * French translations provided by Michel Rivière.
 * Dutch translations provided by Frans Weber and TheDutchJewel.
