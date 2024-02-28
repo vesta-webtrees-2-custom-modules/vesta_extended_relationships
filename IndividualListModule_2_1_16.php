@@ -323,7 +323,7 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                     </p>
                 <?php endif ?>
 
-                <?php if ($alpha !== '@' && $alpha !== ',' && $surname === '') : ?>
+                <?php if ($alpha !== '@' && $alpha !== ',' && $surname === '' && false /* disabled, doesn't work properly (#126) */) : ?>
                     <?php if ($show === 'surn') : ?>
                         <p>
                             <a href="<?= e($this->listUrl($tree, ['show' => 'indi', 'show_marnm' => 'no'] + $params)) ?>">
@@ -409,7 +409,12 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                             break;
                     }
                 } else {
+                    
                     // Show the list
+                    $falpha = '';
+                    
+                    //[RC] simplified because array_sum is problematic in php 8.3
+                    /*
                     $count = array_sum(array_map(static fn (array $x): int => array_sum($x), $surns));
 
                     // Don't sublist short lists.
@@ -451,7 +456,10 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                             echo '</ul>';
                         }
                     }
+                    */
+                    
                     if ($show === 'indi') {
+                        
                         if ($families) {
                             echo view('lists/families-table', [
                                 'families' => $this->families($tree, $surname, array_keys($all_surnames[$surname] ?? []), $falpha, $show_marnm === 'yes'),
