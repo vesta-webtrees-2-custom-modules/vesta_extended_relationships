@@ -11,7 +11,7 @@ use Fisharebest\Webtrees\I18N;
  * @var string                 $style
  * @var string                 $mainModuleName
  */
-            
+
 if ($nodes->contains(function (TreeNode|null $value) {
     return ($value === null);
 })) {
@@ -32,12 +32,12 @@ if ($cor->numberOfRelationships() > 1) {
 ?>
 
 <div class="⚶-chart ⚶-chart-pedigree-lca ⚶-chart-style-<?= e($style) ?>">
-    <ol class="⚶-root">    
+    <ol class="⚶-root">
         <?php foreach ($nodes as $node) : ?>
             <li class="⚶-root">
                 <div class="⚶-root">
                     <?= view('modules/vesta-lca-chart/chart-x', [
-                        'node' => $node, 
+                        'node' => $node,
                         ]) ?>
                 </div>
             </li>

@@ -35,16 +35,16 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
         Auth::checkComponentAccess($this, ModuleListInterface::class, $tree, $user);
 
         $surname_param = Validator::queryParams($request)->string('surname', '');
-        
+
         //preserve original surname (nicer for display)
         //$surname = I18N::strtoupper(I18N::language()->normalize($surname_param));
         $surname = $surname_param;
-        
+
         if ('' !== $surname) {
             //but add special character so that no 'variants' (which are actually used to transport patriarchs) match for header display/actual search
             $unicodeChar = "\u{FEFF}"; //ZERO WIDTH NO-BREAK SPACE
             $surname = $surname_param.$unicodeChar;
-        }        
+        }
 
         $params = [
             'alpha'               => Validator::queryParams($request)->string('alpha', ''),
@@ -73,7 +73,7 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
         //
         //Issue #120
         //but make sure to keep privacy-relevant tree preferences!
-        
+
         $reflection = new \ReflectionClass(get_class($tree));
         $preferences = $reflection->getProperty('preferences');
         $preferences->setAccessible(true);
@@ -81,10 +81,10 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
         $prefs['SURNAME_LIST_STYLE'] = 'style2';
         $preferences->setValue($tree, $prefs);
         */
-      
+
         return $this->createResponse($tree, $user, $params, false);
     }
-    
+
     /**
      * //RC adjusted: return SurnameWithPatriarch rather than int
      * Get a count of all surnames and variants.
@@ -119,7 +119,7 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
                 $fam2indi[$link->l_from] = $link->l_to;
             }
         }
-        
+
         $helpLink = FunctionsPrintExtHelpLink::helpLink($this->module->name(), 'Patriarch');
 
         $list = $this->allSurnamesWithPatriarchs(
@@ -173,14 +173,14 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
 
         foreach ($query->get() as $row) {
             //[RC] note
-            //webtrees capitalizes here 
+            //webtrees capitalizes here
             //to align with surname from request for variants
             //and/or to get proper results in queries?
             //(the request parameter is capitalized in IndividualListModule.handle())
             //we override handle() and use the original surname (mainly for display)
             //$row->n_surn = $row->n_surn === '' ? $row->n_surname : $row->n_surn;
             //$row->n_surn = I18N::strtoupper(I18N::language()->normalize($row->n_surn));
-            
+
             $xref = $row->n_id;
             $patriarchs = $this->getPatriarchs($indi2fams, $fam2indi, $xref, []);
 
@@ -189,7 +189,7 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
             foreach ($patriarchs as $patriarch) {
                 $patriarchsXrefs[] = $patriarch;
 
-                //in IndividualListModule.createResponse(), $surn from $list[$surn][$surname] is compared with the 'xxx'root/canonical' surname parameter 
+                //in IndividualListModule.createResponse(), $surn from $list[$surn][$surname] is compared with the 'xxx'root/canonical' surname parameter
                 //"The surname parameter is a root/canonical form. Display the actual surnames found."
                 //
                 //if there is a match, all $surname from $list[$surn][$surname] are displayed as variants in the list header
@@ -201,17 +201,17 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
                 //(*) obviously the original variants info gets lost this way. Would be better to have both!
                 //but that would require an extended re-implementation of the original list code
                 $surn = $row->n_surn;
-                
+
                 //originally the surname variant, re-purposed for patriarch
                 $surname = $patriarch;
-                
+
                 if (!array_key_exists($surn, $list) || !array_key_exists($surname, $list[$surn])) {
                     $list[$surn][$surname] = new SurnameWithPatriarch(
-                        $row->n_surname, 
-                        $patriarch, 
+                        $row->n_surname,
+                        $patriarch,
                         ($patriarch === $xref),
                         $helpLink);
-                    
+
                 } else {
                     $list[$surn][$surname]->increment();
                 }
@@ -221,7 +221,7 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
         //no longer do this now that all surnames are always loaded!
         //preload patriarchs
         //self::load($tree, $patriarchsXrefs);
-        
+
         return $list;
     }
 
@@ -245,10 +245,10 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
             $initial = I18N::language()->initialLetter($surn);
 
             $initials[$initial] ??= 0;
-            
+
             $surnamesCollection = new Collection($surnames);
-            
-            $initials[$initial] += 
+
+            $initials[$initial] +=
                 //[RC] adjusted
                 //array_sum($surnames);
                 $surnamesCollection->sum(function (SurnameWithPatriarch $surnameWithPatriarch) {
@@ -287,10 +287,10 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
      * @return void
      */
     public static function load(Tree $tree, array $xrefs): void {
-        
+
         ///handle #91 'Prepared statement contains too many placeholders'
         $coll = new Collection($xrefs);
-        
+
         foreach ($coll->chunk(256) as $chunk) {
             $rows = DB::table('individuals')
                 ->where('i_file', '=', $tree->id())
@@ -301,7 +301,7 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
             foreach ($rows as $row) {
                 Registry::individualFactory()->make($row->xref, $tree, $row->gedcom);
             }
-        }        
+        }
     }
 
     /**
@@ -319,16 +319,16 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
      * @return Collection<int,IndividualsWithPatriarchs>
      */
     protected function individuals(
-        Tree $tree, 
-        string $surname, 
-        array $surnames, 
-        string $galpha, 
-        bool $marnm, 
+        Tree $tree,
+        string $surname,
+        array $surnames,
+        string $galpha,
+        bool $marnm,
         bool $fams): Collection {
 
         //'repair' adjusted $surname (cf handle())
         $surname = mb_substr($surname, 0, -1);
-        
+
         //NOW normalize, apparently this is (sometimes?) required for correct query in parent::individuals
         //Issue #103
         //no - don't do this: leads to missing results when used with name with umlaut and language German:
@@ -336,7 +336,7 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
         //don't really understand how this works in webtrees when $surnames is empty
         //$surname = I18N::strtoupper(I18N::language()->normalize($surname));
         $surname = I18N::strtoupper($surname);
-        
+
         $originalCollection = parent::individuals($tree, $surname, $surnames, $galpha, $marnm, $fams);
 
         $links = DB::table('link')
@@ -419,22 +419,22 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
 
         return $ret;
     }
-    
+
     public function listUrl(
-        Tree $tree, 
+        Tree $tree,
         array $parameters = []): string {
-        
+
         //adjustment for 'surname': repair special character
         if (array_key_exists('surname', $parameters)) {
             $surname = $parameters['surname'];
-            
+
             $unicodeChar = "\u{FEFF}"; //ZERO WIDTH NO-BREAK SPACE
             if (str_ends_with($surname, $unicodeChar)) {
                 //'repair' adjusted $surname (cf handle())
                 $surname = mb_substr($surname, 0, -1);
                 $parameters['surname'] = $surname;
             }
-        }       
+        }
 
         //otherwise same as parent
         return parent::listUrl($tree, $parameters);

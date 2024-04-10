@@ -399,7 +399,7 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                             $leaf = current($inner);
                             echo view('lists/surnames-table-with-patriarchs', [
                                 'helpLink' => $leaf->getHelpLink(),
-                                
+
                                 'families' => $families,
                                 'module'   => $this,
                                 'order'    => [[0, 'asc']],
@@ -409,10 +409,10 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                             break;
                     }
                 } else {
-                    
+
                     // Show the list
                     $falpha = '';
-                    
+
                     //[RC] simplified because array_sum is problematic in php 8.3
                     /*
                     $count = array_sum(array_map(static fn (array $x): int => array_sum($x), $surns));
@@ -457,9 +457,9 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                         }
                     }
                     */
-                    
+
                     if ($show === 'indi') {
-                        
+
                         if ($families) {
                             echo view('lists/families-table', [
                                 'families' => $this->families($tree, $surname, array_keys($all_surnames[$surname] ?? []), $falpha, $show_marnm === 'yes'),
@@ -470,11 +470,11 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                             /** @var IndividualsWithPatriarchs */
                             $individuals = $this->individuals($tree, $surname, array_keys($all_surnames[$surname] ?? []), $falpha, $show_marnm === 'yes', false);
                             $wrapped = $individuals->first();
-                            
+
                             echo view('lists/individuals-table-with-patriarchs', [
                                 'individuals' => $wrapped->getOriginalCollection(),
                                 'patriarchs' => $wrapped->getPatriarchs(),
-                                
+
                                 'sosa'        => false,
                                 'tree'        => $tree,
                             ]);

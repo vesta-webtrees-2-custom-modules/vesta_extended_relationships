@@ -21,22 +21,22 @@ trait ExtendedRelationshipModuleTrait {
 
   public function getShortDescription() {
     $originalBlock = MoreI18N::xlate('Who is online');
-    return 
+    return
       I18N::translate('A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original \'Relationships\' module.') . ' ' .
       I18N::translate('Also includes an extended \'%1$s\' block.', $originalBlock);
   }
 
   protected function getFullDescription() {
     $originalBlock = MoreI18N::xlate('Who is online');
-      
+
     $description = array();
-    $description[] = 
+    $description[] =
             /* I18N: Module Configuration */I18N::translate('A module providing various algorithms used to determine relationships. Includes an extended \'Relationships\' chart.') . ' ' .
             /* I18N: Module Configuration */I18N::translate('Also includes an extended \'%1$s\' block.', $originalBlock) . ' ' .
             /* I18N: Module Configuration */I18N::translate('Displays additional relationship information via the extended \'Families\' tab, and the extended \'Facts and Events\' tab.');
-    $description[] = 
+    $description[] =
             /* I18N: Module Configuration */I18N::translate('Intended as a replacement for the original \'Relationships\' module.');
-    $description[] = 
+    $description[] =
             CommonI18N::requires3(CommonI18N::titleVestaCommon(), CommonI18N::titleVestaRelatives(), CommonI18N::titleVestaPersonalFacts());
     return $description;
   }
@@ -74,7 +74,7 @@ trait ExtendedRelationshipModuleTrait {
                 null,
                 'CHART_SHOW_CAS',
                 '1')));
-    
+
     $chartSub[] = new ControlPanelSubsection(
             /* I18N: Module Configuration */I18N::translate('Debugging'),
             array(new ControlPanelCheckbox(
@@ -82,7 +82,7 @@ trait ExtendedRelationshipModuleTrait {
                 null,
                 'CHART_SHOW_LEGACY',
                 '1')));
-    
+
     $chartSub[] = new ControlPanelSubsection(
             /* I18N: Module Configuration */I18N::translate('Options to show in the chart'),
             array(new ControlPanelCheckbox(

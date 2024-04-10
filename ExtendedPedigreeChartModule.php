@@ -40,7 +40,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     public const KIND_FULL      = 'full';
     public const KIND_COMPACT   = 'compact';
     public const KIND_COLLAPSE  = 'collapse';
-    
+
     /** It would be more correct to use PHP_INT_MAX, but this isn't friendly in URLs */
     public const UNLIMITED_GENERATIONS = 99;
 
@@ -49,7 +49,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     public const DEFAULT_GENERATIONS_COLLAPSE = self::UNLIMITED_GENERATIONS;
     public const DEFAULT_KIND = self::KIND_COLLAPSE;
     public const DEFAULT_STYLE = self::STYLE_RIGHT;
-    
+
     protected const DEFAULT_PARAMETERS = [
         'generations' => self::DEFAULT_GENERATIONS,
         'style'       => self::DEFAULT_STYLE,
@@ -63,7 +63,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     // Limits
     protected const MINIMUM_GENERATIONS = 5;
     protected const MAXIMUM_GENERATIONS = 15;
-    
+
     // For RTL languages
     protected const MIRROR_STYLE = [
         self::STYLE_UP    => self::STYLE_DOWN,
@@ -71,23 +71,23 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
         self::STYLE_LEFT  => self::STYLE_RIGHT,
         self::STYLE_RIGHT => self::STYLE_LEFT,
     ];
-    
+
     protected $main_module;
     protected $kind;
-    
+
     public function __construct(
         ExtendedRelationshipModule $main_module,
         string $kind) {
-        
+
         $this->main_module = $main_module;
         $this->kind = $kind;
     }
-    
+
     public function boot(): void {
         Registry::routeFactory()->routeMap()
             ->get(static::class, static::ROUTE_URL, $this)
             ->allows(RequestMethodInterface::METHOD_POST);
-        
+
         View::registerCustomView('::modules/vesta-pedigree-chart/page', $this->main_module->name() . '::modules/pedigree-chart/page');
         View::registerCustomView('::modules/vesta-pedigree-chart/chart', $this->main_module->name() . '::modules/pedigree-chart/chart');
         View::registerCustomView('::modules/vesta-pedigree-chart/chart-x', $this->main_module->name() . '::modules/pedigree-chart/chart-x');
@@ -97,7 +97,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     protected function getVestaSymbol() {
         return json_decode('"\u26B6"');
     }
-    
+
     public function title(): string {
         /*
         if (self::KIND_COMPACT == $this->kind) {
@@ -125,7 +125,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
     public function chartMenuClass(): string {
         return 'menu-chart-pedigree';
     }
-    
+
     public function chartBoxMenu(Individual $individual): ?Menu {
         return $this->chartMenu($individual);
     }
@@ -147,7 +147,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
         if (self::KIND_COLLAPSE == $this->kind) {
             $defaults = static::DEFAULT_PARAMETERS_COLLAPSE;
         }
-        
+
         return route(static::class, [
                 'xref' => $individual->xref(),
                 'tree' => $individual->tree()->name(),
@@ -163,7 +163,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
         $style       = Validator::attributes($request)->isInArrayKeys($this->styles('ltr'))->string('style');
         $generations = Validator::attributes($request)->isBetween(self::MINIMUM_GENERATIONS, self::UNLIMITED_GENERATIONS)->integer('generations');
         $ajax        = Validator::queryParams($request)->boolean('ajax', false);
-        
+
         // Convert POST requests into GET requests for pretty URLs.
         if ($request->getMethod() === RequestMethodInterface::METHOD_POST) {
             return redirect(route(self::class, [
@@ -182,23 +182,23 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
 
         if ($ajax) {
             $this->layout = 'layouts/ajax';
-            
+
             $type = PedigreeTreeType::full();
-            
+
             if ($kind === 'compact') {
                 $type = PedigreeTreeType::skipRepeated();
             } else if ($kind === 'collapse') {
                 //only keep paths to implex ancestors
                 $type = PedigreeTreeType::skipRepeatedAndNonCollapsed();
             }
-            
+
             $self = app(ExtendedChartService::class)->pedigreeTree(
-                $individual, 
+                $individual,
                 ($generations === self::UNLIMITED_GENERATIONS)?null:$generations,
                 $type);
-                
+
             $ret = $this->viewResponse('modules/vesta-pedigree-chart/chart', [
-                'start'       => $self,   
+                'start'       => $self,
                 'generations' => ($generations === self::UNLIMITED_GENERATIONS)?null:$generations,
                 'kind'        => $kind,
                 'style'       => $style,
@@ -215,7 +215,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
             'style'       => $style,
             'xref'        => $xref,
         ]);
-        
+
         return $this->viewResponse('modules/vesta-pedigree-chart/page', [
             'ajax_url'           => $ajax_url,
             'generations'        => $generations,
@@ -237,7 +237,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
                 self::KIND_COLLAPSE => self::KIND_COLLAPSE,
             ];
     }
-    
+
     /**
      * This chart can display its output in a number of styles
      *
@@ -263,14 +263,14 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
             self::STYLE_DOWN  => view('icons/pedigree-down') . MoreI18N::xlate('down'),
         ];
     }
-    
+
     protected function options(): array {
         $ret = [];
         foreach (range(self::MINIMUM_GENERATIONS, self::MAXIMUM_GENERATIONS) as $n) {
             $ret[$n] = I18N::number($n);
         }
         $ret[self::UNLIMITED_GENERATIONS] = MoreI18N::xlate('unlimited');
-        
+
         return $ret;
     }
 }

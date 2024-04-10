@@ -11,7 +11,7 @@ class ExtendedRelationshipModuleSub1 extends AbstractModule
     implements ModuleCustomInterface {
 
     use ModuleCustomTrait;
-    
+
     public function title(): string {
         return 'sub';
     }

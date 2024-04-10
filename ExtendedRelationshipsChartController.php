@@ -242,7 +242,7 @@ class ExtendedRelationshipsChartController {
 
                     $table[1][$max_y + 1] = '<div style="background:url(' . $diagonal2 . '); width: 64px; height: 64px; text-align: center;"><div class="vline-text" style="display: inline-block; width:50%; line-height: 64px;">' . $relDn . '</div><div style="height: 32px; text-align: end;">' . view('icons/arrow-down') . '</div></div>';
 
-                    $max_x = max($max_x, $x); //shouldn't actually make any difference 
+                    $max_x = max($max_x, $x); //shouldn't actually make any difference
                     $max_y += count($fam->spouses()) + 1;
                 }
             }
@@ -282,7 +282,7 @@ class ExtendedRelationshipsChartController {
                         <?php
                         echo I18N::translate('Synchronize trees to obtain dated relationship links');
                         echo '.';
-                        ?>					
+                        ?>
                     </a>
                     <?php
                 }

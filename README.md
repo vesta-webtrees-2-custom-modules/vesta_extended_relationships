@@ -24,7 +24,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 
 <p align="center"><img src="relatives.png" alt="Screenshot" align="center" width="67%"></p>
 
-* On the extended 'Facts and Events' tab, relationships to associated individuals are calculated similarly (relative to the date of the event).	
+* On the extended 'Facts and Events' tab, relationships to associated individuals are calculated similarly (relative to the date of the event).
 * Most features are configurable via module administration.
 * On the extended 'Facts and Events' tab, inverse associations and relationships are also displayed:
 
@@ -35,8 +35,8 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 * Current version: 2.1.20.0.0
 * Based on and tested with webtrees 2.1.20. Requires webtrees 2.1.17 or later.
 * Requires the ⚶ Vesta Common module ('vesta_common').
-* Displays data via the ⚶ Vesta Families module ('vesta_relatives'). 
-* Displays data via the ⚶ Vesta Facts and events module ('vesta_personal_facts'). 
+* Displays data via the ⚶ Vesta Families module ('vesta_relatives').
+* Displays data via the ⚶ Vesta Facts and events module ('vesta_personal_facts').
 * Download the zip file, which includes all Vesta modules, [here](https://cissee.de/vesta.latest.zip).
 * Support, suggestions, feature requests: <ric@richard-cissee.de>. See also [this webtrees forum thread](https://www.webtrees.net/index.php/en/forum/4-customising/31587-extended-relationships-module-feature-requests).
 * Issues also via <https://github.com/vesta-webtrees-2-custom-modules/vesta_extended_relationships/issues>
@@ -48,7 +48,7 @@ This is a webtrees 2.x module - It cannot be used with webtrees 1.x. For its web
 * Enable the extended 'Families' module via Control Panel -> Modules -> All modules -> ⚶ Vesta Families.
 * Enable the extended 'Facts and Events' module via Control Panel -> Modules -> All modules -> ⚶ Vesta Facts and Events.
 * Enable the main module via Control Panel -> Modules -> All modules -> ⚶ Vesta Extended Relationships. After that, you may configure several options.
-* Configure the visibility of the old and the extended 'Families' tab via Control Panel -> Modules -> Tabs (usually, you'll want to use only one of them. You may just disable the original 'Families' module altogether).		
+* Configure the visibility of the old and the extended 'Families' tab via Control Panel -> Modules -> Tabs (usually, you'll want to use only one of them. You may just disable the original 'Families' module altogether).
 * Configure the visibility of the old and the extended 'Facts and Events' tab via Control Panel -> Modules -> Tabs (usually, you'll want to use only one of them. You may just disable the original 'Facts and Events' module altogether).
 
 ### License<a name="license"/>

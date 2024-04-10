@@ -11,13 +11,13 @@ use Fisharebest\Webtrees\I18N;
  * @var string                 $kind
  * @var string                 $style
  */
-            
+
 if ($start === null) {
     if ($generations === null) {
         echo '<p>' . I18N::translate('There is no recorded pedigree collapse.') . '</p>';
     } else {
         echo '<p>' . I18N::translate('There is no recorded pedigree collapse within %1$s generations.', $generations) . '</p>';
-    }    
+    }
     return;
 }
 
@@ -25,6 +25,6 @@ if ($start === null) {
 
 <div class="⚶-chart ⚶-chart-pedigree-<?= e($kind) ?> ⚶-chart-style-<?= e($style) ?>">
     <?= view('modules/vesta-pedigree-chart/chart-x', [
-        'node' => $start, 
+        'node' => $start,
         ]) ?>
 </div>

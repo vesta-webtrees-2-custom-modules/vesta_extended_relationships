@@ -11,43 +11,43 @@ use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Tree;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Query\JoinClause;
-    
+
 class SomeTiebreaker implements DijkstraTiebreakerFunction {
-    
+
     private int $total;
     private int $ongoing;
 
     public function __construct(
         int $total,
         int $ongoing) {
-        
+
         $this->total = $total;
         $this->ongoing = $ongoing;
     }
-    
+
     public static function create(): SomeTiebreaker {
         return new SomeTiebreaker(0, 0);
     }
-    
+
     public function next(int $weight): void {
         //error_log("next".$weight);
         if ($weight === 1000) {
             //larger runs via common ancestors are considered to be better
             $this->total += $this->ongoing * $this->ongoing;
-            
+
             //start next block
-            $this->ongoing = 0;            
+            $this->ongoing = 0;
         } else {
             $this->ongoing += $weight;
         }
     }
-    
+
     public function conclude(): int {
         $this->total += $this->ongoing * $this->ongoing;
-        
+
         //smaller = better!
         $this->total *= -1;
-        
+
         return $this->total;
     }
 }
@@ -90,7 +90,7 @@ class IdWithDescendant {
 
     /**
      *
-     * @return IdWithPathElement	 
+     * @return IdWithPathElement
      */
     public function next($id) {
         return new IdWithDescendant($id, new Descendant($this->getId()));
@@ -120,30 +120,30 @@ class CommonAncestorAndPath {
     public function getShortestLeg() {
         return $this->shortestLeg;
     }
-    
+
     public function __construct($ca, $path) {
         $this->ca = ($ca === null) ? null : (string) $ca;
         $this->path = array_map(ExtendedRelationshipController::stringMapper(), $path);
         $this->size = count($this->path);
-        
+
         if ($this->ca === null) {
             $this->shortestLeg = PHP_INT_MAX;
         } else {
             $key = array_search($this->ca, $this->path);
             if ($key === false) {
-               $this->shortestLeg = PHP_INT_MAX; 
+               $this->shortestLeg = PHP_INT_MAX;
             } else {
-               $index = array_search($key, array_keys($this->path)); 
+               $index = array_search($key, array_keys($this->path));
                $this->shortestLeg = min($index, $this->size - ($index + 1));
             }
         }
-        
+
         //error_log(print_r($this, true));
     }
 
     /**
      *
-     * @return IdWithPathElement	 
+     * @return IdWithPathElement
      */
     public function next($id) {
         return new IdWithDescendant($id, new Descendant($this->getId()));
@@ -158,7 +158,7 @@ class CorPlus {
     private $equivalentRelationships;
 
     /**
-     * 
+     *
      * @return double
      */
     public function getCor() {
@@ -166,7 +166,7 @@ class CorPlus {
     }
 
     /**
-     * 
+     *
      * @return int only abs value is relevant
      */
     public function getActuallyBetterThan() {
@@ -174,7 +174,7 @@ class CorPlus {
     }
 
     /**
-     * 
+     *
      * @return string[]|null
      */
     public function getEquivalentRelationships() {
@@ -202,7 +202,7 @@ class ExtendedRelationshipController {
             //if ca is INDI, we have to add a single path for this ca.
             //
             //if ca is FAM, we actually have to add two paths (one per family spouse) of length $pathSegments+2
-            //i.e. the formula is 
+            //i.e. the formula is
             //$cor += 2*pow(2,-($pathSegments+2)/2);
             //which is the same as
             //$cor += pow(2,-$pathSegments/2);
@@ -227,7 +227,7 @@ class ExtendedRelationshipController {
             //if ca is INDI, we have to add a single path for this ca.
             //
             //if ca is FAM, we actually have to add two paths (one per family spouse) of length $pathSegments+2
-            //i.e. the formula is 
+            //i.e. the formula is
             //$cor += 2*pow(2,-($pathSegments+2)/2);
             //which is the same as
             //$cor += pow(2,-$pathSegments/2);
@@ -256,7 +256,7 @@ class ExtendedRelationshipController {
         if ($equivalentPathLength == $bestPathLength) {
             return new CorPlus($cor, $actuallyBetterThan, null);
         }
-        
+
         //create an equivalent relationship that's similar 'in character'
         //to the relationship established via the closest ca
 
@@ -327,27 +327,27 @@ class ExtendedRelationshipController {
     }
 
     public function calculateRelationships_123456(
-        Individual $individual1, 
-        Individual $individual2, 
-        $mode, 
-        $recursion, 
+        Individual $individual1,
+        Individual $individual2,
+        $mode,
+        $recursion,
         $beforeJD = null) {
-        
+
         return $this->x_calculateRelationships_123456(
-            $individual1->tree(), 
-            $individual1->xref(), 
-            $individual2->xref(), 
-            $mode, 
-            $recursion, 
+            $individual1->tree(),
+            $individual1->xref(),
+            $individual2->xref(),
+            $mode,
+            $recursion,
             $beforeJD);
     }
 
     public function x_calculateRelationships_123456(
-        $tree, 
-        $xref1, 
-        $xref2, 
-        $mode, 
-        $recursion, 
+        $tree,
+        $xref1,
+        $xref2,
+        $mode,
+        $recursion,
         $beforeJD = null) {
 
         if ($mode === 1) {
@@ -515,22 +515,22 @@ class ExtendedRelationshipController {
         }
 
         //throw new Exception("unexpected mode!");
-        
+
         //Issue #125
         //just return empty
         return [];
     }
 
     public static function compareCommonAncestorAndPath(
-        CommonAncestorAndPath $a, 
+        CommonAncestorAndPath $a,
         CommonAncestorAndPath $b) {
-        
+
         $cmp = $a->getSize() <=> $b->getSize();
-        
+
         if ($cmp !== 0) {
             return $cmp;
         }
-        
+
         //tiebreaker: prefer $ca closed to either end of path (grandmother before aunt etc)
         return $a->getShortestLeg() <=> $b->getShortestLeg();
     }
@@ -815,7 +815,7 @@ class ExtendedRelationshipController {
     /**
      * Calculate the shortest paths - or all paths - between two individuals.
      * blood relationships preferred!
-     * extension: only links established before given julian day	 
+     * extension: only links established before given julian day
      *
      * @param String $xref1
      * @param String $xref2
@@ -823,11 +823,11 @@ class ExtendedRelationshipController {
      * @return string[][]
      */
     public function x_calculateRelationships_withWeights(
-        Tree $tree, 
-        string $xref1, 
-        string $xref2, 
+        Tree $tree,
+        string $xref1,
+        string $xref2,
         $beforeJD = null) {
-        
+
         $graph = array();
 
         //make sure the tables exist.
@@ -941,35 +941,35 @@ class ExtendedRelationshipController {
                 //error_log("weight:".$tiebreakerWeight);
                 $weightedPaths []= array('path' => $path, 'weight' => $tiebreakerWeight);
             }
-            
+
             usort($weightedPaths, static fn (array $x, array $y): int => ($x['weight'] <=> $y['weight']));
-            
+
             $paths = array_map(static fn (array $x): array => $x['path'], $weightedPaths);
         }
-        
+
         $paths = ExtendedRelationshipController::adjustPaths($paths);
-        
+
         return $paths;
     }
-    
+
     public function calculateRelationships_optimized(
-        Individual $individual1, 
-        Individual $individual2, 
-        int $recursion, 
+        Individual $individual1,
+        Individual $individual2,
+        int $recursion,
         $beforeJD = null) {
-        
+
         return $this->x_calculateRelationships_optimized($individual1->tree(), $individual1->xref(), $individual2->xref(), $recursion, $beforeJD);
     }
 
     //adjustment from original: OptimizedDijkstra
     //extension: only links established before given julian day
     public function x_calculateRelationships_optimized(
-        $tree, 
-        $xref1, 
-        $xref2, 
-        int $recursion, 
+        $tree,
+        $xref1,
+        $xref2,
+        int $recursion,
         $beforeJD = null) {
-        
+
         $graph = array();
 
         if ($beforeJD === null) {

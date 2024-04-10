@@ -33,7 +33,7 @@ class SurnameWithPatriarch {
     public function getHelpLink() {
         return $this->helpLink;
     }
-    
+
     public function __construct(
         string $actualSurname,
         string $patriarchXref,

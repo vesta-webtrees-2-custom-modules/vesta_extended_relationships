@@ -27,7 +27,7 @@ class AjaxRequests {
 
     $mode = Requests::getInt($request, 'mode');
     $recursion = Requests::getInt($request, 'recursion');
-    $showCa = Requests::getBool($request, 'showCa');    
+    $showCa = Requests::getBool($request, 'showCa');
     $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
 
     $pid = Requests::getString($request, 'pid');
@@ -51,12 +51,12 @@ class AjaxRequests {
     $beforeJD = Requests::getIntOrNull($request, 'beforeJD');
 
     return ExtendedRelationshipModule::getRelationshipLink(
-        $moduleName, 
-        $tree, 
-        $text, 
-        $xref1, 
-        $xref2, 
-        $mode, 
+        $moduleName,
+        $tree,
+        $text,
+        $xref1,
+        $xref2,
+        $mode,
         $beforeJD);
   }
 
