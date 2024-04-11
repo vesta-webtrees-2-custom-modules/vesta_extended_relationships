@@ -38,9 +38,9 @@ class OptimizedDijkstra {
      * @return void
      */
     protected function processNextNodeInQueue(
-        array $exclude, 
+        array $exclude,
         $target = null) {
-        
+
         // Process the closest vertex
         $closest = array_search(min($this->queue), $this->queue);
 
@@ -112,10 +112,10 @@ class OptimizedDijkstra {
      * @return string[][] Zero or more shortest paths, each represented by a list of nodes
      */
     public function shortestPaths(
-        $source, 
-        $target, 
+        $source,
+        $target,
         array $exclude = array()) {
-        
+
         // The shortest distance to all nodes starts with infinity...
         $this->distance = array_fill_keys(array_keys($this->graph), INF);
         // ...except the start node
@@ -145,19 +145,19 @@ class OptimizedDijkstra {
     }
 
     public function calculateTiebreaker(
-        array $path, 
+        array $path,
         DijkstraTiebreakerFunction $f): int {
-        
+
         $previous = null;
         foreach ($path as $node) {
             if ($previous !== null) {
                 $weight = $this->graph[$previous][$node];
                 $f->next($weight);
             }
-            
+
             $previous = $node;
         }
-        
+
         return $f->conclude();
     }
 }

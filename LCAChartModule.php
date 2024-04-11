@@ -40,11 +40,11 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
 
     // Defaults
     public const DEFAULT_STYLE = self::STYLE_RIGHT;
-    
+
     protected const DEFAULT_PARAMETERS  = [
         'style' => self::DEFAULT_STYLE,
     ];
-    
+
     // For RTL languages
     protected const MIRROR_STYLE = [
         self::STYLE_UP    => self::STYLE_DOWN,
@@ -52,20 +52,20 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
         self::STYLE_LEFT  => self::STYLE_RIGHT,
         self::STYLE_RIGHT => self::STYLE_LEFT,
     ];
-    
+
     protected $main_module;
-    
+
     public function __construct(
         ExtendedRelationshipModule $main_module) {
-        
+
         $this->main_module = $main_module;
     }
-    
+
     public function boot(): void {
         Registry::routeFactory()->routeMap()
             ->get(static::class, static::ROUTE_URL, $this)
             ->allows(RequestMethodInterface::METHOD_POST);
-        
+
         View::registerCustomView('::modules/vesta-lca-chart/page', $this->main_module->name() . '::modules/lca-chart/page');
         View::registerCustomView('::modules/vesta-lca-chart/chart', $this->main_module->name() . '::modules/lca-chart/chart');
         View::registerCustomView('::modules/vesta-lca-chart/chart-x', $this->main_module->name() . '::modules/lca-chart/chart-x');
@@ -75,7 +75,7 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
     protected function getVestaSymbol() {
         return json_decode('"\u26B6"');
     }
-    
+
     public function title(): string {
         return $this->getVestaSymbol() . ' ' . I18N::translate('Common ancestors');
     }
@@ -87,7 +87,7 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
     public function chartMenuClass(): string {
         return 'menu-chart-relationship';
     }
-    
+
     public function chartBoxMenu(Individual $individual): ?Menu {
         return $this->chartMenu($individual);
     }
@@ -106,7 +106,7 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
         $xref2       = Validator::attributes($request)->isXref()->string('xref2', '');
         $style       = Validator::attributes($request)->isInArrayKeys($this->styles('ltr'))->string('style');
         $ajax        = Validator::queryParams($request)->boolean('ajax', false);
-        
+
         // Convert POST requests into GET requests for pretty URLs.
         if ($request->getMethod() === RequestMethodInterface::METHOD_POST) {
             return redirect(route(self::class, [
@@ -121,7 +121,7 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
 
         $individual1 = Registry::individualFactory()->make($xref, $tree);
         $individual2 = Registry::individualFactory()->make($xref2, $tree);
-        
+
         if ($individual1 instanceof Individual) {
             $individual1 = Auth::checkIndividualAccess($individual1, false, true);
         }
@@ -133,14 +133,14 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
         if ($individual1 instanceof Individual && $individual2 instanceof Individual) {
             if ($ajax) {
                 $this->layout = 'layouts/ajax';
-            
+
                 $nodes = app(ExtendedChartService::class)->pedigreeTrees(
-                    new Collection([$individual1, $individual2]), 
+                    new Collection([$individual1, $individual2]),
                     null,
                     PedigreeTreeType::commonAncestors());
 
                 $ret = $this->viewResponse('modules/vesta-lca-chart/chart', [
-                    'nodes'          => $nodes,   
+                    'nodes'          => $nodes,
                     'style'          => $style,
                     'mainModuleName' => $this->main_module->name(),
                 ]);
@@ -160,7 +160,7 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
             $title = I18N::translate('Common ancestors');
             $ajax_url = '';
         }
-        
+
         return $this->viewResponse('modules/vesta-lca-chart/page', [
             'ajax_url'           => $ajax_url,
             'individual1'        => $individual1,
@@ -172,7 +172,7 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
             'tree'               => $tree,
         ]);
     }
-    
+
     /**
      * This chart can display its output in a number of styles
      *

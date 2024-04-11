@@ -126,7 +126,7 @@ class Sync {
     }
 
     public static function cleanupIndividuals() {
-        //delete individuals that don't exist anymore		
+        //delete individuals that don't exist anymore
         DB::table('rel_individuals')
             ->leftJoin('individuals', function (JoinClause $join): void {
                 $join
@@ -217,8 +217,8 @@ class Sync {
             $gedcom = $row->i_gedcom;
 
             //'i_from' = 'born no later than' (= minimum of date of birth, any valid fact/event date).
-            //note: we don't use family data to estimate this date, 
-            //because that would complicate the decision when to recalculate 
+            //note: we don't use family data to estimate this date,
+            //because that would complicate the decision when to recalculate
             //$indi = new DirectIndividual($id, $gedcom, "" . $file);
             $tree = app(TreeService::class)->find($file);
             $indi = new Individual($id, $gedcom, null, $tree);

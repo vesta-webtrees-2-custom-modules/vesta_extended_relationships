@@ -174,12 +174,12 @@ $("#<?= e($table_id) ?>")
             <tr>
                 <th><?= MoreI18N::xlate('Given names') ?></th>
                 <th><?= MoreI18N::xlate('Surname') ?></th>
-                
+
                 <?php
                   //[RC] added
                 ?>
                 <th><?= /* I18N: end-of line ancestor, 'Spitzenahn' */ I18N::translate('Patriarch') ?></th>
-                
+
                 <th><?= /* I18N: Abbreviation for “Sosa-Stradonitz number”. This is an individual’s surname, so may need transliterating into non-latin alphabets. */
                     MoreI18N::xlate('Sosa') ?></th>
                 <th><?= MoreI18N::xlate('Birth') ?></th>
@@ -235,11 +235,11 @@ $("#<?= e($table_id) ?>")
                         /** @var Individual */
                         $patriarch = Registry::individualFactory()->make($p, $individual->tree());
                         $patriarchsPerIndi[] = $patriarch;
-                      }                      
-                    }                    
+                      }
+                    }
                   }
                 ?>
-                
+
                 <td class="text-center" data-sort="<?= (sizeof($patriarchsPerIndi) === 0)?'':e(str_replace([',', Individual::PRAENOMEN_NESCIO, Individual::NOMEN_NESCIO], 'AAAA', current($patriarchsPerIndi)->sortName())) ?>">
                     <?php
                       foreach ($patriarchsPerIndi as $patriarch) {
@@ -249,7 +249,7 @@ $("#<?= e($table_id) ?>")
                       }
                     ?>
                 </td>
-                                
+
                 <td class="text-center" data-sort="<?= $key ?>">
                     <?php if ($sosa) : ?>
                         <?php if ($module instanceof RelationshipsChartModule) : ?>

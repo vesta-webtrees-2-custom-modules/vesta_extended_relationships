@@ -15,14 +15,14 @@ use Illuminate\Support\Collection;
 $record = $node->record();
 
 if ($record instanceof Family) {
-  throw new Exception();  
+  throw new Exception();
 }
 
 $indiMarkups = $node->markups();
-    
+
 $next = $node->next();
-    
-$leavesOnly = true;    
+
+$leavesOnly = true;
 foreach ($next as $nextNode) {
     $nextnext = $nextNode->next();
     if (sizeof($nextnext) > 0) {
@@ -37,11 +37,11 @@ if ($leavesOnly) {
 }
 
 $indiMarkups = $indiMarkups->filter(function (TreeNodeMarkup $markup): bool {
-        return 
-            ($markup->type() == TreeNodeMarkupType::firstPathToLca()) || 
+        return
+            ($markup->type() == TreeNodeMarkupType::firstPathToLca()) ||
             ($markup->type() == TreeNodeMarkupType::otherPathToLca());
     });
-    
+
 //TODO: this is problematic for hrefs!
 if ($indiMarkups->count() > 3) {
     $mainMarkups = $indiMarkups->slice(0, 2);
@@ -77,12 +77,12 @@ if ($indiMarkups->count() > 3) {
                         <a href="#⚶-markup-<?= $otherMarkups->first()->label(); ?>"><?= '&hellip;' ?></a>
                     </div>
                 <?php endif ?>
-            <?php endif ?>            
+            <?php endif ?>
             <?= view('vesta-chart-box', [
-                'individual' => $record, 
+                'individual' => $record,
                 ]) ?>
         </div>
-    </li>    
+    </li>
     <?php if (sizeof($next) > 0) : ?>
         <li class="⚶-famc">
             <div class="⚶-famc">
@@ -91,15 +91,13 @@ if ($indiMarkups->count() > 3) {
                         <li class="⚶-fam<?= $leaves ?>">
                             <div class="⚶-fam<?= $leaves ?>">
                                 <?= view('modules/vesta-lca-chart/chart-x', [
-                                    'node' => $nextNode, 
-                                    ]) ?>                                
+                                    'node' => $nextNode,
+                                    ]) ?>
                             </div>
                         </li>
-                    <?php endforeach ?>                    
+                    <?php endforeach ?>
                 </ol>
             </div>
         </li>
     <?php endif ?>
-</ol>    
-
-
+</ol>

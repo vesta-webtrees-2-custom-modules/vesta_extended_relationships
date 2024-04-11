@@ -33,7 +33,7 @@ if ($self instanceof Individual) {
 }
 
 $spfxsurn = null;
-    
+
 ?>
 
 <table
@@ -89,7 +89,7 @@ $spfxsurn = null;
                         <?php if ($module instanceof IndividualListModule_2_1_16 || $module instanceof FamilyListModule) : ?>
                             <?php
                             //[RC] adjusted
-                            ?>                    
+                            ?>
                             <?php if ($spfxsurn !== $previousSpfxsurn) : ?>
                                 <?php if ($surn !== '') : ?>
                                     <a href="<?= $module->listUrl($tree, ['surname' => $surn]) ?>" dir="auto">
@@ -101,7 +101,7 @@ $spfxsurn = null;
                                     </a>
                                 <?php endif ?>
                             <?php else : ?>
-                                <!-- repeated surname, skip (issue #102) -->                                
+                                <!-- repeated surname, skip (issue #102) -->
                             <?php endif ?>
                         <?php else : ?>
                             <?php if ($spfxsurn) : ?>
@@ -109,14 +109,14 @@ $spfxsurn = null;
                             <?php else : ?>
                                 <!-- No surname, but a value from "2 SURN"? A common workaround for toponyms, etc. -->
                                 <span dir="auto"><?= e($surn) ?></span>
-                            <?php endif ?>    
+                            <?php endif ?>
                         <?php endif ?>
                         <br>
                     <?php endforeach ?>
                 </td>
                 <?php
                 //[RC] added
-                
+
                 //Issue 124:
                 //was: data-sort via array_sum($surns), which doesn't work in php 8.3 and anyway had no effect
                 //just disable the ordering altogether for now
@@ -152,7 +152,7 @@ $spfxsurn = null;
 
                             echo $indi_html;
                         }
-                    ?>   
+                    ?>
                     <br>
                     <?php endforeach ?>
                 </td>

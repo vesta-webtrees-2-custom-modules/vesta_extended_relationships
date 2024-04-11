@@ -61,11 +61,11 @@ div.⚶-chart {
 }
 
 /* ************************************************************************** */
-    
-/* 
-    it may seem more straightforward to use flex, 
+
+/*
+    it may seem more straightforward to use flex,
     which indeed (accidentally?) works for 'up' and 'down', using 'width: 50%' etc. for connectors,
-    but that doesn't work not for 'left' and 'right' (and apparently cannot be expected to for dynamic dimensions), 
+    but that doesn't work not for 'left' and 'right' (and apparently cannot be expected to for dynamic dimensions),
     so we use grid with dummy columns (rows) for 'percentaged' widths (heights)
 */
 
@@ -117,7 +117,7 @@ div.⚶-chart {
 .⚶-chart-style-up li.⚶-fam {
     display: inline-grid;
     grid-template-rows: auto max-content; /* actual element, pseudo-element */
-    grid-template-columns: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */ 
+    grid-template-columns: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */
     align-items: end; /* for subtrees of unequal depth */
     width: max-content; /* grow with content */
 }
@@ -284,7 +284,7 @@ div.⚶-chart {
 .⚶-chart-style-down li.⚶-fam {
     display: inline-grid;
     grid-template-rows: max-content auto; /* pseudo-element, actual element */
-    grid-template-columns: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */ 
+    grid-template-columns: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */
     align-items: start; /* for subtrees of unequal depth */
     width: max-content; /* grow with content */
 }
@@ -423,7 +423,7 @@ div.⚶-chart {
 /* required for the connectors */
 .⚶-chart-style-right li.⚶-fam {
     display: inline-grid;
-    grid-template-rows: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */ 
+    grid-template-rows: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */
     grid-template-columns: max-content auto; /* pseudo-element, actual element */
 }
 
@@ -440,7 +440,7 @@ div.⚶-chart {
 .⚶-chart-style-right li.⚶-fam:not(.⚶-fam-leaves):not(:only-child):first-child::before {
     content: "";
     grid-row: 3 / span 2; /* 'left 50%' */
-    width: 15px;    
+    width: 15px;
     border-width: 1.5px;
     border-top-left-radius: 10px;
     border-left-color: black;
@@ -585,7 +585,7 @@ div.⚶-chart {
 /* required for the connectors */
 .⚶-chart-style-left li.⚶-fam {
     display: inline-grid;
-    grid-template-rows: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */ 
+    grid-template-rows: 4fr 1fr 1fr 4fr; /* allows: 'left 50%', 'center 20%', 'right 50%' */
     grid-template-columns: auto max-content; /* actual element, pseudo-element */
     justify-items: end; /* for subtrees of unequal depth */
 }
@@ -605,7 +605,7 @@ div.⚶-chart {
     grid-row: 3 / span 2; /* 'left 50%' */
     /* flip order */
     grid-column: 2; /* using ::after instead of ::before has no effect at all - weirdly(?) */
-    width: 15px;    
+    width: 15px;
     border-width: 1.5px;
     border-top-right-radius: 10px;
     border-right-color: black;

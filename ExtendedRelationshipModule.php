@@ -70,23 +70,23 @@ use function view;
 
 // we extend RelationshipsChartModule so that links to this chart are used even in non-extended tabs etc.
 class ExtendedRelationshipModule extends RelationshipsChartModule implements
-    ModuleCustomInterface, 
-    ModuleMetaInterface, 
-    ModuleConfigInterface, 
-    ModuleGlobalInterface, 
-    ModuleChartInterface, 
-    ModuleListInterface, 
+    ModuleCustomInterface,
+    ModuleMetaInterface,
+    ModuleConfigInterface,
+    ModuleGlobalInterface,
+    ModuleChartInterface,
+    ModuleListInterface,
     ModuleBlockInterface,
     //ModuleContainerInterface,
     ModuleMenuInterface, //more charts
-    RequestHandlerInterface, 
-    IndividualFactsTabExtenderInterface, 
+    RequestHandlerInterface,
+    IndividualFactsTabExtenderInterface,
     RelativesTabExtenderInterface {
 
     use ModuleCustomTrait,
         ModuleMetaTrait,
         ModuleConfigTrait,
-        ModuleGlobalTrait, 
+        ModuleGlobalTrait,
         ModuleChartTrait,
         ModuleListTrait,
         ModuleBlockTrait,
@@ -116,7 +116,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     /** By default new trees allow unlimited recursion */
     public const DEFAULT_RECURSION = '99';
-    
+
     //not as constant: depends on module configuration
     /*
     public const DEFAULT_ANCESTORS = '1'; //should we use '1' here even if in case this option isn't configured?
@@ -124,7 +124,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         'ancestors' => self::DEFAULT_ANCESTORS,
         'recursion' => self::DEFAULT_RECURSION,
     ];
-    */    
+    */
 
     /** @var ExtendedIndividualListRequestHandler */
     protected $listRequestHandler;
@@ -136,18 +136,18 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
         parent::__construct(
             //$module_service, //COMMENT OUT for 2.1.x
-            $relationship_service, 
+            $relationship_service,
             $tree_service);
 
         $this->listRequestHandler = new ExtendedIndividualListRequestHandler(
             $this);
     }
-    
+
     //test only!
-    public function containedModules(): Collection {        
+    public function containedModules(): Collection {
         return new Collection([new ExtendedRelationshipModuleSub1()]);
     }
-    
+
     protected function defaultParameters(): array {
         $chart1 = boolval($this->getPreference('CHART_1', '1'));
         $chart2 = boolval($this->getPreference('CHART_2', '0'));
@@ -156,7 +156,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $chart5 = boolval($this->getPreference('CHART_5', '1'));
         $chart6 = boolval($this->getPreference('CHART_6', '0'));
         $chart7 = boolval($this->getPreference('CHART_7', '0'));
-        
+
         //fixed priority (we don't want to make this configurable as well)
         if ($chart7) {
             $defaultMode = 7;
@@ -176,13 +176,13 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
             //nothing selected!
             $defaultMode = 1;
         }
-        
+
         return [
             'ancestors' => $defaultMode,
             'recursion' => self::DEFAULT_RECURSION,
         ];
     }
-    
+
     public function customModuleAuthorName(): string {
         return 'Richard Cissée';
     }
@@ -226,7 +226,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     public function onBoot(): void {
         //define our 'pretty' routes
-        //note: potentially problematic in case of name clashes; 
+        //note: potentially problematic in case of name clashes;
         //webtrees isn't interested in solving this properly, see
         //https://www.webtrees.net/index.php/en/forum/2-open-discussion/33687-pretty-urls-in-2-x
 
@@ -258,14 +258,14 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $submenus = new Collection();
         $submenus->put(1, new ExtendedPedigreeChartModule($this, 'PLACEHOLDER'));
         $submenus->put(2, new LCAChartModule($this));
-        
+
         //only need to boot once per class
         //$submenus->put(2, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_COLLAPSE));
-        
+
         foreach ($submenus as $submenu) {
             $submenu->boot();
         }
-        
+
         $this->flashWhatsNew('\Cissee\Webtrees\Module\ExtendedRelationships\WhatsNew', 2);
     }
 
@@ -280,7 +280,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         <ol class="breadcrumb small">
             <li>
                 <a href="<?php echo $url; ?>">
-                    <?php echo I18N::translate('Synchronize trees to obtain dated relationship links'); ?>					
+                    <?php echo I18N::translate('Synchronize trees to obtain dated relationship links'); ?>
                 </a>
                 <?php echo I18N::translate(' (see below for details).'); ?>
             </li>
@@ -296,7 +296,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $xref2,
         $mode,
         $beforeJD = null) {
-        
+
         if ($text === null) {
             //handle this case via special $path?
             if ($xref1 === $xref2) {
@@ -313,11 +313,11 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
                 $slcaController = new ExtendedRelationshipController;
 
                 $paths = $slcaController->x_calculateRelationships_123456(
-                    $tree, 
-                    $xref1, 
-                    $xref2, 
-                    $mode, 
-                    1, 
+                    $tree,
+                    $xref1,
+                    $xref2,
+                    $mode,
+                    1,
                     $beforeJD);
 
                 foreach ($paths as $path) {
@@ -344,7 +344,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
                 }
             }
         }
-        
+
         if ($text === null) {
             $text = CommonI18N::noRelationshipFound();
         }
@@ -455,9 +455,9 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     //Families Tab
 
     protected function getOutputAfterTab(
-        $toggleableRels, 
+        $toggleableRels,
         $toggle) {
-        
+
         $post = '';
 
         if ($toggleableRels) {
@@ -469,7 +469,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     protected function getScript(
         string $toggle) {
-        
+
         ob_start();
         ?>
         <script>
@@ -513,7 +513,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
         $toggleableRels = boolval($this->getPreference($settingsPrefix . 'TAB_TOGGLEABLE_RELS', '1'));
 
-        //expensive - load async (and only if visible) 
+        //expensive - load async (and only if visible)
         //(we have to print via ajax call because we have to indirectly read local storage to determine visibility,
         //but it's preferable for faster tab display anyway)
         //FunctionsPrintRels::printSlcasWrtDefaultIndividual($controller->record, $mode, $recursion, $showCa);
@@ -612,7 +612,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
         $toggleableRels = boolval($this->getPreference('TAB_TOGGLEABLE_RELS', '1'));
 
-        //expensive - load async (and only if visible) 
+        //expensive - load async (and only if visible)
         //(we have to print via ajax call because we have to indirectly read local storage to determine visibility,
         //but it's preferable for faster tab display anyway)
         //FunctionsPrintRels::printSlcas($moduleName, $family, $access_level, $mode, $recursion, $showCa);
@@ -1035,12 +1035,12 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     public function hFactsTabGetOutputAfterTab(
         GedcomRecord $record,
         bool $ajax): GenericViewElement {
-        
+
         if (!$ajax) {
             //nothing to do - in fact must not initialize twice!
             return GenericViewElement::createEmpty();
         }
-        
+
         $toggleableRels = boolval($this->getPreference('FTAB_TOGGLEABLE_RELS', '1'));
         return $this->getOutputAfterTab($toggleableRels, 'show-relationships-factstab');
     }
@@ -1052,27 +1052,27 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     public function hFactsTabGetOutputInDBox(
         GedcomRecord $record): GenericViewElement {
-        
+
         $toggleableRels = boolval($this->getPreference('FTAB_TOGGLEABLE_RELS', '1'));
         return $this->getOutputInDescriptionBox($toggleableRels, 'show-relationships-factstab', 'toggleableRelsFactstab', 'Relationships');
     }
 
     public function hRelativesTabGetOutputInDBox(
         Individual $person) {
-        
+
         $toggleableRels = boolval($this->getPreference('TAB_TOGGLEABLE_RELS', '1'));
         return $this->getOutputInDescriptionBox($toggleableRels, 'show-relationships', 'toggleableRels', 'Relationships');
     }
 
     public function hFactsTabGetOutputAfterDBox(
         Individual $person): GenericViewElement {
-        
+
         return $this->getOutputAfterDescriptionBox($person, 'F', 'mainRelsFactstab', 'toggleableRelsFactstab');
     }
 
     public function hRelativesTabGetOutputAfterDBox(
         Individual $person) {
-        
+
         return $this->getOutputAfterDescriptionBox($person, '', 'mainRels', 'toggleableRels');
     }
 
@@ -1136,18 +1136,18 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     //////////////////////////////////////////////////////////////////////////////
     //extension of LoggedInUserModule functionality
-    
+
     public function getBlock(
-        Tree $tree, 
-        int $block_id, 
-        string $context, 
+        Tree $tree,
+        int $block_id,
+        string $context,
         array $config = []): string {
 
         $ur = app(UserRepositoryExt::class);
         $content = $ur->usersLoggedInQuery('list', $this->name());
 
         $title = $this->getBlockTitle(MoreI18N::xlate('Who is online'));
-         
+
         if ($context !== self::CONTEXT_EMBED) {
             return view('modules/block-template', [
                 'block'      => Str::kebab($this->name()),
@@ -1160,7 +1160,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
         return $content;
     }
-    
+
     public function isUserBlock(): bool {
         return true;
     }
@@ -1168,9 +1168,9 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     public function isTreeBlock(): bool {
         return true;
     }
-    
+
     ///////////////////////////////////////////////////////////////////////////
-    
+
     /**
      * A menu, to be added to the main application menu.
      *
@@ -1180,20 +1180,20 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
      */
     public function getMenu(Tree $tree): ?Menu {
         //return null;
-        
+
         //experimental:
         $request = app(ServerRequestInterface::class);
         assert($request instanceof ServerRequestInterface);
 
         $xref       = Validator::attributes($request)->isXref()->string('xref', '');
         $individual = $tree->significantIndividual(Auth::user(), $xref);
-        
+
         $submenus = new Collection();
         //impl: remember to boot() any additions
         $submenus->put(1, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_COMPACT));
         $submenus->put(2, new ExtendedPedigreeChartModule($this, ExtendedPedigreeChartModule::KIND_COLLAPSE));
         $submenus->put(3, new LCAChartModule($this));
-        
+
         $submenus = $submenus
             ->map(static function (ModuleChartInterface $module) use ($individual): Menu {
                 return $module->chartMenu($individual);
@@ -1207,13 +1207,13 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         }
 
         return new Menu(
-            I18N::translate('More Charts'), 
-            '#', 
-            'menu-chart', 
-            ['rel' => 'nofollow'], 
+            I18N::translate('More Charts'),
+            '#',
+            'menu-chart',
+            ['rel' => 'nofollow'],
             $submenus->all());
     }
-    
+
     public function headContent(): string {
         $pre = '<link href="' . $this->assetUrl('css/chart.css') . '" type="text/css" rel="stylesheet" />';
         return $pre;

@@ -7,7 +7,7 @@ use Fisharebest\Webtrees\Individual;
 
 //code taken from BranchesListModule
 class AllAncestors {
-    
+
     /**
      * Find all ancestors of an individual, indexed by the Sosa-Stradonitz number.
      *
@@ -38,7 +38,7 @@ class AllAncestors {
 
         return $ancestors;
     }
-    
+
     /**
      * Convert a SOSA number into a generation number. e.g. 8 = great-grandfather = 3 generations
      *

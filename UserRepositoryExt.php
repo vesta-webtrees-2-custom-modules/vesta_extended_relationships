@@ -21,23 +21,23 @@ use function route;
 use function view;
 
 class UserRepositoryExt {
-    
+
     private Tree $tree;
     private UserService $user_service;
 
     public function __construct(
-        Tree $tree, 
+        Tree $tree,
         UserService $user_service) {
-        
+
         $this->tree         = $tree;
         $this->user_service = $user_service;
     }
-    
+
     //adapted from UserRepository
     public function usersLoggedInQuery(
         string $type,
         string $moduleName): string {
-        
+
         $content   = '';
         $anonymous = 0;
         $logged_in = [];
@@ -83,16 +83,16 @@ class UserRepositoryExt {
         }
 
         if (Auth::check()) {
-            
+
             $userSelf = Auth::user();
             $individualSelf = Registry::individualFactory()->make($this->tree->getUserPreference($userSelf, UserInterface::PREF_TREE_ACCOUNT_XREF), $this->tree);
-            
+
             $relationshipsChartModule = app(ModuleService::class)
                 ->findByComponent(ModuleChartInterface::class, $this->tree, Auth::user())
                 ->first(static function (ModuleInterface $module) {
                 return $module instanceof RelationshipsChartModule;
             });
-            
+
             foreach ($logged_in as $user) {
                 if ($type === 'list') {
                     $content .= '<li>';
@@ -126,12 +126,12 @@ class UserRepositoryExt {
                         $individualSelf->xref(),
                         7); //TODO make configurable?
                     */
-                    
+
                     $link = '<a class="vesta-relationship-chart-link" href="' . e($relationshipsChartModule->chartUrl($individualSelf, ['xref2' => $individual->xref()])) . '" rel="nofollow" title="' . MoreI18N::xlate('Relationship to me') . '">' . MoreI18N::xlate('Relationship to me') . '</a>';
-                    
+
                     $content .= '&mdash; ' . $link;
                 }
-                    
+
                 if ($type === 'list') {
                     $content .= '</li>';
                 }
