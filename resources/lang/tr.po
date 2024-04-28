@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-19 20:53+0200\n"
-"PO-Revision-Date: 2021-04-13 17:26+0000\n"
-"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/tr/>\n"
+"PO-Revision-Date: 2024-04-28 19:07+0000\n"
+"Last-Translator: Semih <semihbrn10@gmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 5.5.1\n"
 
 #: ExtendedRelationshipModule.php:292
 msgid " (see below for details)."
@@ -60,6 +61,8 @@ msgstr "(bu genel olarak ortak atalar aracılığıyla en yakın ilişkiden öne
 #: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
 msgstr ""
+"Bir bireyin tekrarlanan atalarının ağaç olarak biçimlendirilmiş bir "
+"çizelgesi."
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -86,7 +89,7 @@ msgstr "Kalıcı geçişe izin ver (kullanıcı ilişkileri gösterebilir/gizley
 #: ExtendedRelationshipModuleTrait.php:35
 #, php-format
 msgid "Also includes an extended '%1$s' block."
-msgstr ""
+msgstr "Ayrıca genişletilmiş bir '%1$s' bloğu içerir."
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
@@ -110,11 +113,11 @@ msgstr "Grafik Ayarları"
 #: resources/views/modules/lca-chart/chart.phtml:24
 #, php-format
 msgid "Closest Relationship: %s"
-msgstr ""
+msgstr "En Yakın İlişki: %s"
 
 #: resources/views/modules/pedigree-chart/chart-x.phtml:56
 msgid "CoI; Coefficient of Inbreeding"
-msgstr ""
+msgstr "CoI; Akraba Evliliği Katsayısı"
 
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
@@ -122,13 +125,13 @@ msgstr "Ortak ata: "
 
 #: LCAChartModule.php:80 LCAChartModule.php:160
 msgid "Common ancestors"
-msgstr ""
+msgstr "Ortak atalar"
 
 #. I18N: %s are individual’s names
 #: LCAChartModule.php:152
 #, php-format
 msgid "Common ancestors of %1$s and %2$s"
-msgstr ""
+msgstr "%1$s ve %2$s'nin ortak ataları"
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
@@ -350,7 +353,7 @@ msgstr "İlişki yolu adları için eski algoritma"
 
 #: ExtendedRelationshipModule.php:1217
 msgid "More Charts"
-msgstr ""
+msgstr "Daha Fazla Grafik"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:313
@@ -381,17 +384,17 @@ msgstr "Aile reisi"
 
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
-msgstr ""
+msgstr "Patrikler, soyun sonundaki erkek atalardır ('Spitzenahnen')."
 
 #: ExtendedPedigreeChartModule.php:108
 #: resources/views/modules/pedigree-chart/page.phtml:54
 msgid "Pedigree collapse"
-msgstr ""
+msgstr "Soyağacı çöküşü"
 
 #: ExtendedPedigreeChartModule.php:140
 #, php-format
 msgid "Pedigree collapse tree of %s"
-msgstr ""
+msgstr "Soyağacı çöküş ağacı %s"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:106
@@ -467,19 +470,21 @@ msgstr "Bir ağaç düzenlendiğinde işlem tekrarlanmalıdır (ancak çok daha 
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
+"Aynı bilgi, şube başkanları olarak göründükleri şube listesi aracılığıyla da "
+"elde edilebilir."
 
 #: resources/views/modules/lca-chart/chart.phtml:18
 msgid "There are no recorded common ancestors."
-msgstr ""
+msgstr "Kaydedilmiş ortak ataları yoktur."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
 msgid "There is no recorded pedigree collapse within %1$s generations."
-msgstr ""
+msgstr "%1$s nesli içinde kayıtlı bir soyağacı çöküşü yok."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:17
 msgid "There is no recorded pedigree collapse."
-msgstr ""
+msgstr "Kaydedilmiş bir soyağacı çöküşü yoktur."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:190
@@ -502,6 +507,9 @@ msgstr "Bu, 'dul koca, ölen karısının kız kardeşiyle evlenir' gibi anlaml�
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
+"Bu liste soyadına göre genel bir bakış sağlar ve belirli bir soyadına sahip "
+"tüm bireylerin aslında ortak bir atadan gelip gelmediğini belirlemek için "
+"kullanılabilir."
 
 #: resources/views/sync.phtml:15
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
@@ -542,11 +550,11 @@ msgstr "ebeveynler"
 
 #: resources/views/modules/pedigree-chart/page.phtml:59
 msgid "show full pedigree"
-msgstr ""
+msgstr "tam soyağacını göster"
 
 #: resources/views/modules/pedigree-chart/page.phtml:58
 msgid "show repeated ancestors once"
-msgstr ""
+msgstr "tekrarlanan ataları bir kez göster"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
