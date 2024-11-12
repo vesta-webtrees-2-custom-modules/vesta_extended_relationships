@@ -321,7 +321,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
                     $beforeJD);
 
                 foreach ($paths as $path) {
-                    $relationshipPath = RelationshipPath::create($tree, $path);
+                    $relationshipPath = RelationshipPath::create($tree, $path, $beforeJD);
                     if ($relationshipPath === null) {
                         // Cannot see one of the families/individuals, due to privacy;
                         continue;

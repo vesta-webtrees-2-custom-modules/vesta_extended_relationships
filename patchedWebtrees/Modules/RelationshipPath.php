@@ -19,6 +19,7 @@ class RelationshipPath {
     protected $elements;
     protected $oldStylePath = null;
     protected $key = null;
+    protected $beforeJD;
 
     public function sex(): string {
         return $this->sex;
@@ -35,11 +36,11 @@ class RelationshipPath {
     public function size(): int {
         return $this->elements->count();
     }
-    
+
     public function elements(): Collection {
         return $this->elements;
     }
-    
+
     public function first(): ?RelationshipPathElement {
         return $this->elements->first();
     }
@@ -54,9 +55,13 @@ class RelationshipPath {
         }
         return $this->elements->get($index)->rel();
     }
-    
+
+    public function getBeforeJD(): ?int {
+        return $this->beforeJD;
+    }
+
     /**
-     * 
+     *
      * @return string unique key suitable e.g. for caching
      */
     public function key(): string {
@@ -73,16 +78,18 @@ class RelationshipPath {
     }
 
     /**
-     * 
+     *
      * @param string $sex
      * @param Individual|null $from
      * @param Collection<RelationshipPathElement> $elements
+     * @param int|null $beforeJD
      * @throws Exception
      */
     public function __construct(
         string $sex,
         ?Individual $from,
-        Collection $elements) {
+        Collection $elements,
+        ?int $beforeJD = null) {
 
         if (!preg_match('/^[MFUX]$/', $sex)) {
             throw new Exception();
@@ -91,6 +98,7 @@ class RelationshipPath {
         $this->sex = $sex;
         $this->from = $from;
         $this->elements = $elements;
+        $this->beforeJD = $beforeJD;
     }
 
     public function oldStylePath() {
@@ -134,7 +142,7 @@ class RelationshipPath {
             $from = $last->to();
         } //else empty head
 
-        return new RelationshipPath($sex, $from, $tail);
+        return new RelationshipPath($sex, $from, $tail, $this->beforeJD);
     }
 
     public function splitBefore(int $index): RelationshipPathSplit {
@@ -145,8 +153,8 @@ class RelationshipPath {
         //edge case
         if ($this->size() === 0) {
             return new RelationshipPathSplit(
-                new RelationshipPath($this->sex, $this->from, new Collection()),
-                new RelationshipPath($this->sex, $this->from, new Collection()));
+                new RelationshipPath($this->sex, $this->from, new Collection(), $this->beforeJD),
+                new RelationshipPath($this->sex, $this->from, new Collection(), $this->beforeJD));
         }
 
         /** @var RelationshipPath $head */
@@ -162,12 +170,12 @@ class RelationshipPath {
         }
 
         return new RelationshipPathSplit(
-            new RelationshipPath($this->sex, $this->from, $head),
-            new RelationshipPath($last->toSex(), $last->to(), $tail));
+            new RelationshipPath($this->sex, $this->from, $head, $this->beforeJD),
+            new RelationshipPath($last->toSex(), $last->to(), $tail, $this->beforeJD));
     }
 
     /**
-     * 
+     *
      * @param RelationshipPathSplitPredicate|null $splitter
      * @return Collection<Collection<RelationshipPathSplit>> sorted by splitter priority
      */
@@ -210,7 +218,7 @@ class RelationshipPath {
     }
 
     /**
-     * 
+     *
      * @param string $sex
      * @param array $path 'old-style' path
      * @return RelationshipPath
@@ -238,8 +246,9 @@ class RelationshipPath {
      */
     //adapted from RelationshipChartModule.oldStyleRelationshipPath
     public static function create(
-        Tree $tree, 
-        array $path): ?RelationshipPath {
+        Tree $tree,
+        array $path,
+        ?int $beforeJD = null): ?RelationshipPath {
 
         $spouse_codes = [
             'M' => 'hus',
@@ -313,7 +322,7 @@ class RelationshipPath {
 
             $relationships [] = new RelationshipPathElement($code, $family, $next);
         }
-        return new RelationshipPath($from->sex(), $from, new Collection($relationships));
+        return new RelationshipPath($from->sex(), $from, new Collection($relationships), $beforeJD);
     }
 
 }

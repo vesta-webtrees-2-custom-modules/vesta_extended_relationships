@@ -117,6 +117,34 @@ class CommonAncestorAndPath {
         return $this->size;
     }
 
+    public function getTiebreakerViaCAIsIndi() {
+        if ($this->shortestLeg == PHP_INT_MAX) {
+            //no ca
+            return 1;
+        }
+
+        //even := ca is INDI
+        $even = ($this->shortestLeg % 2 == 0);
+
+        //we want this case before 'ca is FAM'
+        //because the 'perceived' distance is a bit shorter (the shortest path for CoE is shorter)
+        //e.g. half-brother (CoE 1/2^2) before uncle (CoE 2 * 1/2^3)
+        //(note that overall CoE is the same if getSize() is the same!)
+
+        return $even?0:1;
+    }
+
+    /*
+    public function getRank() {
+        //for comparison
+        //size does not reflect CoR properly:
+        //if ca is FAM, we have INDI - FAM - INDI - FAM(CA) - INDI (for uncle), which is actually
+        //twice INDI - FAM - INDI - FAM - INDI(CA) - FAM - INDI (should count as 'twice rank 3' ~ 'rank 2', not 'rank 3')
+
+        //if ca is INDI, we have INDI - FAM - INDI(CA) - FAM - INDI
+    }
+    */
+
     public function getShortestLeg() {
         return $this->shortestLeg;
     }
@@ -131,6 +159,7 @@ class CommonAncestorAndPath {
         } else {
             $key = array_search($this->ca, $this->path);
             if ($key === false) {
+               //unexpected?
                $this->shortestLeg = PHP_INT_MAX;
             } else {
                $index = array_search($key, array_keys($this->path));
@@ -531,7 +560,13 @@ class ExtendedRelationshipController {
             return $cmp;
         }
 
-        //tiebreaker: prefer $ca closed to either end of path (grandmother before aunt etc)
+        $cmp = $a->getTiebreakerViaCAIsIndi() <=> $b->getTiebreakerViaCAIsIndi();
+
+        if ($cmp !== 0) {
+            return $cmp;
+        }
+
+        //second tiebreaker: prefer $ca closed to either end of path (grandmother before aunt etc)
         return $a->getShortestLeg() <=> $b->getShortestLeg();
     }
 
@@ -676,7 +711,8 @@ class ExtendedRelationshipController {
             foreach ($caValue as $caValue2) {
                 $caPaths = self::getPaths($caKey, $caValue2->xref(), $mode, $cas, $ancestors1, $ancestors2);
                 foreach ($caPaths as $caPath) {
-                    $paths[] = new CommonAncestorAndPath($caKey, $caPath);
+                    $caap = new CommonAncestorAndPath($caKey, $caPath);
+                    $paths[] = $caap;
                 }
             }
         }

@@ -92,7 +92,7 @@ class ExtendedRelationshipsChartController {
         foreach ($caAndPaths as $caAndPath) {
             $path = $caAndPath->getPath();
 
-            $relationshipPath = RelationshipPath::create($tree, $path);
+            $relationshipPath = RelationshipPath::create($tree, $path, $beforeJD);
             if ($relationshipPath === null) {
                 // Cannot see one of the families/individuals, due to privacy;
                 continue;

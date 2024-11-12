@@ -96,7 +96,7 @@ class FunctionsPrintRels {
             $path = $caAndPath->getPath();
 
             // Extract the relationship names between pairs of individuals
-            $relationshipPath = RelationshipPath::create($person1->tree(), $path);
+            $relationshipPath = RelationshipPath::create($person1->tree(), $path, $beforeJD);
             if ($relationshipPath === null) {
                 // Cannot see one of the families/individuals, due to privacy;
 

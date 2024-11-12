@@ -242,6 +242,11 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
         }
 
         foreach ($all_surnames as $surn => $surnames) {
+            //attempt to better align with post 2.1.16 version of Individuals list
+            //would have to be adjusted elsewhere as well, therefore aborted
+            //$initial = I18N::language()->initialLetter(I18N::strtoupper($surn));
+            //$initial = I18N::language()->normalize($initial);
+
             $initial = I18N::language()->initialLetter($surn);
 
             $initials[$initial] ??= 0;

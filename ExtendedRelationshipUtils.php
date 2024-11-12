@@ -37,6 +37,9 @@ class ExtendedRelationshipUtils {
         return $minDate;
     }
 
+    //for proper family-related relationship names,
+    //('ex-husband', 'partner's xy')
+    //we strictly need up to three dates with different types here (pre-marriage, marriage, post-divorce)
     public static function getFamilyEstablishedNoLaterThan(Family $family): Date {
         $dates = array();
 
