@@ -15,7 +15,6 @@ use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Psr\Http\Message\ResponseInterface;
-use function app;
 use function asset;
 use function response;
 use function route;
@@ -106,7 +105,7 @@ class ExtendedRelationshipsChartController {
 
             $debugWebtreesRel = boolval($this->module->getPreference('CHART_SHOW_LEGACY', '1'));
             if ($debugWebtreesRel) {
-                $webtreesRel = app(RelationshipService::class)->legacyNameAlgorithm($relationships, $individual1, $individual2);
+                $webtreesRel = \Vesta\VestaUtils::get(RelationshipService::class)->legacyNameAlgorithm($relationships, $individual1, $individual2);
 
                 if ($rel !== $webtreesRel) {
                     echo '<h4>', '(', I18N::translate('via legacy algorithm: %s', $webtreesRel), ')';

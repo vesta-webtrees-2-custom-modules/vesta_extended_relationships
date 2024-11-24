@@ -21,7 +21,6 @@ use Fisharebest\Webtrees\View;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use function app;
 use function redirect;
 use function route;
 use function view;
@@ -192,7 +191,7 @@ class ExtendedPedigreeChartModule extends AbstractModule implements ModuleChartI
                 $type = PedigreeTreeType::skipRepeatedAndNonCollapsed();
             }
 
-            $self = app(ExtendedChartService::class)->pedigreeTree(
+            $self = \Vesta\VestaUtils::get(ExtendedChartService::class)->pedigreeTree(
                 $individual,
                 ($generations === self::UNLIMITED_GENERATIONS)?null:$generations,
                 $type);

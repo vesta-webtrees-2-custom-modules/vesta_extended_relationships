@@ -24,7 +24,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use const ARRAY_FILTER_USE_KEY;
-use function app;
 use function array_filter;
 use function array_keys;
 use function array_sum;
@@ -97,7 +96,7 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
      */
     public function listUrl(Tree $tree, array $parameters = []): string
     {
-        $request = app(ServerRequestInterface::class);
+        $request = \Vesta\VestaUtils::get(ServerRequestInterface::class);
         assert($request instanceof ServerRequestInterface);
 
         $xref = Validator::attributes($request)->isXref()->string('xref', '');

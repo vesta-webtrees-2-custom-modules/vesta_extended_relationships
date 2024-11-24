@@ -36,7 +36,7 @@ $show_estimated_dates = (bool) $tree->getPreference('SHOW_EST_LIST_DATES');
 
 $today = new Date(strtoupper(date('d M Y')));
 
-$module = app(ModuleService::class)
+$module = \Vesta\VestaUtils::get(ModuleService::class)
     ->findByComponent(ModuleChartInterface::class, $tree, Auth::user())
     ->first(static function (ModuleInterface $module) {
         return $module instanceof RelationshipsChartModule;

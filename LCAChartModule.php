@@ -22,7 +22,6 @@ use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use function app;
 use function redirect;
 use function route;
 use function view;
@@ -134,7 +133,7 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
             if ($ajax) {
                 $this->layout = 'layouts/ajax';
 
-                $nodes = app(ExtendedChartService::class)->pedigreeTrees(
+                $nodes = \Vesta\VestaUtils::get(ExtendedChartService::class)->pedigreeTrees(
                     new Collection([$individual1, $individual2]),
                     null,
                     PedigreeTreeType::commonAncestors());

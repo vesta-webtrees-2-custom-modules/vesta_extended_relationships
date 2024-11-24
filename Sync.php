@@ -16,7 +16,6 @@ use Illuminate\Database\Query\JoinClause;
 use Illuminate\Database\Schema\Blueprint;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use function app;
 use function route;
 
 //adapted from GedcomFileController
@@ -220,7 +219,7 @@ class Sync {
             //note: we don't use family data to estimate this date,
             //because that would complicate the decision when to recalculate
             //$indi = new DirectIndividual($id, $gedcom, "" . $file);
-            $tree = app(TreeService::class)->find($file);
+            $tree = \Vesta\VestaUtils::get(TreeService::class)->find($file);
             $indi = new Individual($id, $gedcom, null, $tree);
             $date = ExtendedRelationshipUtils::getBornNoLaterThan($indi);
 
@@ -265,7 +264,7 @@ class Sync {
 
             //'f_from' = 'family established no later than' (= minimum of date of marriage, first childbirth).
             //$fam = new DirectFamily($id, $gedcom, "" . $file);
-            $tree = app(TreeService::class)->find($file);
+            $tree = \Vesta\VestaUtils::get(TreeService::class)->find($file);
             $fam = new Family($id, $gedcom, null, $tree);
             $date = ExtendedRelationshipUtils::getFamilyEstablishedNoLaterThan($fam);
             $maxJD = null;

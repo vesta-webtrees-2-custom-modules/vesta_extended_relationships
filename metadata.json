@@ -356,5 +356,10 @@
 		"from": "2.1.17",
 		"to": "2.1.21",
 		"changelog": ["Improved handling of relationship names at specific date (partner vs spouse vs ex-wife etc)."]
+	},
+	{
+		"version": "2.2.0.0.0",
+		"from": "2.1.17",
+		"to": "2.2.1"
 	}
 ]

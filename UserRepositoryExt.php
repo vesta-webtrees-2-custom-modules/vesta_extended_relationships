@@ -16,7 +16,6 @@ use Fisharebest\Webtrees\Services\MessageService;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Services\UserService;
 use Fisharebest\Webtrees\Tree;
-use function app;
 use function route;
 use function view;
 
@@ -87,7 +86,7 @@ class UserRepositoryExt {
             $userSelf = Auth::user();
             $individualSelf = Registry::individualFactory()->make($this->tree->getUserPreference($userSelf, UserInterface::PREF_TREE_ACCOUNT_XREF), $this->tree);
 
-            $relationshipsChartModule = app(ModuleService::class)
+            $relationshipsChartModule = \Vesta\VestaUtils::get(ModuleService::class)
                 ->findByComponent(ModuleChartInterface::class, $this->tree, Auth::user())
                 ->first(static function (ModuleInterface $module) {
                 return $module instanceof RelationshipsChartModule;

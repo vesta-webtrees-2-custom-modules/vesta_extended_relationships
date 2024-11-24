@@ -10,7 +10,6 @@ use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Tree;
 use Illuminate\Support\Collection;
-use function app;
 
 class RelationshipPath {
 
@@ -210,7 +209,7 @@ class RelationshipPath {
             return '';
         }
 
-        $rs = app(RelationshipService::class);
+        $rs = \Vesta\VestaUtils::get(RelationshipService::class);
         return $rs->legacyNameAlgorithm(
                 $this->oldStylePath(),
                 $this->from(),

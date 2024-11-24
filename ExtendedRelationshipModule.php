@@ -39,7 +39,6 @@ use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Registry;
-use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\TreeService;
@@ -61,7 +60,6 @@ use Vesta\Hook\HookInterfaces\RelativesTabExtenderInterface;
 use Vesta\Model\GenericViewElement;
 use Vesta\VestaModuleTrait;
 use const CAL_GREGORIAN;
-use function app;
 use function cal_from_jd;
 use function redirect;
 use function response;
@@ -231,7 +229,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         //https://www.webtrees.net/index.php/en/forum/2-open-discussion/33687-pretty-urls-in-2-x
 
         /*
-        $router_container = app(RouterContainer::class);
+        $router_container = \Vesta\VestaUtils::get(RouterContainer::class);
         assert($router_container instanceof RouterContainer);
         $router = $router_container->getMap();
         */
@@ -300,7 +298,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         if ($text === null) {
             //handle this case via special $path?
             if ($xref1 === $xref2) {
-                $rs = app(RelationshipService::class);
+                $rs = \Vesta\VestaUtils::get(RelationshipService::class);
 
                 $class = new ReflectionClass($rs);
                 $reflexivePronounMethod = $class->getMethod('reflexivePronoun');
@@ -761,7 +759,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     }
 
     public function postAdminSyncAction(ServerRequestInterface $request): ResponseInterface {
-        $timeout_service = app(TimeoutService::class);
+        $timeout_service = \Vesta\VestaUtils::get(TimeoutService::class);
         $sync = new Sync($this->name());
         return $sync->sync($request, $timeout_service);
     }
@@ -1143,7 +1141,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         string $context,
         array $config = []): string {
 
-        $ur = app(UserRepositoryExt::class);
+        $ur = \Vesta\VestaUtils::get(UserRepositoryExt::class);
         $content = $ur->usersLoggedInQuery('list', $this->name());
 
         $title = $this->getBlockTitle(MoreI18N::xlate('Who is online'));
@@ -1182,7 +1180,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         //return null;
 
         //experimental:
-        $request = app(ServerRequestInterface::class);
+        $request = \Vesta\VestaUtils::get(ServerRequestInterface::class);
         assert($request instanceof ServerRequestInterface);
 
         $xref       = Validator::attributes($request)->isXref()->string('xref', '');
