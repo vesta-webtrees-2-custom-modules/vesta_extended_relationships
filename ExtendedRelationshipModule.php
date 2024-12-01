@@ -106,14 +106,14 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         ExtendedRelationshipModuleTrait::editConfigAfterFaq insteadof VestaModuleTrait;
     }
 
-    protected const ROUTE_URL = '/tree/{tree}/vesta-relationships-{ancestors}-{recursion}/{xref}{/xref2}';
-    protected const ROUTE_URL_LIST = '/tree/{tree}/individual-patriarchs-list';
+    protected const VESTA_ROUTE_URL = '/tree/{tree}/vesta-relationships-{ancestors}-{recursion}/{xref}{/xref2}';
+    protected const VESTA_ROUTE_URL_LIST = '/tree/{tree}/individual-patriarchs-list';
 
     /** It would be more correct to use PHP_INT_MAX, but this isn't friendly in URLs */
-    public const UNLIMITED_RECURSION = 99;
+    //public const VESTA_UNLIMITED_RECURSION = 99;
 
     /** By default new trees allow unlimited recursion */
-    public const DEFAULT_RECURSION = '99';
+    public const VESTA_DEFAULT_RECURSION = '99';
 
     //not as constant: depends on module configuration
     /*
@@ -177,7 +177,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
         return [
             'ancestors' => $defaultMode,
-            'recursion' => self::DEFAULT_RECURSION,
+            'recursion' => self::VESTA_DEFAULT_RECURSION,
         ];
     }
 
@@ -237,7 +237,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $router = Registry::routeFactory()->routeMap();
 
         $router
-            ->get(static::class, static::ROUTE_URL, $this)
+            ->get(static::class, static::VESTA_ROUTE_URL, $this)
             ->allows(RequestMethodInterface::METHOD_POST)
             ->tokens([
                 'ancestors' => '\d+',
@@ -245,7 +245,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         ]);
 
         $router
-            ->get(ExtendedIndividualListRequestHandler::class, static::ROUTE_URL_LIST, $this->listRequestHandler);
+            ->get(ExtendedIndividualListRequestHandler::class, static::VESTA_ROUTE_URL_LIST, $this->listRequestHandler);
 
 
         View::registerCustomView('::lists/individuals-table-with-patriarchs', $this->name() . '::lists/individuals-table-with-patriarchs');
@@ -360,7 +360,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
             'xref2' => $xref2,
             'tree' => $tree->name(),
             ] + $parameters + [
-                'recursion' => self::DEFAULT_RECURSION,
+                'recursion' => self::VESTA_DEFAULT_RECURSION,
             ]);
 
         return '<a href="' . $url . '" title="' . MoreI18N::xlate('Relationships') . '">' . $text . '</a>';
@@ -502,7 +502,7 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
         $className) {
 
         $mode = intval($this->getPreference($settingsPrefix . 'TAB_REL_TO_DEFAULT_INDI', '1'));
-        $recursion = intval($this->getPreference('RELATIONSHIP_RECURSION', self::DEFAULT_RECURSION));
+        $recursion = intval($this->getPreference('RELATIONSHIP_RECURSION', self::VESTA_DEFAULT_RECURSION));
         $showCa = boolval($this->getPreference($settingsPrefix . 'TAB_REL_TO_DEFAULT_INDI_SHOW_CA', '1'));
 
         if ($mode === 0) {
@@ -573,11 +573,11 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
     protected function getOutputFamilyAfterSubHeaders(Family $family, $type) {
         if ('FAMC' === $type) {
             $mode = intval($this->getPreference('TAB_REL_OF_PARENTS', '1'));
-            $recursion = intval($this->getPreference('RELATIONSHIP_RECURSION', self::DEFAULT_RECURSION));
+            $recursion = intval($this->getPreference('RELATIONSHIP_RECURSION', self::VESTA_DEFAULT_RECURSION));
             $showCa = boolval($this->getPreference('TAB_REL_OF_PARENTS_SHOW_CA', '1'));
         } else {
             $mode = intval($this->getPreference('TAB_REL_TO_SPOUSE', '1'));
-            $recursion = intval($this->getPreference('RELATIONSHIP_RECURSION', self::DEFAULT_RECURSION));
+            $recursion = intval($this->getPreference('RELATIONSHIP_RECURSION', self::VESTA_DEFAULT_RECURSION));
             $showCa = boolval($this->getPreference('TAB_REL_TO_SPOUSE_SHOW_CA', '1'));
         }
 
