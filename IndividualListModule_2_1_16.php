@@ -359,7 +359,9 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                         break;
                     default:
                         if ($surname === '') {
-                            $surns = array_filter($all_surnames, static fn (string $x): bool => I18N::language()->initialLetter($x) === $alpha, ARRAY_FILTER_USE_KEY);
+                            //post 2.1.16 initial
+                            $surns = array_filter($all_surnames, static fn (string $x): bool => I18N::language()->initialLetter(I18N::language()->normalize(I18N::strtoupper($x))) === $alpha, ARRAY_FILTER_USE_KEY);
+                            //$surns = array_filter($all_surnames, static fn (string $x): bool => I18N::language()->initialLetter($x) === $alpha, ARRAY_FILTER_USE_KEY);
                         } else {
                             $surns = array_filter($all_surnames, static fn (string $x): bool => $x === $surname, ARRAY_FILTER_USE_KEY);
                         }
@@ -396,13 +398,18 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
                             //[RC] adjusted
                             $inner = current($surns);
                             $leaf = current($inner);
+
+                            //post 2.1.16 initial
+                            $surns_resorted = $surns;
+                            uksort($surns_resorted, I18N::comparator());
+
                             echo view('lists/surnames-table-with-patriarchs', [
                                 'helpLink' => $leaf->getHelpLink(),
 
                                 'families' => $families,
                                 'module'   => $this,
                                 'order'    => [[0, 'asc']],
-                                'surnames' => $surns,
+                                'surnames' => $surns_resorted,
                                 'tree'     => $tree,
                             ]);
                             break;
@@ -671,13 +678,9 @@ class IndividualListModule_2_1_16 extends AbstractModule implements ModuleListIn
         }
 
         foreach ($all_surnames as $surn => $surnames) {
-
-            //attempt to better align with post 2.1.16 version of Individuals list
-            //would have to be adjusted elsewhere as well, therefore aborted
-            //$initial = I18N::language()->initialLetter(I18N::strtoupper((string) $surn));
-            //$initial = I18N::language()->normalize($initial);
-
-            $initial = I18N::language()->initialLetter((string) $surn);
+            //post 2.1.16 initial
+            $initial = I18N::language()->initialLetter(I18N::language()->normalize(I18N::strtoupper($row->n_surn)));
+            //$initial = I18N::language()->initialLetter((string) $surn);
 
             $initials[$initial] ??= 0;
             $initials[$initial] += array_sum($surnames);
