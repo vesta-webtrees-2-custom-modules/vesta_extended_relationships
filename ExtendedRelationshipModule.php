@@ -702,15 +702,19 @@ class ExtendedRelationshipModule extends RelationshipsChartModule implements
 
     public function chartMenu(Individual $individual): Menu {
 
-        $gedcomid = $individual->tree()->getUserPreference(Auth::user(), User::PREF_TREE_ACCOUNT_XREF);
+        $my_xref = $individual->tree()->getUserPreference(Auth::user(), User::PREF_TREE_ACCOUNT_XREF);
 
-        if ($gedcomid !== '' && $gedcomid !== $individual->xref()) {
-            return new Menu(
-                $this->getChartTitle(MoreI18N::xlate('Relationship to me')),
-                $this->chartUrl($individual, ['xref2' => $gedcomid]),
-                $this->chartMenuClass(),
-                $this->chartUrlAttributes()
-            );
+        if ($my_xref !== '' && $my_xref !== $individual->xref()) {
+            $my_record = Registry::individualFactory()->make($my_xref, $individual->tree());
+
+            if ($my_record instanceof Individual) {
+                return new Menu(
+                    $this->getChartTitle(MoreI18N::xlate('Relationship to me')),
+                    $this->chartUrl($my_record, ['xref2' => $individual->xref()]),
+                    $this->chartMenuClass(),
+                    $this->chartUrlAttributes()
+                );
+            }
         }
 
         return new Menu(
