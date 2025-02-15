@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-19 20:53+0200\n"
-"PO-Revision-Date: 2025-02-15 12:02+0000\n"
+"PO-Revision-Date: 2025-02-15 15:56+0000\n"
 "Last-Translator: bangsheim <renelindberg@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/da/>\n"
@@ -635,21 +635,29 @@ msgstr "Vis hele anetavlen"
 #: resources/views/page.phtml:55
 #, php-format
 msgid "Options referring to overall connections established before %1$s."
-msgstr ""
+msgstr "Indstillinger for overordnede forbindelser oprettet før %1$s."
 
 #. I18N: Module Configuration
 #: resources/views/sync-complete.phtml:5
 msgid "Finished - all link dates are up-to-date."
-msgstr ""
+msgstr "Færdig - alle linkdatoer er opdaterede."
 
 #: resources/views/sync.phtml:15
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
 msgstr ""
+"Denne proces fastsætter datoer for alle INDI - FAM-links, hvilket gør det "
+"muligt at beregne relationer på et bestemt tidspunkt effektivt."
 
 #: resources/views/sync.phtml:18
 msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
 msgstr ""
+"For store træer kan denne proces i starten tage flere minutter. Du kan altid "
+"trygt afbryde og fortsætte senere."
 
 #: resources/views/sync.phtml:21
 msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
 msgstr ""
+"Husk at gentage processen (det vil gå meget hurtigere) hver gang træet "
+"redigeres, ellers kan der opstå inkonsistente data for relationer (de viste "
+"relationer er gyldige, men måske ikke opdateret til den rette dato, hvis "
+"træændringer ikke synkroniseres)."
