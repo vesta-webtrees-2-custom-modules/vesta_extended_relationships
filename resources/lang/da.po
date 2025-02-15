@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-19 20:53+0200\n"
-"PO-Revision-Date: 2025-02-15 10:01+0000\n"
+"PO-Revision-Date: 2025-02-15 12:02+0000\n"
 "Last-Translator: bangsheim <renelindberg@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/da/>\n"
@@ -41,7 +41,7 @@ msgstr "Synkronisering"
 #: ExtendedRelationshipModule.php:290
 #: ExtendedRelationshipsChartController.php:283
 msgid "Synchronize trees to obtain dated relationship links"
-msgstr ""
+msgstr "Synkroniser træer for at få forbindelse med datoer for relationer"
 
 #: ExtendedRelationshipModule.php:292
 msgid " (see below for details)."
@@ -513,95 +513,124 @@ msgstr "Fælles aner: "
 
 #: HelpTexts.php:15
 msgid "Uncorrected CoR (Coefficient of Relationship)"
-msgstr ""
+msgstr "Ukorrigeret beslægthedsgrad (Coefficient of Relationship)"
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
 msgstr ""
+"Beslægthedsgraden (Coefficient of Relationship) er proportional med antallet "
+"af gener, som to individer har til fælles som følge af deres genetiske "
+"relation. Beregningen er baseret på Sewall Wrights metode med "
+"\"path coefficients\". Værdien repræsenterer andelen af gener, som to "
+"beslægtede personer har til fælles, ud over dem, der er fælles for hele "
+"befolkningen. Mere information her: "
 
 #: HelpTexts.php:20
 #, php-format
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
 msgstr ""
+"Hver sti mellem to personer (via fælles aner) bidrager til beslægthedsgaden "
+"(CoR), med en værdi, der er omvendt proportional med længden: En sti af "
+"længde 2 (f.eks. mellem helsøskende) tilføjer %1$s, en sti af længde 4 ("
+"f.eks. mellem første kusiner) tilføjer %2$s, og generelt tilføjer hver sti "
+"af længde n (0,5)<sup>n</sup>."
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
 msgstr ""
+"Under normale omstændigheder er andelen af gener, der overføres fra forfader "
+"til efterkommer – som estimeret af Σ(0,5)<sup>n</sup> – og andelen af gener, "
+"de har til fælles (den sande beslægthedsgrad), den samme. Hvis der har været "
+"nogen form for indavl, kan der dog være en lille forskel, som forklaret her: "
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
 msgstr ""
+"Det er en mere kompleks opgave at beregne den præcise beslægthedsgrad (CoR), "
+"og forskellene er som regel små. Derfor beregnes kun den ukorrigerede "
+"beslægthedsgrad (CoR)."
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
-msgstr ""
+msgstr "Ældre algoritme for relationssti-navne"
 
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
 msgstr ""
+"Du kan slå dette fra via modulindstillingerne, det er primært til "
+"fejlfinding."
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
-msgstr ""
+msgstr "Og forhåbentlig viser det, hvor meget bedre den nye algoritme er ..."
 
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: HelpTexts.php:40
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:181
 #: resources/views/lists/surnames-table-with-patriarchs.phtml:59
 msgid "Patriarch"
-msgstr ""
+msgstr "Patriark"
 
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
 msgstr ""
+"Patriarker er de mandlige stamfædre, der repræsenterer slutningen af en "
+"slægtslinje ('Spitzenahnen')."
 
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
+"De samme data kan hentes fra grene-listen, hvor de vises som spidserne af "
+"grenene."
 
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
+"Denne liste giver et overblik efter efternavn og kan bruges til at afgøre, "
+"om alle personer med et bestemt efternavn faktisk stammer fra en fælles "
+"patriark."
 
 #: LCAChartModule.php:80 LCAChartModule.php:160
 msgid "Common ancestors"
-msgstr ""
+msgstr "Fælles aner"
 
 #. I18N: %s are individual’s names
 #: LCAChartModule.php:152
 #, php-format
 msgid "Common ancestors of %1$s and %2$s"
-msgstr ""
+msgstr "Fælles aner for %1$s og %2$s"
 
 #: resources/views/modules/lca-chart/chart.phtml:18
 msgid "There are no recorded common ancestors."
-msgstr ""
+msgstr "Der er ingen registrerede fælles aner."
 
 #: resources/views/modules/lca-chart/chart.phtml:24
 #, php-format
 msgid "Closest Relationship: %s"
-msgstr ""
+msgstr "Nærmeste relation: %s"
 
 #: resources/views/modules/pedigree-chart/chart-x.phtml:56
 msgid "CoI; Coefficient of Inbreeding"
-msgstr ""
+msgstr "CoI; Genetisk indavlskoefficient (Coefficient of Inbreeding)"
 
 #: resources/views/modules/pedigree-chart/chart.phtml:17
 msgid "There is no recorded pedigree collapse."
-msgstr ""
+msgstr "Der er ikke registreret noget anetavlesammenfald."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
 msgid "There is no recorded pedigree collapse within %1$s generations."
 msgstr ""
+"Der er ikke registreret nogen form for anetavlesammenfald i %1$s "
+"generationer."
 
 #: resources/views/modules/pedigree-chart/page.phtml:58
 msgid "show repeated ancestors once"
-msgstr ""
+msgstr "Vis gentagne aner én gang"
 
 #: resources/views/modules/pedigree-chart/page.phtml:59
 msgid "show full pedigree"
-msgstr ""
+msgstr "Vis hele anetavlen"
 
 #: resources/views/page.phtml:55
 #, php-format
