@@ -30,7 +30,7 @@ The project’s website is [cissee.de](https://cissee.de).
 
 ### Download<a name="download"/>
 
-* Current version: 2.2.1.2.0
+* Current version: 2.2.1.3.0
 * Based on and tested with webtrees 2.2.1. Requires webtrees 2.2.1 or later.
 * Requires the ⚶ Vesta Common module ('vesta_common').
 * Displays data via the ⚶ Vesta Families module ('vesta_relatives').

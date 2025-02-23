@@ -75,7 +75,8 @@ trait ExtendedRelationshipModuleTrait {
                 'CHART_SHOW_CAS',
                 '1')));
 
-    $chartSub[] = new ControlPanelSubsection(
+    //obsolete - disabled (TODO cleanup)
+    $unused = new ControlPanelSubsection(
             /* I18N: Module Configuration */I18N::translate('Debugging'),
             array(new ControlPanelCheckbox(
                 /* I18N: Module Configuration */I18N::translate('Show legacy relationship path names'),

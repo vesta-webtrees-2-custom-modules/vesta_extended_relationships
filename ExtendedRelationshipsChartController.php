@@ -103,6 +103,8 @@ class ExtendedRelationshipsChartController {
 
             echo '<h3>', MoreI18N::xlate('Relationship: %s', $rel), '</h3>';
 
+            //obsolete - disabled (TODO cleanup)
+            /*
             $debugWebtreesRel = boolval($this->module->getPreference('CHART_SHOW_LEGACY', '1'));
             if ($debugWebtreesRel) {
                 $webtreesRel = \Vesta\VestaUtils::get(RelationshipService::class)->legacyNameAlgorithm($relationships, $individual1, $individual2);
@@ -113,6 +115,7 @@ class ExtendedRelationshipsChartController {
                     echo '</h4>';
                 }
             }
+            */
 
             $num_paths++;
 

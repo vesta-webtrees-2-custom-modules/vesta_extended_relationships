@@ -16,12 +16,14 @@ use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleChartInterface;
 use Fisharebest\Webtrees\Module\ModuleChartTrait;
 use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\User;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\View;
 use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Vesta\VestaUtils;
 use function redirect;
 use function route;
 use function view;
@@ -98,6 +100,31 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
             ] + $parameters + static::DEFAULT_PARAMETERS);
     }
 
+    public function chartMenu(Individual $individual): Menu {
+
+        $my_xref = $individual->tree()->getUserPreference(Auth::user(), User::PREF_TREE_ACCOUNT_XREF);
+
+        if ($my_xref !== '' && $my_xref !== $individual->xref()) {
+            $my_record = Registry::individualFactory()->make($my_xref, $individual->tree());
+
+            if ($my_record instanceof Individual) {
+                return new Menu(
+                    $this->title(), //TODO use different title here?
+                    $this->chartUrl($my_record, ['xref2' => $individual->xref()]),
+                    $this->chartMenuClass(),
+                    $this->chartUrlAttributes()
+                );
+            }
+        }
+
+        return new Menu(
+            $this->title(),
+            $this->chartUrl($individual),
+            $this->chartMenuClass(),
+            $this->chartUrlAttributes()
+        );
+    }
+
     public function handle(ServerRequestInterface $request): ResponseInterface {
         $tree        = Validator::attributes($request)->tree();
         $user        = Validator::attributes($request)->user();
@@ -133,7 +160,7 @@ class LCAChartModule extends AbstractModule implements ModuleChartInterface, Req
             if ($ajax) {
                 $this->layout = 'layouts/ajax';
 
-                $nodes = \Vesta\VestaUtils::get(ExtendedChartService::class)->pedigreeTrees(
+                $nodes = VestaUtils::get(ExtendedChartService::class)->pedigreeTrees(
                     new Collection([$individual1, $individual2]),
                     null,
                     PedigreeTreeType::commonAncestors());
