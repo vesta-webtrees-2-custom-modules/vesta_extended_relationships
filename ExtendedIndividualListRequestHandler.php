@@ -11,7 +11,7 @@ use Fisharebest\Webtrees\Module\ModuleListInterface;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\Validator;
-use Illuminate\Database\Capsule\Manager as DB;
+use Fisharebest\Webtrees\DB;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
@@ -144,8 +144,8 @@ class ExtendedIndividualListRequestHandler extends IndividualListModule_2_1_16 {
         $query = DB::table('name')
             ->where('n_file', '=', $tree->id())
             ->select([
-            new Expression('n_surn /*! COLLATE utf8_bin */ AS n_surn'),
-            new Expression('n_surname /*! COLLATE utf8_bin */ AS n_surname'),
+            DB::binaryColumn('n_surn', 'n_surn'),
+            DB::binaryColumn('n_surname', 'n_surname'),
             //new Expression('COUNT(*) AS total'),
             //[RC] added
             new Expression('n_id'),
