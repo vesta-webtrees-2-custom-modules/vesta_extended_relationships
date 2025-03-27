@@ -8,41 +8,45 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-19 20:53+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-27 05:01+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/"
+"vesta-webtrees-custom-modules/vesta-extended-relationships/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: ExtendedPedigreeChartModule.php:108
 #: resources/views/modules/pedigree-chart/page.phtml:54
 msgid "Pedigree collapse"
-msgstr ""
+msgstr "வம்சாவளி சரிவு"
 
 #: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
 msgstr ""
+"ஒரு நபரின் தொடர்ச்சியான மூதாதையர்களின் விளக்கப்படம், ஒரு மரமாக வடிவமைக்கப்பட்டுள்ளது."
 
 #: ExtendedPedigreeChartModule.php:140
 #, php-format
 msgid "Pedigree collapse tree of %s"
-msgstr ""
+msgstr "%s இன் வம்சாவளி சரிவு மரம்"
 
 #: ExtendedRelationshipModule.php:285 ExtendedRelationshipModule.php:948
 #: ExtendedRelationshipModule.php:954
 msgid "Synchronization"
-msgstr ""
+msgstr "ஒத்தியக்கம்"
 
 #: ExtendedRelationshipModule.php:290
 #: ExtendedRelationshipsChartController.php:283
 msgid "Synchronize trees to obtain dated relationship links"
-msgstr ""
+msgstr "தேதியிட்ட உறவு இணைப்புகளைப் பெற மரங்களை ஒத்திசைக்கவும்"
 
 #: ExtendedRelationshipModule.php:292
 msgid " (see below for details)."
-msgstr ""
+msgstr " (விவரங்களுக்கு கீழே காண்க)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:1093 ExtendedRelationshipModuleTrait.php:89
@@ -52,7 +56,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:262
 #: ExtendedRelationshipModuleTrait.php:287
 msgid "Find a closest relationship via common ancestors"
-msgstr ""
+msgstr "பொதுவான மூதாதையருடன் மிக நெருக்கமான உறவைக் கண்டறியவும்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:1097 ExtendedRelationshipModuleTrait.php:94
@@ -63,6 +67,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:288
 msgid "Find all smallest lowest common ancestors, show a closest connection for each"
 msgstr ""
+"மிகக் குறைந்த பொதுவான மூதாதையர்களைக் கண்டுபிடி, ஒவ்வொன்றிற்கும் மிக நெருக்கமான தொடர்பைக் "
+"காட்டுங்கள்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:1101 ExtendedRelationshipModuleTrait.php:99
@@ -73,6 +79,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:289
 msgid "Find all relationships via lowest common ancestors"
 msgstr ""
+"அனைத்து உறவுகளையும் மிகக் குறைந்த பொதுவான மூதாதையர்கள் வழியாகக் கண்டறியவும்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:1107 ExtendedRelationshipModuleTrait.php:105
@@ -84,6 +91,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:298
 msgid "Find the closest overall connections (preferably via common ancestors)"
 msgstr ""
+"மிக நெருக்கமான ஒட்டுமொத்த இணைப்புகளைக் கண்டறியவும் (முன்னுரிமை பொதுவான மூதாதையர்கள் "
+"வழியாக)"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:1111 ExtendedRelationshipModuleTrait.php:110
@@ -95,6 +104,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:299
 msgid "Find a closest relationship via common ancestors, or fallback to the closest overall connection"
 msgstr ""
+"பொதுவான மூதாதையருடனான மிக நெருக்கமான உறவைக் கண்டறியவும், அல்லது ஒட்டுமொத்த இணைப்பிற்கு"
+" குறைவடையும்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModule.php:1115 ExtendedRelationshipModuleTrait.php:115
@@ -105,105 +116,125 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:292
 #: ExtendedRelationshipModuleTrait.php:300
 msgid "Find the closest overall connections"
-msgstr ""
+msgstr "ஒட்டுமொத்த இணைப்புகளைக் கண்டறியவும்"
 
 #: ExtendedRelationshipModule.php:1121
 msgid "Find all overall connections"
-msgstr ""
+msgstr "ஒட்டுமொத்த இணைப்புகள் அனைத்தையும் கண்டறியவும்"
 
 #: ExtendedRelationshipModule.php:1123
 msgid "Find other overall connections"
-msgstr ""
+msgstr "பிற ஒட்டுமொத்த இணைப்புகளைக் கண்டறியவும்"
 
 #. I18N: patriarchs are the male end-of-line ancestors ('Spitzenahnen')
 #: ExtendedRelationshipModule.php:1133
 msgid "Individuals with Patriarchs"
-msgstr ""
+msgstr "தேசபக்துள்ள நபர்கள்"
 
 #: ExtendedRelationshipModule.php:1217
 msgid "More Charts"
-msgstr ""
+msgstr "மேலும் விளக்கப்படங்கள்"
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
 msgstr ""
+"உறவுகளைத் தீர்மானிக்கப் பயன்படுத்தப்படும் பல்வேறு வழிமுறைகளை வழங்கும் ஒரு தொகுதி. அசல் "
+"'உறவுகள்' தொகுதிக்கு மாற்றாக, இரண்டு நபர்களிடையே உறவுகளைக் காண்பிக்கும் விளக்கப்படத்தை "
+"உள்ளடக்கியது."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:26
 #: ExtendedRelationshipModuleTrait.php:35
 #, php-format
 msgid "Also includes an extended '%1$s' block."
-msgstr ""
+msgstr "நீட்டிக்கப்பட்ட '%1$s' தொகுதியையும் உள்ளடக்கியது."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:34
 msgid "A module providing various algorithms used to determine relationships. Includes an extended 'Relationships' chart."
 msgstr ""
+"உறவுகளைத் தீர்மானிக்கப் பயன்படுத்தப்படும் பல்வேறு வழிமுறைகளை வழங்கும் ஒரு தொகுதி. "
+"நீட்டிக்கப்பட்ட 'உறவுகள்' விளக்கப்படம் அடங்கும்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:36
 msgid "Displays additional relationship information via the extended 'Families' tab, and the extended 'Facts and Events' tab."
 msgstr ""
+"நீட்டிக்கப்பட்ட 'குடும்பங்கள்' தாவல் மற்றும் நீட்டிக்கப்பட்ட 'உண்மைகள் மற்றும் நிகழ்வுகள்' தாவல் "
+"வழியாக கூடுதல் உறவு தகவல்களைக் காட்டுகிறது."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:38
 msgid "Intended as a replacement for the original 'Relationships' module."
-msgstr ""
+msgstr "அசல் 'உறவுகள்' தொகுதிக்கு மாற்றாக கருதப்படுகிறது."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:71
 msgid "Display"
-msgstr ""
+msgstr "காட்சி"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:73
 msgid "Show common ancestors on top of relationship paths"
-msgstr ""
+msgstr "உறவு பாதைகளுக்கு மேல் பொதுவான மூதாதையர்களைக் காட்டு"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:79
 msgid "Debugging"
-msgstr ""
+msgstr "பிழைத்திருத்தம்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:81
 msgid "Show legacy relationship path names"
-msgstr ""
+msgstr "மரபு உறவு பாதை பெயர்களைக் காட்டு"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:87
 msgid "Options to show in the chart"
-msgstr ""
+msgstr "விளக்கப்படத்தில் காண்பிக்க விருப்பங்கள்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:90
 msgid "Determines the shortest path between two individuals via a LCA (lowest common ancestor), i.e. a common ancestor who only appears on the path once."
 msgstr ""
+"எல்.சி.ஏ (மிகக் குறைந்த பொதுவான மூதாதையர்) வழியாக இரண்டு நபர்களிடையே குறுகிய பாதையை"
+" தீர்மானிக்கிறது, அதாவது ஒரு பொதுவான மூதாதையர் ஒரு முறை மட்டுமே பாதையில் தோன்றும்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:95
 msgid "Each SLCA (smallest lowest common ancestor) essentially represents a part of the tree which both individuals share (as part of their ancestors). More technically, the SLCA set of two individuals is a subset of the LCA set (excluding all LCAs that are themselves ancestors of other LCAs)."
 msgstr ""
+"ஒவ்வொரு எச்.எல்.சி.ஏ (மிகச்சிறிய மிகக் குறைந்த பொதுவான மூதாதையர்) அடிப்படையில் மரத்தின் "
+"ஒரு பகுதியைக் குறிக்கிறது, இது இரு நபர்களும் பகிர்ந்து கொள்கிறது (அவர்களின் "
+"மூதாதையர்களின் ஒரு பகுதியாக). மேலும் தொழில்நுட்ப ரீதியாக, இரண்டு நபர்களின் எச்.எல்.சி.ஏ "
+"தொகுப்பு எல்.சி.ஏ தொகுப்பின் துணைக்குழுவாகும் (அனைத்து எல்.சி.ஏக்களையும் தவிர்த்து மற்ற "
+"எல்.சி.ஏக்களின் மூதாதையர்கள்)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:100
 msgid "All paths between the two individuals that contribute to the CoR (Coefficient of Relationship), as defined here:"
 msgstr ""
+"இங்கே வரையறுக்கப்பட்டுள்ளபடி, COR (உறவின் குணகம்) க்கு பங்களிக்கும் இரு நபர்களுக்கிடையேயா"
+"ன அனைத்து பாதைகளும்:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:106
 msgid "Prefers partial paths via common ancestors, even if there is no direct common ancestor."
 msgstr ""
+"நேரடி பொதுவான மூதாதையர் இல்லாவிட்டாலும், பொதுவான மூதாதையர்கள் வழியாக பகுதி பாதைகளை "
+"விரும்புகிறது."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:111
 msgid "For close relationships similar to the previous option, but faster. Internally just a combination of two other methods."
 msgstr ""
+"முந்தைய விருப்பத்தைப் போன்ற நெருக்கமான உறவுகளுக்கு, ஆனால் வேகமாக. உள்நாட்டில் வேறு இரண்டு"
+" முறைகளின் கலவையாகும்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:116
 msgid "Same option as in the original relationship chart."
-msgstr ""
+msgstr "அசல் உறவு விளக்கப்படத்தில் உள்ள அதே விருப்பம்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:120
@@ -214,29 +245,32 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:294
 #: ExtendedRelationshipModuleTrait.php:301
 msgid "Find other/all overall connections"
-msgstr ""
+msgstr "பிற/அனைத்து ஒட்டுமொத்த இணைப்புகளையும் கண்டறியவும்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:121
 msgid "Same option as in the original relationship chart, further configurable via recursion level:"
 msgstr ""
+"அசல் உறவு விளக்கப்படத்தில் உள்ள அதே விருப்பம், மறுநிகழ்வு நிலை வழியாக மேலும் "
+"கட்டமைக்கக்கூடியது:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
 msgid "unlimited"
-msgstr ""
+msgstr "வரம்பற்றது"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:140
 #: ExtendedRelationshipModuleTrait.php:242
 msgid "Allow persistent toggle (user may show/hide relationships)"
 msgstr ""
+"தொடர்ச்சியான மாற்றத்தை அனுமதிக்கவும் (பயனர் உறவுகளைக் காட்டலாம்/மறைக்கலாம்)"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:152
 #: ExtendedRelationshipModuleTrait.php:254
 msgid "How to determine relationships to the default individual"
-msgstr ""
+msgstr "இயல்புநிலை தனிநபருடனான உறவுகளை எவ்வாறு தீர்மானிப்பது"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:157
@@ -245,7 +279,7 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:259
 #: ExtendedRelationshipModuleTrait.php:284
 msgid "Do not show any relationship"
-msgstr ""
+msgstr "எந்த உறவையும் காட்ட வேண்டாம்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:158
@@ -255,6 +289,8 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:285
 msgid "The following options refer to the same algorithms as used in the extended relationships chart:"
 msgstr ""
+"பின்வரும் விருப்பங்கள் நீட்டிக்கப்பட்ட உறவுகள் விளக்கப்படத்தில் பயன்படுத்தப்படும் அதே "
+"வழிமுறைகளைக் குறிக்கின்றன:"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:171
@@ -262,296 +298,365 @@ msgstr ""
 #: ExtendedRelationshipModuleTrait.php:233
 #: ExtendedRelationshipModuleTrait.php:273
 msgid "Show common ancestors"
-msgstr ""
+msgstr "பொதுவான மூதாதையர்களைக் காட்டு"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:177
 msgid "How to determine relationships between parents"
-msgstr ""
+msgstr "பெற்றோருக்கு இடையிலான உறவுகளை எவ்வாறு தீர்மானிப்பது"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:189
 #: ExtendedRelationshipModuleTrait.php:220
 msgid "Searching for regular overall connections would be pointless here because there is always a trivial HUSB - WIFE connection."
 msgstr ""
+"வழக்கமான ஒட்டுமொத்த இணைப்புகளைத் தேடுவது இங்கே அர்த்தமற்றதாக இருக்கும், ஏனெனில் எப்போதும் "
+"ஒரு கீழான அச்ப் - மனைவி இணைப்பு உள்ளது."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:190
 #: ExtendedRelationshipModuleTrait.php:221
 msgid "Therefore, if one of the following options is selected, overall connections are determined via dated links, i.e. links that have been established before the date of the respective event."
 msgstr ""
+"எனவே, பின்வரும் விருப்பங்களில் ஒன்று தேர்ந்தெடுக்கப்பட்டால், ஒட்டுமொத்த இணைப்புகள் தேதியிட்ட "
+"இணைப்புகள் வழியாக தீர்மானிக்கப்படுகின்றன, அதாவது அந்தந்த நிகழ்வின் தேதிக்கு முன்னர் "
+"நிறுவப்பட்ட இணைப்புகள்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:191
 #: ExtendedRelationshipModuleTrait.php:222
 msgid "This allows you to present meaningful connections, such as 'widowed husband marries the sister of his dead wife'."
 msgstr ""
+"'கைம்பெண் கணவர் தனது இறந்த மனைவியின் சகோதரியை மணக்கிறார்' போன்ற அர்த்தமுள்ள தொடர்புகளை "
+"முன்வைக்க இது உங்களை அனுமதிக்கிறது."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:192
 #: ExtendedRelationshipModuleTrait.php:223
 msgid "These relationships may only be calculated efficiently by preprocessing the tree data, via the synchronization link at the top of this page."
 msgstr ""
+"இந்த பக்கத்தின் மேலே உள்ள ஒத்திசைவு இணைப்பு வழியாக, மரத் தரவை முன் செயலாக்குவதன் மூலம் "
+"மட்டுமே இந்த உறவுகள் திறமையாக கணக்கிடப்படலாம்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:208
 msgid "How to determine relationships to spouses"
-msgstr ""
+msgstr "வாழ்க்கைத் துணைவர்களுக்கான உறவுகளை எவ்வாறு தீர்மானிப்பது"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:279
 msgid "How to determine relationships to associated persons"
-msgstr ""
+msgstr "தொடர்புடைய நபர்களுடனான உறவுகளை எவ்வாறு தீர்மானிப்பது"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:295
 msgid "The following options use dated links, i.e. links that have been established before the date of the respective event."
 msgstr ""
+"பின்வரும் விருப்பங்கள் தேதியிட்ட இணைப்புகளைப் பயன்படுத்துகின்றன, அதாவது அந்தந்த நிகழ்வின் "
+"தேதிக்கு முன்னர் நிறுவப்பட்ட இணைப்புகள்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:296
 msgid "This seems more useful in most cases (e.g. to determine the relationship to a godparent at the time of the baptism)."
 msgstr ""
+"பெரும்பாலான சந்தர்ப்பங்களில் இது மிகவும் பயனுள்ளதாகத் தெரிகிறது (எ.கா. ஞானச்நானத்தின் "
+"போது ஒரு கடவுளின் உறவைத் தீர்மானிக்க)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:309
 msgid "Only show relationships for specific facts and events"
 msgstr ""
+"குறிப்பிட்ட உண்மைகள் மற்றும் நிகழ்வுகளுக்கான உறவுகளை மட்டுமே காட்டுங்கள்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:310
 msgid "Associated facts and events are displayed when the respective toggle checkbox is selected on the tab."
 msgstr ""
+"தாவலில் அந்தந்த மாற்று தேர்வுப்பெட்டி தேர்ந்தெடுக்கப்படும்போது தொடர்புடைய உண்மைகள் மற்றும் "
+"நிகழ்வுகள் காண்பிக்கப்படும்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:311
 msgid "If this option is checked, relationships to the associated individuals are only shown for the following facts and events."
 msgstr ""
+"இந்த விருப்பம் சரிபார்க்கப்பட்டால், தொடர்புடைய நபர்களுடனான உறவுகள் பின்வரும் உண்மைகள் மற்றும் "
+"நிகழ்வுகளுக்கு மட்டுமே காண்பிக்கப்படும்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:312
 msgid "In particular if both lists are empty, relationships will never be shown for these facts and events."
 msgstr ""
+"குறிப்பாக இரண்டு பட்டியல்களும் காலியாக இருந்தால், இந்த உண்மைகள் மற்றும் நிகழ்வுகளுக்கு "
+"உறவுகள் ஒருபோதும் காட்டப்படாது."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:313
 msgid "Note that the facts and events to be displayed at all may be filtered via the preferences of the tab."
 msgstr ""
+"காண்பிக்கப்பட வேண்டிய உண்மைகள் மற்றும் நிகழ்வுகள் தாவலின் விருப்பத்தேர்வுகள் மூலம் "
+"வடிகட்டப்படலாம் என்பதை நினைவில் கொள்க."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:331
 msgid "Chart Settings"
-msgstr ""
+msgstr "விளக்கப்பட அமைப்புகள்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:332
 #, php-format
 msgid "If you do not want to use the chart functionality, hide this chart via Control Panel > Charts > %1$s Vesta Extended Relationships (note that the chart is listed under the module name)."
 msgstr ""
+"நீங்கள் விளக்கப்பட செயல்பாட்டைப் பயன்படுத்த விரும்பவில்லை என்றால், இந்த விளக்கப்படத்தை "
+"கட்டுப்பாட்டு குழு> விளக்கப்படங்கள்> %1$s வெச்டா நீட்டிக்கப்பட்ட உறவுகள் வழியாக மறைக்கவும் "
+"(விளக்கப்படம் தொகுதி பெயரின் கீழ் பட்டியலிடப்பட்டுள்ளது என்பதை நினைவில் கொள்க)."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:336
 msgid "Families Tab Settings"
-msgstr ""
+msgstr "குடும்பங்கள் தாவல் அமைப்புகள்"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:337
 msgid "If you do not want to change the functionality with respect to the original Families tab, select 'Do not show any relationship' everywhere."
 msgstr ""
+"அசல் குடும்பங்கள் தாவலைப் பொறுத்து செயல்பாட்டை மாற்ற நீங்கள் விரும்பவில்லை என்றால், எல்லா "
+"இடங்களிலும் 'எந்த உறவையும் காட்ட வேண்டாம்' என்பதைத் தேர்ந்தெடுக்கவும்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:338
 msgid "In that case, you should also disallow persistent toggle, as it has no visible effect."
 msgstr ""
+"அவ்வாறான நிலையில், நீங்கள் காணக்கூடிய விளைவைக் கொண்டிருப்பதால், தொடர்ச்சியான மாற்றத்தையும் "
+"நீங்கள் அனுமதிக்க வேண்டும்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:339
 #: ExtendedRelationshipModuleTrait.php:347
 msgid "You may also adjust the access level of this part of the module."
-msgstr ""
+msgstr "தொகுதியின் இந்த பகுதியின் அணுகல் அளவையும் நீங்கள் சரிசெய்யலாம்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:345
 msgid "If you do not want to change the functionality with respect to the original Facts and Events tab, select 'Do not show any relationship' in the first block."
 msgstr ""
+"அசல் உண்மைகள் மற்றும் நிகழ்வுகள் தாவலைப் பொறுத்து செயல்பாட்டை மாற்ற நீங்கள் விரும்பவில்லை "
+"என்றால், முதல் தொகுதியில் 'எந்த உறவையும் காட்ட வேண்டாம்' என்பதைத் தேர்ந்தெடுக்கவும்."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:346
 msgid "If you select this option everywhere, you should also disallow persistent toggle, as it has no visible effect."
 msgstr ""
+"எல்லா இடங்களிலும் இந்த விருப்பத்தை நீங்கள் தேர்ந்தெடுத்தால், நீங்கள் காணக்கூடிய விளைவைக் "
+"கொண்டிருப்பதால், தொடர்ச்சியான மாற்றத்தையும் அனுமதிக்க வேண்டும்."
 
 #: ExtendedRelationshipsChartController.php:57
 #: resources/views/modules/lca-chart/chart.phtml:25
 #, php-format
 msgid "Uncorrected CoR (Coefficient of Relationship): %s"
-msgstr ""
+msgstr "சரி செய்யப்படாத கோர் (உறவின் குணகம்): %s"
 
 #: ExtendedRelationshipsChartController.php:59
 #: resources/views/modules/lca-chart/chart.phtml:27
 #, php-format
 msgid "(Number of relationships: %s)"
-msgstr ""
+msgstr "(உறவுகளின் எண்ணிக்கை: %s)"
 
 #: ExtendedRelationshipsChartController.php:63
 #: patchedWebtrees/Services/TreeNodeCOR.php:68
 msgid "(that's overall not significantly closer than the closest relationship via common ancestors)"
 msgstr ""
+"(இது பொதுவான மூதாதையர்கள் வழியாக மிக நெருக்கமான உறவை விட ஒட்டுமொத்தமாக கணிசமாக "
+"நெருக்கமாக இல்லை)"
 
 #: ExtendedRelationshipsChartController.php:71
 #: patchedWebtrees/Services/TreeNodeCOR.php:142
 #, php-format
 msgid "(that's overall as close as: %1$s)"
-msgstr ""
+msgstr "(இது ஒட்டுமொத்தமாக நெருக்கமாக உள்ளது: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:73
 #: patchedWebtrees/Services/TreeNodeCOR.php:144
 #, php-format
 msgid "(that's overall almost as close as: %1$s)"
-msgstr ""
+msgstr "(இது ஒட்டுமொத்தமாக கிட்டத்தட்ட நெருக்கமாக உள்ளது: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:75
 #: patchedWebtrees/Services/TreeNodeCOR.php:146
 #, php-format
 msgid "(that's overall closer than: %1$s)"
-msgstr ""
+msgstr "(இது ஒட்டுமொத்தமாக நெருக்கமாக உள்ளது: %1$s)"
 
 #: ExtendedRelationshipsChartController.php:112
 #, php-format
 msgid "via legacy algorithm: %s"
-msgstr ""
+msgstr "மரபு வழிமுறை வழியாக: %s"
 
 #: ExtendedRelationshipsChartController.php:215
 msgid "parents"
-msgstr ""
+msgstr "பெற்றோர்"
 
 #: ExtendedRelationshipsChartController.php:279
 msgid "If this is unexpected, and there are recent changes, you may have to follow this link: "
 msgstr ""
+"இது எதிர்பாராதது மற்றும் அண்மைக் கால மாற்றங்கள் இருந்தால், நீங்கள் இந்த இணைப்பைப் பின்பற்ற "
+"வேண்டியிருக்கும்: "
 
 #. I18N: (person 1) is (relative, e.g. father) of (person2)
 #: FunctionsPrintRels.php:119
 #, php-format
 msgid "%1$s is %2$s of %3$s."
-msgstr ""
+msgstr "%1$s %3$s %2$s ஆகும்."
 
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
-msgstr ""
+msgstr "பொதுவான மூதாதையர்: "
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
-msgstr ""
+msgstr "பொதுவான மூதாதையர்கள்: "
 
 #: HelpTexts.php:15
 msgid "Uncorrected CoR (Coefficient of Relationship)"
-msgstr ""
+msgstr "சரி செய்யப்படாத COR (உறவின் குணகம்)"
 
 #: HelpTexts.php:17
 msgid "The CoR (Coefficient of Relationship) is proportional to the number of genes that two individuals have in common as a result of their genetic relationship. Its calculation is based on Sewall Wright's method of path coefficients. Its value represents the proportion of genes held in common by two related individuals over and above those held in common by the whole population. More details here: "
 msgstr ""
+"COR (உறவின் குணகம்) இரண்டு நபர்கள் தங்கள் மரபணு உறவின் விளைவாக பொதுவானதாக இருக்கும் "
+"மரபணுக்களின் எண்ணிக்கைக்கு விகிதாசாரமாகும். அதன் கணக்கீடு செவால் ரைட்டின் பாதை குணகங்களின் "
+"முறையை அடிப்படையாகக் கொண்டது. அதன் மதிப்பு முழு மக்கள்தொகையும் பொதுவானதாகக் கொண்ட இரண்டு"
+" தொடர்புடைய நபர்களால் பொதுவான மரபணுக்களின் விகிதத்தைக் குறிக்கிறது. மேலும் விவரங்கள் "
+"இங்கே: "
 
 #: HelpTexts.php:20
 #, php-format
 msgid "Basically, each path (via common ancestors) between two individuals contributes to the CoR, inversely proportional to its length: Each path of length 2 (e.g. between full siblings) adds %1$s, each path of length 4 (e.g. between first cousins) adds %2$s, in general each path of length n adds (0.5)<sup>n</sup>."
 msgstr ""
+"அடிப்படையில், இரண்டு நபர்களுக்கிடையேயான ஒவ்வொரு பாதையும் (பொதுவான மூதாதையர்கள் வழியாக)"
+" அதன் நீளத்திற்கு நேர்மாறான விகிதாசாரத்திற்கு பங்களிக்கிறது: ஒவ்வொரு நீளம் 2 (எ.கா. முழு "
+"உடன்பிறப்புகளுக்கு இடையில்) %1$s ஐ சேர்க்கிறது, ஒவ்வொரு நீளத்தின் பாதையும் 4 (எ.கா. முதல்"
+" உறவினர்களுக்கு இடையில்) %2$s ஐ சேர்க்கிறது, பொதுவாக ஒவ்வொரு பாதையும் n சேர்க்கைகள் "
+"(0.5) </sup> n </sup> n </sup> n </sup> n </sup."
 
 #: HelpTexts.php:24
 msgid "Under normal circumstances the proportion of genes transmitted from ancestor to descendant &ndash; as estimated by Σ(0.5)<sup>n</sup> &ndash;  and the proportion of genes they hold in common (the true coefficient of relationship) are the same. If there has been any inbreeding, however, there may be a slight discrepancy, as explained here: "
 msgstr ""
+"சாதாரண சூழ்நிலைகளில் மூதாதையரிடமிருந்து வம்சாவளிக்கு அனுப்பப்படும் மரபணுக்களின் விகிதம் "
+"& ndash; σ (0.5) <up> n </sup> & ndash; மேலும் அவை பொதுவான மரபணுக்களின் விகிதம் "
+"(உறவின் உண்மையான குணகம்) ஒன்றே. இருப்பினும், இனப்பெருக்கம் ஏதேனும் இருந்தால், இங்கே "
+"விளக்கப்பட்டுள்ளபடி, ஒரு சிறிய வேறுபாடு இருக்கலாம்: "
 
 #: HelpTexts.php:27
 msgid "It is more complicated to determine this exact CoR, and the differences are usually small anyway. Therefore, only the Uncorrected CoR is calculated."
 msgstr ""
+"இந்த துல்லியமான CoR ஐ தீர்மானிப்பது மிகவும் சிக்கலானது, மேலும் வேறுபாடுகள் பொதுவாக "
+"எப்படியும் சிறியவை. எனவே, சரி செய்யப்படாத COR மட்டுமே கணக்கிடப்படுகிறது."
 
 #: HelpTexts.php:32
 msgid "Legacy algorithm for Relationship path names"
-msgstr ""
+msgstr "உறவு பாதை பெயர்களுக்கான மரபு வழிமுறை"
 
 #: HelpTexts.php:34
 msgid "You can disable this via the module preferences, it's mainly intended for debugging."
 msgstr ""
+"தொகுதி விருப்பத்தேர்வுகள் வழியாக இதை நீங்கள் முடக்கலாம், இது முக்கியமாக பிழைத்திருத்தத்தை "
+"நோக்கமாகக் கொண்டுள்ளது."
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
-msgstr ""
+msgstr "புதிய வழிமுறை எவ்வளவு சிறப்பாக செயல்படுகிறது என்பதை இது காட்டுகிறது ..."
 
 #. I18N: end-of line ancestor, 'Spitzenahn'
 #: HelpTexts.php:40
 #: resources/views/lists/individuals-table-with-patriarchs.phtml:181
 #: resources/views/lists/surnames-table-with-patriarchs.phtml:59
 msgid "Patriarch"
-msgstr ""
+msgstr "தேசபக்தர்"
 
 #: HelpTexts.php:42
 msgid "Patriarchs are the male end-of-line ancestors ('Spitzenahnen')."
-msgstr ""
+msgstr "தேசபக்தர்கள் ஆண் இறுதி-வரி மூதாதையர்கள் ('ச்பிட்செனாஎன்')."
 
 #: HelpTexts.php:43
 msgid "The same information may be obtained via the branches list, where they show up as the heads of branches."
 msgstr ""
+"அதே தகவல்களை கிளைகள் பட்டியல் வழியாகப் பெறலாம், அங்கு அவை கிளைகளின் தலைவர்களாகக் "
+"காண்பிக்கப்படுகின்றன."
 
 #: HelpTexts.php:44
 msgid "This list provides an overview by surname, and may be used to determine whether all individuals with a specific surname are actually descended from a common patriarch."
 msgstr ""
+"இந்த பட்டியல் குடும்பப் பெயரால் ஒரு கண்ணோட்டத்தை வழங்குகிறது, மேலும் ஒரு குறிப்பிட்ட "
+"குடும்பப்பெயர் கொண்ட அனைத்து நபர்களும் உண்மையில் ஒரு பொதுவான தேசபக்தரிடமிருந்து வந்தவர்கள் "
+"என்பதை தீர்மானிக்க பயன்படுத்தப்படலாம்."
 
 #: LCAChartModule.php:80 LCAChartModule.php:160
 msgid "Common ancestors"
-msgstr ""
+msgstr "பொதுவான மூதாதையர்கள்"
 
 #. I18N: %s are individual’s names
 #: LCAChartModule.php:152
 #, php-format
 msgid "Common ancestors of %1$s and %2$s"
-msgstr ""
+msgstr "%1$s மற்றும் %2$s இன் பொதுவான மூதாதையர்கள்"
 
 #: resources/views/modules/lca-chart/chart.phtml:18
 msgid "There are no recorded common ancestors."
-msgstr ""
+msgstr "பதிவுசெய்யப்பட்ட பொதுவான மூதாதையர்கள் யாரும் இல்லை."
 
 #: resources/views/modules/lca-chart/chart.phtml:24
 #, php-format
 msgid "Closest Relationship: %s"
-msgstr ""
+msgstr "நெருங்கிய உறவு: %s"
 
 #: resources/views/modules/pedigree-chart/chart-x.phtml:56
 msgid "CoI; Coefficient of Inbreeding"
-msgstr ""
+msgstr "கோய்; இனப்பெருக்கத்தின் குணகம்"
 
 #: resources/views/modules/pedigree-chart/chart.phtml:17
 msgid "There is no recorded pedigree collapse."
-msgstr ""
+msgstr "பதிவுசெய்யப்பட்ட வம்சாவளி சரிவு இல்லை."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
 msgid "There is no recorded pedigree collapse within %1$s generations."
-msgstr ""
+msgstr "%1$s தலைமுறைகளுக்குள் பதிவுசெய்யப்பட்ட வம்சாவளி சரிவு இல்லை."
 
 #: resources/views/modules/pedigree-chart/page.phtml:58
 msgid "show repeated ancestors once"
-msgstr ""
+msgstr "ஒரு முறை மீண்டும் மீண்டும் மூதாதையர்களைக் காட்டு"
 
 #: resources/views/modules/pedigree-chart/page.phtml:59
 msgid "show full pedigree"
-msgstr ""
+msgstr "முழு வம்சாவளியைக் காட்டு"
 
 #: resources/views/page.phtml:55
 #, php-format
 msgid "Options referring to overall connections established before %1$s."
 msgstr ""
+"%1$s க்கு முன் நிறுவப்பட்ட ஒட்டுமொத்த இணைப்புகளைக் குறிக்கும் விருப்பங்கள்."
 
 #. I18N: Module Configuration
 #: resources/views/sync-complete.phtml:5
 msgid "Finished - all link dates are up-to-date."
-msgstr ""
+msgstr "முடிந்தது-அனைத்து இணைப்பு தேதிகளும் புதுப்பித்தவை."
 
 #: resources/views/sync.phtml:15
 msgid "This process calculates dates for all INDI - FAM links, so that relationships at a specific point in time can be calculated efficiently."
 msgstr ""
+"இந்த செயல்முறை அனைத்து INDI - பாம் இணைப்புகளுக்கான தேதிகளைக் கணக்கிடுகிறது, இதனால் ஒரு"
+" குறிப்பிட்ட கட்டத்தில் உறவுகள் திறமையாக கணக்கிடப்படலாம்."
 
 #: resources/views/sync.phtml:18
 msgid "For large trees, this process may initially take several minutes. You can always safely abort and continue later."
 msgstr ""
+"பெரிய மரங்களுக்கு, இந்த செயல்முறை ஆரம்பத்தில் பல நிமிடங்கள் ஆகலாம். நீங்கள் எப்போதும் "
+"பாதுகாப்பாக நிறுத்தி பின்னர் தொடரலாம்."
 
 #: resources/views/sync.phtml:21
 msgid "The process should be repeated (but will finish much faster) whenever a tree is edited, otherwise you may obtain inconsistent relationship data (displayed relationships are always valid, but they may not actually have been established at the given date, if changes in the tree are not synchronized here)."
 msgstr ""
+"ஒரு மரம் திருத்தப்படும் போதெல்லாம் செயல்முறை மீண்டும் மீண்டும் செய்யப்பட வேண்டும் (ஆனால் மிக "
+"வேகமாக முடிவடையும்), இல்லையெனில் நீங்கள் சீரற்ற உறவு தரவைப் பெறலாம் (காட்டப்படும் உறவுகள் "
+"எப்போதும் செல்லுபடியாகும், ஆனால் அவை உண்மையில் கொடுக்கப்பட்ட தேதியில் நிறுவப்பட்டிருக்காது"
+", மரத்தில் மாற்றங்கள் இங்கே ஒத்திசைக்கப்படாவிட்டால்)."
