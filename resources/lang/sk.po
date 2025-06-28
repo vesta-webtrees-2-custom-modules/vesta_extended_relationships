@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-19 20:53+0200\n"
-"PO-Revision-Date: 2025-06-28 17:04+0000\n"
+"PO-Revision-Date: 2025-06-28 19:04+0000\n"
 "Last-Translator: ro-la <lacoros@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/"
 "vesta-webtrees-custom-modules/vesta-extended-relationships/sk/>\n"
@@ -60,7 +60,7 @@ msgstr "(celkovo to nie je významne bližšie ako najbližší vzťah cez spolo
 
 #: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
-msgstr ""
+msgstr "Schéma opakujúcich sa predkov osoby, v tvare stromu."
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -87,7 +87,7 @@ msgstr "Zobraziť checkbox (užívateľ môže zapnúť/vypnúť zobrazenie rodi
 #: ExtendedRelationshipModuleTrait.php:35
 #, php-format
 msgid "Also includes an extended '%1$s' block."
-msgstr ""
+msgstr "Jeho súčasťou je aj rozšírený blok „%1$s“."
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
@@ -115,7 +115,7 @@ msgstr ""
 
 #: resources/views/modules/pedigree-chart/chart-x.phtml:56
 msgid "CoI; Coefficient of Inbreeding"
-msgstr ""
+msgstr "Col; koeficient príbuzenského kríženia"
 
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
@@ -123,13 +123,13 @@ msgstr "Spoločný predok: "
 
 #: LCAChartModule.php:80 LCAChartModule.php:160
 msgid "Common ancestors"
-msgstr ""
+msgstr "Spoloční predkovia"
 
 #. I18N: %s are individual’s names
 #: LCAChartModule.php:152
 #, php-format
 msgid "Common ancestors of %1$s and %2$s"
-msgstr ""
+msgstr "Spoloční predkovia osôb %1$s a %2$s"
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
@@ -387,12 +387,12 @@ msgstr "Patriarchovia sú mužskí predkovia na začiatku línie."
 #: ExtendedPedigreeChartModule.php:108
 #: resources/views/modules/pedigree-chart/page.phtml:54
 msgid "Pedigree collapse"
-msgstr ""
+msgstr "Strata predkov"
 
 #: ExtendedPedigreeChartModule.php:140
 #, php-format
 msgid "Pedigree collapse tree of %s"
-msgstr ""
+msgstr "%s - vývod so stratou predkov"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:106
@@ -471,16 +471,16 @@ msgstr "Rovnakú informáciu získate cez zoznam Vetvy, kde sú zobrazení ako h
 
 #: resources/views/modules/lca-chart/chart.phtml:18
 msgid "There are no recorded common ancestors."
-msgstr ""
+msgstr "Nie sú zaznamenaní žiadni spoloční predkovia."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:19
 #, php-format
 msgid "There is no recorded pedigree collapse within %1$s generations."
-msgstr ""
+msgstr "Nie je zaznamenaná žiadna strata predkov v %1$s generáciách."
 
 #: resources/views/modules/pedigree-chart/chart.phtml:17
 msgid "There is no recorded pedigree collapse."
-msgstr ""
+msgstr "Nie je zaznamenaná žiadna strata predkov."
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:190
@@ -543,11 +543,11 @@ msgstr "rodičia"
 
 #: resources/views/modules/pedigree-chart/page.phtml:59
 msgid "show full pedigree"
-msgstr ""
+msgstr "Zobraz úplný vývod"
 
 #: resources/views/modules/pedigree-chart/page.phtml:58
 msgid "show repeated ancestors once"
-msgstr ""
+msgstr "zobraziť opakujúcich sa predkov len raz"
 
 #. I18N: Module Configuration
 #: ExtendedRelationshipModuleTrait.php:131
