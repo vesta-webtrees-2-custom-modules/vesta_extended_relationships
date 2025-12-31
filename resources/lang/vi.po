@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: vesta 1.0\n"
 "Report-Msgid-Bugs-To: ric@richard-cissee.de\n"
 "POT-Creation-Date: 2023-07-19 20:53+0200\n"
-"PO-Revision-Date: 2021-08-07 05:34+0000\n"
+"PO-Revision-Date: 2025-12-31 06:01+0000\n"
 "Last-Translator: ngohuuthuanfc9865b89dde4baf <ngohuuthuan@gmail.com>\n"
-"Language-Team: Vietnamese <https://hosted.weblate.org/projects/vesta-webtrees-custom-modules/vesta-extended-relationships/vi/>\n"
+"Language-Team: Vietnamese <https://hosted.weblate.org/projects/vesta-"
+"webtrees-custom-modules/vesta-extended-relationships/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #: ExtendedRelationshipModule.php:292
 msgid " (see below for details)."
@@ -60,6 +61,8 @@ msgstr "(nhìn chung không gần hơn đáng kể so với mối quan hệ gầ
 #: ExtendedPedigreeChartModule.php:120
 msgid "A chart of an individual’s repeated ancestors, formatted as a tree."
 msgstr ""
+"Biểu đồ thể hiện các tổ tiên lặp lại của một cá nhân, được định dạng dưới "
+"dạng cây."
 
 #: ExtendedRelationshipModuleTrait.php:25
 msgid "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module."
@@ -86,7 +89,7 @@ msgstr "Cho phép chuyển đổi liên tục (người dùng có thể hiển t
 #: ExtendedRelationshipModuleTrait.php:35
 #, php-format
 msgid "Also includes an extended '%1$s' block."
-msgstr ""
+msgstr "Cũng bao gồm một khối '%1$s' mở rộng."
 
 #: HelpTexts.php:35
 msgid "And hopefully it shows how much better the new algorithm works ..."
@@ -110,11 +113,11 @@ msgstr "Cài đặt biểu đồ"
 #: resources/views/modules/lca-chart/chart.phtml:24
 #, php-format
 msgid "Closest Relationship: %s"
-msgstr ""
+msgstr "Mối quan hệ gần gũi nhất: %s"
 
 #: resources/views/modules/pedigree-chart/chart-x.phtml:56
 msgid "CoI; Coefficient of Inbreeding"
-msgstr ""
+msgstr "CoI; Hệ số cận huyết"
 
 #: FunctionsPrintRels.php:141
 msgid "Common ancestor: "
@@ -122,13 +125,13 @@ msgstr "Tổ tiên chung: "
 
 #: LCAChartModule.php:80 LCAChartModule.php:160
 msgid "Common ancestors"
-msgstr ""
+msgstr "Tổ tiên chung"
 
 #. I18N: %s are individual’s names
 #: LCAChartModule.php:152
 #, php-format
 msgid "Common ancestors of %1$s and %2$s"
-msgstr ""
+msgstr "Tổ tiên chung của %1$s và %2$s"
 
 #: FunctionsPrintRels.php:168
 msgid "Common ancestors: "
