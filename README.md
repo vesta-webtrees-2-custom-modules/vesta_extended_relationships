@@ -30,7 +30,7 @@ The project’s website is [cissee.de](https://cissee.de).
 
 ### Download<a name="download"/>
 
-* Current version: 2.2.4.1.0
+* Current version: 2.2.4.2.0
 * Based on and tested with webtrees 2.2.4. Requires webtrees 2.2.1 or later.
 * Requires the ⚶ Vesta Common module ('vesta_common').
 * Displays data via the ⚶ Vesta Families module ('vesta_relatives').
@@ -52,7 +52,7 @@ The project’s website is [cissee.de](https://cissee.de).
 ### License<a name="license"/>
 
 * **vesta_extended_relationships: a webtrees custom module**
-* Copyright (C) 2019 – 2025 Richard Cissée
+* Copyright (C) 2019 – 2026 Richard Cissée
 * Derived from **webtrees** - Copyright 2022 webtrees development team.
 * French translations provided by Michel Rivière.
 * Dutch translations provided by Frans Weber and TheDutchJewel.
