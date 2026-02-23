@@ -245,6 +245,12 @@ class ExtendedRelationshipController {
     }
 
     public function getCorFromCaAndPaths($tree, $caAndPaths) {
+        
+        if (empty($caAndPaths)) {
+            //avoid INF in calculation below
+            return new CorPlus(0.0, 1, null);
+        }
+        
         $bestPathLength = null;
         $bestPath = null;
 
@@ -275,6 +281,7 @@ class ExtendedRelationshipController {
 
         $actuallyBetterThan = 1;
         $equivalentPathLength = -(log($cor, 2));
+        
         $eplFraction = $equivalentPathLength - floor($equivalentPathLength);
         if ($eplFraction < 0.001) {
             $actuallyBetterThan = 0;
